@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="EntryPoint">
+      <UniqueIdentifier>{e28e9e1c-d0ad-4f51-bdf0-225b4199af1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="standard_library">
+      <UniqueIdentifier>{5d05458e-2e2a-47a6-8e9a-2960651dd6f4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source.cpp">
+      <Filter>EntryPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="standard_library.cpp">
+      <Filter>standard_library</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="standard_library.hpp">
+      <Filter>standard_library</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
