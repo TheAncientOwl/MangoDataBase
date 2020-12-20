@@ -33,28 +33,28 @@ struct Static_
 };
 
 template<typename T>
-using Ref = T&;
+using ref = T&;
 
 template<typename T>
-using ConstRef = const T&;
+using const_ref = const T&;
 
 template<typename T>
-using RRef = T&&;
+using r_ref = T&&;
 
 template<typename T>
-using Ptr = T*;
+using ptr = T*;
 
 template<typename T>
-using ConstPtr = const T*;
+using const_ptr = const T*;
 
 template<typename T>
-inline void serializePOD(std::fstream& out, ConstPtr<T> value, size_t itemsNumber = 1)
+inline void serializePOD(std::fstream& out, const_ptr<T> value, size_t itemsNumber = 1)
 {
 	out.write(reinterpret_cast<const char*>(value), sizeof(T) * itemsNumber);
 }
 
 template<typename T>
-inline void deserializePOD(std::fstream& in, Ptr<T> value, size_t itemsNumber = 1)
+inline void deserializePOD(std::fstream& in, ptr<T> value, size_t itemsNumber = 1)
 {
 	in.read(reinterpret_cast<char*>(value), sizeof(T) * itemsNumber);
 }

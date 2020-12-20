@@ -27,10 +27,10 @@ namespace Mango
 		
 		operator Value() const;
 
-		DataType(ConstRef<DataType>) = default;
-		DataType(RRef<DataType>) noexcept = default;
-		DataType& operator=(ConstRef<DataType>) = default;
-		DataType& operator=(RRef<DataType>) noexcept = default;
+		DataType(const_ref<DataType>) = default;
+		DataType(r_ref<DataType>) noexcept = default;
+		DataType& operator=(const_ref<DataType>) = default;
+		DataType& operator=(r_ref<DataType>) noexcept = default;
 
 	private:
 		Value m_Value;
