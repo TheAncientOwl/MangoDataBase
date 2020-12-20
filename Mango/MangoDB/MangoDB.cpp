@@ -3,7 +3,7 @@
 
 namespace Mango
 {
-	void MangoDB::storeTables() const
+	void PUBLIC_API MangoDB::storeTables() const
 	{
 		std::fstream file(getConfigFilePath(), std::ios::out | std::ios::trunc | std::ios::binary);
 
@@ -22,7 +22,7 @@ namespace Mango
 		file.close();
 	}
 
-	void MangoDB::loadTables()
+	void PUBLIC_API MangoDB::loadTables()
 	{
 		std::fstream file(getConfigFilePath(), std::ios::in | std::ios::binary);
 

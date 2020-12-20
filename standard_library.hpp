@@ -15,7 +15,9 @@
 #include <map>
 #include <set>
 
+#define PROTECTED_API
 #define PRIVATE_API
+#define PUBLIC_API
 
 #include "Utilities/ConsoleColorOutput/ConsoleColorOutput.hpp"
 

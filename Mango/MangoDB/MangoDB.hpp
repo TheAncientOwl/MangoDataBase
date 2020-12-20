@@ -30,8 +30,8 @@ namespace Mango
 		void PRIVATE_API removeTable(std::string_view tableName);
 
 	public: /// Interface
-		void storeTables() const;
-		void loadTables();
+		void PUBLIC_API storeTables() const;
+		void PUBLIC_API loadTables();
 
 		const_ref<std::vector<std::unique_ptr<Table>>> tables() const;
 
