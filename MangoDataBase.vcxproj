@@ -167,6 +167,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Mango\DataType\DataType.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="standard_library.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -177,6 +178,7 @@
     <ClCompile Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Mango\DataType\DataType.hpp" />
     <ClInclude Include="standard_library.hpp" />
     <ClInclude Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.hpp" />
   </ItemGroup>

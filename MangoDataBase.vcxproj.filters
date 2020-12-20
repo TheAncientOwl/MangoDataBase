@@ -13,6 +13,12 @@
     <Filter Include="Utilities\ConsoleColorOutput">
       <UniqueIdentifier>{d86a8e94-b862-4d15-9443-8bb2ac58a083}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango">
+      <UniqueIdentifier>{69e4b8b1-a0ea-4c55-97bb-33810e563ae5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\DataType">
+      <UniqueIdentifier>{b989cbe1-0083-402d-9fc9-4b569fd48bfe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -24,6 +30,9 @@
     <ClCompile Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.cpp">
       <Filter>Utilities\ConsoleColorOutput</Filter>
     </ClCompile>
+    <ClCompile Include="Mango\DataType\DataType.cpp">
+      <Filter>Mango\DataType</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="standard_library.hpp">
@@ -31,6 +40,9 @@
     </ClInclude>
     <ClInclude Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.hpp">
       <Filter>Utilities\ConsoleColorOutput</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\DataType\DataType.hpp">
+      <Filter>Mango\DataType</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
