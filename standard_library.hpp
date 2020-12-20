@@ -39,6 +39,9 @@ template<typename T>
 using ConstRef = const T&;
 
 template<typename T>
+using RRef = T&&;
+
+template<typename T>
 using Ptr = T*;
 
 template<typename T>
