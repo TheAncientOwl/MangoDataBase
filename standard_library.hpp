@@ -15,6 +15,8 @@
 #include <map>
 #include <set>
 
+#include "Utilities/ConsoleColorOutput/ConsoleColorOutput.hpp"
+
 ///resource for static_block: https://stackoverflow.com/questions/19227664/whats-the-c-idiom-equivalent-to-the-java-static-block
 #define CONCATE_(X,Y) X##Y
 #define CONCATE(X,Y) CONCATE_(X,Y)

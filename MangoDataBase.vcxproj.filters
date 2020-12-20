@@ -7,6 +7,12 @@
     <Filter Include="standard_library">
       <UniqueIdentifier>{5d05458e-2e2a-47a6-8e9a-2960651dd6f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{aa6a7e4d-0379-4961-8ee0-d8974c40ad1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities\ConsoleColorOutput">
+      <UniqueIdentifier>{d86a8e94-b862-4d15-9443-8bb2ac58a083}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -15,10 +21,16 @@
     <ClCompile Include="standard_library.cpp">
       <Filter>standard_library</Filter>
     </ClCompile>
+    <ClCompile Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.cpp">
+      <Filter>Utilities\ConsoleColorOutput</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="standard_library.hpp">
       <Filter>standard_library</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.hpp">
+      <Filter>Utilities\ConsoleColorOutput</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
