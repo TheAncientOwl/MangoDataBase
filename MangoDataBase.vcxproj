@@ -169,6 +169,14 @@
   <ItemGroup>
     <ClCompile Include="Mango\Column\Column.cpp" />
     <ClCompile Include="Mango\DataType\DataType.cpp" />
+    <ClCompile Include="Mango\Exceptions\FeatureNotImplementedException\FeatureNotImplementedException.cpp" />
+    <ClCompile Include="Mango\Exceptions\InvalidArgumentException\InvalidArgumentException.cpp" />
+    <ClCompile Include="Mango\Exceptions\InvalidSyntaxException\InvalidSyntaxException.cpp" />
+    <ClCompile Include="Mango\Exceptions\MangoExceptionType\MangoExceptionType.cpp" />
+    <ClCompile Include="Mango\Exceptions\MangoException\MangoException.cpp" />
+    <ClCompile Include="Mango\Exceptions\NanException\NanException.cpp" />
+    <ClCompile Include="Mango\Exceptions\TableAlreadyExistsException\TableAlreadyExistsException.cpp" />
+    <ClCompile Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.cpp" />
     <ClCompile Include="Mango\MangoDB\MangoDB.cpp" />
     <ClCompile Include="Mango\Table\Table.cpp" />
     <ClCompile Include="Mango\Testing\Testing.cpp" />
@@ -184,6 +192,15 @@
   <ItemGroup>
     <ClInclude Include="Mango\Column\Column.hpp" />
     <ClInclude Include="Mango\DataType\DataType.hpp" />
+    <ClInclude Include="Mango\Exceptions\FeatureNotImplementedException\FeatureNotImplementedException.hpp" />
+    <ClInclude Include="Mango\Exceptions\InvalidArgumentException\InvalidArgumentException.hpp" />
+    <ClInclude Include="Mango\Exceptions\InvalidSyntaxException\InvalidSyntaxException.hpp" />
+    <ClInclude Include="Mango\Exceptions\MangoExceptions.h" />
+    <ClInclude Include="Mango\Exceptions\MangoExceptionType\MangoExceptionType.hpp" />
+    <ClInclude Include="Mango\Exceptions\MangoException\MangoException.hpp" />
+    <ClInclude Include="Mango\Exceptions\NanException\NanException.hpp" />
+    <ClInclude Include="Mango\Exceptions\TableAlreadyExistsException\TableAlreadyExistsException.hpp" />
+    <ClInclude Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.hpp" />
     <ClInclude Include="Mango\MangoAPI.hpp" />
     <ClInclude Include="Mango\MangoDB\MangoDB.hpp" />
     <ClInclude Include="Mango\Table\Table.hpp" />

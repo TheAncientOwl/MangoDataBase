@@ -31,6 +31,33 @@
     <Filter Include="Mango\MangoDB">
       <UniqueIdentifier>{f715e22b-859c-49c7-b030-7fffe98042a5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Exceptions">
+      <UniqueIdentifier>{00a74908-d5c5-4e46-82c1-1b6976d9e377}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Exceptions\FeatureNotImplemented">
+      <UniqueIdentifier>{13993815-f49b-4579-9016-b04cfdaa24ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Exceptions\MangoException">
+      <UniqueIdentifier>{e0180aae-1234-4ac1-bece-d6de6d6f64ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Exceptions\MangoExceptionType">
+      <UniqueIdentifier>{cabbb4db-91b3-4d18-8132-67f799e31d56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Exceptions\InvalidArgument">
+      <UniqueIdentifier>{5a14fc1e-50a6-4775-b68b-3e4d4d4e2f1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Exceptions\InvalidSyntax">
+      <UniqueIdentifier>{fd750a2d-4d6d-420a-9551-9e2c65b87644}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Exceptions\NanException">
+      <UniqueIdentifier>{2cf3a69b-4622-4b88-914f-af5e36aeed98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Exceptions\TableAlreadyExists">
+      <UniqueIdentifier>{7d1fcd98-1585-48eb-98f1-34b255c2aaed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Exceptions\TableNotFound">
+      <UniqueIdentifier>{ace3a5ef-61fc-49b4-8850-5b61bedbdf77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -57,6 +84,30 @@
     <ClCompile Include="Mango\MangoDB\MangoDB.cpp">
       <Filter>Mango\MangoDB</Filter>
     </ClCompile>
+    <ClCompile Include="Mango\Exceptions\FeatureNotImplementedException\FeatureNotImplementedException.cpp">
+      <Filter>Mango\Exceptions\FeatureNotImplemented</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Exceptions\MangoException\MangoException.cpp">
+      <Filter>Mango\Exceptions\MangoException</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Exceptions\MangoExceptionType\MangoExceptionType.cpp">
+      <Filter>Mango\Exceptions\MangoExceptionType</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Exceptions\InvalidArgumentException\InvalidArgumentException.cpp">
+      <Filter>Mango\Exceptions\InvalidArgument</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Exceptions\InvalidSyntaxException\InvalidSyntaxException.cpp">
+      <Filter>Mango\Exceptions\InvalidSyntax</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Exceptions\NanException\NanException.cpp">
+      <Filter>Mango\Exceptions\NanException</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Exceptions\TableAlreadyExistsException\TableAlreadyExistsException.cpp">
+      <Filter>Mango\Exceptions\TableAlreadyExists</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.cpp">
+      <Filter>Mango\Exceptions\TableNotFound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="standard_library.hpp">
@@ -82,6 +133,33 @@
     </ClInclude>
     <ClInclude Include="Mango\MangoDB\MangoDB.hpp">
       <Filter>Mango\MangoDB</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Exceptions\FeatureNotImplementedException\FeatureNotImplementedException.hpp">
+      <Filter>Mango\Exceptions\FeatureNotImplemented</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Exceptions\MangoException\MangoException.hpp">
+      <Filter>Mango\Exceptions\MangoException</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Exceptions\MangoExceptionType\MangoExceptionType.hpp">
+      <Filter>Mango\Exceptions\MangoExceptionType</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Exceptions\InvalidArgumentException\InvalidArgumentException.hpp">
+      <Filter>Mango\Exceptions\InvalidArgument</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Exceptions\InvalidSyntaxException\InvalidSyntaxException.hpp">
+      <Filter>Mango\Exceptions\InvalidSyntax</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Exceptions\NanException\NanException.hpp">
+      <Filter>Mango\Exceptions\NanException</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Exceptions\TableAlreadyExistsException\TableAlreadyExistsException.hpp">
+      <Filter>Mango\Exceptions\TableAlreadyExists</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.hpp">
+      <Filter>Mango\Exceptions\TableNotFound</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Exceptions\MangoExceptions.h">
+      <Filter>Mango\Exceptions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
