@@ -39,7 +39,7 @@ template<typename T>
 using const_ref = const T&;
 
 template<typename T>
-using r_ref = T&&;
+using rvalue_ref = T&&;
 
 template<typename T>
 using ptr = T*;
