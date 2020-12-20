@@ -14,7 +14,7 @@ namespace Mango
 	private: /// Private methods
 		inline std::filesystem::path getConfigFilePath() const;
 
-	public: /// API
+	private: /// API
 		/// <summary>
 		/// Add table to internal data structure.
 		/// Create its files.

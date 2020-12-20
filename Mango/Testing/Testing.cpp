@@ -84,7 +84,7 @@ namespace test
 
 	void mangoSerializeDeserialize()
 	{
-		MangoDB mango("TestDataBase");
+		/*MangoDB mango("TestDataBase");
 
 		{
 			std::vector<Column> columns{ {"id", DataType::Value::INT, sizeof(int)},
@@ -112,7 +112,7 @@ namespace test
 		dataBase.loadTables();
 
 		std::cout << dataBase << '\n';
-		
+		*/
 
 	}
 
