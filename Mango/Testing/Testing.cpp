@@ -57,7 +57,7 @@ namespace test
 
 	void tableSerializeDeserialize()
 	{
-		std::vector<Column> columns{ {"id", DataType::Value::INT, sizeof(int)},
+		/*std::vector<Column> columns{ {"id", DataType::Value::INT, sizeof(int)},
 			{"salariu", DataType::Value::FLOAT, sizeof(float) }, {"nume", DataType::Value::STRING, (strlen("nume") + 1) * sizeof(char)} };
 
 		Table idk("idk", "TestDataBase", columns);
@@ -70,6 +70,50 @@ namespace test
 		Table mrg("idk", "TestDataBase", col);
 		mrg.deserializeConfig();
 		
-		std::cout << mrg << '\n';
-	};
+		std::cout << mrg << '\n';*/
+	}
+
+	std::ostream& operator<<(std::ostream& out, const MangoDB& mango)
+	{
+		out << ccolor::light_red << "|_____________[Data Base]_____________|\n";
+		for (const auto& table : mango.tables())
+			out << *table << '\n';
+
+		return out;
+	}
+
+	void mangoSerializeDeserialize()
+	{
+		MangoDB mango("TestDataBase");
+
+		{
+			std::vector<Column> columns{ {"id", DataType::Value::INT, sizeof(int)},
+			{"salariu", DataType::Value::FLOAT, sizeof(float) }, {"nume", DataType::Value::STRING, 10 * sizeof(char)} };
+
+			auto table = std::make_unique<Table>("idk", "TestDataBase", std::move(columns));
+
+			mango.addTable(std::move(table));
+		}
+
+		{
+			std::vector<Column> columns{ {"id", DataType::Value::INT, sizeof(int)},
+			{"salariu", DataType::Value::FLOAT, sizeof(float) }, {"nume", DataType::Value::STRING, 25 * sizeof(char)} };
+
+			auto table = std::make_unique<Table>("meh", "TestDataBase", std::move(columns));
+
+			mango.addTable(std::move(table));
+		}
+
+		mango.storeTables();
+		std::cout << mango << '\n';
+
+		MangoDB dataBase("TestDataBase");
+
+		dataBase.loadTables();
+
+		std::cout << dataBase << '\n';
+		
+
+	}
+
 }

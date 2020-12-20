@@ -1,4 +1,9 @@
 #pragma once
+namespace Mango
+{
+	class MangoDB;
+}
+
 #include "../Column/Column.hpp"
 
 #define MANGO_CONFIG_EXTENSION ".mangocfg"
@@ -8,6 +13,9 @@ namespace Mango
 {
 	class Table
 	{
+	private: /// Friends
+		friend class MangoDB;
+
 	private: /// Fields
 		std::string m_Name;
 		std::filesystem::path m_DirectoryPath;
@@ -19,7 +27,7 @@ namespace Mango
 		inline std::filesystem::path getConfigFilePath() const;
 		inline std::filesystem::path getDataFilePath() const;
 
-	public: /// API
+	private: /// API
 		void PRIVATE_API createFiles();
 		void PRIVATE_API removeFiles();
 		void PRIVATE_API clearDataFile();
@@ -31,7 +39,7 @@ namespace Mango
 		const_ref<std::vector<Column>> columns() const;
 
 	public: /// Constructors
-		Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, ref<std::vector<Column>> columns);
+		Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, std::vector<Column>&& columns);
 
 		Table() = default;
 		Table(const Table&) = delete;

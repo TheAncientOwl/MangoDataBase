@@ -3,7 +3,7 @@
 
 namespace Mango
 {
-	Table::Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, ref<std::vector<Column>> columns)
+	Table::Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, std::vector<Column>&& columns)
 	{
 		m_Name = std::move(name);
 		m_DirectoryPath = dataBaseDirectoryPath / m_Name;

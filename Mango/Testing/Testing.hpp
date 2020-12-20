@@ -10,5 +10,8 @@ namespace test
 
 	std::ostream& operator<<(std::ostream& out, const Table& table);
 	void tableSerializeDeserialize();
+
+	std::ostream& operator<<(std::ostream& out, const MangoDB& mango);
+	void mangoSerializeDeserialize();
 	
 }

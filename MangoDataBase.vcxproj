@@ -169,6 +169,7 @@
   <ItemGroup>
     <ClCompile Include="Mango\Column\Column.cpp" />
     <ClCompile Include="Mango\DataType\DataType.cpp" />
+    <ClCompile Include="Mango\MangoDB\MangoDB.cpp" />
     <ClCompile Include="Mango\Table\Table.cpp" />
     <ClCompile Include="Mango\Testing\Testing.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="Mango\Column\Column.hpp" />
     <ClInclude Include="Mango\DataType\DataType.hpp" />
     <ClInclude Include="Mango\MangoAPI.hpp" />
+    <ClInclude Include="Mango\MangoDB\MangoDB.hpp" />
     <ClInclude Include="Mango\Table\Table.hpp" />
     <ClInclude Include="Mango\Testing\Testing.hpp" />
     <ClInclude Include="standard_library.hpp" />
