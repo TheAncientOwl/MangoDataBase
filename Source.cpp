@@ -6,7 +6,8 @@ using namespace Mango;
 
 int main()
 {
-	test::columnSerializeDeserialize();
+	test::tableSerializeDeserialize();
+
 
 	system("pause");
 	return 0;

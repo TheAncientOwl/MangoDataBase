@@ -15,7 +15,7 @@ namespace test
 
 	void columnSerializeDeserialize()
 	{
-		Column id("id", DataType::Value::INT, sizeof(int));
+		/*Column id("id", DataType::Value::INT, sizeof(int));
 		Column salariu("salariu", DataType::Value::FLOAT, sizeof(float));
 		Column nume("nume", DataType::Value::STRING, (strlen("nume") + 1) * sizeof(char));
 
@@ -38,7 +38,38 @@ namespace test
 		std::cout << col << '\n';
 
 		col.deserialize(file);
-		std::cout << col << '\n';
+		std::cout << col << '\n';*/
 	}
 
+	std::ostream& operator<<(std::ostream& out, const Table& table)
+	{
+		out << ccolor::dark_gray << "[";
+		out << ccolor::dark_red << toUpper(std::string(table.name()));
+		out << ccolor::dark_gray << "]\n";
+
+		for (const auto& column : table.columns())
+			out << column << '\n';
+
+		out << ccolor::green << "=======================================";
+
+		return out;
+	}
+
+	void tableSerializeDeserialize()
+	{
+		std::vector<Column> columns{ {"id", DataType::Value::INT, sizeof(int)},
+			{"salariu", DataType::Value::FLOAT, sizeof(float) }, {"nume", DataType::Value::STRING, (strlen("nume") + 1) * sizeof(char)} };
+
+		Table idk("idk", "TestDataBase", columns);
+		idk.createFiles();
+		idk.serializeConfig();
+
+		std::cout << idk << '\n';
+		
+		std::vector<Column> col;
+		Table mrg("idk", "TestDataBase", col);
+		mrg.deserializeConfig();
+		
+		std::cout << mrg << '\n';
+	};
 }

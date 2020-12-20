@@ -8,7 +8,7 @@ namespace Mango
 	{
 	}
 
-	void Column::serialize(std::fstream& file) const
+	void PRIVATE_API Column::serialize(std::fstream& file) const
 	{
 		size_t nameLength = m_Name.length() + 1;
 		serializePOD(file, &nameLength);
@@ -20,7 +20,7 @@ namespace Mango
 		serializePOD(file, &m_Size);
 	}
 
-	void Column::deserialize(std::fstream& file)
+	void PRIVATE_API Column::deserialize(std::fstream& file)
 	{
 		size_t nameLength = 0;
 		deserializePOD(file, &nameLength);

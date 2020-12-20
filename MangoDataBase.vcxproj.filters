@@ -25,6 +25,9 @@
     <Filter Include="Mango\Testing">
       <UniqueIdentifier>{c01dbf82-7849-42b0-90c8-e0e6c5e7ff4b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Table">
+      <UniqueIdentifier>{e0868883-c784-4a4f-bb39-094d4a026df2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -45,6 +48,9 @@
     <ClCompile Include="Mango\Testing\Testing.cpp">
       <Filter>Mango\Testing</Filter>
     </ClCompile>
+    <ClCompile Include="Mango\Table\Table.cpp">
+      <Filter>Mango\Table</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="standard_library.hpp">
@@ -64,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Testing\Testing.hpp">
       <Filter>Mango\Testing</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Table\Table.hpp">
+      <Filter>Mango\Table</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
