@@ -11,12 +11,27 @@ namespace Mango
 	{
 	}
 
+	DataType& DataType::operator=(Value value)
+	{
+		m_Value = value;
+
+		return *this;
+	}
+
 	DataType::DataType(std::string_view stringValue)
 	{
 		if (stringValue == MANGO_DATA_TYPE_INT_STRING)    { m_Value = Value::INT; return; }
 		if (stringValue == MANGO_DATA_TYPE_FLOAT_STRING)  { m_Value = Value::FLOAT; return; }
 		if (stringValue == MANGO_DATA_TYPE_STRING_STRING) { m_Value = Value::STRING; return; }
 		m_Value = Value::UNDEFINED;
+	}
+
+	DataType& DataType::operator=(std::string_view stringValue)
+	{
+		if (stringValue == MANGO_DATA_TYPE_INT_STRING) { m_Value = Value::INT; return *this; }
+		if (stringValue == MANGO_DATA_TYPE_FLOAT_STRING) { m_Value = Value::FLOAT; return *this; }
+		if (stringValue == MANGO_DATA_TYPE_STRING_STRING) { m_Value = Value::STRING; return *this; }
+		m_Value = Value::UNDEFINED; return *this;
 	}
 
 	DataType::DataType(char charValue)
@@ -28,6 +43,19 @@ namespace Mango
 			case MANGO_DATA_TYPE_STRING_CHAR: m_Value = Value::STRING;    break;
 			default:                m_Value = Value::UNDEFINED;
 		}
+	}
+
+	DataType& DataType::operator=(char charValue)
+	{
+		switch (charValue)
+		{
+			case MANGO_DATA_TYPE_INT_CHAR:    m_Value = Value::INT;       break;
+			case MANGO_DATA_TYPE_FLOAT_CHAR:  m_Value = Value::FLOAT;     break;
+			case MANGO_DATA_TYPE_STRING_CHAR: m_Value = Value::STRING;    break;
+			default:                m_Value = Value::UNDEFINED;
+		}
+
+		return *this;
 	}
 
 	std::string DataType::toString() const

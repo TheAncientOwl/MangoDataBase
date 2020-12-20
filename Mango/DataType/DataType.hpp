@@ -18,9 +18,15 @@ namespace Mango
 		enum class Value : uint8_t { UNDEFINED, INT, FLOAT, STRING };
 
 		DataType();
+
 		DataType(Value value);
+		DataType& operator=(Value value);
+
 		DataType(std::string_view stringValue);
+		DataType& operator=(std::string_view stringValue);
+
 		DataType(char charValue);
+		DataType& operator=(char c);
 
 		std::string toString() const;
 		char toChar() const;
