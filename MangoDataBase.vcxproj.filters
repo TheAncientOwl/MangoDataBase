@@ -19,6 +19,12 @@
     <Filter Include="Mango\DataType">
       <UniqueIdentifier>{b989cbe1-0083-402d-9fc9-4b569fd48bfe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Column">
+      <UniqueIdentifier>{66e5ccb6-be78-485a-a88d-098e69ad77ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Testing">
+      <UniqueIdentifier>{c01dbf82-7849-42b0-90c8-e0e6c5e7ff4b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -33,6 +39,12 @@
     <ClCompile Include="Mango\DataType\DataType.cpp">
       <Filter>Mango\DataType</Filter>
     </ClCompile>
+    <ClCompile Include="Mango\Column\Column.cpp">
+      <Filter>Mango\Column</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Testing\Testing.cpp">
+      <Filter>Mango\Testing</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="standard_library.hpp">
@@ -43,6 +55,15 @@
     </ClInclude>
     <ClInclude Include="Mango\DataType\DataType.hpp">
       <Filter>Mango\DataType</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Column\Column.hpp">
+      <Filter>Mango\Column</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\MangoAPI.hpp">
+      <Filter>Mango</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Testing\Testing.hpp">
+      <Filter>Mango\Testing</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
