@@ -48,12 +48,6 @@ using ptr = T*;
 template<typename T>
 using const_ptr = const T*;
 
-inline std::string toUpper(std::string str)
-{
-	std::transform(std::cbegin(str), std::cend(str), std::begin(str), ::toupper);
-	return str;
-}
-
 template<typename T>
 inline void serializePOD(std::fstream& out, const_ptr<T> value, size_t itemsNumber = 1)
 {

@@ -3,6 +3,12 @@
 
 namespace test
 {
+	std::string toUpper(std::string str)
+	{
+		std::transform(std::cbegin(str), std::cend(str), std::begin(str), ::toupper);
+		return str;
+	}
+
 	std::ostream& test::operator<<(std::ostream& out, const Column& col)
 	{
 		out << ccolor::dark_gray << "[";

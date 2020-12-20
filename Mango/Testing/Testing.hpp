@@ -5,6 +5,8 @@ namespace test
 {
 	using namespace Mango;
 
+	std::string toUpper(std::string str);
+
 	std::ostream& operator<<(std::ostream& out, const Column& col);
 	void columnSerializeDeserialize();
 
