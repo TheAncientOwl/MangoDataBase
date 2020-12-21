@@ -50,6 +50,10 @@ namespace Mango::Queries
 
 	public:
 		CreateTableQuery() = default;
+		CreateTableQuery(const CreateTableQuery&) = delete;
+		CreateTableQuery(CreateTableQuery&&) noexcept = delete;
+		CreateTableQuery& operator=(const CreateTableQuery&) = delete;
+		CreateTableQuery& operator=(CreateTableQuery&&) noexcept = delete;
 		~CreateTableQuery() = default;
 	};
 }
