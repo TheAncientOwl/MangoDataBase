@@ -101,12 +101,12 @@ namespace Mango::Queries
         }
     }
 
-    bool CreateTableQuery::match(std::string_view sql) const
+    bool QUERY_API CreateTableQuery::match(std::string_view sql) const
     {
         return sql.starts_with("CREATE");
     }
 
-    void CreateTableQuery::parse(std::string_view sql)
+    void QUERY_API CreateTableQuery::parse(std::string_view sql)
     {
         m_TableName.clear();
         m_Columns.clear();
@@ -133,13 +133,13 @@ namespace Mango::Queries
         parseColumns({ std::next(columns.open), columns.closed });
     }
 
-    void CreateTableQuery::validate(const_ref<MangoDB> dataBase)
+    void QUERY_API CreateTableQuery::validate(const_ref<MangoDB> dataBase)
     {
         if (dataBase.getTable(m_TableName))
             throw TableAlreadyExistsException("Table already exists", std::move(m_TableName));
     }
 
-    void CreateTableQuery::execute(ref<MangoDB> dataBase)
+    void QUERY_API CreateTableQuery::execute(ref<MangoDB> dataBase)
     {
         std::unique_ptr<Table> tablePtr = std::make_unique<Table>(std::move(m_TableName), dataBase.m_DirectoryPath,
                                                                   std::move(m_Columns));
