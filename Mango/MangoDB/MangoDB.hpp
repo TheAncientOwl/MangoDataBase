@@ -1,4 +1,8 @@
 #pragma once
+namespace Mango::Queries
+{
+	class CreateTableQuery;
+}
 #include "../Table/Table.hpp"
 
 #define MANGO_MAX_TABLE_NAME_LENGTH 50
@@ -47,6 +51,7 @@ namespace Mango
 		~MangoDB() = default;
 
 	private: /// Friends
+		friend class Mango::Queries::CreateTableQuery;
 		friend std::ostream& operator<<(std::ostream& out, const MangoDB& mango);
 	};
 }

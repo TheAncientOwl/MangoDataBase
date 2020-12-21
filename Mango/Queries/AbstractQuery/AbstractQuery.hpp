@@ -4,6 +4,7 @@ namespace Mango
 	class QueryExecutor;
 }
 #include "../../Exceptions/MangoExceptions.hpp"
+#include "../Statement/Statement.hpp"
 #include "../../MangoDB/MangoDB.hpp"
 
 #define QUERY_INTERFACE

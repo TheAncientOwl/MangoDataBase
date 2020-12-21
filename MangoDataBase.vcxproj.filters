@@ -73,6 +73,12 @@
     <Filter Include="Utilities\ConsoleTestLoop">
       <UniqueIdentifier>{f2f6df7f-68ea-4906-b79b-761fd6c5e686}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Queries\CreateTableQuery">
+      <UniqueIdentifier>{558dbff9-c2a3-4451-aa24-08a5793ca519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Queries\Statement">
+      <UniqueIdentifier>{6ba27739-3f0a-4380-adfc-53d5895b114a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -137,6 +143,12 @@
     </ClCompile>
     <ClCompile Include="Utilities\ConsoleTestLoop\ConsoleTestLoop.cpp">
       <Filter>Utilities\ConsoleTestLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Queries\CreateTableQuery\CreateTableQuery.cpp">
+      <Filter>Mango\Queries\CreateTableQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Queries\Statement\Statement.cpp">
+      <Filter>Mango\Queries\Statement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +220,12 @@
     </ClInclude>
     <ClInclude Include="Utilities\ConsoleTestLoop\ConsoleTestLoop.hpp">
       <Filter>Utilities\ConsoleTestLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Queries\CreateTableQuery\CreateTableQuery.hpp">
+      <Filter>Mango\Queries\CreateTableQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Queries\Statement\Statement.hpp">
+      <Filter>Mango\Queries\Statement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

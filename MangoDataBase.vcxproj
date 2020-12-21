@@ -179,6 +179,8 @@
     <ClCompile Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.cpp" />
     <ClCompile Include="Mango\MangoDB\MangoDB.cpp" />
     <ClCompile Include="Mango\Queries\AbstractQuery\AbstractQuery.cpp" />
+    <ClCompile Include="Mango\Queries\CreateTableQuery\CreateTableQuery.cpp" />
+    <ClCompile Include="Mango\Queries\Statement\Statement.cpp" />
     <ClCompile Include="Mango\QueryExecutor\QueryExecutor.cpp" />
     <ClCompile Include="Mango\Row\Row.cpp" />
     <ClCompile Include="Mango\Row\RowConfiguration.cpp" />
@@ -209,7 +211,9 @@
     <ClInclude Include="Mango\MangoAPI.hpp" />
     <ClInclude Include="Mango\MangoDB\MangoDB.hpp" />
     <ClInclude Include="Mango\Queries\AbstractQuery\AbstractQuery.hpp" />
+    <ClInclude Include="Mango\Queries\CreateTableQuery\CreateTableQuery.hpp" />
     <ClInclude Include="Mango\Queries\Queries.hpp" />
+    <ClInclude Include="Mango\Queries\Statement\Statement.hpp" />
     <ClInclude Include="Mango\QueryExecutor\QueryExecutor.hpp" />
     <ClInclude Include="Mango\Row\Row.hpp" />
     <ClInclude Include="Mango\Row\RowConfiguration.hpp" />
