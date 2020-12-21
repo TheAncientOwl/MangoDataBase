@@ -4,6 +4,7 @@
 namespace Mango::Queries
 {
 	using namespace Mango::Exceptions;
+
 	bool QUERY_API DropTableQuery::match(std::string_view sql) const
 	{
 		return sql.starts_with("DROP");

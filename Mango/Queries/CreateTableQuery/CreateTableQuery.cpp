@@ -4,6 +4,7 @@
 namespace Mango::Queries
 {
 	using namespace Mango::Exceptions;
+
     void CreateTableQuery::parseTableName(std::string_view firstPart)
     {
         auto args = splitAtChar(firstPart, ' ');
