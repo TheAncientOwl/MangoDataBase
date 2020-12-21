@@ -1,4 +1,8 @@
 #pragma once
+namespace Mango
+{
+	class QueryExecutor;
+}
 #include "../../Exceptions/MangoExceptions.hpp"
 #include "../../MangoDB/MangoDB.hpp"
 
@@ -52,6 +56,7 @@ namespace Mango::Queries
 
 	private: /// Friends
 		friend class AbstractQueryStaticInitializer;
+		friend class Mango::QueryExecutor;
 	};
 
 	class AbstractQueryStaticInitializer

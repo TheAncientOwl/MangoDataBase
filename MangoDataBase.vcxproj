@@ -179,6 +179,7 @@
     <ClCompile Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.cpp" />
     <ClCompile Include="Mango\MangoDB\MangoDB.cpp" />
     <ClCompile Include="Mango\Queries\AbstractQuery\AbstractQuery.cpp" />
+    <ClCompile Include="Mango\QueryExecutor\QueryExecutor.cpp" />
     <ClCompile Include="Mango\Row\Row.cpp" />
     <ClCompile Include="Mango\Row\RowConfiguration.cpp" />
     <ClCompile Include="Mango\Table\Table.cpp" />
@@ -191,6 +192,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.cpp" />
+    <ClCompile Include="Utilities\ConsoleTestLoop\ConsoleTestLoop.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mango\Column\Column.hpp" />
@@ -208,12 +210,14 @@
     <ClInclude Include="Mango\MangoDB\MangoDB.hpp" />
     <ClInclude Include="Mango\Queries\AbstractQuery\AbstractQuery.hpp" />
     <ClInclude Include="Mango\Queries\Queries.hpp" />
+    <ClInclude Include="Mango\QueryExecutor\QueryExecutor.hpp" />
     <ClInclude Include="Mango\Row\Row.hpp" />
     <ClInclude Include="Mango\Row\RowConfiguration.hpp" />
     <ClInclude Include="Mango\Table\Table.hpp" />
     <ClInclude Include="Mango\Testing\Testing.hpp" />
     <ClInclude Include="standard_library.hpp" />
     <ClInclude Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.hpp" />
+    <ClInclude Include="Utilities\ConsoleTestLoop\ConsoleTestLoop.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
