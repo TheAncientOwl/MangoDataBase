@@ -2,6 +2,10 @@
 namespace Mango
 {
 	class MangoDB;
+	namespace Queries
+	{
+		class TruncateTableQuery;
+	}
 }
 
 #include "../Column/Column.hpp"
@@ -47,7 +51,8 @@ namespace Mango
 		~Table() = default;
 
 	private: /// Friends
-		friend class MangoDB;
+		friend class Mango::MangoDB;
+		friend class Mango::Queries::TruncateTableQuery;
 		friend std::ostream& operator<<(std::ostream& out, const Table& table);
 	};
 }

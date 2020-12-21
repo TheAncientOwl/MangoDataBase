@@ -82,6 +82,9 @@
     <Filter Include="Mango\Queries\DropTableQuery">
       <UniqueIdentifier>{a872970c-7497-40ef-a061-33c9713abcd4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Queries\TruncateTableQuery">
+      <UniqueIdentifier>{54488e42-794d-4fd7-a094-c5efb9dec983}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -155,6 +158,9 @@
     </ClCompile>
     <ClCompile Include="Mango\Queries\DropTableQuery\DropTableQuery.cpp">
       <Filter>Mango\Queries\DropTableQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Queries\TruncateTableQuery\TruncateTableQuery.cpp">
+      <Filter>Mango\Queries\TruncateTableQuery</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Queries\DropTableQuery\DropTableQuery.hpp">
       <Filter>Mango\Queries\DropTableQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Queries\TruncateTableQuery\TruncateTableQuery.hpp">
+      <Filter>Mango\Queries\TruncateTableQuery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

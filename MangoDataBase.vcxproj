@@ -182,6 +182,7 @@
     <ClCompile Include="Mango\Queries\CreateTableQuery\CreateTableQuery.cpp" />
     <ClCompile Include="Mango\Queries\DropTableQuery\DropTableQuery.cpp" />
     <ClCompile Include="Mango\Queries\Statement\Statement.cpp" />
+    <ClCompile Include="Mango\Queries\TruncateTableQuery\TruncateTableQuery.cpp" />
     <ClCompile Include="Mango\QueryExecutor\QueryExecutor.cpp" />
     <ClCompile Include="Mango\Row\Row.cpp" />
     <ClCompile Include="Mango\Row\RowConfiguration.cpp" />
@@ -216,6 +217,7 @@
     <ClInclude Include="Mango\Queries\DropTableQuery\DropTableQuery.hpp" />
     <ClInclude Include="Mango\Queries\Queries.hpp" />
     <ClInclude Include="Mango\Queries\Statement\Statement.hpp" />
+    <ClInclude Include="Mango\Queries\TruncateTableQuery\TruncateTableQuery.hpp" />
     <ClInclude Include="Mango\QueryExecutor\QueryExecutor.hpp" />
     <ClInclude Include="Mango\Row\Row.hpp" />
     <ClInclude Include="Mango\Row\RowConfiguration.hpp" />
