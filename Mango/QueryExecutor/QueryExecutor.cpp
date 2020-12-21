@@ -20,7 +20,8 @@ namespace Mango
 		throw Mango::Exceptions::InvalidSyntaxException("Unknown command");
 	}
 
-	const std::array<std::unique_ptr<AbstractQuery>, 1> QueryExecutor::s_Queries{
-		std::make_unique<CreateTableQuery>()
+	const std::array<std::unique_ptr<AbstractQuery>, 2> QueryExecutor::s_Queries{
+		std::make_unique<CreateTableQuery>(),
+		std::make_unique<DropTableQuery>()
 	};
 }

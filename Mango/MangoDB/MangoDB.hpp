@@ -2,6 +2,7 @@
 namespace Mango::Queries
 {
 	class CreateTableQuery;
+	class DropTableQuery;
 }
 #include "../Table/Table.hpp"
 
@@ -52,6 +53,7 @@ namespace Mango
 
 	private: /// Friends
 		friend class Mango::Queries::CreateTableQuery;
+		friend class Mango::Queries::DropTableQuery;
 		friend std::ostream& operator<<(std::ostream& out, const MangoDB& mango);
 	};
 }
