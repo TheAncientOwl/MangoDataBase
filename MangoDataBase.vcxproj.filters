@@ -61,6 +61,12 @@
     <Filter Include="Mango\Row">
       <UniqueIdentifier>{5d215d61-3678-482d-9cbe-2bb4559cc341}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Queries">
+      <UniqueIdentifier>{b812cf47-a9b3-40d9-a26b-33babdfa427b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Queries\AbstractQuery">
+      <UniqueIdentifier>{fc1b2c03-c97c-4437-99d2-320a9e86b5a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -117,6 +123,9 @@
     <ClCompile Include="Mango\Row\RowConfiguration.cpp">
       <Filter>Mango\Row</Filter>
     </ClCompile>
+    <ClCompile Include="Mango\Queries\AbstractQuery\AbstractQuery.cpp">
+      <Filter>Mango\Queries\AbstractQuery</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="standard_library.hpp">
@@ -167,14 +176,20 @@
     <ClInclude Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.hpp">
       <Filter>Mango\Exceptions\TableNotFound</Filter>
     </ClInclude>
-    <ClInclude Include="Mango\Exceptions\MangoExceptions.h">
-      <Filter>Mango\Exceptions</Filter>
-    </ClInclude>
     <ClInclude Include="Mango\Row\Row.hpp">
       <Filter>Mango\Row</Filter>
     </ClInclude>
     <ClInclude Include="Mango\Row\RowConfiguration.hpp">
       <Filter>Mango\Row</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Queries\AbstractQuery\AbstractQuery.hpp">
+      <Filter>Mango\Queries\AbstractQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Exceptions\MangoExceptions.hpp">
+      <Filter>Mango\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Queries\Queries.hpp">
+      <Filter>Mango\Queries</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
