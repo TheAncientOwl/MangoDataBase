@@ -3,7 +3,7 @@
 
 namespace Mango
 {
-	void Row::setDataAt(int index, const void* value, size_t size)
+	void PRIVATE_API Row::setDataAt(int index, const void* value, size_t size)
 	{
 		memcpy(m_Data + m_Config->offsetAt(index), value, size);
 	}
@@ -13,7 +13,7 @@ namespace Mango
 		return m_Data;
 	}
 
-	int Row::getInt(int index) const
+	int PRIVATE_API Row::getInt(int index) const
 	{
 #ifdef MANGO_ROW_CONFIG_DEBUG
 		assert(m_Config->dataTypeAt(index) == DataType::Value::INT);
