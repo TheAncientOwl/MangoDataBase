@@ -16,4 +16,5 @@ namespace test
 	std::ostream& operator<<(std::ostream& out, const MangoDB& mango);
 	void mangoSerializeDeserialize();
 	
+	void testRow();
 }

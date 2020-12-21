@@ -122,4 +122,35 @@ namespace test
 
 	}
 
+	void testRow()
+	{
+		auto rowConfig = std::make_shared<RowConfiguration>();
+		rowConfig->pushBack(sizeof(int), DataType::Value::INT);
+		rowConfig->pushBack(sizeof(float), DataType::Value::FLOAT);
+		rowConfig->pushBack(20 * sizeof(char), DataType::Value::STRING);
+		rowConfig->pushBack(sizeof(int), DataType::Value::INT);
+
+		rowConfig->PRINT();
+
+		size_t rowSize = rowConfig->totalSize();
+		Row row(rowSize, rowConfig);
+
+		int id = 5;
+		row.setDataAt(0, &id, sizeof(int));
+
+		float salariu = 20.5F;
+		row.setDataAt(1, &salariu, sizeof(float));
+		
+		const char* nume = "Marcel";
+		row.setDataAt(2, nume, (strlen(nume) + 1) * sizeof(char));
+
+		int idk = 1;
+		row.setDataAt(3, &idk, sizeof(int));
+
+		std::cout << row.getInt(0) << '\n';
+		std::cout << row.getFloat(1) << '\n';
+		std::cout << row.getString(2) << '\n';
+		std::cout << row.getInt(3) << '\n';
+	}
+
 }

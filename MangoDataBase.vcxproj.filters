@@ -58,6 +58,9 @@
     <Filter Include="Mango\Exceptions\TableNotFound">
       <UniqueIdentifier>{ace3a5ef-61fc-49b4-8850-5b61bedbdf77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Row">
+      <UniqueIdentifier>{5d215d61-3678-482d-9cbe-2bb4559cc341}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -107,6 +110,12 @@
     </ClCompile>
     <ClCompile Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.cpp">
       <Filter>Mango\Exceptions\TableNotFound</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Row\Row.cpp">
+      <Filter>Mango\Row</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Row\RowConfiguration.cpp">
+      <Filter>Mango\Row</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,5 +170,14 @@
     <ClInclude Include="Mango\Exceptions\MangoExceptions.h">
       <Filter>Mango\Exceptions</Filter>
     </ClInclude>
+    <ClInclude Include="Mango\Row\Row.hpp">
+      <Filter>Mango\Row</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Row\RowConfiguration.hpp">
+      <Filter>Mango\Row</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

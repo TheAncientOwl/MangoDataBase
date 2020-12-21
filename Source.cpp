@@ -6,7 +6,7 @@ using namespace Mango;
 
 int main()
 {
-
+	test::testRow();
 
 
 	system("pause");

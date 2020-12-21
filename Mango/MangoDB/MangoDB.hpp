@@ -29,6 +29,9 @@ namespace Mango
 		/// </summary>
 		void PRIVATE_API removeTable(std::string_view tableName);
 
+		const_ptr<Table> PRIVATE_API getTable(std::string_view tableName) const;
+		ptr<Table> PRIVATE_API getTable(std::string_view tableName);
+
 	public: /// Interface
 		void PUBLIC_API storeTables() const;
 		void PUBLIC_API loadTables();

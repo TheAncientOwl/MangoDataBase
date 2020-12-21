@@ -78,6 +78,22 @@ namespace Mango
 		storeTables();
 	}
 
+	const_ptr<Table>PRIVATE_API MangoDB::getTable(std::string_view tableName) const
+	{
+		for (const auto& tablePtr : m_Tables)
+			if (tablePtr->name() == tableName)
+				return tablePtr.get();
+		return nullptr;
+	}
+
+	ptr<Table>PRIVATE_API MangoDB::getTable(std::string_view tableName)
+	{
+		for (const auto& tablePtr : m_Tables)
+			if (tablePtr->name() == tableName)
+				return tablePtr.get();
+		return nullptr;
+	}
+
 	MangoDB::MangoDB(std::filesystem::path dataBaseDirectoryPath)
 	{
 		m_DirectoryPath = std::move(dataBaseDirectoryPath);

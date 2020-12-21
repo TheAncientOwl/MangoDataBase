@@ -178,6 +178,8 @@
     <ClCompile Include="Mango\Exceptions\TableAlreadyExistsException\TableAlreadyExistsException.cpp" />
     <ClCompile Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.cpp" />
     <ClCompile Include="Mango\MangoDB\MangoDB.cpp" />
+    <ClCompile Include="Mango\Row\Row.cpp" />
+    <ClCompile Include="Mango\Row\RowConfiguration.cpp" />
     <ClCompile Include="Mango\Table\Table.cpp" />
     <ClCompile Include="Mango\Testing\Testing.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -203,10 +205,15 @@
     <ClInclude Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.hpp" />
     <ClInclude Include="Mango\MangoAPI.hpp" />
     <ClInclude Include="Mango\MangoDB\MangoDB.hpp" />
+    <ClInclude Include="Mango\Row\Row.hpp" />
+    <ClInclude Include="Mango\Row\RowConfiguration.hpp" />
     <ClInclude Include="Mango\Table\Table.hpp" />
     <ClInclude Include="Mango\Testing\Testing.hpp" />
     <ClInclude Include="standard_library.hpp" />
     <ClInclude Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
