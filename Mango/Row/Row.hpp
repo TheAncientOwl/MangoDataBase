@@ -11,6 +11,7 @@ namespace Mango
 
 	private: /// API
 		void PRIVATE_API setDataAt(int index, const void* value, size_t size);
+		void PRIVATE_API setDataAt(int index, const_ref<std::string> value);
 		std::byte* PRIVATE_API data();
 
 	public: /// Interface
