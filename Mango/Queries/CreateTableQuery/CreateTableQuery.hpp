@@ -20,7 +20,7 @@ namespace Mango::Queries
 		std::string m_TableName;
 		std::vector<Column> m_Columns;
 
-	private: /// Class Methods
+	private: /// Private Methods
 		/// <summary>
 		/// CREATE TABLE table_name
 		/// </summary>
@@ -42,13 +42,13 @@ namespace Mango::Queries
 		/// </summary>
 		void checkResidualParts(Statement columns, Statement::iterator stringEnd);
 
-	private: /// Overidden Methods
-		bool QUERY_INTERFACE match(std::string_view sql) const override;
-		void QUERY_INTERFACE parse(std::string_view sql) override;
-		void QUERY_INTERFACE validate(const_ref<MangoDB> dataBase) override;
-		void QUERY_INTERFACE execute(ref<MangoDB> dataBase) override;
+	private: /// API
+		bool QUERY_API match(std::string_view sql) const override;
+		void QUERY_API parse(std::string_view sql) override;
+		void QUERY_API validate(const_ref<MangoDB> dataBase) override;
+		void QUERY_API execute(ref<MangoDB> dataBase) override;
 
-	public:
+	public: /// Constructors
 		CreateTableQuery() = default;
 		CreateTableQuery(const CreateTableQuery&) = default;
 		CreateTableQuery(CreateTableQuery&&) noexcept = default;
