@@ -13,9 +13,6 @@ namespace Mango
 {
 	class Table
 	{
-	private: /// Friends
-		friend class MangoDB;
-
 	private: /// Fields
 		std::string m_Name;
 		std::filesystem::path m_DirectoryPath;
@@ -34,9 +31,10 @@ namespace Mango
 		void PRIVATE_API serializeConfig();
 		void PRIVATE_API deserializeConfig();
 
+		const_ref<std::vector<Column>> PRIVATE_API columns() const;
+
 	public: /// Interface
 		std::string_view name() const;
-		const_ref<std::vector<Column>> columns() const;
 
 	public: /// Constructors
 		Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, std::vector<Column>&& columns);
@@ -47,5 +45,9 @@ namespace Mango
 		Table& operator=(const Table&) = delete;
 		Table& operator=(Table&&) noexcept = default;
 		~Table() = default;
+
+	private: /// Friends
+		friend class MangoDB;
+		friend std::ostream& operator<<(std::ostream& out, const Table& table);
 	};
 }

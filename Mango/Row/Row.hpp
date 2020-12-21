@@ -9,7 +9,7 @@ namespace Mango
 		std::byte* m_Data;
 		std::shared_ptr<RowConfiguration> m_Config;
 
-	public: /// API
+	private: /// API
 		void PRIVATE_API setDataAt(int index, const void* value, size_t size);
 		std::byte* PRIVATE_API data();
 

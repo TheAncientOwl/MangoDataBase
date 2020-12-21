@@ -12,9 +12,6 @@ namespace Mango
 {
 	class Column
 	{
-	private: /// Friends
-		friend class Mango::Table;
-
 	private: /// Fields
 		std::string m_Name;
 		DataType m_DataType;
@@ -38,5 +35,9 @@ namespace Mango
 		Column& operator=(const Column&) = default;
 		Column& operator=(Column&&) noexcept = default;
 		~Column() = default;
+
+	private: /// Friends
+		friend class Mango::Table;
+		friend std::ostream& operator<<(std::ostream& out, const Column& col);
 	};
 }

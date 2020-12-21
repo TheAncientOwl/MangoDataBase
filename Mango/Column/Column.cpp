@@ -49,4 +49,14 @@ namespace Mango
 	{
 		return m_Size;
 	}
+
+	std::ostream& operator<<(std::ostream& out, const Column& col)
+	{
+		out << ccolor::dark_gray << "[";
+		out << ccolor::light_blue << std::string(col.name());
+		out << ccolor::dark_gray << "] {";
+		out << ccolor::lime << col.dataType().toString() << ccolor::dark_gray << ", " << ccolor::lime << col.size() << " BYTES";
+		out << ccolor::dark_gray << "}" << ccolor::reset;
+		return out;
+	}
 }

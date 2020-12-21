@@ -91,6 +91,18 @@ namespace Mango
 		return m_Columns;
 	}
 
+	std::ostream& operator<<(std::ostream& out, const Table& table)
+	{
+		out << ccolor::dark_gray << "[";
+		out << ccolor::dark_red << std::string(table.name());
+		out << ccolor::dark_gray << "]\n";
 
+		for (const auto& column : table.columns())
+			out << column << '\n';
+
+		out << ccolor::green << "=======================================";
+
+		return out;
+	}
 
 }

@@ -9,16 +9,6 @@ namespace test
 		return str;
 	}
 
-	std::ostream& test::operator<<(std::ostream& out, const Column& col)
-	{
-		out << ccolor::dark_gray << "[";
-		out << ccolor::light_blue << toUpper(std::string(col.name()));
-		out << ccolor::dark_gray << "] {";
-		out << ccolor::lime << col.dataType().toString() << ccolor::dark_gray << ", " << ccolor::lime << col.size() << " BYTES";
-		out << ccolor::dark_gray << "}" << ccolor::reset;
-		return out;
-	}
-
 	void columnSerializeDeserialize()
 	{
 		/*Column id("id", DataType::Value::INT, sizeof(int));
@@ -47,19 +37,7 @@ namespace test
 		std::cout << col << '\n';*/
 	}
 
-	std::ostream& operator<<(std::ostream& out, const Table& table)
-	{
-		out << ccolor::dark_gray << "[";
-		out << ccolor::dark_red << toUpper(std::string(table.name()));
-		out << ccolor::dark_gray << "]\n";
-
-		for (const auto& column : table.columns())
-			out << column << '\n';
-
-		out << ccolor::green << "=======================================";
-
-		return out;
-	}
+	
 
 	void tableSerializeDeserialize()
 	{
@@ -79,14 +57,7 @@ namespace test
 		std::cout << mrg << '\n';*/
 	}
 
-	std::ostream& operator<<(std::ostream& out, const MangoDB& mango)
-	{
-		out << ccolor::light_red << "|_____________[Data Base]_____________|\n";
-		for (const auto& table : mango.tables())
-			out << *table << '\n';
-
-		return out;
-	}
+	
 
 	void mangoSerializeDeserialize()
 	{
@@ -124,13 +95,11 @@ namespace test
 
 	void testRow()
 	{
-		auto rowConfig = std::make_shared<RowConfiguration>();
+		/*auto rowConfig = std::make_shared<RowConfiguration>();
 		rowConfig->pushBack(sizeof(int), DataType::Value::INT);
 		rowConfig->pushBack(sizeof(float), DataType::Value::FLOAT);
 		rowConfig->pushBack(20 * sizeof(char), DataType::Value::STRING);
 		rowConfig->pushBack(sizeof(int), DataType::Value::INT);
-
-		rowConfig->PRINT();
 
 		size_t rowSize = rowConfig->totalSize();
 		Row row(rowSize, rowConfig);
@@ -150,7 +119,7 @@ namespace test
 		std::cout << row.getInt(0) << '\n';
 		std::cout << row.getFloat(1) << '\n';
 		std::cout << row.getString(2) << '\n';
-		std::cout << row.getInt(3) << '\n';
+		std::cout << row.getInt(3) << '\n';*/
 	}
 
 }

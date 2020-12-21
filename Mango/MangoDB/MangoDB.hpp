@@ -31,13 +31,12 @@ namespace Mango
 
 		const_ptr<Table> PRIVATE_API getTable(std::string_view tableName) const;
 		ptr<Table> PRIVATE_API getTable(std::string_view tableName);
+		const_ref<std::vector<std::unique_ptr<Table>>> PRIVATE_API tables() const;
 
 	public: /// Interface
-		void PUBLIC_API storeTables() const;
-		void PUBLIC_API loadTables();
-
-		const_ref<std::vector<std::unique_ptr<Table>>> tables() const;
-
+		void storeTables() const;
+		void loadTables();
+		
 	public: /// Constructors
 		MangoDB(std::filesystem::path dataBaseDirectoryPath);
 
@@ -46,5 +45,8 @@ namespace Mango
 		MangoDB& operator=(const MangoDB&) = delete;
 		MangoDB& operator=(MangoDB&&) noexcept = default;
 		~MangoDB() = default;
+
+	private: /// Friends
+		friend std::ostream& operator<<(std::ostream& out, const MangoDB& mango);
 	};
 }

@@ -3,7 +3,7 @@
 
 namespace Mango
 {
-	void PUBLIC_API MangoDB::storeTables() const
+	void MangoDB::storeTables() const
 	{
 		std::fstream file(getConfigFilePath(), std::ios::out | std::ios::trunc | std::ios::binary);
 
@@ -22,7 +22,7 @@ namespace Mango
 		file.close();
 	}
 
-	void PUBLIC_API MangoDB::loadTables()
+	void MangoDB::loadTables()
 	{
 		std::fstream file(getConfigFilePath(), std::ios::in | std::ios::binary);
 
@@ -45,7 +45,7 @@ namespace Mango
 		file.close();
 	}
 
-	const_ref<std::vector<std::unique_ptr<Table>>> MangoDB::tables() const
+	const_ref<std::vector<std::unique_ptr<Table>>> PRIVATE_API MangoDB::tables() const
 	{
 		return m_Tables;
 	}
@@ -102,6 +102,15 @@ namespace Mango
 		std::fstream file;
 		file.open(getConfigFilePath(), std::ios::out | std::ios::app | std::ios::binary);
 		file.close();
+	}
+
+	std::ostream& operator<<(std::ostream& out, const MangoDB& mango)
+	{
+		out << ccolor::light_red << "|_____________[Data Base]_____________|\n";
+		for (const auto& table : mango.tables())
+			out << *table << '\n';
+
+		return out;
 	}
 
 }

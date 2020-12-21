@@ -11,9 +11,6 @@ namespace Mango
 {
 	class RowConfiguration
 	{
-	private: /// Friends
-		friend class Mango::Row;
-
 	private: /// Fields
 		std::vector<size_t> m_Offsets;
 		std::vector<size_t> m_Sizes;
@@ -22,7 +19,11 @@ namespace Mango
 #endif // ROW_CONFIG_DEBUG	
 
 	private: /// API
-
+#ifdef MANGO_ROW_CONFIG_DEBUG
+		void PRIVATE_API pushBack(size_t size, DataType dataType);
+#else
+		void PRIVATE_API pushBack(size_t size);
+#endif // MANGO_ROW_CONFIG_DEBUG
 
 		size_t PRIVATE_API offsetAt(int index) const;
 		size_t PRIVATE_API sizeAt(int index) const;
@@ -34,12 +35,6 @@ namespace Mango
 	public: /// Interface
 		size_t totalSize() const;
 
-#ifdef MANGO_ROW_CONFIG_DEBUG
-		void PRIVATE_API pushBack(size_t size, DataType dataType);
-#else
-		void PRIVATE_API pushBack(size_t size);
-#endif // MANGO_ROW_CONFIG_DEBUG
-
 	public: /// Constructors
 		RowConfiguration() = default;
 		RowConfiguration(const RowConfiguration&) = delete;
@@ -47,5 +42,7 @@ namespace Mango
 		RowConfiguration& operator=(const RowConfiguration&) = delete;
 		~RowConfiguration() = default;
 
+	private: /// Friends
+		friend class Mango::Row;
 	};
 }

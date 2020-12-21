@@ -8,12 +8,12 @@ namespace Mango
 		memcpy(m_Data + m_Config->offsetAt(index), value, size);
 	}
 
-	std::byte* Row::data()
+	std::byte* PRIVATE_API Row::data()
 	{
 		return m_Data;
 	}
 
-	int PRIVATE_API Row::getInt(int index) const
+	int Row::getInt(int index) const
 	{
 #ifdef MANGO_ROW_CONFIG_DEBUG
 		assert(m_Config->dataTypeAt(index) == DataType::Value::INT);
