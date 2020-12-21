@@ -21,7 +21,7 @@ namespace Mango::Queries
 
 		auto args = splitAtChar(sql, ' ');
 
-		if (args.size() < 3 || args.size() > 4)
+		if (args.size() != 3)
 			throw InvalidSyntaxException("Invalid drop query syntax");
 
 		if (args[0] != "DROP" || args[1] != "TABLE")
