@@ -85,6 +85,9 @@
     <Filter Include="Mango\Queries\TruncateTableQuery">
       <UniqueIdentifier>{54488e42-794d-4fd7-a094-c5efb9dec983}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Queries\DisplayQuery">
+      <UniqueIdentifier>{cd3188b2-0be0-4193-8255-f1bcc89e4751}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -161,6 +164,9 @@
     </ClCompile>
     <ClCompile Include="Mango\Queries\TruncateTableQuery\TruncateTableQuery.cpp">
       <Filter>Mango\Queries\TruncateTableQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Queries\DisplayQuery\DisplayQuery.cpp">
+      <Filter>Mango\Queries\DisplayQuery</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -244,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Queries\TruncateTableQuery\TruncateTableQuery.hpp">
       <Filter>Mango\Queries\TruncateTableQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Queries\DisplayQuery\DisplayQuery.hpp">
+      <Filter>Mango\Queries\DisplayQuery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

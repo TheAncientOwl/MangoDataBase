@@ -3,3 +3,4 @@
 #include "CreateTableQuery/CreateTableQuery.hpp"
 #include "DropTableQuery/DropTableQuery.hpp"
 #include "TruncateTableQuery/TruncateTableQuery.hpp"
+#include "DisplayQuery/DisplayQuery.hpp"

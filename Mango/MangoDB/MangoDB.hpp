@@ -4,6 +4,7 @@ namespace Mango::Queries
 	class CreateTableQuery;
 	class DropTableQuery;
 	class TruncateTableQuery;
+	class DisplayQuery;
 }
 #include "../Table/Table.hpp"
 
@@ -56,6 +57,7 @@ namespace Mango
 		friend class Mango::Queries::CreateTableQuery;
 		friend class Mango::Queries::DropTableQuery;
 		friend class Mango::Queries::TruncateTableQuery;
+		friend class Mango::Queries::DisplayQuery;
 		friend std::ostream& operator<<(std::ostream& out, const MangoDB& mango);
 	};
 }

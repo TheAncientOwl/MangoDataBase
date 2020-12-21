@@ -7,7 +7,7 @@ namespace Mango
 	class QueryExecutor
 	{
 	private:
-		static const std::array<std::unique_ptr<Queries::AbstractQuery>, 3> s_Queries;
+		static const std::array<std::unique_ptr<Queries::AbstractQuery>, 4> s_Queries;
 
 	public:
 		void execute(std::string&& sql, ref<MangoDB> dataBase);
