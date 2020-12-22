@@ -1,4 +1,12 @@
 #pragma once
+namespace Mango
+{
+	class Table;
+	namespace Queries
+	{
+		class InsertIntoQuery;
+	}
+}
 #include "RowConfiguration.hpp"
 
 namespace Mango
@@ -12,7 +20,9 @@ namespace Mango
 	private: /// API
 		void PRIVATE_API setDataAt(int index, const void* value, size_t size);
 		void PRIVATE_API setDataAt(int index, const_ref<std::string> value);
-		std::byte* PRIVATE_API data();
+		const_ptr<std::byte> PRIVATE_API data() const;
+		ptr<std::byte> PRIVATE_API data();
+		size_t PRIVATE_API size() const;
 
 	public: /// Interface
 		int getInt(int index) const;
@@ -28,5 +38,9 @@ namespace Mango
 		Row& operator=(const Row&) = delete;
 		Row& operator=(Row&& rhs) noexcept;
 		~Row();
+
+	private: /// Friends
+		friend class Mango::Table;
+		friend class Queries::InsertIntoQuery;
 	};
 }

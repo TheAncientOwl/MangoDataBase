@@ -4,3 +4,4 @@
 #include "DropTableQuery/DropTableQuery.hpp"
 #include "TruncateTableQuery/TruncateTableQuery.hpp"
 #include "DisplayQuery/DisplayQuery.hpp"
+#include "InsertIntoQuery/InsertIntoQuery.hpp"

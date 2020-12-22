@@ -39,37 +39,38 @@ namespace Mango
 		}
 	}
 
-	std::byte* PRIVATE_API Row::data()
+	ptr<std::byte> PRIVATE_API Row::data()
+	{
+		return m_Data;
+	}
+
+	size_t Row::size() const
+	{
+		return m_Config->totalSize();
+	}
+
+	const_ptr<std::byte> PRIVATE_API Row::data() const
 	{
 		return m_Data;
 	}
 
 	int Row::getInt(int index) const
 	{
-#ifdef MANGO_ROW_CONFIG_DEBUG
 		assert(m_Config->dataTypeAt(index) == DataType::Value::INT);
-#endif // MANGO_ROW_CONFIG_DEBUG
-
 		int* dummy = reinterpret_cast<int*>(m_Data + m_Config->offsetAt(index));
 		return *dummy;
 	}
 
 	float Row::getFloat(int index) const
 	{
-#ifdef MANGO_ROW_CONFIG_DEBUG
 		assert(m_Config->dataTypeAt(index) == DataType::Value::FLOAT);
-#endif // MANGO_ROW_CONFIG_DEBUG
-
 		float* dummy = reinterpret_cast<float*>(m_Data + m_Config->offsetAt(index));
 		return *dummy;
 	}
 
 	std::string_view Row::getString(int index) const
 	{
-#ifdef MANGO_ROW_CONFIG_DEBUG
 		assert(m_Config->dataTypeAt(index) == DataType::Value::STRING);
-#endif // MANGO_ROW_CONFIG_DEBUG			
-
 		return std::string_view(reinterpret_cast<char*>(m_Data + m_Config->offsetAt(index)));
 	}
 

@@ -81,6 +81,15 @@ namespace Mango
 		file.close();
 	}
 
+	void Table::insertRow(const_ref<Row> row)
+	{
+		std::fstream file(getDataFilePath(), std::ios::out | std::ios::app | std::ios::binary);
+
+		serializePOD(file, row.data(), row.size());
+
+		file.close();
+	}
+
 	std::string_view Table::name() const
 	{
 		return m_Name;
@@ -89,6 +98,35 @@ namespace Mango
 	const_ref<std::vector<Column>> Table::columns() const
 	{
 		return m_Columns;
+	}
+
+	const_ptr<Column> Table::getColumn(std::string_view columnName) const
+	{
+		for (const auto& column : m_Columns)
+			if (column.name() == columnName)
+				return &column;
+		return nullptr;
+	}
+
+	ptr<Column> Table::getColumn(std::string_view columnName)
+	{
+		for (auto& column : m_Columns)
+			if (column.name() == columnName)
+				return &column;
+		return nullptr;
+	}
+
+	size_t Table::columnIndex(std::string_view columnName) const
+	{
+		return m_ColumnIndexes.at(columnName);
+	}
+
+	std::shared_ptr<RowConfiguration> PRIVATE_API Table::getRowConfiguration() const
+	{
+		auto rowConfig = std::make_shared<RowConfiguration>();
+		for (const auto& column : m_Columns)
+			rowConfig->pushBack(column.size(), column.dataType());
+		return rowConfig;
 	}
 
 	std::ostream& operator<<(std::ostream& out, const Table& table)

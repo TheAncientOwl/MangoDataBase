@@ -5,10 +5,12 @@ namespace Mango
 	namespace Queries
 	{
 		class TruncateTableQuery;
+		class InsertIntoQuery;
 	}
 }
 
 #include "../Column/Column.hpp"
+#include "../Row/Row.hpp"
 
 #define MANGO_CONFIG_EXTENSION ".mangocfg"
 #define MANGO_DATA_EXTENSION   ".mangodb"
@@ -35,10 +37,37 @@ namespace Mango
 		void PRIVATE_API serializeConfig();
 		void PRIVATE_API deserializeConfig();
 
+		void PRIVATE_API insertRow(const_ref<Row> row);
+
 		const_ref<std::vector<Column>> PRIVATE_API columns() const;
+		const_ptr<Column> PRIVATE_API getColumn(std::string_view columnName) const;
+		ptr<Column> PRIVATE_API getColumn(std::string_view columnName);
+		size_t columnIndex(std::string_view columnName) const;
+
+		std::shared_ptr<RowConfiguration> PRIVATE_API getRowConfiguration() const;
 
 	public: /// Interface
 		std::string_view name() const;
+
+		void TEST() const
+		{
+			std::fstream file("TestDataBase\\IDK\\IDK.mangodb", std::ios::in | std::ios::binary);
+
+			auto rowConfig = std::make_shared<RowConfiguration>();
+			rowConfig->pushBack(sizeof(int), DataType::Value::INT);
+			rowConfig->pushBack(sizeof(float), DataType::Value::FLOAT);
+			rowConfig->pushBack(40 * sizeof(char), DataType::Value::STRING);
+
+			Row row(rowConfig->totalSize(), rowConfig);
+
+			deserializePOD(file, row.data(), row.size());
+
+			std::cout << row.getInt(0) << '\n';
+			std::cout << row.getFloat(1) << '\n';
+			std::cout << row.getString(2) << '\n';
+
+			file.close();
+		}
 
 	public: /// Constructors
 		Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, std::vector<Column>&& columns);
@@ -53,6 +82,7 @@ namespace Mango
 	private: /// Friends
 		friend class Mango::MangoDB;
 		friend class Mango::Queries::TruncateTableQuery;
+		friend class Mango::Queries::InsertIntoQuery;
 		friend std::ostream& operator<<(std::ostream& out, const Table& table);
 	};
 }

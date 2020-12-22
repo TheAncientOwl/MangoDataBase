@@ -2,6 +2,7 @@
 namespace Mango
 {
 	class Row;
+	class Table;
 }
 #include "../DataType/DataType.hpp"
 
@@ -33,5 +34,6 @@ namespace Mango
 
 	private: /// Friends
 		friend class Mango::Row;
+		friend class Mango::Table;
 	};
 }
