@@ -53,26 +53,6 @@ namespace Mango
 	public: /// Interface
 		std::string_view name() const;
 
-		void TEST() const
-		{
-			std::fstream file("TestDataBase\\IDK\\IDK.mangodb", std::ios::in | std::ios::binary);
-
-			auto rowConfig = std::make_shared<RowConfiguration>();
-			rowConfig->pushBack(sizeof(int), DataType::Value::INT);
-			rowConfig->pushBack(sizeof(float), DataType::Value::FLOAT);
-			rowConfig->pushBack(40 * sizeof(char), DataType::Value::STRING);
-
-			Row row(rowConfig->totalSize(), rowConfig);
-
-			deserializePOD(file, row.data(), row.size());
-
-			//std::cout << row.getInt(0) << '\n';
-			//std::cout << row.getFloat(1) << '\n';
-			//std::cout << row.getString(2) << '\n';
-
-			file.close();
-		}
-
 	public: /// Constructors
 		Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, std::vector<Column>&& columns);
 

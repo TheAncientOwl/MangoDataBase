@@ -7,9 +7,6 @@ using namespace Mango;
 
 int main()
 {
-	Table table;
-	table.TEST();
-
 	Utilities::ConsoleTestLoop consoleTestLoop;
 	consoleTestLoop.run();
 
