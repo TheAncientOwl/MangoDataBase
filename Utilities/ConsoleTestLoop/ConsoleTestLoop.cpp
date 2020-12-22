@@ -55,7 +55,6 @@ namespace Utilities
 				if (select)
 				{
 					auto result = dataBase.extractLastResult();
-					std::cout << ccolor::light_red;
 					for (const auto& row : result)
 					{
 						std::cout << row << '\n';
