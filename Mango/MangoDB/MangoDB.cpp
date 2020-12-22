@@ -69,7 +69,7 @@ namespace Mango
 
 	void MangoDB::resetSelectFilter()
 	{
-		m_SelectFilter = &RowFilters::allwaysTrue;
+		m_SelectFilter = &DefaultRowFilters::allwaysTrue;
 	}
 
 	const_ref<std::vector<std::unique_ptr<Table>>> PRIVATE_API MangoDB::tables() const
@@ -122,7 +122,7 @@ namespace Mango
 	}
 
 	MangoDB::MangoDB(std::filesystem::path dataBaseDirectoryPath)
-		: m_SelectFilter(&RowFilters::allwaysTrue)
+		: m_SelectFilter(&DefaultRowFilters::allwaysTrue)
 	{
 		m_DirectoryPath = std::move(dataBaseDirectoryPath);
 		std::filesystem::create_directories(m_DirectoryPath);

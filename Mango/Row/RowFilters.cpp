@@ -1,7 +1,7 @@
 #include "standard_library.hpp"
 #include "RowFilters.hpp"
 
-namespace Mango::RowFilters
+namespace Mango::DefaultRowFilters
 {
 	bool allwaysTrue(const_ref<Row> row)
 	{
