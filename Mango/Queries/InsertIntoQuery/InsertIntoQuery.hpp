@@ -10,7 +10,7 @@ namespace Mango::Queries
 	class InsertIntoQuery final : public AbstractQuery
 	{
 	private: /// Fields
-		bool m_InsertAll;
+		bool m_InsertAll = false;
 		std::string m_TableName;
 		std::vector<std::string> m_ColumnNames;
 		std::vector<std::string> m_ColumnValues;
