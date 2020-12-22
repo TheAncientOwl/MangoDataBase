@@ -5,7 +5,18 @@ namespace Mango
 {
 	void QueryExecutor::execute(std::string&& sql, ref<MangoDB> dataBase)
 	{
-		std::transform(std::begin(sql), std::end(sql), std::begin(sql), ::toupper);
+		if (sql.size() > 4)
+		{
+			auto wannaBeEndOfInsert = std::cbegin(sql) + 6;
+			std::transform(std::cbegin(sql), wannaBeEndOfInsert, std::begin(sql), ::toupper);
+
+			auto upperEnd = std::cend(sql);
+			if (sql.starts_with("INSERT"))
+				upperEnd = std::find(wannaBeEndOfInsert, std::cend(sql), '(');
+
+			std::transform(wannaBeEndOfInsert, upperEnd, std::begin(sql) + 6, ::toupper);
+		}
+		else std::transform(std::begin(sql), std::end(sql), std::begin(sql), ::toupper);
 
 		for (auto& query : s_Queries)
 			if (query->match(sql))

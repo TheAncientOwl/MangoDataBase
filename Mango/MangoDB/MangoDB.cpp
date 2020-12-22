@@ -43,6 +43,15 @@ namespace Mango
 		}
 
 		file.close();
+
+		TableIterator it = getTable("IDK")->makeIterator();
+		while (it.hasValues())
+		{
+			const_ref<Row> row = it.row();
+			std::cout << ccolor::light_red << row.getInt(0) << " - " << row.getFloat(1) << " - " << row.getString(2) << '\n';
+
+			it.advance();
+		}
 	}
 
 	const_ref<std::vector<std::unique_ptr<Table>>> PRIVATE_API MangoDB::tables() const
