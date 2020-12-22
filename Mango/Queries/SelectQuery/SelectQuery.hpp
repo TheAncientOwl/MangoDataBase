@@ -6,6 +6,7 @@ namespace Mango::Queries
 {
 	/// <summary>
 	/// SELECT */[columns] FROM (table_name);
+	/// [!] Select filter can be specified through MagoDB::setSelectFilter(RowFilter selectFilter);
 	/// </summary>
 	class SelectQuery final : public AbstractQuery
 	{
