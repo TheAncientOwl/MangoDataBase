@@ -2,6 +2,7 @@
 namespace Mango
 {
 	class Table;
+	class TableIterator;
 	namespace Queries
 	{
 		class InsertIntoQuery;
@@ -14,6 +15,7 @@ namespace Mango
 	class Row
 	{
 	private: /// Fields
+		size_t m_Size;
 		std::byte* m_Data;
 		std::shared_ptr<RowConfiguration> m_Config;
 
@@ -33,14 +35,15 @@ namespace Mango
 		Row(size_t size, const_ref<std::shared_ptr<RowConfiguration>> config);
 
 		Row() = default;
-		Row(const Row&) = delete;
+		Row(const Row& rhs);
 		Row(Row&& rhs) noexcept;
-		Row& operator=(const Row&) = delete;
-		Row& operator=(Row&& rhs) noexcept;
+		Row& operator= (const Row& rhs);
+		Row& operator= (Row&& rhs) noexcept;
 		~Row();
 
 	private: /// Friends
 		friend class Mango::Table;
+		friend class Mango::TableIterator;
 		friend class Queries::InsertIntoQuery;
 	};
 }

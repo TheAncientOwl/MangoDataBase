@@ -11,6 +11,7 @@ namespace Mango
 
 #include "../Column/Column.hpp"
 #include "../Row/Row.hpp"
+#include "TableIterator.hpp"
 
 #define MANGO_CONFIG_EXTENSION ".mangocfg"
 #define MANGO_DATA_EXTENSION   ".mangodb"
@@ -44,7 +45,10 @@ namespace Mango
 		ptr<Column> PRIVATE_API getColumn(std::string_view columnName);
 		size_t columnIndex(std::string_view columnName) const;
 
-		std::shared_ptr<RowConfiguration> PRIVATE_API getRowConfiguration() const;
+		std::shared_ptr<RowConfiguration> PRIVATE_API getSharedRowConfiguration() const;
+		RowConfiguration PRIVATE_API getRowConfiguration() const;
+
+		TableIterator PRIVATE_API makeIterator();
 
 	public: /// Interface
 		std::string_view name() const;
@@ -62,9 +66,9 @@ namespace Mango
 
 			deserializePOD(file, row.data(), row.size());
 
-			std::cout << row.getInt(0) << '\n';
-			std::cout << row.getFloat(1) << '\n';
-			std::cout << row.getString(2) << '\n';
+			//std::cout << row.getInt(0) << '\n';
+			//std::cout << row.getFloat(1) << '\n';
+			//std::cout << row.getString(2) << '\n';
 
 			file.close();
 		}

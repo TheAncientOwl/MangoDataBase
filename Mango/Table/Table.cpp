@@ -81,7 +81,7 @@ namespace Mango
 		file.close();
 	}
 
-	void Table::insertRow(const_ref<Row> row)
+	void PRIVATE_API Table::insertRow(const_ref<Row> row)
 	{
 		std::fstream file(getDataFilePath(), std::ios::out | std::ios::app | std::ios::binary);
 
@@ -121,12 +121,25 @@ namespace Mango
 		return m_ColumnIndexes.at(columnName);
 	}
 
-	std::shared_ptr<RowConfiguration> PRIVATE_API Table::getRowConfiguration() const
+	std::shared_ptr<RowConfiguration> PRIVATE_API Table::getSharedRowConfiguration() const
 	{
 		auto rowConfig = std::make_shared<RowConfiguration>();
 		for (const auto& column : m_Columns)
 			rowConfig->pushBack(column.size(), column.dataType());
 		return rowConfig;
+	}
+
+	RowConfiguration PRIVATE_API Table::getRowConfiguration() const
+	{
+		RowConfiguration rowConfig;
+		for (const auto& column : m_Columns)
+			rowConfig.pushBack(column.size(), column.dataType());
+		return rowConfig;
+	}
+
+	TableIterator PRIVATE_API Table::makeIterator()
+	{
+		return TableIterator(getDataFilePath(), getSharedRowConfiguration());
 	}
 
 	std::ostream& operator<<(std::ostream& out, const Table& table)

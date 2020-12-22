@@ -39,6 +39,11 @@ namespace Mango
 		}
 	}
 
+	const_ptr<std::byte> PRIVATE_API Row::data() const
+	{
+		return m_Data;
+	}
+
 	ptr<std::byte> PRIVATE_API Row::data()
 	{
 		return m_Data;
@@ -46,12 +51,7 @@ namespace Mango
 
 	size_t Row::size() const
 	{
-		return m_Config->totalSize();
-	}
-
-	const_ptr<std::byte> PRIVATE_API Row::data() const
-	{
-		return m_Data;
+		return m_Size;
 	}
 
 	int Row::getInt(int index) const
@@ -75,14 +75,42 @@ namespace Mango
 	}
 
 	Row::Row(size_t size, const_ref<std::shared_ptr<RowConfiguration>> config)
-		: m_Data(new std::byte[size]), m_Config(config)
+		: m_Size(size), m_Data(new std::byte[size]), m_Config(config)
 	{
 		memset(m_Data, 0, size);
 	}
 
-	Row::Row(Row&& rhs) noexcept
-		: m_Data(std::exchange(rhs.m_Data, nullptr)), m_Config(std::move(rhs.m_Config))
+	Row::Row(const Row& rhs) : m_Config(rhs.m_Config)
 	{
+		m_Size = rhs.m_Size;
+
+		m_Data = new std::byte[m_Size];
+		memcpy(m_Data, rhs.m_Data, m_Size);
+	}
+
+	Row::Row(Row&& rhs) noexcept
+	{
+		m_Size = std::exchange(rhs.m_Size, 0);
+		m_Data = std::exchange(rhs.m_Data, nullptr);
+		m_Config = std::move(rhs.m_Config);
+	}
+
+	Row& Row::operator=(const Row& rhs)
+	{
+		if (this == &rhs)
+			return *this;
+
+		if (m_Size != rhs.m_Size)
+		{
+			delete[] m_Data;
+			m_Data = new std::byte[rhs.m_Size];
+		}
+
+		m_Size = rhs.m_Size;
+		memcpy(m_Data, rhs.m_Data, m_Size);
+		m_Config = rhs.m_Config;
+
+		return* this;
 	}
 
 	Row& Row::operator=(Row&& rhs) noexcept
@@ -90,6 +118,7 @@ namespace Mango
 		if (this == &rhs)
 			return *this;
 
+		m_Size = std::exchange(rhs.m_Size, 0);
 		m_Data = std::exchange(rhs.m_Data, nullptr);
 		m_Config = std::move(rhs.m_Config);
 

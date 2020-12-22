@@ -3,6 +3,7 @@ namespace Mango
 {
 	class Row;
 	class Table;
+	class TableIterator;
 }
 #include "../DataType/DataType.hpp"
 
@@ -28,12 +29,14 @@ namespace Mango
 	public: /// Constructors
 		RowConfiguration() = default;
 		RowConfiguration(const RowConfiguration&) = delete;
-		RowConfiguration(RowConfiguration&&) = default;
+		RowConfiguration(RowConfiguration&&) noexcept = default;
 		RowConfiguration& operator=(const RowConfiguration&) = delete;
+		RowConfiguration& operator=(RowConfiguration&&) noexcept = default;
 		~RowConfiguration() = default;
 
 	private: /// Friends
 		friend class Mango::Row;
 		friend class Mango::Table;
+		friend class Mango::TableIterator;
 	};
 }
