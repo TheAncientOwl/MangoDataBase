@@ -17,7 +17,7 @@ namespace Mango
 	{
 	private: /// Fields
 		size_t m_Size = 0;
-		std::byte* m_Data;
+		std::byte* m_Data = nullptr;
 		std::shared_ptr<RowConfiguration> m_Config;
 
 	private: /// API
@@ -52,6 +52,7 @@ namespace Mango
 		friend class Mango::TableIterator;
 		friend class Mango::Queries::InsertIntoQuery;
 		friend class Mango::Queries::SelectQuery;
+		//friend RowFilter Mango::RowFilters::Int::getFilter(const_ref<Row> row, int index);
 		friend std::ostream& operator<<(std::ostream& out, const Row& row);
 	};
 }

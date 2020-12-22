@@ -9,6 +9,7 @@ namespace Mango::Queries
 	class SelectQuery;
 }
 #include "../Table/Table.hpp"
+#include "../Row/RowFilters.hpp"
 
 #define MANGO_MAX_TABLE_NAME_LENGTH 50
 
@@ -21,6 +22,8 @@ namespace Mango
 		std::vector<std::unique_ptr<Table>> m_Tables;
 
 		std::vector<Row> m_LastResult;
+		RowFilter m_SelectFilter;
+		
 
 	private: /// Private methods
 		inline std::filesystem::path getConfigFilePath() const;
@@ -47,9 +50,13 @@ namespace Mango
 	public: /// Interface
 		void storeTables() const;
 		void loadTables();
+
 		const_ref<std::vector<Row>> lastResult();
 		std::vector<Row> extractLastResult();
 		void disposeLastResult();
+
+		void setSelectFilter(RowFilter selectFilter);
+		void resetSelectFilter();
 		
 	public: /// Constructors
 		MangoDB(std::filesystem::path dataBaseDirectoryPath);

@@ -183,6 +183,9 @@
     <ClCompile Include="Mango\Queries\SelectQuery\SelectQuery.cpp">
       <Filter>Mango\Queries\SelectQuery</Filter>
     </ClCompile>
+    <ClCompile Include="Mango\Row\RowFilters.cpp">
+      <Filter>Mango\Row</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="standard_library.hpp">
@@ -277,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Queries\SelectQuery\SelectQuery.hpp">
       <Filter>Mango\Queries\SelectQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Row\RowFilters.hpp">
+      <Filter>Mango\Row</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

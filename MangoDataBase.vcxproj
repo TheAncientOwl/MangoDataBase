@@ -189,6 +189,7 @@
     <ClCompile Include="Mango\QueryExecutor\QueryExecutor.cpp" />
     <ClCompile Include="Mango\Row\Row.cpp" />
     <ClCompile Include="Mango\Row\RowConfiguration.cpp" />
+    <ClCompile Include="Mango\Row\RowFilters.cpp" />
     <ClCompile Include="Mango\Table\Table.cpp" />
     <ClCompile Include="Mango\Table\TableIterator.cpp" />
     <ClCompile Include="Mango\Testing\Testing.cpp" />
@@ -228,6 +229,7 @@
     <ClInclude Include="Mango\QueryExecutor\QueryExecutor.hpp" />
     <ClInclude Include="Mango\Row\Row.hpp" />
     <ClInclude Include="Mango\Row\RowConfiguration.hpp" />
+    <ClInclude Include="Mango\Row\RowFilters.hpp" />
     <ClInclude Include="Mango\Table\Table.hpp" />
     <ClInclude Include="Mango\Table\TableIterator.hpp" />
     <ClInclude Include="Mango\Testing\Testing.hpp" />

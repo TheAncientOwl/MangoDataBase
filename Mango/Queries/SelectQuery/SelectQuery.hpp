@@ -5,7 +5,7 @@
 namespace Mango::Queries
 {
 	/// <summary>
-	/// SELECT */[columns] FROM (table_name) WHERE <condition>;
+	/// SELECT */[columns] FROM (table_name);
 	/// </summary>
 	class SelectQuery final : public AbstractQuery
 	{
@@ -25,22 +25,17 @@ namespace Mango::Queries
 		void parseTableName(std::string_view tablePart);
 
 		/// <summary>
-		/// condition
+		/// */[] before ()
 		/// </summary>
-		void parseCondition(std::string_view conditionPart);
+		void checkStatementsOrder(Statement columns, Statement table, Statement::iterator defaultIt);
 
 		/// <summary>
-		/// */[] before () before <>
+		/// SELECT */[...] FROM (...);
 		/// </summary>
-		void checkStatementsOrder(Statement columns, Statement table, Statement condition, Statement::iterator defaultIt);
+		void checkResidualParts(Statement columns, Statement table, std::string_view sql);
 
-		/// <summary>
-		/// SELECT */[...] FROM (...) WHERE <...>;
-		/// </summary>
-		void checkResidualParts(Statement columns, Statement table, Statement condition, std::string_view sql);
-
-		void selectAll(ptr<Table> table, ref<std::vector<Row>> result);
-		void selectSome(ptr<Table> table, ref<std::vector<Row>> result);
+		void selectAll(ptr<Table> table, ref<std::vector<Row>> result, ref<MangoDB> dataBase);
+		void selectSome(ptr<Table> table, ref<std::vector<Row>> result, ref<MangoDB> dataBase);
 
 	private: /// API
 		bool QUERY_API match(std::string_view sql) const override;

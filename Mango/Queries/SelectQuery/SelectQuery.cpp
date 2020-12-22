@@ -28,28 +28,17 @@ namespace Mango::Queries
 		m_TableName = args.front();
 	}
 
-	void SelectQuery::parseCondition(std::string_view conditionPart)
-	{
-		if (conditionPart.empty())
-			throw InvalidSyntaxException("Empty condition");
-	}
-
-	void SelectQuery::checkStatementsOrder(Statement columns, Statement table, Statement condition, Statement::iterator defaultIt)
+	void SelectQuery::checkStatementsOrder(Statement columns, Statement table, Statement::iterator defaultIt)
 	{
 		columns.checkValidOrder(defaultIt);
 
 		table.checkValidOrder(defaultIt);
 
-		condition.checkValidOrder(defaultIt);
-
 		if (table.open < columns.closed)
 			throw InvalidSyntaxException({ "Syntax error, found '", table.openChar, "' before '", columns.closedChar, "'" });
-
-		if (condition.open < table.closed)
-			throw InvalidSyntaxException({ "Syntax error, found '", condition.openChar, "' before '", table.closedChar, "'" });
 	}
 
-	void SelectQuery::checkResidualParts(Statement columns, Statement table, Statement condition, std::string_view sql)
+	void SelectQuery::checkResidualParts(Statement columns, Statement table, std::string_view sql)
 	{
 		{
 			std::string_view part(std::cbegin(sql), columns.open);
@@ -68,16 +57,7 @@ namespace Mango::Queries
 		}
 
 		{
-			std::string_view part(std::next(table.closed), condition.open);
-			auto args = splitAtChar(part, ' ');
-			if (args.empty())
-				throw InvalidSyntaxException("Missing \"WHERE\" keyword");
-			if (args.size() != 1 || args.front() != "WHERE")
-				throw InvalidArgumentException({ "Unknown sequence \"", part, "\"" });
-		}
-
-		{
-			std::string_view part(std::next(condition.closed), std::cend(sql));
+			std::string_view part(std::next(table.closed), std::cend(sql));
 			while (part.starts_with(' '))
 				part.remove_prefix(1);
 			part.remove_suffix(1);
@@ -87,7 +67,7 @@ namespace Mango::Queries
 
 	}
 
-	void SelectQuery::selectAll(ptr<Table> table, ref<std::vector<Row>> result)
+	void SelectQuery::selectAll(ptr<Table> table, ref<std::vector<Row>> result, ref<MangoDB> dataBase)
 	{
 		auto rowConfig = table->makeSharedRowConfiguration();
 		size_t rowSize = rowConfig->totalSize();
@@ -97,11 +77,12 @@ namespace Mango::Queries
 		result.emplace_back(rowSize, rowConfig);
 
 		while (tableIterator.advanceInPlace(result.back()))
-			result.emplace_back(rowSize, rowConfig);
+			if(dataBase.m_SelectFilter(result.back()))
+				result.emplace_back(rowSize, rowConfig);
 		result.pop_back();
 	}
 
-	void SelectQuery::selectSome(ptr<Table> table, ref<std::vector<Row>> result)
+	void SelectQuery::selectSome(ptr<Table> table, ref<std::vector<Row>> result, ref<MangoDB> dataBase)
 	{
 		std::vector<int> selectedColumnIndexes;
 		auto rowConfig = std::make_shared<RowConfiguration>();
@@ -117,13 +98,21 @@ namespace Mango::Queries
 		size_t rowSize = rowConfig->totalSize();
 
 		TableIterator tableIterator = table->makeIterator();
+		bool selected = true;
 		while (tableIterator.advance())
 		{
-			auto& row = result.emplace_back(rowSize, rowConfig);
+			if (selected)
+				result.emplace_back(rowSize, rowConfig);
+
+			auto& row = result.back();
 
 			for (int currentColumn = 0; currentColumn < m_ColumnNames.size(); ++currentColumn)
 				row.setDataAt(currentColumn, tableIterator.row().dataAt(selectedColumnIndexes[currentColumn]), rowConfig->sizeAt(currentColumn));
+			
+			selected = dataBase.m_SelectFilter(row);
 		}
+		if (!selected)
+			result.pop_back();
 	}
 
 	bool QUERY_API SelectQuery::match(std::string_view sql) const
@@ -141,18 +130,16 @@ namespace Mango::Queries
 
 		Statement::iterator DEFAULT = std::cbegin(sql);
 		Statement::iterator all = DEFAULT;
-		Statement columns(DEFAULT, DEFAULT, "[", "]"), table(DEFAULT, DEFAULT, "(", ")"), condition(DEFAULT, DEFAULT, "<", ">");
+		Statement columns(DEFAULT, DEFAULT, "[", "]"), table(DEFAULT, DEFAULT, "(", ")");
 
 		for(auto it = std::cbegin(sql), end = std::cend(sql); it != end; ++it)
 			switch (*it)
 			{
 				case ']': columns.closed = it; break;
 				case ')': table.closed = it; break;
-				case '>': condition.closed = it; break;
 				case '*': all = it; break;
 				case '[': if (columns.open == DEFAULT) columns.open = it; break;
 				case '(': if (table.open == DEFAULT) table.open = it; break;
-				case '<': if (condition.open == DEFAULT) condition.open = it; break;
 			}
 
 		if (all != DEFAULT)
@@ -165,21 +152,14 @@ namespace Mango::Queries
 			columns.openChar = columns.closedChar = "*";
 		}
 
-		checkStatementsOrder(columns, table, condition, DEFAULT);
+		checkStatementsOrder(columns, table, DEFAULT);
 
-		checkResidualParts(columns, table, condition, sql);
+		checkResidualParts(columns, table, sql);
 
 		if (all == DEFAULT)
 			parseColumns({ std::next(columns.open), columns.closed });
 
 		parseTableName({ std::next(table.open), table.closed });
-
-		parseCondition({ std::next(condition.open), condition.closed });
-
-		std::cout << ccolor::dark_gray << "[";
-		std::cout << ccolor::gold << "Warn";
-		std::cout << ccolor::dark_gray << "] ";
-		std::cout << ccolor::gold << "Condition not implemented yet\n";
 	}
 
 	void QUERY_API SelectQuery::validate(const_ref<MangoDB> dataBase)
@@ -201,8 +181,8 @@ namespace Mango::Queries
 		dataBase.m_LastResult.clear();
 
 		if (m_ColumnNames.empty())
-			selectAll(dataBase.getTable(m_TableName), dataBase.m_LastResult);
+			selectAll(dataBase.getTable(m_TableName), dataBase.m_LastResult, dataBase);
 		else
-			selectSome(dataBase.getTable(m_TableName), dataBase.m_LastResult);
+			selectSome(dataBase.getTable(m_TableName), dataBase.m_LastResult, dataBase);
 	}
 }
