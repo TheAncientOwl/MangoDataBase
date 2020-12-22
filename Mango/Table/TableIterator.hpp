@@ -2,6 +2,10 @@
 namespace Mango
 {
 	class Table;
+	namespace Queries
+	{
+		class SelectQuery;
+	}
 }
 #include "../Row/Row.hpp"
 
@@ -13,10 +17,9 @@ namespace Mango
 		std::fstream m_FileStream;
 		Row m_Data;
 
-	public: /// API
-		void PRIVATE_API advance();
-		void PRIVATE_API advanceInPlace(ref<Row> row);
-		bool PRIVATE_API hasValues() const;
+	private: /// API
+		const_ref<std::fstream> PRIVATE_API advance();
+		const_ref<std::fstream> PRIVATE_API advanceInPlace(ref<Row> row);
 		const_ref<Row> PRIVATE_API row();
 
 	public: /// Constructors
@@ -32,5 +35,6 @@ namespace Mango
 
 	private: /// Friends
 		friend class Mango::Table;
+		friend class Mango::Queries::SelectQuery;
 	};
 }

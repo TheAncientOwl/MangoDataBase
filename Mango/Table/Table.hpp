@@ -6,6 +6,7 @@ namespace Mango
 	{
 		class TruncateTableQuery;
 		class InsertIntoQuery;
+		class SelectQuery;
 	}
 }
 
@@ -41,12 +42,17 @@ namespace Mango
 		void PRIVATE_API insertRow(const_ref<Row> row);
 
 		const_ref<std::vector<Column>> PRIVATE_API columns() const;
+
 		const_ptr<Column> PRIVATE_API getColumn(std::string_view columnName) const;
 		ptr<Column> PRIVATE_API getColumn(std::string_view columnName);
-		size_t columnIndex(std::string_view columnName) const;
 
-		std::shared_ptr<RowConfiguration> PRIVATE_API getSharedRowConfiguration() const;
-		RowConfiguration PRIVATE_API getRowConfiguration() const;
+		const_ref<Column> PRIVATE_API getColumn(int index) const;
+		ref<Column> PRIVATE_API getColumn(int index);
+
+		size_t getColumnIndex(std::string_view columnName) const;
+
+		std::shared_ptr<RowConfiguration> PRIVATE_API makeSharedRowConfiguration() const;
+		RowConfiguration PRIVATE_API makeRowConfiguration() const;
 
 		TableIterator PRIVATE_API makeIterator();
 
@@ -67,6 +73,7 @@ namespace Mango
 		friend class Mango::MangoDB;
 		friend class Mango::Queries::TruncateTableQuery;
 		friend class Mango::Queries::InsertIntoQuery;
+		friend class Mango::Queries::SelectQuery;
 		friend std::ostream& operator<<(std::ostream& out, const Table& table);
 	};
 }

@@ -168,7 +168,7 @@ namespace Mango::Queries
 	void QUERY_API InsertIntoQuery::execute(ref<MangoDB> dataBase)
 	{
 		auto table = dataBase.getTable(m_TableName);
-		auto rowConfig = table->getSharedRowConfiguration();
+		auto rowConfig = table->makeSharedRowConfiguration();
 		Row row(rowConfig->totalSize(), rowConfig);
 
 		std::vector<size_t> columnIndexes;
@@ -178,7 +178,7 @@ namespace Mango::Queries
 				columnIndexes.push_back(index);
 		else
 			for (const auto& columnName : m_ColumnNames)
-				columnIndexes.push_back(table->columnIndex(columnName));
+				columnIndexes.push_back(table->getColumnIndex(columnName));
 
 		for (size_t i = 0; i < m_ColumnValues.size(); ++i)
 			row.setDataAt(static_cast<int>(columnIndexes[i]), m_ColumnValues[i]);

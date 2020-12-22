@@ -116,12 +116,24 @@ namespace Mango
 		return nullptr;
 	}
 
-	size_t Table::columnIndex(std::string_view columnName) const
+	const_ref<Column> Table::getColumn(int index) const
+	{
+		assert(index >= 0 && index < m_Columns.size());
+		return m_Columns[index];
+	}
+
+	ref<Column> Table::getColumn(int index)
+	{
+		assert(index >= 0 && index < m_Columns.size());
+		return m_Columns[index];
+	}
+
+	size_t Table::getColumnIndex(std::string_view columnName) const
 	{
 		return m_ColumnIndexes.at(columnName);
 	}
 
-	std::shared_ptr<RowConfiguration> PRIVATE_API Table::getSharedRowConfiguration() const
+	std::shared_ptr<RowConfiguration> PRIVATE_API Table::makeSharedRowConfiguration() const
 	{
 		auto rowConfig = std::make_shared<RowConfiguration>();
 		for (const auto& column : m_Columns)
@@ -129,7 +141,7 @@ namespace Mango
 		return rowConfig;
 	}
 
-	RowConfiguration PRIVATE_API Table::getRowConfiguration() const
+	RowConfiguration PRIVATE_API Table::makeRowConfiguration() const
 	{
 		RowConfiguration rowConfig;
 		for (const auto& column : m_Columns)
@@ -139,7 +151,7 @@ namespace Mango
 
 	TableIterator PRIVATE_API Table::makeIterator()
 	{
-		return TableIterator(getDataFilePath(), getSharedRowConfiguration());
+		return TableIterator(getDataFilePath(), makeSharedRowConfiguration());
 	}
 
 	std::ostream& operator<<(std::ostream& out, const Table& table)

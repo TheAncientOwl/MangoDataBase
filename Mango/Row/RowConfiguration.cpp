@@ -17,17 +17,25 @@ namespace Mango
 
 	size_t PRIVATE_API RowConfiguration::offsetAt(int index) const
 	{
+		assert(index >= 0 && index < m_Offsets.size());
 		return m_Offsets[index];
 	}
 
 	size_t PRIVATE_API RowConfiguration::sizeAt(int index) const
 	{
+		assert(index >= 0 && index < m_Sizes.size());
 		return m_Sizes[index];
 	}
 
 	DataType PRIVATE_API RowConfiguration::dataTypeAt(int index) const
 	{
+		assert(index >= 0 && index < m_Sizes.size());
 		return m_DataTypes[index];
+	}
+
+	size_t RowConfiguration::columnsNumber() const
+	{
+		return m_Sizes.size();
 	}
 
 	size_t RowConfiguration::totalSize() const

@@ -17,6 +17,10 @@ namespace Utilities
 			std::cout << ccolor::light_gray << "[" << ccolor::light_blue << "SQL" << ccolor::light_gray << "]: " << ccolor::lime;
 			std::getline(std::cin, sql);
 
+			bool select = false;
+			if (sql.starts_with("select") || sql.starts_with("SELECT"))
+				select = true;
+
 			if (sql == "exit")
 				return;
 			
@@ -48,10 +52,20 @@ namespace Utilities
 
 			if (success)
 			{
+				if (select)
+				{
+					auto result = dataBase.extractLastResult();
+					std::cout << ccolor::light_red;
+					for (const auto& row : result)
+					{
+						std::cout << row << '\n';
+					}
+				}
 				std::cout << ccolor::dark_gray << "[";
 				std::cout << ccolor::green << "Nice";
 				std::cout << ccolor::dark_gray << "] ";
 				std::cout << ccolor::green << "Good command!\n";
+				
 			}
 		}
 	}

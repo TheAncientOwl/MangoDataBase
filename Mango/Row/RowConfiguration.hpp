@@ -4,6 +4,10 @@ namespace Mango
 	class Row;
 	class Table;
 	class TableIterator;
+	namespace Queries
+	{
+		class SelectQuery;
+	}
 }
 #include "../DataType/DataType.hpp"
 
@@ -23,6 +27,8 @@ namespace Mango
 		size_t PRIVATE_API sizeAt(int index) const;
 		DataType PRIVATE_API dataTypeAt(int index) const;
 
+		size_t columnsNumber() const;
+
 	public: /// Interface
 		size_t totalSize() const;
 
@@ -38,5 +44,7 @@ namespace Mango
 		friend class Mango::Row;
 		friend class Mango::Table;
 		friend class Mango::TableIterator;
+		friend class Mango::Queries::SelectQuery;
+		friend std::ostream& operator<<(std::ostream& out, const Row& row);
 	};
 }

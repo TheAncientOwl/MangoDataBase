@@ -6,6 +6,7 @@ namespace Mango::Queries
 	class TruncateTableQuery;
 	class DisplayQuery;
 	class InsertIntoQuery;
+	class SelectQuery;
 }
 #include "../Table/Table.hpp"
 
@@ -18,6 +19,8 @@ namespace Mango
 	private: /// Fields
 		std::filesystem::path m_DirectoryPath;
 		std::vector<std::unique_ptr<Table>> m_Tables;
+
+		std::vector<Row> m_LastResult;
 
 	private: /// Private methods
 		inline std::filesystem::path getConfigFilePath() const;
@@ -44,6 +47,9 @@ namespace Mango
 	public: /// Interface
 		void storeTables() const;
 		void loadTables();
+		const_ref<std::vector<Row>> lastResult();
+		std::vector<Row> extractLastResult();
+		void disposeLastResult();
 		
 	public: /// Constructors
 		MangoDB(std::filesystem::path dataBaseDirectoryPath);
@@ -60,6 +66,7 @@ namespace Mango
 		friend class Mango::Queries::TruncateTableQuery;
 		friend class Mango::Queries::DisplayQuery;
 		friend class Mango::Queries::InsertIntoQuery;
+		friend class Mango::Queries::SelectQuery;
 		friend std::ostream& operator<<(std::ostream& out, const MangoDB& mango);
 	};
 }

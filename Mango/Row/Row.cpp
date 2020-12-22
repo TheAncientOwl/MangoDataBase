@@ -6,11 +6,13 @@ namespace Mango
 {
 	void PRIVATE_API Row::setDataAt(int index, const void* value, size_t size)
 	{
+		assert(index >= 0 && index < m_Config->columnsNumber());
 		memcpy(m_Data + m_Config->offsetAt(index), value, size);
 	}
 
 	void PRIVATE_API Row::setDataAt(int index, const_ref<std::string> value)
 	{
+		assert(index >= 0 && index < m_Config->columnsNumber());
 		if (m_Config->dataTypeAt(index) == DataType::Value::INT)
 		{
 			int dummy = 0;
@@ -49,6 +51,18 @@ namespace Mango
 		return m_Data;
 	}
 
+	const_ptr<std::byte> Row::dataAt(int index) const
+	{
+		assert(index >= 0 && index < m_Config->columnsNumber());
+		return m_Data + m_Config->offsetAt(index);
+	}
+
+	ptr<std::byte> Row::dataAt(int index)
+	{
+		assert(index >= 0 && index < m_Config->columnsNumber());
+		return m_Data + m_Config->offsetAt(index);
+	}
+
 	size_t Row::size() const
 	{
 		return m_Size;
@@ -56,21 +70,27 @@ namespace Mango
 
 	int Row::getInt(int index) const
 	{
+		assert(index >= 0 && index < m_Config->columnsNumber());
 		assert(m_Config->dataTypeAt(index) == DataType::Value::INT);
+
 		int* dummy = reinterpret_cast<int*>(m_Data + m_Config->offsetAt(index));
 		return *dummy;
 	}
 
 	float Row::getFloat(int index) const
 	{
+		assert(index >= 0 && index < m_Config->columnsNumber());
 		assert(m_Config->dataTypeAt(index) == DataType::Value::FLOAT);
+
 		float* dummy = reinterpret_cast<float*>(m_Data + m_Config->offsetAt(index));
 		return *dummy;
 	}
 
 	std::string_view Row::getString(int index) const
 	{
+		assert(index >= 0 && index < m_Config->columnsNumber());
 		assert(m_Config->dataTypeAt(index) == DataType::Value::STRING);
+
 		return std::string_view(reinterpret_cast<char*>(m_Data + m_Config->offsetAt(index)));
 	}
 
@@ -129,5 +149,21 @@ namespace Mango
 	{
 		if (m_Data)
 			delete[] m_Data;
+	}
+
+	std::ostream& operator<<(std::ostream& out, const Row& row)
+	{
+		out << ccolor::dark_gray << "| ";
+		for (int columnsNumber = static_cast<int>(row.m_Config->columnsNumber()), index = 0; index < columnsNumber; ++index)
+		{
+			switch (row.m_Config->dataTypeAt(index))
+			{
+				case DataType::Value::INT: out << ccolor::green << row.getInt(index) << ccolor::dark_gray << " | "; break;
+				case DataType::Value::FLOAT: out << ccolor::green << row.getFloat(index) << ccolor::dark_gray << " | "; break;
+				case DataType::Value::STRING: out << ccolor::green << row.getString(index) << ccolor::dark_gray << " | "; break;
+			}
+		}
+
+		return out;
 	}
 }

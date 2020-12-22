@@ -91,6 +91,9 @@
     <Filter Include="Mango\Queries\InsertIntoQuery">
       <UniqueIdentifier>{235d1242-718b-44de-9eb8-2396b2e34b52}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Queries\SelectQuery">
+      <UniqueIdentifier>{72b8211e-649c-4cdc-9948-f2ce40526b7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -176,6 +179,9 @@
     </ClCompile>
     <ClCompile Include="Mango\Table\TableIterator.cpp">
       <Filter>Mango\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Queries\SelectQuery\SelectQuery.cpp">
+      <Filter>Mango\Queries\SelectQuery</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -268,6 +274,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Table\TableIterator.hpp">
       <Filter>Mango\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Queries\SelectQuery\SelectQuery.hpp">
+      <Filter>Mango\Queries\SelectQuery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
