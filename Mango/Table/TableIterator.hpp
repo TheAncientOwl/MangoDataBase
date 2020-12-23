@@ -19,6 +19,7 @@ namespace Mango
 		MANGO_PRIVATE_API const_ref<std::fstream> advanceInPlace(ref<Row> row);
 		MANGO_PRIVATE_API const_ref<Row> row();
 		MANGO_PRIVATE_API void releaseFile();
+		MANGO_PRIVATE_API void overwrite(const_ref<Row> row, bool copyInternal = false);
 
 	public:
 		MANGO_PUBLIC_API TableIterator() = default;
