@@ -114,28 +114,18 @@ namespace Mango
 		std::vector<Row>().swap(m_LastResult);
 	}
 
-	MANGO_PUBLIC_API void MangoDB::setSelectFilter(RowFilter selectFilter)
+	void MangoDB::setWhereFilter(WhereClause whereClause)
 	{
-		m_SelectFilter = selectFilter;
+		m_WhereClause = whereClause;
 	}
 
-	MANGO_PUBLIC_API void MangoDB::resetSelectFilter()
+	void MangoDB::resetWhereFilter()
 	{
-		m_SelectFilter = &DefaultRowFilters::allwaysTrue;
-	}
-
-	MANGO_PUBLIC_API void MangoDB::setDeleteFilter(RowFilter deleteFilter)
-	{
-		m_DeleteFilter = deleteFilter;
-	}
-
-	MANGO_PUBLIC_API void MangoDB::resetDeleteFilter()
-	{
-		m_DeleteFilter = &DefaultRowFilters::allwaysFalse;
+		m_WhereClause = &DefaultRowFilters::allwaysTrue;
 	}
 
 	MANGO_PUBLIC_API MangoDB::MangoDB(std::filesystem::path dataBaseDirectoryPath)
-		: m_SelectFilter(&DefaultRowFilters::allwaysTrue), m_DeleteFilter(&DefaultRowFilters::allwaysTrue)
+		: m_WhereClause(&DefaultRowFilters::allwaysTrue)
 	{
 		m_DirectoryPath = std::move(dataBaseDirectoryPath);
 		std::filesystem::create_directories(m_DirectoryPath);

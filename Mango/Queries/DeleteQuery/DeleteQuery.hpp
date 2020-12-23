@@ -6,7 +6,8 @@ namespace Mango::Queries
 {
 	/// <summary>
 	/// DELETE FROM table_name;
-	/// [!] Delete filter can be specified through MagoDB::setDeleteFilter(RowFilter selectFilter);
+	/// [!] Where clause can be specified through MagoDB::setWhereClause(WhereClause whereClause);
+	/// [!] By default all values are deleted.
 	/// </summary>
 	class DeleteQuery final : public AbstractQuery
 	{

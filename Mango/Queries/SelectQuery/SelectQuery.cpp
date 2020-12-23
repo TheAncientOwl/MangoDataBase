@@ -78,7 +78,7 @@ namespace Mango::Queries
 		result.emplace_back(rowSize, rowConfig);
 
 		while (tableIterator.advanceInPlace(result.back()))
-			if (dataBase.m_SelectFilter(result.back()))
+			if (dataBase.m_WhereClause(result.back()))
 				result.emplace_back(rowSize, rowConfig);
 		result.pop_back();
 	}
@@ -110,7 +110,7 @@ namespace Mango::Queries
 			for (int currentColumn = 0; currentColumn < m_ColumnNames.size(); ++currentColumn)
 				row.setDataAt(currentColumn, tableIterator.row().dataAt(selectedColumnIndexes[currentColumn]), rowConfig->sizeAt(currentColumn));
 
-			selected = dataBase.m_SelectFilter(row);
+			selected = dataBase.m_WhereClause(row);
 		}
 		if (!selected)
 			result.pop_back();

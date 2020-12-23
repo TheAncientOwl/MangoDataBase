@@ -24,8 +24,7 @@ namespace Mango
 
 		std::vector<Row> m_LastResult;
 
-		RowFilter m_SelectFilter;
-		RowFilter m_DeleteFilter;
+		WhereClause m_WhereClause;
 
 	private:
 		MANGO_PRIVATE_API std::filesystem::path getConfigFilePath() const;
@@ -56,11 +55,8 @@ namespace Mango
 		MANGO_PUBLIC_API std::vector<Row> extractLastResult();
 		MANGO_PUBLIC_API void disposeLastResult();
 
-		MANGO_PUBLIC_API void setSelectFilter(RowFilter selectFilter);
-		MANGO_PUBLIC_API void resetSelectFilter();
-
-		MANGO_PUBLIC_API void setDeleteFilter(RowFilter deleteFilter);
-		MANGO_PUBLIC_API void resetDeleteFilter();
+		MANGO_PUBLIC_API void setWhereFilter(WhereClause whereFilter);
+		MANGO_PUBLIC_API void resetWhereFilter();
 		
 	public:
 		MANGO_PUBLIC_API MangoDB(std::filesystem::path dataBaseDirectoryPath);

@@ -45,16 +45,16 @@ namespace Mango::Queries
 
 		std::filesystem::path dummyFilePath = table->getDataFilePath();
 		dummyFilePath.replace_filename("dummy");
-		std::fstream file(dummyFilePath, std::ios::out | std::ios::trunc | std::ios::binary);
+		std::fstream dummyFile(dummyFilePath, std::ios::out | std::ios::trunc | std::ios::binary);
 
 		while (tableIterator.advance())
 		{
 			auto& row = tableIterator.row();
-			if (dataBase.m_DeleteFilter(row))
-				serializePOD(file, row.data(), row.size());
+			if (!dataBase.m_WhereClause(row))
+				serializePOD(dummyFile, row.data(), row.size());
 		}
 
-		file.close();
+		dummyFile.close();
 		tableIterator.releaseFile();
 
 		std::filesystem::remove(table->getDataFilePath());
