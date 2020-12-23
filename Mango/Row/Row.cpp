@@ -105,7 +105,7 @@ namespace Mango
 		setDataAt(index, &value, sizeof(int));
 	}
 
-	void Row::setFloat(int index, float value)
+	MANGO_PUBLIC_API void Row::setFloat(int index, float value)
 	{
 		assert(index >= 0 && index < m_Config->columnsNumber());
 		assert(m_Config->dataTypeAt(index) == DataType::Value::FLOAT);
@@ -113,12 +113,21 @@ namespace Mango
 		setDataAt(index, &value, sizeof(float));
 	}
 
-	void Row::setString(int index, std::string value)
+	MANGO_PUBLIC_API void Row::setString(int index, std::string value)
 	{
 		assert(index >= 0 && index < m_Config->columnsNumber());
 		assert(m_Config->dataTypeAt(index) == DataType::Value::STRING);
 
+		if (value.size() >= m_Config->sizeAt(index))
+			throw Exceptions::InvalidArgumentException("String argument too long");
 		setDataAt(index, value.c_str(), (value.length() + 1) * sizeof(char));
+	}
+
+	MANGO_PUBLIC_API void Row::setValue(int index, const_ref<std::string> value)
+	{
+		assert(index >= 0 && index < m_Config->columnsNumber());
+
+		setDataAt(index, value);
 	}
 
 	MANGO_PUBLIC_API Row::Row(size_t size, const_ref<std::shared_ptr<RowConfiguration>> config)
