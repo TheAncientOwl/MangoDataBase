@@ -94,6 +94,9 @@
     <Filter Include="Mango\Queries\SelectQuery">
       <UniqueIdentifier>{72b8211e-649c-4cdc-9948-f2ce40526b7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Queries\DeleteQuery">
+      <UniqueIdentifier>{7a9601ef-5715-40f5-ae2b-1a99da845803}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -185,6 +188,9 @@
     </ClCompile>
     <ClCompile Include="Mango\Row\RowFilters.cpp">
       <Filter>Mango\Row</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Queries\DeleteQuery\DeleteQuery.cpp">
+      <Filter>Mango\Queries\DeleteQuery</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +289,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Row\RowFilters.hpp">
       <Filter>Mango\Row</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Queries\DeleteQuery\DeleteQuery.hpp">
+      <Filter>Mango\Queries\DeleteQuery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

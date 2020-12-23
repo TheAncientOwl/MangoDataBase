@@ -7,6 +7,7 @@ namespace Mango
 		class TruncateTableQuery;
 		class InsertIntoQuery;
 		class SelectQuery;
+		class DeleteQuery;
 	}
 }
 
@@ -28,11 +29,11 @@ namespace Mango
 		std::vector<Column> m_Columns;
 		std::map<std::string_view, size_t> m_ColumnIndexes;
 
-	private: /// Private methods
-		inline std::filesystem::path getConfigFilePath() const;
-		inline std::filesystem::path getDataFilePath() const;
-
 	private: /// API
+		std::filesystem::path PRIVATE_API getConfigFilePath() const;
+		std::filesystem::path PRIVATE_API getDataFilePath() const;
+		const_ref<std::filesystem::path> PRIVATE_API getDirectoryPath() const;
+
 		void PRIVATE_API createFiles();
 		void PRIVATE_API removeFiles();
 		void PRIVATE_API clearDataFile();
@@ -74,6 +75,7 @@ namespace Mango
 		friend class Mango::Queries::TruncateTableQuery;
 		friend class Mango::Queries::InsertIntoQuery;
 		friend class Mango::Queries::SelectQuery;
+		friend class Mango::Queries::DeleteQuery;
 		friend std::ostream& operator<<(std::ostream& out, const Table& table);
 	};
 }

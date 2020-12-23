@@ -7,6 +7,7 @@ namespace Mango
 	{
 		class InsertIntoQuery;
 		class SelectQuery;
+		class DeleteQuery;
 	}
 }
 #include "RowConfiguration.hpp"
@@ -52,7 +53,7 @@ namespace Mango
 		friend class Mango::TableIterator;
 		friend class Mango::Queries::InsertIntoQuery;
 		friend class Mango::Queries::SelectQuery;
-		//friend RowFilter Mango::RowFilters::Int::getFilter(const_ref<Row> row, int index);
+		friend class Mango::Queries::DeleteQuery;
 		friend std::ostream& operator<<(std::ostream& out, const Row& row);
 	};
 }

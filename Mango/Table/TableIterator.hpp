@@ -5,6 +5,7 @@ namespace Mango
 	namespace Queries
 	{
 		class SelectQuery;
+		class DeleteQuery;
 	}
 }
 #include "../Row/Row.hpp"
@@ -21,6 +22,7 @@ namespace Mango
 		const_ref<std::fstream> PRIVATE_API advance();
 		const_ref<std::fstream> PRIVATE_API advanceInPlace(ref<Row> row);
 		const_ref<Row> PRIVATE_API row();
+		void PRIVATE_API releaseFile();
 
 	public: /// Constructors
 		TableIterator() = default;
@@ -36,5 +38,6 @@ namespace Mango
 	private: /// Friends
 		friend class Mango::Table;
 		friend class Mango::Queries::SelectQuery;
+		friend class Mango::Queries::DeleteQuery;
 	};
 }

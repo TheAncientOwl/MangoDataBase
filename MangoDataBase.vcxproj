@@ -180,6 +180,7 @@
     <ClCompile Include="Mango\MangoDB\MangoDB.cpp" />
     <ClCompile Include="Mango\Queries\AbstractQuery\AbstractQuery.cpp" />
     <ClCompile Include="Mango\Queries\CreateTableQuery\CreateTableQuery.cpp" />
+    <ClCompile Include="Mango\Queries\DeleteQuery\DeleteQuery.cpp" />
     <ClCompile Include="Mango\Queries\DisplayQuery\DisplayQuery.cpp" />
     <ClCompile Include="Mango\Queries\DropTableQuery\DropTableQuery.cpp" />
     <ClCompile Include="Mango\Queries\InsertIntoQuery\InsertIntoQuery.cpp" />
@@ -219,6 +220,7 @@
     <ClInclude Include="Mango\MangoDB\MangoDB.hpp" />
     <ClInclude Include="Mango\Queries\AbstractQuery\AbstractQuery.hpp" />
     <ClInclude Include="Mango\Queries\CreateTableQuery\CreateTableQuery.hpp" />
+    <ClInclude Include="Mango\Queries\DeleteQuery\DeleteQuery.hpp" />
     <ClInclude Include="Mango\Queries\DisplayQuery\DisplayQuery.hpp" />
     <ClInclude Include="Mango\Queries\DropTableQuery\DropTableQuery.hpp" />
     <ClInclude Include="Mango\Queries\InsertIntoQuery\InsertIntoQuery.hpp" />

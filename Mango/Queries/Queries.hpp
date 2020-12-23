@@ -6,3 +6,4 @@
 #include "DisplayQuery/DisplayQuery.hpp"
 #include "InsertIntoQuery/InsertIntoQuery.hpp"
 #include "SelectQuery/SelectQuery.hpp"
+#include "DeleteQuery/DeleteQuery.hpp"

@@ -14,14 +14,19 @@ namespace Mango
 			m_ColumnIndexes.emplace(column.name(), index), index++;
 	}
 
-	inline std::filesystem::path Table::getConfigFilePath() const
+	std::filesystem::path PRIVATE_API Table::getConfigFilePath() const
 	{
 		return m_DirectoryPath / (m_Name + MANGO_CONFIG_EXTENSION);
 	}
 
-	inline std::filesystem::path Table::getDataFilePath() const
+	std::filesystem::path PRIVATE_API Table::getDataFilePath() const
 	{
 		return m_DirectoryPath / (m_Name + MANGO_DATA_EXTENSION);
+	}
+
+	const_ref<std::filesystem::path> PRIVATE_API Table::getDirectoryPath() const
+	{
+		return m_DirectoryPath;
 	}
 
 	void PRIVATE_API Table::createFiles()

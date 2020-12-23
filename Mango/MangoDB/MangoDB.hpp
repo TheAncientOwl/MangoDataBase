@@ -7,6 +7,7 @@ namespace Mango::Queries
 	class DisplayQuery;
 	class InsertIntoQuery;
 	class SelectQuery;
+	class DeleteQuery;
 }
 #include "../Table/Table.hpp"
 #include "../Row/RowFilters.hpp"
@@ -22,8 +23,9 @@ namespace Mango
 		std::vector<std::unique_ptr<Table>> m_Tables;
 
 		std::vector<Row> m_LastResult;
+
 		RowFilter m_SelectFilter;
-		
+		RowFilter m_DeleteFilter;
 
 	private: /// Private methods
 		inline std::filesystem::path getConfigFilePath() const;
@@ -57,6 +59,9 @@ namespace Mango
 
 		void setSelectFilter(RowFilter selectFilter);
 		void resetSelectFilter();
+
+		void setDeleteFilter(RowFilter deleteFilter);
+		void resetDeleteFilter();
 		
 	public: /// Constructors
 		MangoDB(std::filesystem::path dataBaseDirectoryPath);
@@ -74,6 +79,7 @@ namespace Mango
 		friend class Mango::Queries::DisplayQuery;
 		friend class Mango::Queries::InsertIntoQuery;
 		friend class Mango::Queries::SelectQuery;
+		friend class Mango::Queries::DeleteQuery;
 		friend std::ostream& operator<<(std::ostream& out, const MangoDB& mango);
 	};
 }

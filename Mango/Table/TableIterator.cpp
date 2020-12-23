@@ -20,6 +20,11 @@ namespace Mango
 		return m_Data;
 	}
 
+	void PRIVATE_API TableIterator::releaseFile()
+	{
+		m_FileStream.close();
+	}
+
 	TableIterator::TableIterator(const_ref<std::filesystem::path> tableDataFilePath, const_ref<std::shared_ptr<RowConfiguration>> rowConfig)
 		: m_FileStream(tableDataFilePath, std::ios::in | std::ios::binary), m_Data(rowConfig->totalSize(), rowConfig)
 	{
