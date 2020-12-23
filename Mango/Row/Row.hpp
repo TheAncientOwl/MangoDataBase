@@ -39,6 +39,10 @@ namespace Mango
 		MANGO_PUBLIC_API float getFloat(int index) const;
 		MANGO_PUBLIC_API std::string_view getString(int index) const;
 
+		MANGO_PUBLIC_API void setInt(int index, int value);
+		MANGO_PUBLIC_API void setFloat(int index, float value);
+		MANGO_PUBLIC_API void setString(int index, std::string value);
+
 	public:
 		MANGO_PUBLIC_API Row(size_t size, const_ref<std::shared_ptr<RowConfiguration>> config);
 

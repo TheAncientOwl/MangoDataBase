@@ -97,6 +97,30 @@ namespace Mango
 		return std::string_view(reinterpret_cast<char*>(m_Data + m_Config->offsetAt(index)));
 	}
 
+	MANGO_PUBLIC_API void Row::setInt(int index, int value)
+	{
+		assert(index >= 0 && index < m_Config->columnsNumber());
+		assert(m_Config->dataTypeAt(index) == DataType::Value::INT);
+
+		setDataAt(index, &value, sizeof(int));
+	}
+
+	void Row::setFloat(int index, float value)
+	{
+		assert(index >= 0 && index < m_Config->columnsNumber());
+		assert(m_Config->dataTypeAt(index) == DataType::Value::FLOAT);
+
+		setDataAt(index, &value, sizeof(float));
+	}
+
+	void Row::setString(int index, std::string value)
+	{
+		assert(index >= 0 && index < m_Config->columnsNumber());
+		assert(m_Config->dataTypeAt(index) == DataType::Value::STRING);
+
+		setDataAt(index, value.c_str(), (value.length() + 1) * sizeof(char));
+	}
+
 	MANGO_PUBLIC_API Row::Row(size_t size, const_ref<std::shared_ptr<RowConfiguration>> config)
 		: m_Size(size), m_Data(new std::byte[size]), m_Config(config)
 	{
