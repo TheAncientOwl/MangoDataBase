@@ -4,13 +4,14 @@
 
 namespace Mango
 {
-	void PRIVATE_API Row::setDataAt(int index, const void* value, size_t size)
+#pragma region MANGO_PRIVATE_API
+	MANGO_PRIVATE_API void Row::setDataAt(int index, const void* value, size_t size)
 	{
 		assert(index >= 0 && index < m_Config->columnsNumber());
 		memcpy(m_Data + m_Config->offsetAt(index), value, size);
 	}
 
-	void PRIVATE_API Row::setDataAt(int index, const_ref<std::string> value)
+	MANGO_PRIVATE_API void Row::setDataAt(int index, const_ref<std::string> value)
 	{
 		assert(index >= 0 && index < m_Config->columnsNumber());
 		if (m_Config->dataTypeAt(index) == DataType::Value::INT)
@@ -19,7 +20,7 @@ namespace Mango
 			try { dummy = std::stoi(value); }
 			catch (...)
 			{
-				throw Exceptions::InvalidArgumentException({"Cannot convert \"", value, "\" to int"});
+				throw Exceptions::InvalidArgumentException({ "Cannot convert \"", value, "\" to int" });
 			}
 			setDataAt(index, &dummy, sizeof(int));
 		}
@@ -41,34 +42,36 @@ namespace Mango
 		}
 	}
 
-	const_ptr<std::byte> PRIVATE_API Row::data() const
+	MANGO_PRIVATE_API const_ptr<std::byte> Row::data() const
 	{
 		return m_Data;
 	}
 
-	ptr<std::byte> PRIVATE_API Row::data()
+	MANGO_PRIVATE_API ptr<std::byte> Row::data()
 	{
 		return m_Data;
 	}
 
-	const_ptr<std::byte> Row::dataAt(int index) const
+	MANGO_PRIVATE_API const_ptr<std::byte> Row::dataAt(int index) const
 	{
 		assert(index >= 0 && index < m_Config->columnsNumber());
 		return m_Data + m_Config->offsetAt(index);
 	}
 
-	ptr<std::byte> Row::dataAt(int index)
+	MANGO_PRIVATE_API ptr<std::byte> Row::dataAt(int index)
 	{
 		assert(index >= 0 && index < m_Config->columnsNumber());
 		return m_Data + m_Config->offsetAt(index);
 	}
 
-	size_t Row::size() const
+	MANGO_PRIVATE_API size_t Row::size() const
 	{
 		return m_Size;
 	}
+#pragma endregion
 
-	int Row::getInt(int index) const
+#pragma region MANGO_PUBLIC_API
+	MANGO_PUBLIC_API int Row::getInt(int index) const
 	{
 		assert(index >= 0 && index < m_Config->columnsNumber());
 		assert(m_Config->dataTypeAt(index) == DataType::Value::INT);
@@ -77,7 +80,7 @@ namespace Mango
 		return *dummy;
 	}
 
-	float Row::getFloat(int index) const
+	MANGO_PUBLIC_API float Row::getFloat(int index) const
 	{
 		assert(index >= 0 && index < m_Config->columnsNumber());
 		assert(m_Config->dataTypeAt(index) == DataType::Value::FLOAT);
@@ -86,7 +89,7 @@ namespace Mango
 		return *dummy;
 	}
 
-	std::string_view Row::getString(int index) const
+	MANGO_PUBLIC_API std::string_view Row::getString(int index) const
 	{
 		assert(index >= 0 && index < m_Config->columnsNumber());
 		assert(m_Config->dataTypeAt(index) == DataType::Value::STRING);
@@ -94,13 +97,13 @@ namespace Mango
 		return std::string_view(reinterpret_cast<char*>(m_Data + m_Config->offsetAt(index)));
 	}
 
-	Row::Row(size_t size, const_ref<std::shared_ptr<RowConfiguration>> config)
+	MANGO_PUBLIC_API Row::Row(size_t size, const_ref<std::shared_ptr<RowConfiguration>> config)
 		: m_Size(size), m_Data(new std::byte[size]), m_Config(config)
 	{
 		memset(m_Data, 0, size);
 	}
 
-	Row::Row(const Row& rhs) : m_Config(rhs.m_Config)
+	MANGO_PUBLIC_API Row::Row(const Row& rhs) : m_Config(rhs.m_Config)
 	{
 		m_Size = rhs.m_Size;
 
@@ -108,14 +111,14 @@ namespace Mango
 		memcpy(m_Data, rhs.m_Data, m_Size);
 	}
 
-	Row::Row(Row&& rhs) noexcept
+	MANGO_PUBLIC_API Row::Row(Row&& rhs) noexcept
 	{
 		m_Size = std::exchange(rhs.m_Size, 0);
 		m_Data = std::exchange(rhs.m_Data, nullptr);
 		m_Config = std::move(rhs.m_Config);
 	}
 
-	Row& Row::operator=(const Row& rhs)
+	MANGO_PUBLIC_API Row& Row::operator=(const Row& rhs)
 	{
 		if (this == &rhs)
 			return *this;
@@ -130,10 +133,10 @@ namespace Mango
 		memcpy(m_Data, rhs.m_Data, m_Size);
 		m_Config = rhs.m_Config;
 
-		return* this;
+		return *this;
 	}
 
-	Row& Row::operator=(Row&& rhs) noexcept
+	MANGO_PUBLIC_API Row& Row::operator=(Row&& rhs) noexcept
 	{
 		if (this == &rhs)
 			return *this;
@@ -145,25 +148,27 @@ namespace Mango
 		return *this;
 	}
 
-	Row::~Row()
+	MANGO_PUBLIC_API Row::~Row()
 	{
 		if (m_Data)
 			delete[] m_Data;
 	}
 
-	std::ostream& operator<<(std::ostream& out, const Row& row)
+	MANGO_PUBLIC_API std::ostream& operator<<(std::ostream& out, const Row& row)
 	{
 		out << ccolor::dark_gray << "| ";
 		for (int columnsNumber = static_cast<int>(row.m_Config->columnsNumber()), index = 0; index < columnsNumber; ++index)
 		{
 			switch (row.m_Config->dataTypeAt(index))
 			{
-				case DataType::Value::INT: out << ccolor::green << row.getInt(index) << ccolor::dark_gray << " | "; break;
-				case DataType::Value::FLOAT: out << ccolor::green << row.getFloat(index) << ccolor::dark_gray << " | "; break;
-				case DataType::Value::STRING: out << ccolor::green << row.getString(index) << ccolor::dark_gray << " | "; break;
+			case DataType::Value::INT: out << ccolor::green << row.getInt(index) << ccolor::dark_gray << " | "; break;
+			case DataType::Value::FLOAT: out << ccolor::green << row.getFloat(index) << ccolor::dark_gray << " | "; break;
+			case DataType::Value::STRING: out << ccolor::green << row.getString(index) << ccolor::dark_gray << " | "; break;
 			}
 		}
 
 		return out;
 	}
+#pragma endregion
+
 }

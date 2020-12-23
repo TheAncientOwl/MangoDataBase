@@ -3,6 +3,7 @@ namespace Mango
 {
 	class Table;
 	class TableIterator;
+	class ConstTableIterator;
 	namespace Queries
 	{
 		class InsertIntoQuery;
@@ -16,41 +17,42 @@ namespace Mango
 {
 	class Row
 	{
-	private: /// Fields
+	private:
 		size_t m_Size = 0;
 		std::byte* m_Data = nullptr;
 		std::shared_ptr<RowConfiguration> m_Config;
 
-	private: /// API
-		void PRIVATE_API setDataAt(int index, const void* value, size_t size);
-		void PRIVATE_API setDataAt(int index, const_ref<std::string> value);
+	private:
+		MANGO_PRIVATE_API void setDataAt(int index, const void* value, size_t size);
+		MANGO_PRIVATE_API void setDataAt(int index, const_ref<std::string> value);
 
-		const_ptr<std::byte> PRIVATE_API data() const;
-		ptr<std::byte> PRIVATE_API data();
+		MANGO_PRIVATE_API const_ptr<std::byte> data() const;
+		MANGO_PRIVATE_API ptr<std::byte> data();
 
-		const_ptr<std::byte> PRIVATE_API dataAt(int index) const;
-		ptr<std::byte> PRIVATE_API dataAt(int index);
+		MANGO_PRIVATE_API const_ptr<std::byte> dataAt(int index) const;
+		MANGO_PRIVATE_API ptr<std::byte> dataAt(int index);
 
-		size_t PRIVATE_API size() const;
+		MANGO_PRIVATE_API size_t size() const;
 
-	public: /// Interface
-		int getInt(int index) const;
-		float getFloat(int index) const;
-		std::string_view getString(int index) const;
+	public:
+		MANGO_PUBLIC_API int getInt(int index) const;
+		MANGO_PUBLIC_API float getFloat(int index) const;
+		MANGO_PUBLIC_API std::string_view getString(int index) const;
 
-	public: /// Constructors
-		Row(size_t size, const_ref<std::shared_ptr<RowConfiguration>> config);
+	public:
+		MANGO_PUBLIC_API Row(size_t size, const_ref<std::shared_ptr<RowConfiguration>> config);
 
-		Row() = default;
-		Row(const Row& rhs);
-		Row(Row&& rhs) noexcept;
-		Row& operator= (const Row& rhs);
-		Row& operator= (Row&& rhs) noexcept;
-		~Row();
+		MANGO_PUBLIC_API Row() = default;
+		MANGO_PUBLIC_API Row(const Row& rhs);
+		MANGO_PUBLIC_API Row(Row&& rhs) noexcept;
+		MANGO_PUBLIC_API Row& operator=(const Row& rhs);
+		MANGO_PUBLIC_API Row& operator=(Row&& rhs) noexcept;
+		MANGO_PUBLIC_API ~Row();
 
-	private: /// Friends
+	private:
 		friend class Mango::Table;
 		friend class Mango::TableIterator;
+		friend class Mango::ConstTableIterator;
 		friend class Mango::Queries::InsertIntoQuery;
 		friend class Mango::Queries::SelectQuery;
 		friend class Mango::Queries::DeleteQuery;

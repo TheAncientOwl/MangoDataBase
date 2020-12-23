@@ -5,7 +5,8 @@ namespace Mango::Queries
 {
 	using namespace Mango::Exceptions;
 
-    void CreateTableQuery::parseTableName(std::string_view firstPart)
+#pragma region MANGO_PRIVATE_API
+    MANGO_PRIVATE_API void CreateTableQuery::parseTableName(std::string_view firstPart)
     {
         auto args = splitAtChar(firstPart, ' ');
 
@@ -24,14 +25,14 @@ namespace Mango::Queries
         m_TableName = args[2];
     }
 
-    void CreateTableQuery::parseColumns(std::string_view columnsPart)
+    MANGO_PRIVATE_API void CreateTableQuery::parseColumns(std::string_view columnsPart)
     {
         auto tuples = splitAtChar(columnsPart, ',');
 
         if (tuples.empty())
             throw InvalidSyntaxException("Table must have at least one column");
 
-        for (std::set<std::string_view> columnNames; const auto& tuple : tuples)
+        for (std::set<std::string_view> columnNames; const auto & tuple : tuples)
         {
             auto args = splitAtChar(tuple, ' ');
 
@@ -90,7 +91,7 @@ namespace Mango::Queries
 
     }
 
-    void CreateTableQuery::checkResidualParts(Statement columns, Statement::iterator stringEnd)
+    MANGO_PRIVATE_API void CreateTableQuery::checkResidualParts(Statement columns, Statement::iterator stringEnd)
     {
         if (std::string_view end(std::next(columns.closed), stringEnd); end.size() > 1)
         {
@@ -101,13 +102,15 @@ namespace Mango::Queries
                 throw InvalidSyntaxException({ "Unknown sequence \"", end, "\"" });
         }
     }
+#pragma endregion
 
-    bool QUERY_API CreateTableQuery::match(std::string_view sql) const
+#pragma region MANGO_QUERY_INTERFACE
+    MANGO_QUERY_INTERFACE bool CreateTableQuery::match(std::string_view sql) const
     {
         return sql.starts_with("CREATE");
     }
 
-    void QUERY_API CreateTableQuery::parse(std::string_view sql)
+    MANGO_QUERY_INTERFACE void CreateTableQuery::parse(std::string_view sql)
     {
         m_TableName.clear();
         m_Columns.clear();
@@ -134,16 +137,18 @@ namespace Mango::Queries
         parseColumns({ std::next(columns.open), columns.closed });
     }
 
-    void QUERY_API CreateTableQuery::validate(const_ref<MangoDB> dataBase)
+    MANGO_QUERY_INTERFACE void CreateTableQuery::validate(const_ref<MangoDB> dataBase)
     {
         if (dataBase.getTable(m_TableName))
             throw TableAlreadyExistsException("Table already exists", std::move(m_TableName));
     }
 
-    void QUERY_API CreateTableQuery::execute(ref<MangoDB> dataBase)
+    MANGO_QUERY_INTERFACE void CreateTableQuery::execute(ref<MangoDB> dataBase)
     {
         std::unique_ptr<Table> tablePtr = std::make_unique<Table>(std::move(m_TableName), dataBase.m_DirectoryPath,
-                                                                  std::move(m_Columns));
+            std::move(m_Columns));
         dataBase.addTable(std::move(tablePtr));
     }
+#pragma endregion
+
 }

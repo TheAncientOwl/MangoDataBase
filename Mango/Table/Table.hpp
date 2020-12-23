@@ -13,7 +13,7 @@ namespace Mango
 
 #include "../Column/Column.hpp"
 #include "../Row/Row.hpp"
-#include "TableIterator.hpp"
+#include "ConstTableIterator.hpp"
 
 #define MANGO_CONFIG_EXTENSION ".mangocfg"
 #define MANGO_DATA_EXTENSION   ".mangodb"
@@ -22,55 +22,56 @@ namespace Mango
 {
 	class Table
 	{
-	private: /// Fields
+	private:
 		std::string m_Name;
 		std::filesystem::path m_DirectoryPath;
 		
 		std::vector<Column> m_Columns;
 		std::map<std::string_view, size_t> m_ColumnIndexes;
 
-	private: /// API
-		std::filesystem::path PRIVATE_API getConfigFilePath() const;
-		std::filesystem::path PRIVATE_API getDataFilePath() const;
-		const_ref<std::filesystem::path> PRIVATE_API getDirectoryPath() const;
+	private:
+		MANGO_PRIVATE_API std::filesystem::path getConfigFilePath() const;
+		MANGO_PRIVATE_API std::filesystem::path getDataFilePath() const;
+		MANGO_PRIVATE_API const_ref<std::filesystem::path> getDirectoryPath() const;
 
-		void PRIVATE_API createFiles();
-		void PRIVATE_API removeFiles();
-		void PRIVATE_API clearDataFile();
-		void PRIVATE_API serializeConfig();
-		void PRIVATE_API deserializeConfig();
+		MANGO_PRIVATE_API void createFiles();
+		MANGO_PRIVATE_API void removeFiles();
+		MANGO_PRIVATE_API void clearDataFile();
+		MANGO_PRIVATE_API void serializeConfig();
+		MANGO_PRIVATE_API void deserializeConfig();
 
-		void PRIVATE_API insertRow(const_ref<Row> row);
+		MANGO_PRIVATE_API void insertRow(const_ref<Row> row);
 
-		const_ref<std::vector<Column>> PRIVATE_API columns() const;
+		MANGO_PRIVATE_API const_ref<std::vector<Column>> columns() const;
 
-		const_ptr<Column> PRIVATE_API getColumn(std::string_view columnName) const;
-		ptr<Column> PRIVATE_API getColumn(std::string_view columnName);
+		MANGO_PRIVATE_API const_ptr<Column> getColumn(std::string_view columnName) const;
+		MANGO_PRIVATE_API ptr<Column> getColumn(std::string_view columnName);
 
-		const_ref<Column> PRIVATE_API getColumn(int index) const;
-		ref<Column> PRIVATE_API getColumn(int index);
+		MANGO_PRIVATE_API const_ref<Column> getColumn(int index) const;
+		MANGO_PRIVATE_API ref<Column> getColumn(int index);
 
-		size_t getColumnIndex(std::string_view columnName) const;
+		MANGO_PRIVATE_API size_t getColumnIndex(std::string_view columnName) const;
 
-		std::shared_ptr<RowConfiguration> PRIVATE_API makeSharedRowConfiguration() const;
-		RowConfiguration PRIVATE_API makeRowConfiguration() const;
+		MANGO_PRIVATE_API std::shared_ptr<RowConfiguration> makeSharedRowConfiguration() const;
+		MANGO_PRIVATE_API RowConfiguration makeRowConfiguration() const;
 
-		TableIterator PRIVATE_API makeIterator();
+		MANGO_PRIVATE_API TableIterator makeIterator();
+		MANGO_PRIVATE_API ConstTableIterator makeConstIterator() const;
 
-	public: /// Interface
-		std::string_view name() const;
+	public:
+		MANGO_PUBLIC_API std::string_view getName() const;
 
-	public: /// Constructors
-		Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, std::vector<Column>&& columns);
+	public:
+		MANGO_PUBLIC_API Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, std::vector<Column>&& columns);
 
-		Table() = default;
-		Table(const Table&) = delete;
-		Table(Table&&) noexcept = default;
-		Table& operator=(const Table&) = delete;
-		Table& operator=(Table&&) noexcept = default;
-		~Table() = default;
+		MANGO_PUBLIC_API Table() = default;
+		MANGO_PUBLIC_API Table(const Table&) = delete;
+		MANGO_PUBLIC_API Table(Table&&) noexcept = default;
+		MANGO_PUBLIC_API Table& operator=(const Table&) = delete;
+		MANGO_PUBLIC_API Table& operator=(Table&&) noexcept = default;
+		MANGO_PUBLIC_API ~Table() = default;
 
-	private: /// Friends
+	private:
 		friend class Mango::MangoDB;
 		friend class Mango::Queries::TruncateTableQuery;
 		friend class Mango::Queries::InsertIntoQuery;

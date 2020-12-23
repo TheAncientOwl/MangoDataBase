@@ -9,50 +9,50 @@ namespace Mango::Queries
 	/// </summary>
 	class InsertIntoQuery final : public AbstractQuery
 	{
-	private: /// Fields
+	private:
 		bool m_InsertAll = false;
 		std::string m_TableName;
 		std::vector<std::string> m_ColumnNames;
 		std::vector<std::string> m_ColumnValues;
 
-	private: /// Private Methods
-		/// <summary>
-		/// INSERT INTO table_name
-		/// </summary>
-		void parseTableName(std::string_view firstPart);
-
-		/// <summary>
-		/// col1, col2, col3, ...
-		/// </summary>
-		void parseColumnNames(std::string_view columnsPart);
-
-		/// <summary>
-		/// val1, val2, val3, ...
-		/// </summary>
-		void parseColumnValues(std::string_view valuesPart);
-
+	private:
 		/// <summary>
 		/// [] before ()
 		/// </summary>
-		void checkStatementsOrder(Statement columns, Statement values, Statement::iterator defaultIt);
+		MANGO_PRIVATE_API void checkStatementsOrder(Statement columns, Statement values, Statement::iterator defaultIt);
 
 		/// <summary>
 		/// allowed: VALUES after [] optionally.
 		/// </summary>
-		void checkResidualParts(Statement columns, Statement values, Statement::iterator stringEnd);
+		MANGO_PRIVATE_API void checkResidualParts(Statement columns, Statement values, Statement::iterator stringEnd);
 
-	private: /// API
-		bool QUERY_API match(std::string_view sql) const override;
-		void QUERY_API parse(std::string_view sql) override;
-		void QUERY_API validate(const_ref<MangoDB> dataBase) override;
-		void QUERY_API execute(ref<MangoDB> dataBase) override;
+		/// <summary>
+		/// INSERT INTO table_name
+		/// </summary>
+		MANGO_PRIVATE_API void parseTableName(std::string_view firstPart);
 
-	public: /// Constructors
-		InsertIntoQuery() = default;
-		InsertIntoQuery(const InsertIntoQuery&) = default;
-		InsertIntoQuery(InsertIntoQuery&&) noexcept = default;
-		InsertIntoQuery& operator=(const InsertIntoQuery&) = default;
-		InsertIntoQuery& operator=(InsertIntoQuery&&) noexcept = default;
-		~InsertIntoQuery() = default;
+		/// <summary>
+		/// col1, col2, col3, ...
+		/// </summary>
+		MANGO_PRIVATE_API void parseColumnNames(std::string_view columnsPart);
+
+		/// <summary>
+		/// val1, val2, val3, ...
+		/// </summary>
+		MANGO_PRIVATE_API void parseColumnValues(std::string_view valuesPart);
+
+	private:
+		MANGO_QUERY_INTERFACE bool match(std::string_view sql) const override;
+		MANGO_QUERY_INTERFACE void parse(std::string_view sql) override;
+		MANGO_QUERY_INTERFACE void validate(const_ref<MangoDB> dataBase) override;
+		MANGO_QUERY_INTERFACE void execute(ref<MangoDB> dataBase) override;
+
+	public:
+		MANGO_PUBLIC_API InsertIntoQuery() = default;
+		MANGO_PUBLIC_API InsertIntoQuery(const InsertIntoQuery&) = default;
+		MANGO_PUBLIC_API InsertIntoQuery(InsertIntoQuery&&) noexcept = default;
+		MANGO_PUBLIC_API InsertIntoQuery& operator=(const InsertIntoQuery&) = default;
+		MANGO_PUBLIC_API InsertIntoQuery& operator=(InsertIntoQuery&&) noexcept = default;
+		MANGO_PUBLIC_API ~InsertIntoQuery() = default;
 	};
 }

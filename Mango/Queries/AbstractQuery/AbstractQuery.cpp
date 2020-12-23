@@ -3,7 +3,8 @@
 
 namespace Mango::Queries
 {
-	std::vector<std::string_view>PROTECTED_API AbstractQuery::splitAtAnyOf(std::string_view str, std::string_view delims) const
+#pragma region MANGO_PROTECTED_API
+	MANGO_PROTECTED_API std::vector<std::string_view> AbstractQuery::splitAtAnyOf(std::string_view str, std::string_view delims) const
 	{
 		std::vector<std::string_view> out;
 
@@ -29,7 +30,7 @@ namespace Mango::Queries
 		return out;
 	}
 
-	std::vector<std::string_view>PROTECTED_API AbstractQuery::splitAtChar(std::string_view str, char c) const
+	MANGO_PROTECTED_API std::vector<std::string_view> AbstractQuery::splitAtChar(std::string_view str, char c) const
 	{
 		std::vector<std::string_view> out;
 
@@ -55,7 +56,7 @@ namespace Mango::Queries
 		return out;
 	}
 
-	bool PROTECTED_API AbstractQuery::isValidIdentifier(std::string_view identifier) const
+	MANGO_PROTECTED_API bool AbstractQuery::isValidIdentifier(std::string_view identifier) const
 	{
 		if (identifier.empty())
 			return false;
@@ -69,8 +70,10 @@ namespace Mango::Queries
 
 		return true;
 	}
+#pragma endregion
 
-	AbstractQueryStaticInitializer::AbstractQueryStaticInitializer()
+#pragma region MANGO_PUBLIC_API
+	MANGO_PUBLIC_API AbstractQueryStaticInitializer::AbstractQueryStaticInitializer()
 	{
 		for (bool& b : AbstractQuery::s_InvalidIdentifierChars)
 			b = false;
@@ -79,6 +82,7 @@ namespace Mango::Queries
 		for (auto c : s)
 			AbstractQuery::s_InvalidIdentifierChars[c] = true;
 	}
+#pragma endregion
 
 	bool AbstractQuery::s_InvalidIdentifierChars[257];
 
@@ -86,5 +90,4 @@ namespace Mango::Queries
 	{
 		AbstractQueryStaticInitializer _;
 	};
-
 }

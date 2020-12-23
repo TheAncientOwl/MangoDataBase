@@ -5,12 +5,13 @@ namespace Mango::Queries
 {
 	using namespace Mango::Exceptions;
 
-	bool QUERY_API DropTableQuery::match(std::string_view sql) const
+#pragma region MANGO_QUERY_INTERFACE
+	MANGO_QUERY_INTERFACE bool DropTableQuery::match(std::string_view sql) const
 	{
 		return sql.starts_with("DROP");
 	}
 
-	void QUERY_API DropTableQuery::parse(std::string_view sql)
+	MANGO_QUERY_INTERFACE void DropTableQuery::parse(std::string_view sql)
 	{
 		m_TableName.clear();
 
@@ -30,14 +31,16 @@ namespace Mango::Queries
 		m_TableName = args[2];
 	}
 
-	void QUERY_API DropTableQuery::validate(const_ref<MangoDB> dataBase)
+	MANGO_QUERY_INTERFACE void DropTableQuery::validate(const_ref<MangoDB> dataBase)
 	{
 		if (!dataBase.getTable(m_TableName))
 			throw TableNotFoundException("Table does not exist", std::move(m_TableName));
 	}
 
-	void QUERY_API DropTableQuery::execute(ref<MangoDB> dataBase)
+	MANGO_QUERY_INTERFACE void DropTableQuery::execute(ref<MangoDB> dataBase)
 	{
 		dataBase.removeTable(m_TableName);
 	}
+#pragma endregion
+
 }

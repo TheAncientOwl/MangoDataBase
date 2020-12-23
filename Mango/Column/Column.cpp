@@ -3,12 +3,8 @@
 
 namespace Mango
 {
-	Column::Column(std::string_view name, DataType dataType, size_t size)
-		: m_Name(name), m_DataType(dataType), m_Size(size)
-	{
-	}
-
-	void PRIVATE_API Column::serialize(std::fstream& file) const
+#pragma region MANGO_PRIVATE_API
+	MANGO_PRIVATE_API void Column::serialize(std::fstream& file) const
 	{
 		size_t nameLength = m_Name.length() + 1;
 		serializePOD(file, &nameLength);
@@ -20,7 +16,7 @@ namespace Mango
 		serializePOD(file, &m_Size);
 	}
 
-	void PRIVATE_API Column::deserialize(std::fstream& file)
+	MANGO_PRIVATE_API void Column::deserialize(std::fstream& file)
 	{
 		size_t nameLength = 0;
 		deserializePOD(file, &nameLength);
@@ -34,23 +30,30 @@ namespace Mango
 
 		deserializePOD(file, &m_Size);
 	}
+#pragma endregion
 
-	std::string_view Column::name() const
+#pragma region MANGO_PUBLIC_API
+	MANGO_PUBLIC_API std::string_view Column::name() const
 	{
 		return m_Name;
 	}
 
-	DataType Column::dataType() const
+	MANGO_PUBLIC_API DataType Column::dataType() const
 	{
 		return m_DataType;
 	}
 
-	size_t Column::size() const
+	MANGO_PUBLIC_API size_t Column::size() const
 	{
 		return m_Size;
 	}
 
-	std::ostream& operator<<(std::ostream& out, const Column& col)
+	MANGO_PUBLIC_API Column::Column(std::string_view name, DataType dataType, size_t size)
+		: m_Name(name), m_DataType(dataType), m_Size(size)
+	{
+	}
+
+	MANGO_PUBLIC_API std::ostream& operator<<(std::ostream& out, const Column& col)
 	{
 		out << ccolor::dark_gray << "[";
 		out << ccolor::light_blue << std::string(col.name());
@@ -59,4 +62,6 @@ namespace Mango
 		out << ccolor::dark_gray << "}" << ccolor::reset;
 		return out;
 	}
+#pragma endregion
+
 }

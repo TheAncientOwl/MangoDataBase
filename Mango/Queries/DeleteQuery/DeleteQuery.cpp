@@ -5,12 +5,13 @@ namespace Mango::Queries
 {
 	using namespace Mango::Exceptions;
 
-	bool DeleteQuery::match(std::string_view sql) const
+#pragma region MANGO_QUERY_INTERFACE
+	MANGO_QUERY_INTERFACE bool DeleteQuery::match(std::string_view sql) const
 	{
 		return sql.starts_with("DELETE");
 	}
 
-	void DeleteQuery::parse(std::string_view sql)
+	MANGO_QUERY_INTERFACE void DeleteQuery::parse(std::string_view sql)
 	{
 		m_TableName.clear();
 
@@ -30,17 +31,17 @@ namespace Mango::Queries
 		m_TableName = args[2];
 	}
 
-	void DeleteQuery::validate(const_ref<MangoDB> dataBase)
+	MANGO_QUERY_INTERFACE void DeleteQuery::validate(const_ref<MangoDB> dataBase)
 	{
 		if (!dataBase.getTable(m_TableName))
 			throw TableNotFoundException("Table does not exists", std::move(m_TableName));
 	}
 
-	void DeleteQuery::execute(ref<MangoDB> dataBase)
+	MANGO_QUERY_INTERFACE void DeleteQuery::execute(ref<MangoDB> dataBase)
 	{
 		auto table = dataBase.getTable(m_TableName);
 
-		auto tableIterator = table->makeIterator();
+		auto tableIterator = table->makeConstIterator();
 
 		std::filesystem::path dummyFilePath = table->getDataFilePath();
 		dummyFilePath.replace_filename("dummy");
@@ -59,4 +60,6 @@ namespace Mango::Queries
 		std::filesystem::remove(table->getDataFilePath());
 		std::filesystem::rename(dummyFilePath, table->getDataFilePath());
 	}
+#pragma endregion
+
 }

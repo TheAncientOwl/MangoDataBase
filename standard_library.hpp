@@ -16,9 +16,10 @@
 #include <map>
 #include <set>
 
-#define PROTECTED_API
-#define PRIVATE_API
-#define PUBLIC_API
+#define MANGO_PROTECTED_API
+#define MANGO_PRIVATE_API
+#define MANGO_PUBLIC_API
+#define MANGO_QUERY_INTERFACE
 
 #include "Utilities/ConsoleColorOutput/ConsoleColorOutput.hpp"
 

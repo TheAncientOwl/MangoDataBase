@@ -18,7 +18,7 @@ namespace Mango
 {
 	class MangoDB
 	{
-	private: /// Fields
+	private:
 		std::filesystem::path m_DirectoryPath;
 		std::vector<std::unique_ptr<Table>> m_Tables;
 
@@ -27,52 +27,51 @@ namespace Mango
 		RowFilter m_SelectFilter;
 		RowFilter m_DeleteFilter;
 
-	private: /// Private methods
-		inline std::filesystem::path getConfigFilePath() const;
+	private:
+		MANGO_PRIVATE_API std::filesystem::path getConfigFilePath() const;
 
-	private: /// API
 		/// <summary>
 		/// Add table to internal data structure.
 		/// Create its files.
 		/// Store new configuration.
 		/// </summary>
-		void PRIVATE_API addTable(std::unique_ptr<Table> table);
+		MANGO_PRIVATE_API void addTable(std::unique_ptr<Table> table);
 
 		/// <summary>
 		/// Remove table from internal data structure.
 		/// Remove its files.
 		/// Store new configuration.
 		/// </summary>
-		void PRIVATE_API removeTable(std::string_view tableName);
+		MANGO_PRIVATE_API void removeTable(std::string_view tableName);
 
-		const_ptr<Table> PRIVATE_API getTable(std::string_view tableName) const;
-		ptr<Table> PRIVATE_API getTable(std::string_view tableName);
-		const_ref<std::vector<std::unique_ptr<Table>>> PRIVATE_API tables() const;
+		MANGO_PRIVATE_API const_ptr<Table> getTable(std::string_view tableName) const;
+		MANGO_PRIVATE_API ptr<Table> getTable(std::string_view tableName);
+		MANGO_PRIVATE_API const_ref<std::vector<std::unique_ptr<Table>>> tables() const;
 
-	public: /// Interface
-		void storeTables() const;
-		void loadTables();
+	public:
+		MANGO_PUBLIC_API void storeTables() const;
+		MANGO_PUBLIC_API void loadTables();
 
-		const_ref<std::vector<Row>> lastResult();
-		std::vector<Row> extractLastResult();
-		void disposeLastResult();
+		MANGO_PUBLIC_API const_ref<std::vector<Row>> lastResult();
+		MANGO_PUBLIC_API std::vector<Row> extractLastResult();
+		MANGO_PUBLIC_API void disposeLastResult();
 
-		void setSelectFilter(RowFilter selectFilter);
-		void resetSelectFilter();
+		MANGO_PUBLIC_API void setSelectFilter(RowFilter selectFilter);
+		MANGO_PUBLIC_API void resetSelectFilter();
 
-		void setDeleteFilter(RowFilter deleteFilter);
-		void resetDeleteFilter();
+		MANGO_PUBLIC_API void setDeleteFilter(RowFilter deleteFilter);
+		MANGO_PUBLIC_API void resetDeleteFilter();
 		
-	public: /// Constructors
-		MangoDB(std::filesystem::path dataBaseDirectoryPath);
+	public:
+		MANGO_PUBLIC_API MangoDB(std::filesystem::path dataBaseDirectoryPath);
 
-		MangoDB(const MangoDB&) = delete;
-		MangoDB(MangoDB&&) noexcept = default;
-		MangoDB& operator=(const MangoDB&) = delete;
-		MangoDB& operator=(MangoDB&&) noexcept = default;
-		~MangoDB() = default;
+		MANGO_PUBLIC_API MangoDB(const MangoDB&) = delete;
+		MANGO_PUBLIC_API MangoDB(MangoDB&&) noexcept = default;
+		MANGO_PUBLIC_API MangoDB& operator=(const MangoDB&) = delete;
+		MANGO_PUBLIC_API MangoDB& operator=(MangoDB&&) noexcept = default;
+		MANGO_PUBLIC_API ~MangoDB() = default;
 
-	private: /// Friends
+	private:
 		friend class Mango::Queries::CreateTableQuery;
 		friend class Mango::Queries::DropTableQuery;
 		friend class Mango::Queries::TruncateTableQuery;

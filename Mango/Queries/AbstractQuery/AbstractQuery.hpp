@@ -7,55 +7,53 @@ namespace Mango
 #include "../Statement/Statement.hpp"
 #include "../../MangoDB/MangoDB.hpp"
 
-#define QUERY_API
-
 namespace Mango::Queries
 {
 	class AbstractQuery
 	{
-	private: /// Fields
+	private:
 		static bool s_InvalidIdentifierChars[257];
 
-	protected: /// API
-		std::vector<std::string_view> PROTECTED_API splitAtAnyOf(std::string_view str, std::string_view delims) const;
-		std::vector<std::string_view> PROTECTED_API splitAtChar(std::string_view str, char c) const;
-		bool PROTECTED_API isValidIdentifier(std::string_view identifier) const;
+	protected:
+		MANGO_PROTECTED_API std::vector<std::string_view> splitAtAnyOf(std::string_view str, std::string_view delims) const;
+		MANGO_PROTECTED_API std::vector<std::string_view> splitAtChar(std::string_view str, char c) const;
+		MANGO_PROTECTED_API bool isValidIdentifier(std::string_view identifier) const;
 
-	private: /// API
+	private:
 		/// <summary>
 		/// Checks if given sql may be this type of query.
 		/// </summary>
 		/// <param name="sql">-> query in uppercase.</param>
-		[[nodiscard]] virtual bool QUERY_API match(std::string_view sql) const = 0;
+		MANGO_QUERY_INTERFACE [[nodiscard]] virtual bool match(std::string_view sql) const = 0;
 
 		/// <summary>
 		/// Parse given sql and extracts desired query parts into atributes.
 		/// [!] Use AbstractQuery::match before this.
 		/// </summary>
 		/// <param name="sql">-> query in uppercase.</param>
-		virtual void QUERY_API parse(std::string_view sql) = 0;
+		MANGO_QUERY_INTERFACE virtual void parse(std::string_view sql) = 0;
 
 		/// <summary>
 		/// Validate query parts extracted with AbstractQuery::parse.
 		/// [!] Use AbstractQuery::parse before this.
 		/// </summary>
-		virtual void QUERY_API validate(const_ref<MangoDB> dataBase) = 0;
+		MANGO_QUERY_INTERFACE virtual void validate(const_ref<MangoDB> dataBase) = 0;
 
 		/// <summary>
 		/// Execute query on data base.
 		/// [!] Use AbstractQuery::validate before this.
 		/// </summary>
-		virtual void QUERY_API execute(ref<MangoDB> dataBase) = 0;
+		MANGO_QUERY_INTERFACE virtual void execute(ref<MangoDB> dataBase) = 0;
 
-	public: /// Constructors
-		AbstractQuery() = default;
-		AbstractQuery(const AbstractQuery&) = default;
-		AbstractQuery(AbstractQuery&&) noexcept = default;
-		AbstractQuery& operator=(const AbstractQuery&) = default;
-		AbstractQuery& operator=(AbstractQuery&&) noexcept = default;
-		virtual ~AbstractQuery() = default;
+	public:
+		MANGO_PUBLIC_API AbstractQuery() = default;
+		MANGO_PUBLIC_API AbstractQuery(const AbstractQuery&) = default;
+		MANGO_PUBLIC_API AbstractQuery(AbstractQuery&&) noexcept = default;
+		MANGO_PUBLIC_API AbstractQuery& operator=(const AbstractQuery&) = default;
+		MANGO_PUBLIC_API AbstractQuery& operator=(AbstractQuery&&) noexcept = default;
+		MANGO_PUBLIC_API virtual ~AbstractQuery() = default;
 
-	private: /// Friends
+	private:
 		friend class AbstractQueryStaticInitializer;
 		friend class Mango::QueryExecutor;
 	};
@@ -63,11 +61,11 @@ namespace Mango::Queries
 	class AbstractQueryStaticInitializer
 	{
 	public:
-		AbstractQueryStaticInitializer();
-		AbstractQueryStaticInitializer(const AbstractQueryStaticInitializer&) = delete;
-		AbstractQueryStaticInitializer(AbstractQueryStaticInitializer&&) noexcept = delete;
-		AbstractQueryStaticInitializer& operator=(const AbstractQueryStaticInitializer&) = delete;
-		AbstractQueryStaticInitializer& operator=(AbstractQueryStaticInitializer&&) noexcept = delete;
-		~AbstractQueryStaticInitializer() = default;
+		MANGO_PUBLIC_API AbstractQueryStaticInitializer();
+		MANGO_PUBLIC_API AbstractQueryStaticInitializer(const AbstractQueryStaticInitializer&) = delete;
+		MANGO_PUBLIC_API AbstractQueryStaticInitializer(AbstractQueryStaticInitializer&&) noexcept = delete;
+		MANGO_PUBLIC_API AbstractQueryStaticInitializer& operator=(const AbstractQueryStaticInitializer&) = delete;
+		MANGO_PUBLIC_API AbstractQueryStaticInitializer& operator=(AbstractQueryStaticInitializer&&) noexcept = delete;
+		MANGO_PUBLIC_API ~AbstractQueryStaticInitializer() = default;
 	};
 }

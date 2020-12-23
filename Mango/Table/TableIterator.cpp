@@ -3,36 +3,40 @@
 
 namespace Mango
 {
-	const_ref<std::fstream> PRIVATE_API TableIterator::advance()
+#pragma region MANGO_PRIVATE_API
+	MANGO_PRIVATE_API const_ref<std::fstream> TableIterator::advance()
 	{
 		deserializePOD(m_FileStream, m_Data.data(), m_Data.size());
 		return m_FileStream;
 	}
 
-	const_ref<std::fstream> PRIVATE_API TableIterator::advanceInPlace(ref<Row> row)
+	MANGO_PRIVATE_API const_ref<std::fstream> TableIterator::advanceInPlace(ref<Row> row)
 	{
 		deserializePOD(m_FileStream, row.data(), row.size());
 		return m_FileStream;
 	}
 
-	const_ref<Row> PRIVATE_API TableIterator::row()
+	MANGO_PRIVATE_API const_ref<Row> TableIterator::row()
 	{
 		return m_Data;
 	}
 
-	void PRIVATE_API TableIterator::releaseFile()
+	MANGO_PRIVATE_API void TableIterator::releaseFile()
 	{
 		m_FileStream.close();
 	}
 
-	TableIterator::TableIterator(const_ref<std::filesystem::path> tableDataFilePath, const_ref<std::shared_ptr<RowConfiguration>> rowConfig)
+	MANGO_PRIVATE_API TableIterator::TableIterator(const_ref<std::filesystem::path> tableDataFilePath, const_ref<std::shared_ptr<RowConfiguration>> rowConfig)
 		: m_FileStream(tableDataFilePath, std::ios::in | std::ios::binary), m_Data(rowConfig->totalSize(), rowConfig)
 	{
 	}
+#pragma endregion
 
-	TableIterator::~TableIterator()
+#pragma region MANGO_PUBLIC_API
+	MANGO_PUBLIC_API TableIterator::~TableIterator()
 	{
 		m_FileStream.close();
 	}
-
+#pragma endregion
+	
 }

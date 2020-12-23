@@ -6,54 +6,43 @@
 namespace Mango::Queries
 {
 	/// <summary>
-	/// CREATE TABLE table_name
-	/// (
-	///		column1 dataType,
-	///		column2 dataType,
-	///		column3 dataType,
-	///		...
-	/// );
+	/// CREATE TABLE table_name (column1 dataType, column2 dataType, ...);
 	/// </summary>
 	class CreateTableQuery final : public AbstractQuery
 	{
-	private: /// Fields
+	private:
 		std::string m_TableName;
 		std::vector<Column> m_Columns;
 
-	private: /// Private Methods
+	private:
 		/// <summary>
 		/// CREATE TABLE table_name
 		/// </summary>
-		void parseTableName(std::string_view firstPart);
+		MANGO_PRIVATE_API void parseTableName(std::string_view firstPart);
 
 		/// <summary>
-		/// (
-		///		column1 dataType,
-		///		column2 dataType,
-		///		column3 dataType,
-		///		...
-		/// ) 
+		/// column1 dataType, column2 dataType, ...
 		/// </summary>
-		void parseColumns(std::string_view columnsPart);
+		MANGO_PRIVATE_API void parseColumns(std::string_view columnsPart);
 
 		/// <summary>
 		/// (...);
 		/// residual parts: empty
 		/// </summary>
-		void checkResidualParts(Statement columns, Statement::iterator stringEnd);
+		MANGO_PRIVATE_API void checkResidualParts(Statement columns, Statement::iterator stringEnd);
 
-	private: /// API
-		bool QUERY_API match(std::string_view sql) const override;
-		void QUERY_API parse(std::string_view sql) override;
-		void QUERY_API validate(const_ref<MangoDB> dataBase) override;
-		void QUERY_API execute(ref<MangoDB> dataBase) override;
+	private:
+		MANGO_QUERY_INTERFACE bool match(std::string_view sql) const override;
+		MANGO_QUERY_INTERFACE void parse(std::string_view sql) override;
+		MANGO_QUERY_INTERFACE void validate(const_ref<MangoDB> dataBase) override;
+		MANGO_QUERY_INTERFACE void execute(ref<MangoDB> dataBase) override;
 
-	public: /// Constructors
-		CreateTableQuery() = default;
-		CreateTableQuery(const CreateTableQuery&) = default;
-		CreateTableQuery(CreateTableQuery&&) noexcept = default;
-		CreateTableQuery& operator=(const CreateTableQuery&) = default;
-		CreateTableQuery& operator=(CreateTableQuery&&) noexcept = default;
-		~CreateTableQuery() = default;
+	public:
+		MANGO_PUBLIC_API CreateTableQuery() = default;
+		MANGO_PUBLIC_API CreateTableQuery(const CreateTableQuery&) = default;
+		MANGO_PUBLIC_API CreateTableQuery(CreateTableQuery&&) noexcept = default;
+		MANGO_PUBLIC_API CreateTableQuery& operator=(const CreateTableQuery&) = default;
+		MANGO_PUBLIC_API CreateTableQuery& operator=(CreateTableQuery&&) noexcept = default;
+		MANGO_PUBLIC_API ~CreateTableQuery() = default;
 	};
 }

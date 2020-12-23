@@ -3,33 +3,23 @@
 
 namespace Mango
 {
-	Table::Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, std::vector<Column>&& columns)
-	{
-		m_Name = std::move(name);
-		m_DirectoryPath = dataBaseDirectoryPath / m_Name;
-
-		m_Columns = std::move(columns);
-		int index = 0;
-		for (const auto& column : m_Columns)
-			m_ColumnIndexes.emplace(column.name(), index), index++;
-	}
-
-	std::filesystem::path PRIVATE_API Table::getConfigFilePath() const
+#pragma region MANGO_PRIVATE_API
+	MANGO_PRIVATE_API std::filesystem::path Table::getConfigFilePath() const
 	{
 		return m_DirectoryPath / (m_Name + MANGO_CONFIG_EXTENSION);
 	}
 
-	std::filesystem::path PRIVATE_API Table::getDataFilePath() const
+	MANGO_PRIVATE_API std::filesystem::path Table::getDataFilePath() const
 	{
 		return m_DirectoryPath / (m_Name + MANGO_DATA_EXTENSION);
 	}
 
-	const_ref<std::filesystem::path> PRIVATE_API Table::getDirectoryPath() const
+	MANGO_PRIVATE_API const_ref<std::filesystem::path> Table::getDirectoryPath() const
 	{
 		return m_DirectoryPath;
 	}
 
-	void PRIVATE_API Table::createFiles()
+	MANGO_PRIVATE_API void Table::createFiles()
 	{
 		std::filesystem::create_directories(m_DirectoryPath);
 
@@ -42,19 +32,19 @@ namespace Mango
 		file.close();
 	}
 
-	void PRIVATE_API Table::removeFiles()
+	MANGO_PRIVATE_API void Table::removeFiles()
 	{
 		std::filesystem::remove_all(m_DirectoryPath);
 	}
 
-	void PRIVATE_API Table::clearDataFile()
+	MANGO_PRIVATE_API void Table::clearDataFile()
 	{
 		std::fstream file;
 		file.open(getDataFilePath(), std::ios::out | std::ios::trunc);
 		file.close();
 	}
 
-	void PRIVATE_API Table::serializeConfig()
+	MANGO_PRIVATE_API void Table::serializeConfig()
 	{
 		std::fstream file(getConfigFilePath(), std::ios::out | std::ios::trunc | std::ios::binary);
 
@@ -67,7 +57,7 @@ namespace Mango
 		file.close();
 	}
 
-	void PRIVATE_API Table::deserializeConfig()
+	MANGO_PRIVATE_API void Table::deserializeConfig()
 	{
 		std::fstream file(getConfigFilePath(), std::ios::in | std::ios::binary);
 
@@ -86,7 +76,7 @@ namespace Mango
 		file.close();
 	}
 
-	void PRIVATE_API Table::insertRow(const_ref<Row> row)
+	MANGO_PRIVATE_API void Table::insertRow(const_ref<Row> row)
 	{
 		std::fstream file(getDataFilePath(), std::ios::out | std::ios::app | std::ios::binary);
 
@@ -95,17 +85,12 @@ namespace Mango
 		file.close();
 	}
 
-	std::string_view Table::name() const
-	{
-		return m_Name;
-	}
-
-	const_ref<std::vector<Column>> Table::columns() const
+	MANGO_PRIVATE_API const_ref<std::vector<Column>> Table::columns() const
 	{
 		return m_Columns;
 	}
 
-	const_ptr<Column> Table::getColumn(std::string_view columnName) const
+	MANGO_PRIVATE_API const_ptr<Column> Table::getColumn(std::string_view columnName) const
 	{
 		for (const auto& column : m_Columns)
 			if (column.name() == columnName)
@@ -113,7 +98,7 @@ namespace Mango
 		return nullptr;
 	}
 
-	ptr<Column> Table::getColumn(std::string_view columnName)
+	MANGO_PRIVATE_API ptr<Column> Table::getColumn(std::string_view columnName)
 	{
 		for (auto& column : m_Columns)
 			if (column.name() == columnName)
@@ -121,24 +106,24 @@ namespace Mango
 		return nullptr;
 	}
 
-	const_ref<Column> Table::getColumn(int index) const
+	MANGO_PRIVATE_API const_ref<Column> Table::getColumn(int index) const
 	{
 		assert(index >= 0 && index < m_Columns.size());
 		return m_Columns[index];
 	}
 
-	ref<Column> Table::getColumn(int index)
+	MANGO_PRIVATE_API ref<Column> Table::getColumn(int index)
 	{
 		assert(index >= 0 && index < m_Columns.size());
 		return m_Columns[index];
 	}
 
-	size_t Table::getColumnIndex(std::string_view columnName) const
+	MANGO_PRIVATE_API size_t Table::getColumnIndex(std::string_view columnName) const
 	{
 		return m_ColumnIndexes.at(columnName);
 	}
 
-	std::shared_ptr<RowConfiguration> PRIVATE_API Table::makeSharedRowConfiguration() const
+	MANGO_PRIVATE_API std::shared_ptr<RowConfiguration> Table::makeSharedRowConfiguration() const
 	{
 		auto rowConfig = std::make_shared<RowConfiguration>();
 		for (const auto& column : m_Columns)
@@ -146,7 +131,7 @@ namespace Mango
 		return rowConfig;
 	}
 
-	RowConfiguration PRIVATE_API Table::makeRowConfiguration() const
+	MANGO_PRIVATE_API RowConfiguration Table::makeRowConfiguration() const
 	{
 		RowConfiguration rowConfig;
 		for (const auto& column : m_Columns)
@@ -154,15 +139,38 @@ namespace Mango
 		return rowConfig;
 	}
 
-	TableIterator PRIVATE_API Table::makeIterator()
+	MANGO_PRIVATE_API TableIterator Table::makeIterator()
 	{
 		return TableIterator(getDataFilePath(), makeSharedRowConfiguration());
 	}
 
-	std::ostream& operator<<(std::ostream& out, const Table& table)
+	MANGO_PRIVATE_API ConstTableIterator Table::makeConstIterator() const
+	{
+		return ConstTableIterator(getDataFilePath(), makeSharedRowConfiguration());
+	}
+#pragma endregion
+
+#pragma region MANGO_PUBLIC_API
+	MANGO_PUBLIC_API std::string_view Table::getName() const
+	{
+		return m_Name;
+	}
+
+	MANGO_PUBLIC_API Table::Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, std::vector<Column>&& columns)
+	{
+		m_Name = std::move(name);
+		m_DirectoryPath = dataBaseDirectoryPath / m_Name;
+
+		m_Columns = std::move(columns);
+		int index = 0;
+		for (const auto& column : m_Columns)
+			m_ColumnIndexes.emplace(column.name(), index), index++;
+	}
+
+	MANGO_PUBLIC_API std::ostream& operator<<(std::ostream& out, const Table& table)
 	{
 		out << ccolor::dark_gray << "[";
-		out << ccolor::dark_red << std::string(table.name());
+		out << ccolor::dark_red << std::string(table.getName());
 		out << ccolor::dark_gray << "]\n";
 
 		for (const auto& column : table.columns())
@@ -172,5 +180,6 @@ namespace Mango
 
 		return out;
 	}
+#pragma endregion
 
 }

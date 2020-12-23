@@ -192,6 +192,7 @@
     <ClCompile Include="Mango\Row\RowConfiguration.cpp" />
     <ClCompile Include="Mango\Row\RowFilters.cpp" />
     <ClCompile Include="Mango\Table\Table.cpp" />
+    <ClCompile Include="Mango\Table\ConstTableIterator.cpp" />
     <ClCompile Include="Mango\Table\TableIterator.cpp" />
     <ClCompile Include="Mango\Testing\Testing.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -233,6 +234,7 @@
     <ClInclude Include="Mango\Row\RowConfiguration.hpp" />
     <ClInclude Include="Mango\Row\RowFilters.hpp" />
     <ClInclude Include="Mango\Table\Table.hpp" />
+    <ClInclude Include="Mango\Table\ConstTableIterator.hpp" />
     <ClInclude Include="Mango\Table\TableIterator.hpp" />
     <ClInclude Include="Mango\Testing\Testing.hpp" />
     <ClInclude Include="standard_library.hpp" />

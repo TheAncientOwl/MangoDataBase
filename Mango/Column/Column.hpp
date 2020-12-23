@@ -12,31 +12,31 @@ namespace Mango
 {
 	class Column
 	{
-	private: /// Fields
+	private:
 		std::string m_Name;
 		DataType m_DataType;
-		size_t m_Size;
+		size_t m_Size = 0;
 
-	private: /// API
-		void PRIVATE_API serialize(std::fstream& file) const;
-		void PRIVATE_API deserialize(std::fstream& file);
+	private:
+		MANGO_PRIVATE_API void serialize(std::fstream& file) const;
+		MANGO_PRIVATE_API void deserialize(std::fstream& file);
 
-	public: /// Interface
-		std::string_view name() const;
-		DataType dataType() const;
-		size_t size() const;
+	public:
+		MANGO_PUBLIC_API std::string_view name() const;
+		MANGO_PUBLIC_API DataType dataType() const;
+		MANGO_PUBLIC_API size_t size() const;
 
-	public: /// Constructors
-		Column(std::string_view name, DataType dataType, size_t size);
+	public:
+		MANGO_PUBLIC_API Column(std::string_view name, DataType dataType, size_t size);
 
-		Column() = default;
-		Column(const Column&) = default;
-		Column(Column&&) noexcept = default;
-		Column& operator=(const Column&) = default;
-		Column& operator=(Column&&) noexcept = default;
-		~Column() = default;
+		MANGO_PUBLIC_API Column() = default;
+		MANGO_PUBLIC_API Column(const Column&) = default;
+		MANGO_PUBLIC_API Column(Column&&) noexcept = default;
+		MANGO_PUBLIC_API Column& operator=(const Column&) = default;
+		MANGO_PUBLIC_API Column& operator=(Column&&) noexcept = default;
+		MANGO_PUBLIC_API ~Column() = default;
 
-	private: /// Friends
+	private:
 		friend class Mango::Table;
 		friend std::ostream& operator<<(std::ostream& out, const Column& col);
 	};

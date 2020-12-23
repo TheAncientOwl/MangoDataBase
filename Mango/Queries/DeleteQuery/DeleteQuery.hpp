@@ -10,21 +10,21 @@ namespace Mango::Queries
 	/// </summary>
 	class DeleteQuery final : public AbstractQuery
 	{
-	private: /// Fields
+	private:
 		std::string m_TableName;
 
-	private: /// API
-		bool QUERY_API match(std::string_view sql) const override;
-		void QUERY_API parse(std::string_view sql) override;
-		void QUERY_API validate(const_ref<MangoDB> dataBase) override;
-		void QUERY_API execute(ref<MangoDB> dataBase) override;
+	private:
+		MANGO_QUERY_INTERFACE bool match(std::string_view sql) const override;
+		MANGO_QUERY_INTERFACE void parse(std::string_view sql) override;
+		MANGO_QUERY_INTERFACE void validate(const_ref<MangoDB> dataBase) override;
+		MANGO_QUERY_INTERFACE void execute(ref<MangoDB> dataBase) override;
 
-	public: /// Constructors
-		DeleteQuery() = default;
-		DeleteQuery(const DeleteQuery&) = default;
-		DeleteQuery(DeleteQuery&&) noexcept = default;
-		DeleteQuery& operator=(const DeleteQuery&) = default;
-		DeleteQuery& operator=(DeleteQuery&&) noexcept = default;
-		~DeleteQuery() = default;
+	public:
+		MANGO_PUBLIC_API DeleteQuery() = default;
+		MANGO_PUBLIC_API DeleteQuery(const DeleteQuery&) = default;
+		MANGO_PUBLIC_API DeleteQuery(DeleteQuery&&) noexcept = default;
+		MANGO_PUBLIC_API DeleteQuery& operator=(const DeleteQuery&) = default;
+		MANGO_PUBLIC_API DeleteQuery& operator=(DeleteQuery&&) noexcept = default;
+		MANGO_PUBLIC_API ~DeleteQuery() = default;
 	};
 }

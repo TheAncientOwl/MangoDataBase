@@ -5,7 +5,40 @@ namespace Mango::Queries
 {
 	using namespace Mango::Exceptions;
 
-	void InsertIntoQuery::parseTableName(std::string_view firstPart)
+#pragma region MANGO_PRIVATE_API
+	MANGO_PRIVATE_API void InsertIntoQuery::checkStatementsOrder(Statement columns, Statement values, Statement::iterator defaultIt)
+	{
+		values.checkValidOrder(defaultIt);
+		columns.checkValidOrder(defaultIt);
+		if (values.open < columns.closed)
+			throw InvalidSyntaxException({ "Syntax error, found '", values.openChar, "' before '", columns.closedChar, "'" });
+	}
+
+	MANGO_PRIVATE_API void InsertIntoQuery::checkResidualParts(Statement columns, Statement values, Statement::iterator stringEnd)
+	{
+		std::string_view valuesKeyword({ std::next(columns.closed), values.open });
+
+		auto args = splitAtChar(valuesKeyword, ' ');
+		if (args.empty())
+			throw InvalidSyntaxException("Missing \"VALUES\" keyword");
+
+		if (args.size() > 1)
+			throw InvalidSyntaxException({ "Unknown sequence \"", valuesKeyword, "\"" });
+
+		if (args.front() != "VALUES")
+			throw InvalidArgumentException("Missing \"VALUES\" keyword");
+
+		if (std::string_view end(std::next(values.closed), stringEnd); end.size() > 1)
+		{
+			while (end.front() == ' ')
+				end.remove_prefix(1);
+			end.remove_suffix(1);
+			if (!end.empty())
+				throw InvalidSyntaxException({ "Unexpected query part \"", end, "\"" });
+		}
+	}
+
+	MANGO_PRIVATE_API void InsertIntoQuery::parseTableName(std::string_view firstPart)
 	{
 		auto args = splitAtChar(firstPart, ' ');
 
@@ -18,7 +51,7 @@ namespace Mango::Queries
 		m_TableName = args[2];
 	}
 
-	void InsertIntoQuery::parseColumnNames(std::string_view columnsPart)
+	MANGO_PRIVATE_API void InsertIntoQuery::parseColumnNames(std::string_view columnsPart)
 	{
 		auto args = splitAtAnyOf(columnsPart, " ,");
 		if (args.empty())
@@ -28,7 +61,7 @@ namespace Mango::Queries
 			m_ColumnNames.emplace_back(columnName);
 	}
 
-	void InsertIntoQuery::parseColumnValues(std::string_view valuesPart)
+	MANGO_PRIVATE_API void InsertIntoQuery::parseColumnValues(std::string_view valuesPart)
 	{
 		auto args = splitAtChar(valuesPart, ',');
 		if (args.empty())
@@ -46,7 +79,7 @@ namespace Mango::Queries
 			if (value.empty())
 				throw InvalidSyntaxException("Empty value");
 
-			if (auto it = std::find(std::cbegin(value), std::cend(value), ' '); 
+			if (auto it = std::find(std::cbegin(value), std::cend(value), ' ');
 				it != std::cend(value) || (value.front() == '"' || value.back() == '"'))//100% string or mistake
 			{
 				if (value.front() != '"' || value.back() != '"')
@@ -59,46 +92,15 @@ namespace Mango::Queries
 		}
 
 	}
+#pragma endregion
 
-	void InsertIntoQuery::checkStatementsOrder(Statement columns, Statement values, Statement::iterator defaultIt)
-	{
-		values.checkValidOrder(defaultIt);
-		columns.checkValidOrder(defaultIt);
-		if (values.open < columns.closed)
-			throw InvalidSyntaxException({ "Syntax error, found '", values.openChar, "' before '", columns.closedChar, "'" });
-	}
-
-	void InsertIntoQuery::checkResidualParts(Statement columns, Statement values, Statement::iterator stringEnd)
-	{
-		std::string_view valuesKeyword({ std::next(columns.closed), values.open });
-
-		auto args = splitAtChar(valuesKeyword, ' ');
-		if (args.empty())
-			throw InvalidSyntaxException("Missing \"VALUES\" keyword");
-
-		if (args.size() > 1)
-			throw InvalidSyntaxException({ "Unknown sequence \"", valuesKeyword, "\"" });
-
-		if (args.front() != "VALUES")
-			throw InvalidArgumentException("Missing \"VALUES\" keyword");
-
-		//check if query is ended properly
-		if (std::string_view end(std::next(values.closed), stringEnd); end.size() > 1)
-		{
-			while (end.front() == ' ')
-				end.remove_prefix(1);
-			end.remove_suffix(1);
-			if (!end.empty())
-				throw InvalidSyntaxException({ "Unexpected query part \"", end, "\"" });
-		}
-	}
-
-	bool QUERY_API InsertIntoQuery::match(std::string_view sql) const
+#pragma region MANGO_QUERY_INTERFACE
+	MANGO_QUERY_INTERFACE bool InsertIntoQuery::match(std::string_view sql) const
 	{
 		return sql.starts_with("INSERT");
 	}
 
-	void QUERY_API InsertIntoQuery::parse(std::string_view sql)
+	MANGO_QUERY_INTERFACE void InsertIntoQuery::parse(std::string_view sql)
 	{
 		m_InsertAll = false;
 		m_TableName.clear();
@@ -143,7 +145,7 @@ namespace Mango::Queries
 		parseColumnValues({ std::next(values.open), values.closed });
 	}
 
-	void QUERY_API InsertIntoQuery::validate(const_ref<MangoDB> dataBase)
+	MANGO_QUERY_INTERFACE void InsertIntoQuery::validate(const_ref<MangoDB> dataBase)
 	{
 		auto table = dataBase.getTable(m_TableName);
 		if (!table)
@@ -161,11 +163,11 @@ namespace Mango::Queries
 
 			for (const auto& columnName : m_ColumnNames)
 				if (!table->getColumn(columnName))
-					throw InvalidArgumentException({ "Column \"", columnName, "\" does not exists" });				
+					throw InvalidArgumentException({ "Column \"", columnName, "\" does not exists" });
 		}
 	}
 
-	void QUERY_API InsertIntoQuery::execute(ref<MangoDB> dataBase)
+	MANGO_QUERY_INTERFACE void InsertIntoQuery::execute(ref<MangoDB> dataBase)
 	{
 		auto table = dataBase.getTable(m_TableName);
 		auto rowConfig = table->makeSharedRowConfiguration();
@@ -185,4 +187,6 @@ namespace Mango::Queries
 
 		table->insertRow(row);
 	}
+#pragma endregion
+
 }

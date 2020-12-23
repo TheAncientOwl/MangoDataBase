@@ -5,30 +5,8 @@ namespace Mango::Queries
 {
 	using namespace Mango::Exceptions;
 
-	void SelectQuery::parseColumns(std::string_view columnsPart)
-	{
-		auto args = splitAtAnyOf(columnsPart, " ,");
-		if (args.empty())
-			throw InvalidSyntaxException("Since [] are used, column names must be specified");
-
-		for (const auto& arg : args)
-			m_ColumnNames.emplace_back(arg);
-	}
-
-	void SelectQuery::parseTableName(std::string_view tablePart)
-	{
-		auto args = splitAtChar(tablePart, ' ');
-
-		if (args.empty())
-			throw InvalidSyntaxException("No table specified");
-
-		if (args.size() != 1)
-			throw InvalidSyntaxException({ "Unknown sequence \"", tablePart, "\"" });
-
-		m_TableName = args.front();
-	}
-
-	void SelectQuery::checkStatementsOrder(Statement columns, Statement table, Statement::iterator defaultIt)
+#pragma region MANGO_PRIVATE_API
+	MANGO_PRIVATE_API void SelectQuery::checkStatementsOrder(Statement columns, Statement table, Statement::iterator defaultIt)
 	{
 		columns.checkValidOrder(defaultIt);
 
@@ -38,7 +16,7 @@ namespace Mango::Queries
 			throw InvalidSyntaxException({ "Syntax error, found '", table.openChar, "' before '", columns.closedChar, "'" });
 	}
 
-	void SelectQuery::checkResidualParts(Statement columns, Statement table, std::string_view sql)
+	MANGO_PRIVATE_API void SelectQuery::checkResidualParts(Statement columns, Statement table, std::string_view sql)
 	{
 		{
 			std::string_view part(std::cbegin(sql), columns.open);
@@ -67,22 +45,45 @@ namespace Mango::Queries
 
 	}
 
-	void SelectQuery::selectAll(ptr<Table> table, ref<std::vector<Row>> result, ref<MangoDB> dataBase)
+	MANGO_PRIVATE_API void SelectQuery::parseColumns(std::string_view columnsPart)
+	{
+		auto args = splitAtAnyOf(columnsPart, " ,");
+		if (args.empty())
+			throw InvalidSyntaxException("Since [] are used, column names must be specified");
+
+		for (const auto& arg : args)
+			m_ColumnNames.emplace_back(arg);
+	}
+
+	MANGO_PRIVATE_API void SelectQuery::parseTableName(std::string_view tablePart)
+	{
+		auto args = splitAtChar(tablePart, ' ');
+
+		if (args.empty())
+			throw InvalidSyntaxException("No table specified");
+
+		if (args.size() != 1)
+			throw InvalidSyntaxException({ "Unknown sequence \"", tablePart, "\"" });
+
+		m_TableName = args.front();
+	}
+
+	MANGO_PRIVATE_API void SelectQuery::selectAll(ptr<Table> table, ref<std::vector<Row>> result, ref<MangoDB> dataBase)
 	{
 		auto rowConfig = table->makeSharedRowConfiguration();
 		size_t rowSize = rowConfig->totalSize();
 
-		TableIterator tableIterator = table->makeIterator();
+		ConstTableIterator tableIterator = table->makeConstIterator();
 
 		result.emplace_back(rowSize, rowConfig);
 
 		while (tableIterator.advanceInPlace(result.back()))
-			if(dataBase.m_SelectFilter(result.back()))
+			if (dataBase.m_SelectFilter(result.back()))
 				result.emplace_back(rowSize, rowConfig);
 		result.pop_back();
 	}
 
-	void SelectQuery::selectSome(ptr<Table> table, ref<std::vector<Row>> result, ref<MangoDB> dataBase)
+	MANGO_PRIVATE_API void SelectQuery::selectSome(ptr<Table> table, ref<std::vector<Row>> result, ref<MangoDB> dataBase)
 	{
 		std::vector<int> selectedColumnIndexes;
 		auto rowConfig = std::make_shared<RowConfiguration>();
@@ -97,7 +98,7 @@ namespace Mango::Queries
 
 		size_t rowSize = rowConfig->totalSize();
 
-		TableIterator tableIterator = table->makeIterator();
+		ConstTableIterator tableIterator = table->makeConstIterator();
 		bool selected = true;
 		while (tableIterator.advance())
 		{
@@ -108,19 +109,21 @@ namespace Mango::Queries
 
 			for (int currentColumn = 0; currentColumn < m_ColumnNames.size(); ++currentColumn)
 				row.setDataAt(currentColumn, tableIterator.row().dataAt(selectedColumnIndexes[currentColumn]), rowConfig->sizeAt(currentColumn));
-			
+
 			selected = dataBase.m_SelectFilter(row);
 		}
 		if (!selected)
 			result.pop_back();
 	}
+#pragma endregion
 
-	bool QUERY_API SelectQuery::match(std::string_view sql) const
+#pragma region MANGO_QUERY_INTERFACE
+	MANGO_QUERY_INTERFACE bool SelectQuery::match(std::string_view sql) const
 	{
 		return sql.starts_with("SELECT");
 	}
 
-	void QUERY_API SelectQuery::parse(std::string_view sql)
+	MANGO_QUERY_INTERFACE void SelectQuery::parse(std::string_view sql)
 	{
 		m_TableName.clear();
 		m_ColumnNames.clear();
@@ -132,7 +135,7 @@ namespace Mango::Queries
 		Statement::iterator all = DEFAULT;
 		Statement columns(DEFAULT, DEFAULT, "[", "]"), table(DEFAULT, DEFAULT, "(", ")");
 
-		for(auto it = std::cbegin(sql), end = std::cend(sql); it != end; ++it)
+		for (auto it = std::cbegin(sql), end = std::cend(sql); it != end; ++it)
 			switch (*it)
 			{
 				case ']': columns.closed = it; break;
@@ -162,7 +165,7 @@ namespace Mango::Queries
 		parseTableName({ std::next(table.open), table.closed });
 	}
 
-	void QUERY_API SelectQuery::validate(const_ref<MangoDB> dataBase)
+	MANGO_QUERY_INTERFACE void SelectQuery::validate(const_ref<MangoDB> dataBase)
 	{
 		auto table = dataBase.getTable(m_TableName);
 		if (!table)
@@ -176,7 +179,7 @@ namespace Mango::Queries
 		}
 	}
 
-	void QUERY_API SelectQuery::execute(ref<MangoDB> dataBase)
+	MANGO_QUERY_INTERFACE void SelectQuery::execute(ref<MangoDB> dataBase)
 	{
 		dataBase.m_LastResult.clear();
 
@@ -185,4 +188,6 @@ namespace Mango::Queries
 		else
 			selectSome(dataBase.getTable(m_TableName), dataBase.m_LastResult, dataBase);
 	}
+#pragma endregion
+	
 }

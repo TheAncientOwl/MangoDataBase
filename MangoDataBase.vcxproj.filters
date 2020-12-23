@@ -180,9 +180,6 @@
     <ClCompile Include="Mango\Queries\InsertIntoQuery\InsertIntoQuery.cpp">
       <Filter>Mango\Queries\InsertIntoQuery</Filter>
     </ClCompile>
-    <ClCompile Include="Mango\Table\TableIterator.cpp">
-      <Filter>Mango\Table</Filter>
-    </ClCompile>
     <ClCompile Include="Mango\Queries\SelectQuery\SelectQuery.cpp">
       <Filter>Mango\Queries\SelectQuery</Filter>
     </ClCompile>
@@ -191,6 +188,12 @@
     </ClCompile>
     <ClCompile Include="Mango\Queries\DeleteQuery\DeleteQuery.cpp">
       <Filter>Mango\Queries\DeleteQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Table\ConstTableIterator.cpp">
+      <Filter>Mango\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Table\TableIterator.cpp">
+      <Filter>Mango\Table</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -281,9 +284,6 @@
     <ClInclude Include="Mango\Queries\InsertIntoQuery\InsertIntoQuery.hpp">
       <Filter>Mango\Queries\InsertIntoQuery</Filter>
     </ClInclude>
-    <ClInclude Include="Mango\Table\TableIterator.hpp">
-      <Filter>Mango\Table</Filter>
-    </ClInclude>
     <ClInclude Include="Mango\Queries\SelectQuery\SelectQuery.hpp">
       <Filter>Mango\Queries\SelectQuery</Filter>
     </ClInclude>
@@ -292,6 +292,12 @@
     </ClInclude>
     <ClInclude Include="Mango\Queries\DeleteQuery\DeleteQuery.hpp">
       <Filter>Mango\Queries\DeleteQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Table\ConstTableIterator.hpp">
+      <Filter>Mango\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Table\TableIterator.hpp">
+      <Filter>Mango\Table</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
