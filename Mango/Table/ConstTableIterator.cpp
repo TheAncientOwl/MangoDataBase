@@ -14,7 +14,7 @@ namespace Mango
 		return TableIterator::advanceInPlace(row);
 	}
 
-	MANGO_PRIVATE_API const_ref<Row> ConstTableIterator::row()
+	MANGO_PRIVATE_API const_ref<Row> ConstTableIterator::row() const
 	{
 		return TableIterator::row();
 	}

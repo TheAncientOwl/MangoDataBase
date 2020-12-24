@@ -8,6 +8,7 @@ namespace Mango
 		class InsertIntoQuery;
 		class SelectQuery;
 		class DeleteQuery;
+		class UpdateQuery;
 	}
 }
 
@@ -77,6 +78,7 @@ namespace Mango
 		friend class Mango::Queries::InsertIntoQuery;
 		friend class Mango::Queries::SelectQuery;
 		friend class Mango::Queries::DeleteQuery;
+		friend class Mango::Queries::UpdateQuery;
 		friend std::ostream& operator<<(std::ostream& out, const Table& table);
 	};
 }

@@ -16,7 +16,12 @@ namespace Mango
 		return m_FileStream;
 	}
 
-	MANGO_PRIVATE_API const_ref<Row> TableIterator::row()
+	MANGO_PRIVATE_API const_ref<Row> TableIterator::row() const
+	{
+		return m_Data;
+	}
+
+	ref<Row> TableIterator::row()
 	{
 		return m_Data;
 	}
@@ -31,12 +36,14 @@ namespace Mango
 		if (copyInternal)
 			m_Data = row;
 
-		size_t currentPos = m_FileStream.tellp();
-		m_FileStream.seekp(currentPos - row.size());
+		std::streampos pos = m_FileStream.tellg();
+		pos -= row.size();
+		m_FileStream.seekp(pos);
 
 		serializePOD(m_FileStream, row.data(), row.size());
 
-		m_FileStream.seekg(currentPos + row.size());
+		pos += row.size();
+		m_FileStream.seekg(pos);
 	}
 
 	MANGO_PRIVATE_API TableIterator::TableIterator(const_ref<std::filesystem::path> tableDataFilePath, const_ref<std::shared_ptr<RowConfiguration>> rowConfig)

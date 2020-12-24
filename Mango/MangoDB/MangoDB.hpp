@@ -8,6 +8,7 @@ namespace Mango::Queries
 	class InsertIntoQuery;
 	class SelectQuery;
 	class DeleteQuery;
+	class UpdateQuery;
 }
 #include "../Table/Table.hpp"
 #include "../Row/RowFilters.hpp"
@@ -25,6 +26,7 @@ namespace Mango
 		std::vector<Row> m_LastResult;
 
 		WhereClause m_WhereClause;
+		SetClause m_SetClause;
 
 	private:
 		MANGO_PRIVATE_API std::filesystem::path getConfigFilePath() const;
@@ -55,8 +57,11 @@ namespace Mango
 		MANGO_PUBLIC_API std::vector<Row> extractLastResult();
 		MANGO_PUBLIC_API void disposeLastResult();
 
-		MANGO_PUBLIC_API void setWhereFilter(WhereClause whereFilter);
-		MANGO_PUBLIC_API void resetWhereFilter();
+		MANGO_PUBLIC_API void setWhereClause(WhereClause whereClause);
+		MANGO_PUBLIC_API void resetWhereClause();
+
+		MANGO_PUBLIC_API void setSetClause(SetClause setClause);
+		MANGO_PUBLIC_API void resetSetClause();
 		
 	public:
 		MANGO_PUBLIC_API MangoDB(std::filesystem::path dataBaseDirectoryPath);
@@ -75,6 +80,7 @@ namespace Mango
 		friend class Mango::Queries::InsertIntoQuery;
 		friend class Mango::Queries::SelectQuery;
 		friend class Mango::Queries::DeleteQuery;
+		friend class Mango::Queries::UpdateQuery;
 		friend std::ostream& operator<<(std::ostream& out, const MangoDB& mango);
 	};
 }

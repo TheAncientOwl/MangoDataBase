@@ -3,11 +3,26 @@
 
 namespace Utilities
 {
+	void testSetClause(ref<Mango::Row> row)
+	{
+		int id = row.getInt(0);
+
+		if (id == 6 || id == 9)
+			row.setFloat(2, 6.9F);
+
+		if (id % 2 == 0)
+			row.setString(1, "even");
+		else
+			row.setString(1, "odd");
+	}
+
 	void ConsoleTestLoop::run()
 	{
 		Mango::MangoDB dataBase("TestDataBase");
 		dataBase.loadTables();
 		std::cout << dataBase << '\n';
+
+		dataBase.setSetClause(testSetClause);
 
 		Mango::QueryExecutor queryExecutor;
 

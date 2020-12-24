@@ -17,7 +17,7 @@ namespace Mango
 	private:
 		MANGO_PRIVATE_API const_ref<std::fstream> advance();
 		MANGO_PRIVATE_API const_ref<std::fstream> advanceInPlace(ref<Row> row);
-		MANGO_PRIVATE_API const_ref<Row> row();
+		MANGO_PRIVATE_API const_ref<Row> row() const;
 		MANGO_PRIVATE_API void releaseFile();
 
 	public:

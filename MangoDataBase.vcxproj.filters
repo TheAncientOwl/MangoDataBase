@@ -97,6 +97,9 @@
     <Filter Include="Mango\Queries\DeleteQuery">
       <UniqueIdentifier>{7a9601ef-5715-40f5-ae2b-1a99da845803}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Queries\UpdateQuery">
+      <UniqueIdentifier>{f7f81f75-e910-48ef-a719-4ff7ecf9c705}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -194,6 +197,9 @@
     </ClCompile>
     <ClCompile Include="Mango\Table\TableIterator.cpp">
       <Filter>Mango\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Queries\UpdateQuery\UpdateQuery.cpp">
+      <Filter>Mango\Queries\UpdateQuery</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -298,6 +304,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Table\TableIterator.hpp">
       <Filter>Mango\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Queries\UpdateQuery\UpdateQuery.hpp">
+      <Filter>Mango\Queries\UpdateQuery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

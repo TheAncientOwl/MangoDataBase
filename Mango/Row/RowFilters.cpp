@@ -12,4 +12,9 @@ namespace Mango::DefaultRowFilters
 	{
 		return false;
 	}
+
+	void doNothing(ref<Row> row)
+	{
+		//~NOTHING~ What would you have expected? xD
+	}
 }
