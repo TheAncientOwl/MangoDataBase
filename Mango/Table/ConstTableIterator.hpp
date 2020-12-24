@@ -12,7 +12,7 @@ namespace Mango
 
 namespace Mango
 {
-	class ConstTableIterator : public TableIterator
+	class ConstTableIterator : private TableIterator
 	{
 	private:
 		MANGO_PRIVATE_API const_ref<std::fstream> advance();
