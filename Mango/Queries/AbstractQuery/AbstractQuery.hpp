@@ -2,6 +2,7 @@
 namespace Mango
 {
 	class QueryExecutor;
+	class CommandLineInterface;
 }
 #include "../../Exceptions/MangoExceptions.hpp"
 #include "../Statement/Statement.hpp"
@@ -56,6 +57,7 @@ namespace Mango::Queries
 	private:
 		friend class AbstractQueryStaticInitializer;
 		friend class Mango::QueryExecutor;
+		friend class Mango::CommandLineInterface;
 	};
 
 	class AbstractQueryStaticInitializer

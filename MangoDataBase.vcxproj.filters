@@ -100,6 +100,9 @@
     <Filter Include="Mango\Queries\UpdateQuery">
       <UniqueIdentifier>{f7f81f75-e910-48ef-a719-4ff7ecf9c705}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\CommandLineInterface">
+      <UniqueIdentifier>{6d4ef99b-f36e-4232-bb13-41dbe408798d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -200,6 +203,9 @@
     </ClCompile>
     <ClCompile Include="Mango\Queries\UpdateQuery\UpdateQuery.cpp">
       <Filter>Mango\Queries\UpdateQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\CommandLineInterface\CommandLineInterface.cpp">
+      <Filter>Mango\CommandLineInterface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +313,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Queries\UpdateQuery\UpdateQuery.hpp">
       <Filter>Mango\Queries\UpdateQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\CommandLineInterface\CommandLineInterface.hpp">
+      <Filter>Mango\CommandLineInterface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

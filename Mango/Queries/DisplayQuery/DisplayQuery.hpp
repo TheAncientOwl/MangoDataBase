@@ -1,6 +1,6 @@
 #pragma once
 #include "../AbstractQuery/AbstractQuery.hpp"
-#define MANGO_DISPLAY_SYNTAX "DISPLAY */TABLE_NAME"
+#define MANGO_DISPLAY_SYNTAX "DISPLAY */TABLE_NAME;"
 
 namespace Mango::Queries
 {

@@ -168,6 +168,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Mango\Column\Column.cpp" />
+    <ClCompile Include="Mango\CommandLineInterface\CommandLineInterface.cpp" />
     <ClCompile Include="Mango\DataType\DataType.cpp" />
     <ClCompile Include="Mango\Exceptions\FeatureNotImplementedException\FeatureNotImplementedException.cpp" />
     <ClCompile Include="Mango\Exceptions\InvalidArgumentException\InvalidArgumentException.cpp" />
@@ -208,6 +209,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mango\Column\Column.hpp" />
+    <ClInclude Include="Mango\CommandLineInterface\CommandLineInterface.hpp" />
     <ClInclude Include="Mango\DataType\DataType.hpp" />
     <ClInclude Include="Mango\Exceptions\FeatureNotImplementedException\FeatureNotImplementedException.hpp" />
     <ClInclude Include="Mango\Exceptions\InvalidArgumentException\InvalidArgumentException.hpp" />

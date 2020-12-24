@@ -1,14 +1,11 @@
 #include "standard_library.hpp"
 
-#include "Utilities/ConsoleTestLoop/ConsoleTestLoop.hpp"
-#include "Mango/MangoAPI.hpp"
-
-using namespace Mango;
+#include "Mango/CommandLineInterface/CommandLineInterface.hpp"
 
 int main()
 {
-	Utilities::ConsoleTestLoop consoleTestLoop;
-	consoleTestLoop.run();
+	Mango::CommandLineInterface cli;
+	cli.run();
 
 	//system("pause");
 	return 0;

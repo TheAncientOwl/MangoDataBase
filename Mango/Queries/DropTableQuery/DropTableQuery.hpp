@@ -1,9 +1,12 @@
 #pragma once
 #include "../AbstractQuery/AbstractQuery.hpp"
-#define MANGO_DROP_TABLE_SYNTAX "DROP TABLE table_name"
+#define MANGO_DROP_TABLE_SYNTAX "DROP TABLE table_name;"
 
 namespace Mango::Queries
 {
+	/// <summary>
+	/// DROP TABLE table_name;
+	/// </summary>
 	class DropTableQuery final : public AbstractQuery
 	{
 	private:
