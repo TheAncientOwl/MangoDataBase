@@ -11,8 +11,8 @@ namespace Mango::Queries::CommandLineAdapter
 	{
 	private:
 		std::string m_WhereColumnName;
-		std::string m_Value;
 		std::string m_Operation;
+		std::string m_Value;
 
 		WhereClause m_WhereClause;
 

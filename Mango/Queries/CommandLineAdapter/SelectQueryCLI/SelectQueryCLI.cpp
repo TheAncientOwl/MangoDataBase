@@ -62,41 +62,27 @@ namespace Mango::Queries::CommandLineAdapter
 	{
 		auto args = splitAtChar(condition, ' ');
 
-		if (size_t size = args.size(); size != 3)
-		{
-			if (size < 3)
-				throw InvalidSyntaxException("Missing args at condition");
+		if (args.size() < 3)
+			throw InvalidSyntaxException("Missing args at condition");
 
-			if (size > 3)
-			{
-				m_WhereColumnName = args[0];
-				m_Operation = args[1];
+		std::string_view value;
 
-				if (args[2].front() != '"' || args.back().back() != '"')
-					throw InvalidSyntaxException("Missing '\"'");
-
-				args[2].remove_prefix(1);
-				args.back().remove_suffix(1);
-
-				m_Value = std::string_view(args[2].data(), std::next(&args.back().back()));
-			}
-		}
+		if (args.size() > 3)
+			value = std::string_view(args[2].data(), std::next(&args.back().back()));
 		else
+			value = args[2];
+
+		if (value.front() == '"' || value.back() == '"')
 		{
-			m_WhereColumnName = args[0];
-			m_Operation = args[1];
-			
-
-			if (auto& val = args[2]; val.front() == '"' || val.back() == '"')
-			{
-				if(val.front() != '"' || val.back() != '"')
+			if(value.front() != '"' || value.back() != '"')
 					throw InvalidSyntaxException("Missing '\"'");
-				val.remove_prefix(1);
-				val.remove_suffix(1);
-			}
-
-			m_Value = args[2];
+			value.remove_prefix(1);
+			value.remove_suffix(1);
 		}
+
+		m_WhereColumnName = args[0];
+		m_Operation = args[1];
+		m_Value = value;
 	}
 #pragma endregion
 
@@ -139,6 +125,10 @@ namespace Mango::Queries::CommandLineAdapter
 			columns.openChar = columns.closedChar = "*";
 		}
 
+		if (all == DEFAULT)
+			SelectQuery::parseColumns({ std::next(columns.open), columns.closed });
+		SelectQuery::parseTableName({ std::next(table.open), table.closed });
+
 		if (condition.open != DEFAULT || condition.closed != DEFAULT)
 		{
 			SelectQueryCLI::checkStatementsOrder(columns, table, condition, DEFAULT);
@@ -151,10 +141,6 @@ namespace Mango::Queries::CommandLineAdapter
 			SelectQuery::checkStatementsOrder(columns, table, DEFAULT);
 			SelectQuery::checkResidualParts(columns, table, sql);
 		}
-
-		if (all == DEFAULT)
-			SelectQuery::parseColumns({ std::next(columns.open), columns.closed });
-		SelectQuery::parseTableName({ std::next(table.open), table.closed });
 	}
 
 	MANGO_QUERY_INTERFACE void SelectQueryCLI::validate(const_ref<MangoDB> dataBase)
