@@ -7,6 +7,6 @@ int main()
 	Mango::CommandLineInterface cli;
 	cli.run();
 
-	//system("pause");
+
 	return 0;
 }

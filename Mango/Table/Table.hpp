@@ -1,16 +1,6 @@
 #pragma once
-namespace Mango
-{
-	class MangoDB;
-	namespace Queries
-	{
-		class TruncateTableQuery;
-		class InsertIntoQuery;
-		class SelectQuery;
-		class DeleteQuery;
-		class UpdateQuery;
-	}
-}
+#include "../Queries/Queries.fwd.hpp"
+#include "../MangoDB/MangoDB.fwd.hpp"
 
 #include "../Column/Column.hpp"
 #include "../Row/Row.hpp"
@@ -79,6 +69,7 @@ namespace Mango
 		friend class Mango::Queries::SelectQuery;
 		friend class Mango::Queries::DeleteQuery;
 		friend class Mango::Queries::UpdateQuery;
+		friend class Mango::Queries::CommandLineAdapter::SelectQueryCLI;
 		friend std::ostream& operator<<(std::ostream& out, const Table& table);
 	};
 }

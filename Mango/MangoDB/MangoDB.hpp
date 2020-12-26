@@ -1,17 +1,8 @@
 #pragma once
-namespace Mango::Queries
-{
-	class CreateTableQuery;
-	class DropTableQuery;
-	class TruncateTableQuery;
-	class DisplayQuery;
-	class InsertIntoQuery;
-	class SelectQuery;
-	class DeleteQuery;
-	class UpdateQuery;
-}
+#include "../Queries/Queries.fwd.hpp"
+#include "../Row/RowFilters.fwd.hpp"
+
 #include "../Table/Table.hpp"
-#include "../Row/RowFilters.hpp"
 
 #define MANGO_MAX_TABLE_NAME_LENGTH 50
 
@@ -73,6 +64,7 @@ namespace Mango
 		MANGO_PUBLIC_API ~MangoDB() = default;
 
 	private:
+		friend class Mango::MangoClauseGuard;
 		friend class Mango::Queries::CreateTableQuery;
 		friend class Mango::Queries::DropTableQuery;
 		friend class Mango::Queries::TruncateTableQuery;
@@ -81,6 +73,7 @@ namespace Mango
 		friend class Mango::Queries::SelectQuery;
 		friend class Mango::Queries::DeleteQuery;
 		friend class Mango::Queries::UpdateQuery;
+		friend class Mango::Queries::CommandLineAdapter::SelectQueryCLI;
 		friend std::ostream& operator<<(std::ostream& out, const MangoDB& mango);
 	};
 }

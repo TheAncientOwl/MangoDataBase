@@ -1,13 +1,7 @@
 #pragma once
-namespace Mango
-{
-	class Table;
-	class ConstTableIterator;
-	namespace Queries
-	{
-		class UpdateQuery;
-	}
-}
+#include "../Queries/Queries.fwd.hpp"
+#include "Table.fwd.hpp"
+
 #include "../Row/Row.hpp"
 
 namespace Mango

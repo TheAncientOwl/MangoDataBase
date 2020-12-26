@@ -44,7 +44,7 @@ namespace Mango::Queries
 
 		TableIterator tableIterator = table->makeIterator();
 
-		if (dataBase.m_SetClause == &DefaultRowFilters::doNothing)
+		if (dataBase.m_SetClause == &RowFilters::doNothing)
 			assert(false && "Did you forget to set the set clause?");
 
 		while (tableIterator.advance())

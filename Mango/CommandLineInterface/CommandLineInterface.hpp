@@ -9,7 +9,7 @@ namespace Mango
 	class CommandLineInterface
 	{
 	private:
-		static const std::array<std::unique_ptr<AbstractQuery>, 5> s_Queries;
+		static const std::array<std::unique_ptr<AbstractQuery>, 6> s_Queries;
 
 	public:
 		void run();

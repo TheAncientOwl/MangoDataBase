@@ -1,8 +1,5 @@
 #pragma once
-namespace Mango
-{
-	class Table;
-}
+#include "../Table/Table.fwd.hpp"
 
 #include "../DataType/DataType.hpp"
 

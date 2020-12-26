@@ -33,6 +33,7 @@ namespace Mango
 				displayCommand(3, MANGO_TRUNCATE_TABLE_SYNTAX);
 				displayCommand(4, MANGO_DROP_TABLE_SYNTAX);
 				displayCommand(5, MANGO_DISPLAY_SYNTAX);
+				displayCommand(6, MANGO_SELECT_CLI_SYNTAX);
 				continue;
 			}
 
@@ -42,16 +43,36 @@ namespace Mango
 			bool success = true;
 			try
 			{
-				if (sql.size() > 4)
+				if (sql.size() > 5)
 				{
-					auto wannaBeEndOfInsert = std::cbegin(sql) + 6;
-					std::transform(std::cbegin(sql), wannaBeEndOfInsert, std::begin(sql), ::toupper);
+					if (sql.starts_with("INSERT") || sql.starts_with("insert"))
+					{
+						auto firstParanthesis = std::find(std::cbegin(sql), std::cend(sql), '(');
 
-					auto upperEnd = std::cend(sql);
-					if (sql.starts_with("INSERT"))
-						upperEnd = std::find(wannaBeEndOfInsert, std::cend(sql), '(');
+						std::transform(std::cbegin(sql), firstParanthesis, std::begin(sql), ::toupper);
+					}
+					else
+					{
+						std::string_view str(sql);
+						Statement::iterator DEFAULT = std::cbegin(str);
+						Statement condition(std::find(std::cbegin(str), std::cend(str), '<'), std::find(std::cbegin(str), std::cend(str), '>'), "<", ">");
+						if (condition.open != DEFAULT || condition.closed != DEFAULT)
+						{
+							condition.checkValidOrder(DEFAULT);
+							std::string_view comparators = "=<>!";
 
-					std::transform(wannaBeEndOfInsert, upperEnd, std::begin(sql) + 6, ::toupper);
+							auto it = std::find(std::cbegin(sql), std::cend(sql), '<');
+							if (it != std::cend(sql))
+							{
+								auto comparatorPos = std::find_first_of(std::next(it), std::cend(sql),
+									std::cbegin(comparators), std::cend(comparators));
+								std::transform(std::cbegin(sql), comparatorPos, std::begin(sql), ::toupper);
+							}
+							else std::transform(std::begin(sql), std::end(sql), std::begin(sql), ::toupper);
+							
+						}
+						
+					}
 				}
 				else std::transform(std::begin(sql), std::end(sql), std::begin(sql), ::toupper);
 
@@ -100,11 +121,12 @@ namespace Mango
 
 	}
 
-	const std::array<std::unique_ptr<AbstractQuery>, 5> CommandLineInterface::s_Queries{
+	const std::array<std::unique_ptr<AbstractQuery>, 6> CommandLineInterface::s_Queries{
 		std::make_unique<CreateTableQuery>(),
 		std::make_unique<DropTableQuery>(),
 		std::make_unique<TruncateTableQuery>(),
 		std::make_unique<DisplayQuery>(),
-		std::make_unique<InsertIntoQuery>()
+		std::make_unique<InsertIntoQuery>(),
+		std::make_unique<CommandLineAdapter::SelectQueryCLI>()
 	};
 }

@@ -1,16 +1,8 @@
 #pragma once
-namespace Mango
-{
-	class Table;
-	class TableIterator;
-	class ConstTableIterator;
-	namespace Queries
-	{
-		class InsertIntoQuery;
-		class SelectQuery;
-		class DeleteQuery;
-	}
-}
+#include "../Queries/Queries.fwd.hpp"
+#include "../Table/Table.fwd.hpp"
+#include "../Row/RowFilters.fwd.hpp"
+
 #include "RowConfiguration.hpp"
 
 namespace Mango
@@ -58,6 +50,7 @@ namespace Mango
 		friend class Mango::Table;
 		friend class Mango::TableIterator;
 		friend class Mango::ConstTableIterator;
+		friend class Mango::MangoDummyValues;
 		friend class Mango::Queries::InsertIntoQuery;
 		friend class Mango::Queries::SelectQuery;
 		friend class Mango::Queries::DeleteQuery;

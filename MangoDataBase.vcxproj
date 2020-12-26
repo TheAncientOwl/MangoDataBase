@@ -180,6 +180,7 @@
     <ClCompile Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.cpp" />
     <ClCompile Include="Mango\MangoDB\MangoDB.cpp" />
     <ClCompile Include="Mango\Queries\AbstractQuery\AbstractQuery.cpp" />
+    <ClCompile Include="Mango\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.cpp" />
     <ClCompile Include="Mango\Queries\CreateTableQuery\CreateTableQuery.cpp" />
     <ClCompile Include="Mango\Queries\DeleteQuery\DeleteQuery.cpp" />
     <ClCompile Include="Mango\Queries\DisplayQuery\DisplayQuery.cpp" />
@@ -193,6 +194,7 @@
     <ClCompile Include="Mango\Row\Row.cpp" />
     <ClCompile Include="Mango\Row\RowConfiguration.cpp" />
     <ClCompile Include="Mango\Row\RowFilters.cpp" />
+    <ClCompile Include="Mango\Row\RowFilters.fwd.cpp" />
     <ClCompile Include="Mango\Table\Table.cpp" />
     <ClCompile Include="Mango\Table\ConstTableIterator.cpp" />
     <ClCompile Include="Mango\Table\TableIterator.cpp" />
@@ -221,8 +223,10 @@
     <ClInclude Include="Mango\Exceptions\TableAlreadyExistsException\TableAlreadyExistsException.hpp" />
     <ClInclude Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.hpp" />
     <ClInclude Include="Mango\MangoAPI.hpp" />
+    <ClInclude Include="Mango\MangoDB\MangoDB.fwd.hpp" />
     <ClInclude Include="Mango\MangoDB\MangoDB.hpp" />
     <ClInclude Include="Mango\Queries\AbstractQuery\AbstractQuery.hpp" />
+    <ClInclude Include="Mango\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.hpp" />
     <ClInclude Include="Mango\Queries\CreateTableQuery\CreateTableQuery.hpp" />
     <ClInclude Include="Mango\Queries\DeleteQuery\DeleteQuery.hpp" />
     <ClInclude Include="Mango\Queries\DisplayQuery\DisplayQuery.hpp" />
@@ -234,9 +238,12 @@
     <ClInclude Include="Mango\Queries\TruncateTableQuery\TruncateTableQuery.hpp" />
     <ClInclude Include="Mango\Queries\UpdateQuery\UpdateQuery.hpp" />
     <ClInclude Include="Mango\QueryExecutor\QueryExecutor.hpp" />
+    <ClInclude Include="Mango\Row\Row.fwd.hpp" />
     <ClInclude Include="Mango\Row\Row.hpp" />
+    <ClInclude Include="Mango\Row\RowFilters.fwd.hpp" />
     <ClInclude Include="Mango\Row\RowConfiguration.hpp" />
     <ClInclude Include="Mango\Row\RowFilters.hpp" />
+    <ClInclude Include="Mango\Table\Table.fwd.hpp" />
     <ClInclude Include="Mango\Table\Table.hpp" />
     <ClInclude Include="Mango\Table\ConstTableIterator.hpp" />
     <ClInclude Include="Mango\Table\TableIterator.hpp" />
@@ -247,6 +254,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+    <None Include="Mango\Queries\Queries.fwd.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

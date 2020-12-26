@@ -1,20 +1,20 @@
 #pragma once
 #include "../AbstractQuery/AbstractQuery.hpp"
-#define MANGO_SELECT_SYNTAX "SELECT */[columns] FROM (table_name) WHERE <condition>;"
+#define MANGO_SELECT_SYNTAX "SELECT */[col1, col2, ...] FROM (table_name) WHERE <condition>;"
 
 namespace Mango::Queries
 {
 	/// <summary>
-	/// SELECT */[columns] FROM (table_name);
+	/// SELECT */[col1, col2, ...] FROM (table_name);
 	/// [!] Where clause can be specified through MagoDB::setWhereClause(WhereClause whereClause);
 	/// </summary>
-	class SelectQuery final : public AbstractQuery
+	class SelectQuery : public AbstractQuery
 	{
-	private:
+	protected:
 		std::string m_TableName;
 		std::vector<std::string> m_ColumnNames;
 
-	private:
+	protected:
 		/// <summary>
 		/// */[] before ()
 		/// </summary>
@@ -38,8 +38,8 @@ namespace Mango::Queries
 		MANGO_PRIVATE_API void selectAll(ptr<Table> table, ref<std::vector<Row>> result, ref<MangoDB> dataBase);
 		MANGO_PRIVATE_API void selectSome(ptr<Table> table, ref<std::vector<Row>> result, ref<MangoDB> dataBase);
 
-	private:
-		MANGO_QUERY_INTERFACE bool match(std::string_view sql) const override;
+	protected:
+		MANGO_QUERY_INTERFACE bool match(std::string_view sql) const final override;
 		MANGO_QUERY_INTERFACE void parse(std::string_view sql) override;
 		MANGO_QUERY_INTERFACE void validate(const_ref<MangoDB> dataBase) override;
 		MANGO_QUERY_INTERFACE void execute(ref<MangoDB> dataBase) override;

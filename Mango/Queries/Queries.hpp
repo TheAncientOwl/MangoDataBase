@@ -8,3 +8,4 @@
 #include "SelectQuery/SelectQuery.hpp"
 #include "DeleteQuery/DeleteQuery.hpp"
 #include "UpdateQuery/UpdateQuery.hpp"
+#include "CommandLineAdapter/SelectQueryCLI/SelectQueryCLI.hpp"

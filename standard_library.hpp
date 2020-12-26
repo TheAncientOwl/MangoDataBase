@@ -15,7 +15,6 @@
 #include <array>
 #include <map>
 #include <set>
-
 #define MANGO_PROTECTED_API
 #define MANGO_PRIVATE_API
 #define MANGO_PUBLIC_API

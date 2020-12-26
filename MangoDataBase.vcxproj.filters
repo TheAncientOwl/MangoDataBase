@@ -103,6 +103,12 @@
     <Filter Include="Mango\CommandLineInterface">
       <UniqueIdentifier>{6d4ef99b-f36e-4232-bb13-41dbe408798d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Queries\CommandLineAdapter">
+      <UniqueIdentifier>{7fcaa9a3-67ec-4e4c-9aec-d9afac08ad30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Queries\CommandLineAdapter\SelectQueryCLI">
+      <UniqueIdentifier>{ebd68bae-acc9-4561-aaca-5136c2bc0a38}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -206,6 +212,12 @@
     </ClCompile>
     <ClCompile Include="Mango\CommandLineInterface\CommandLineInterface.cpp">
       <Filter>Mango\CommandLineInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.cpp">
+      <Filter>Mango\Queries\CommandLineAdapter\SelectQueryCLI</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Row\RowFilters.fwd.cpp">
+      <Filter>Mango\Row</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -317,8 +329,26 @@
     <ClInclude Include="Mango\CommandLineInterface\CommandLineInterface.hpp">
       <Filter>Mango\CommandLineInterface</Filter>
     </ClInclude>
+    <ClInclude Include="Mango\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.hpp">
+      <Filter>Mango\Queries\CommandLineAdapter\SelectQueryCLI</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Row\RowFilters.fwd.hpp">
+      <Filter>Mango\Row</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Row\Row.fwd.hpp">
+      <Filter>Mango\Row</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Table\Table.fwd.hpp">
+      <Filter>Mango\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\MangoDB\MangoDB.fwd.hpp">
+      <Filter>Mango\MangoDB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+    <None Include="Mango\Queries\Queries.fwd.hpp">
+      <Filter>Mango\Queries</Filter>
+    </None>
   </ItemGroup>
 </Project>

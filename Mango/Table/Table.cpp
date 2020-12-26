@@ -120,7 +120,10 @@ namespace Mango
 
 	MANGO_PRIVATE_API size_t Table::getColumnIndex(std::string_view columnName) const
 	{
-		return m_ColumnIndexes.at(columnName);
+		auto it = m_ColumnIndexes.find(columnName);
+		if (it != std::cend(m_ColumnIndexes))
+			return it->second;
+		return -1;
 	}
 
 	MANGO_PRIVATE_API std::shared_ptr<RowConfiguration> Table::makeSharedRowConfiguration() const

@@ -40,7 +40,7 @@ namespace Mango::Queries
 				part.remove_prefix(1);
 			part.remove_suffix(1);
 			if (!part.empty())
-				throw InvalidSyntaxException({ "Unexpected sequence \"", part, "\"" });
+				throw InvalidSyntaxException({ "Unknown sequence \"", part, "\"" });
 		}
 
 	}
@@ -105,12 +105,17 @@ namespace Mango::Queries
 			if (selected)
 				result.emplace_back(rowSize, rowConfig);
 
-			auto& row = result.back();
+			selected = dataBase.m_WhereClause(tableIterator.row());
 
-			for (int currentColumn = 0; currentColumn < m_ColumnNames.size(); ++currentColumn)
-				row.setDataAt(currentColumn, tableIterator.row().dataAt(selectedColumnIndexes[currentColumn]), rowConfig->sizeAt(currentColumn));
+			if (selected)
+			{
+				auto& lastRow = result.back();
 
-			selected = dataBase.m_WhereClause(row);
+				for (int currentColumn = 0; currentColumn < m_ColumnNames.size(); ++currentColumn)
+					lastRow.setDataAt(currentColumn, tableIterator.row().dataAt(selectedColumnIndexes[currentColumn]), 
+									  rowConfig->sizeAt(currentColumn));
+
+			}
 		}
 		if (!selected)
 			result.pop_back();
