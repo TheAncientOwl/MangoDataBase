@@ -166,17 +166,14 @@ namespace Mango::Queries::CommandLineAdapter
 		else
 		{
 			auto table = dataBase.getTable(m_TableName);
-			int columnIndex = static_cast<int>(table->getColumnIndex(m_WhereColumnName));
-			if (columnIndex == -1)
-				throw InvalidArgumentException({ "Column \"", m_WhereColumnName, "\" does not exists" });
-
-			const_ref<Column> column = table->getColumn(int(columnIndex));
 
 			ref<MangoDummyValues> dummy = MangoDummyValues::Instance();
 
-			dummy.m_Index = columnIndex;
+			dummy.m_Index = static_cast<int>(table->getColumnIndex(m_WhereColumnName));
+			if (dummy.m_Index == -1)
+				throw InvalidArgumentException({ "Column \"", m_WhereColumnName, "\" does not exists" });
 		
-			switch (column.dataType())
+			switch (table->getColumn(dummy.m_Index).dataType())
 			{
 				case DataType::Value::INT:
 				{
@@ -211,13 +208,12 @@ namespace Mango::Queries::CommandLineAdapter
 					break;
 				}
 			}
-			
 		}
+
 	}
 
 	MANGO_QUERY_INTERFACE void SelectQueryCLI::execute(ref<MangoDB> dataBase)
 	{
-		MangoClauseGuard _(dataBase);
 		dataBase.setWhereClause(m_WhereClause);
 
 		SelectQuery::execute(dataBase);
