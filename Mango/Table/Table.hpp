@@ -35,6 +35,8 @@ namespace Mango
 
 		MANGO_PRIVATE_API const_ref<std::vector<Column>> columns() const;
 
+		MANGO_PRIVATE_API std::string_view getName() const;
+
 		MANGO_PRIVATE_API const_ptr<Column> getColumn(std::string_view columnName) const;
 		MANGO_PRIVATE_API ptr<Column> getColumn(std::string_view columnName);
 
@@ -48,9 +50,6 @@ namespace Mango
 
 		MANGO_PRIVATE_API TableIterator makeIterator();
 		MANGO_PRIVATE_API ConstTableIterator makeConstIterator() const;
-
-	public:
-		MANGO_PUBLIC_API std::string_view getName() const;
 
 	public:
 		MANGO_PUBLIC_API Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, std::vector<Column>&& columns);

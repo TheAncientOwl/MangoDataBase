@@ -90,6 +90,11 @@ namespace Mango
 		return m_Columns;
 	}
 
+	MANGO_PRIVATE_API std::string_view Table::getName() const
+	{
+		return m_Name;
+	}
+
 	MANGO_PRIVATE_API const_ptr<Column> Table::getColumn(std::string_view columnName) const
 	{
 		for (const auto& column : m_Columns)
@@ -154,11 +159,6 @@ namespace Mango
 #pragma endregion
 
 #pragma region MANGO_PUBLIC_API
-	MANGO_PUBLIC_API std::string_view Table::getName() const
-	{
-		return m_Name;
-	}
-
 	MANGO_PUBLIC_API Table::Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, std::vector<Column>&& columns)
 	{
 		m_Name = std::move(name);
