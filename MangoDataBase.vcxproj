@@ -200,7 +200,6 @@
     <ClCompile Include="Mango\Table\Table.cpp" />
     <ClCompile Include="Mango\Table\ConstTableIterator.cpp" />
     <ClCompile Include="Mango\Table\TableIterator.cpp" />
-    <ClCompile Include="Mango\Testing\Testing.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="standard_library.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -251,7 +250,6 @@
     <ClInclude Include="Mango\Table\Table.hpp" />
     <ClInclude Include="Mango\Table\ConstTableIterator.hpp" />
     <ClInclude Include="Mango\Table\TableIterator.hpp" />
-    <ClInclude Include="Mango\Testing\Testing.hpp" />
     <ClInclude Include="standard_library.hpp" />
     <ClInclude Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.hpp" />
     <ClInclude Include="Utilities\ConsoleTestLoop\ConsoleTestLoop.hpp" />
