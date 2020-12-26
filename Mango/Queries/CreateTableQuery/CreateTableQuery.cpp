@@ -91,7 +91,7 @@ namespace Mango::Queries
 
     }
 
-    MANGO_PRIVATE_API void CreateTableQuery::checkResidualParts(Statement columns, Statement::iterator stringEnd)
+    MANGO_PRIVATE_API void CreateTableQuery::checkResidualParts(Statement columns, Statement::iterator stringEnd) const
     {
         if (std::string_view end(std::next(columns.closed), stringEnd); end.size() > 1)
         {

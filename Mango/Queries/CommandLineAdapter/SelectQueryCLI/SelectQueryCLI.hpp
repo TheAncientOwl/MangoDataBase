@@ -21,12 +21,12 @@ namespace Mango::Queries::CommandLineAdapter
 		/// <summary>
 		/// [] before () before <>
 		/// </summary>
-		MANGO_PRIVATE_API void checkStatementsOrder(Statement columns, Statement table, Statement condition, Statement::iterator defaultIt);
+		MANGO_PRIVATE_API void checkStatementsOrder(Statement columns, Statement table, Statement condition, Statement::iterator defaultIt) const;
 		
 		/// <summary>
 		/// SELECT [...] FROM (...) WHERE <...>;
 		/// </summary>
-		MANGO_PRIVATE_API void checkResidualParts(Statement columns, Statement table, Statement condition, std::string_view sql);
+		MANGO_PRIVATE_API void checkResidualParts(Statement columns, Statement table, Statement condition, std::string_view sql) const;
 
 		MANGO_PRIVATE_API void parseCondition(std::string_view condition);
 

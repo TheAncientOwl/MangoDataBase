@@ -7,7 +7,7 @@ namespace Mango::Queries::CommandLineAdapter
 
 #pragma region MANGO_PRIVATE_API
 	MANGO_PRIVATE_API void SelectQueryCLI::checkStatementsOrder(Statement columns, Statement table, Statement condition,
-		Statement::iterator defaultIt)
+														        Statement::iterator defaultIt) const
 	{
 		columns.checkValidOrder(defaultIt);
 
@@ -23,7 +23,7 @@ namespace Mango::Queries::CommandLineAdapter
 	}
 
 	MANGO_PRIVATE_API void SelectQueryCLI::checkResidualParts(Statement columns, Statement table, Statement condition, 
-														      std::string_view sql)
+														      std::string_view sql) const
 	{
 		{
 			std::string_view part(std::cbegin(sql), columns.open);

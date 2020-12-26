@@ -29,7 +29,7 @@ namespace Mango::Queries
 		/// (...);
 		/// residual parts: empty
 		/// </summary>
-		MANGO_PRIVATE_API void checkResidualParts(Statement columns, Statement::iterator stringEnd);
+		MANGO_PRIVATE_API void checkResidualParts(Statement columns, Statement::iterator stringEnd) const;
 
 	private:
 		MANGO_QUERY_INTERFACE bool match(std::string_view sql) const override;

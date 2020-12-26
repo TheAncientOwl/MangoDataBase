@@ -6,7 +6,7 @@ namespace Mango::Queries
 	using namespace Mango::Exceptions;
 
 #pragma region MANGO_PRIVATE_API
-	MANGO_PRIVATE_API void InsertIntoQuery::checkStatementsOrder(Statement columns, Statement values, Statement::iterator defaultIt)
+	MANGO_PRIVATE_API void InsertIntoQuery::checkStatementsOrder(Statement columns, Statement values, Statement::iterator defaultIt) const
 	{
 		values.checkValidOrder(defaultIt);
 		columns.checkValidOrder(defaultIt);
@@ -14,7 +14,7 @@ namespace Mango::Queries
 			throw InvalidSyntaxException({ "Syntax error, found '", values.openChar, "' before '", columns.closedChar, "'" });
 	}
 
-	MANGO_PRIVATE_API void InsertIntoQuery::checkResidualParts(Statement columns, Statement values, Statement::iterator stringEnd)
+	MANGO_PRIVATE_API void InsertIntoQuery::checkResidualParts(Statement columns, Statement values, Statement::iterator stringEnd) const
 	{
 		std::string_view valuesKeyword({ std::next(columns.closed), values.open });
 

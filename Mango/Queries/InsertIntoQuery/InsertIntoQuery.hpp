@@ -19,12 +19,12 @@ namespace Mango::Queries
 		/// <summary>
 		/// [] before ()
 		/// </summary>
-		MANGO_PRIVATE_API void checkStatementsOrder(Statement columns, Statement values, Statement::iterator defaultIt);
+		MANGO_PRIVATE_API void checkStatementsOrder(Statement columns, Statement values, Statement::iterator defaultIt) const;
 
 		/// <summary>
 		/// allowed: VALUES after [] optionally.
 		/// </summary>
-		MANGO_PRIVATE_API void checkResidualParts(Statement columns, Statement values, Statement::iterator stringEnd);
+		MANGO_PRIVATE_API void checkResidualParts(Statement columns, Statement values, Statement::iterator stringEnd) const;
 
 		/// <summary>
 		/// INSERT INTO table_name

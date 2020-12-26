@@ -18,12 +18,12 @@ namespace Mango::Queries
 		/// <summary>
 		/// */[] before ()
 		/// </summary>
-		MANGO_PRIVATE_API void checkStatementsOrder(Statement columns, Statement table, Statement::iterator defaultIt);
+		MANGO_PRIVATE_API void checkStatementsOrder(Statement columns, Statement table, Statement::iterator defaultIt) const;
 
 		/// <summary>
 		/// SELECT */[...] FROM (...);
 		/// </summary>
-		MANGO_PRIVATE_API void checkResidualParts(Statement columns, Statement table, std::string_view sql);
+		MANGO_PRIVATE_API void checkResidualParts(Statement columns, Statement table, std::string_view sql) const;
 
 		/// <summary>
 		/// col1, col2, ...
