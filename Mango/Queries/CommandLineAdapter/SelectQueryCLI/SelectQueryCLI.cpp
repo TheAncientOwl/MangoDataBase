@@ -74,7 +74,7 @@ namespace Mango::Queries::CommandLineAdapter
 
 		if (value.front() == '"' || value.back() == '"')
 		{
-			if(value.front() != '"' || value.back() != '"')
+			if (value.front() != '"' || value.back() != '"')
 					throw InvalidSyntaxException("Missing '\"'");
 			value.remove_prefix(1);
 			value.remove_suffix(1);
