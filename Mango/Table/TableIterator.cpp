@@ -47,7 +47,7 @@ namespace Mango
 	}
 
 	MANGO_PRIVATE_API TableIterator::TableIterator(const_ref<std::filesystem::path> tableDataFilePath, const_ref<std::shared_ptr<RowConfiguration>> rowConfig)
-		: m_FileStream(tableDataFilePath, std::ios::in | std::ios::out | std::ios::binary), m_Data(rowConfig->totalSize(), rowConfig)
+		: m_FileStream(tableDataFilePath, std::ios::in | std::ios::out | std::ios::binary), m_Data(rowConfig->calculateTotalSize(), rowConfig)
 	{
 	}
 #pragma endregion

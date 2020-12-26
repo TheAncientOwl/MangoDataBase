@@ -171,7 +171,7 @@ namespace Mango::Queries
 	{
 		auto table = dataBase.getTable(m_TableName);
 		auto rowConfig = table->makeSharedRowConfiguration();
-		Row row(rowConfig->totalSize(), rowConfig);
+		Row row(rowConfig->calculateTotalSize(), rowConfig);
 
 		std::vector<size_t> columnIndexes;
 		columnIndexes.reserve(m_ColumnValues.size());

@@ -71,7 +71,7 @@ namespace Mango::Queries
 	MANGO_PRIVATE_API void SelectQuery::selectAll(ptr<Table> table, ref<MangoDB> dataBase) const
 	{
 		auto rowConfig = table->makeSharedRowConfiguration();
-		size_t rowSize = rowConfig->totalSize();
+		size_t rowSize = rowConfig->calculateTotalSize();
 
 		ConstTableIterator tableIterator = table->makeConstIterator();
 
@@ -97,7 +97,7 @@ namespace Mango::Queries
 			rowConfig->pushBack(column.size(), column.dataType());
 		}
 
-		size_t rowSize = rowConfig->totalSize();
+		size_t rowSize = rowConfig->calculateTotalSize();
 
 		auto& result = dataBase.m_LastResult;
 		ConstTableIterator tableIterator = table->makeConstIterator();

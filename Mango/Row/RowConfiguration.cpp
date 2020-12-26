@@ -41,7 +41,7 @@ namespace Mango
 #pragma endregion
 
 #pragma region MANGO_PUBLIC_API
-	MANGO_PUBLIC_API size_t RowConfiguration::totalSize() const
+	MANGO_PUBLIC_API size_t RowConfiguration::calculateTotalSize() const
 	{
 		size_t sum = 0;
 		for (auto size : m_Sizes)

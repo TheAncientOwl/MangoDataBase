@@ -24,7 +24,7 @@ namespace Mango
 		MANGO_PRIVATE_API size_t columnsNumber() const;
 
 	public:
-		MANGO_PUBLIC_API size_t totalSize() const;
+		MANGO_PUBLIC_API size_t calculateTotalSize() const;
 
 	public:
 		MANGO_PUBLIC_API RowConfiguration() = default;
