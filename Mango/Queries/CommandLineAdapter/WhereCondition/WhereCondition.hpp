@@ -3,13 +3,18 @@
 
 namespace Mango::Queries::CommandLineAdapter
 {
-	struct WhereCondition
+	class WhereCondition
 	{
-		std::string columnName;
-		std::string operation;
+	private:
+		std::string m_ColumnName;
+		std::string m_Operation;
 		std::string value;
 
-		WhereClause clause;
+		WhereClause m_Clause;
+
+	public:
+		WhereClause getClause() const;
+		void setClause(WhereClause clause);
 
 		bool empty() const;
 

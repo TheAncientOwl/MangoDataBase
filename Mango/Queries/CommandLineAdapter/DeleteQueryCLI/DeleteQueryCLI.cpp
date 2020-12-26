@@ -49,14 +49,14 @@ namespace Mango::Queries::CommandLineAdapter
 		DeleteQuery::validate(dataBase);
 
 		if (m_WhereCondition.empty())
-			m_WhereCondition.clause = &RowFilters::allwaysFalse;
+			m_WhereCondition.setClause(&RowFilters::allwaysFalse);
 		else
 			m_WhereCondition.validate(m_TableName, dataBase);
 	}
 
 	MANGO_QUERY_INTERFACE void DeleteQueryCLI::execute(ref<MangoDB> dataBase)
 	{
-		dataBase.setWhereClause(m_WhereCondition.clause);
+		dataBase.setWhereClause(m_WhereCondition.getClause());
 
 		DeleteQuery::execute(dataBase);
 	}

@@ -6,16 +6,26 @@ namespace Mango::Queries::CommandLineAdapter
 {
 	using namespace Mango::Exceptions;
 
+	WhereClause WhereCondition::getClause() const
+	{
+		return m_Clause;
+	}
+
+	void WhereCondition::setClause(WhereClause clause)
+	{
+		m_Clause = clause;
+	}
+
 	bool WhereCondition::empty() const
 	{
-		return this->columnName.empty();
+		return m_ColumnName.empty();
 	}
 
 	void WhereCondition::clear()
 	{
-		this->columnName.clear();
-		this->operation.clear();
-		this->value.clear();
+		m_ColumnName.clear();
+		m_Operation.clear();
+		value.clear();
 	}
 
 	void WhereCondition::parseFrom(std::string_view condition)
@@ -40,28 +50,28 @@ namespace Mango::Queries::CommandLineAdapter
 			value.remove_suffix(1);
 		}
 
-		this->columnName = args[0];
-		this->operation = args[1];
-		this->value = value;
+		m_ColumnName = args[0];
+		m_Operation = args[1];
+		value = value;
 	}
 
 	void WhereCondition::validate(std::string_view tableName, const_ref<MangoDB> dataBase)
 	{
-		if (!columnName.empty())
+		if (!m_ColumnName.empty())
 		{
 			auto table = dataBase.getTable(tableName);
 
 			ref<MangoDummyValues> dummy = MangoDummyValues::Instance();
 
-			dummy.m_Index = static_cast<int>(table->getColumnIndex(columnName));
+			dummy.m_Index = static_cast<int>(table->getColumnIndex(m_ColumnName));
 			if (dummy.m_Index == -1)
-				throw InvalidArgumentException({ "Column \"", columnName, "\" does not exists" });
+				throw InvalidArgumentException({ "Column \"", m_ColumnName, "\" does not exists" });
 
 			switch (table->getColumn(dummy.m_Index).dataType())
 			{
 			case DataType::Value::INT:
 			{
-				clause = RowFilters::Int::GetWhereClause(operation);
+				m_Clause = RowFilters::Int::GetWhereClause(m_Operation);
 				try
 				{
 					dummy.m_Int = std::stoi(value);
@@ -74,7 +84,7 @@ namespace Mango::Queries::CommandLineAdapter
 			}
 			case DataType::Value::FLOAT:
 			{
-				clause = RowFilters::Float::GetWhereClause(operation);
+				m_Clause = RowFilters::Float::GetWhereClause(m_Operation);
 				try
 				{
 					dummy.m_Float = std::stof(value);
@@ -87,7 +97,7 @@ namespace Mango::Queries::CommandLineAdapter
 			}
 			case DataType::Value::STRING:
 			{
-				clause = RowFilters::String::GetWhereClause(operation);
+				m_Clause = RowFilters::String::GetWhereClause(m_Operation);
 				dummy.m_String = value;
 				break;
 			}

@@ -73,7 +73,7 @@ namespace Mango
 		friend class Mango::Queries::SelectQuery;
 		friend class Mango::Queries::DeleteQuery;
 		friend class Mango::Queries::UpdateQuery;
-		friend struct Mango::Queries::CommandLineAdapter::WhereCondition;
+		friend class Mango::Queries::CommandLineAdapter::WhereCondition;
 		friend std::ostream& operator<<(std::ostream& out, const MangoDB& mango);
 	};
 }

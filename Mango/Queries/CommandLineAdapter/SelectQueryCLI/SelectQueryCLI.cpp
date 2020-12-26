@@ -119,14 +119,14 @@ namespace Mango::Queries::CommandLineAdapter
 		SelectQuery::validate(dataBase);
 
 		if (m_WhereCondition.empty())
-			m_WhereCondition.clause = &RowFilters::allwaysTrue;
+			m_WhereCondition.setClause(&RowFilters::allwaysTrue);
 		else
 			m_WhereCondition.validate(m_TableName, dataBase);
 	}
 
 	MANGO_QUERY_INTERFACE void SelectQueryCLI::execute(ref<MangoDB> dataBase)
 	{
-		dataBase.setWhereClause(m_WhereCondition.clause);
+		dataBase.setWhereClause(m_WhereCondition.getClause());
 
 		SelectQuery::execute(dataBase);
 	}

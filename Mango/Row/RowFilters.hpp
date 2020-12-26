@@ -38,7 +38,7 @@ namespace Mango
 		~MangoDummyValues() = default;
 
 	private:
-		friend struct Mango::Queries::CommandLineAdapter::WhereCondition;
+		friend class Mango::Queries::CommandLineAdapter::WhereCondition;
 	};
 
 	class MangoClauseGuard
