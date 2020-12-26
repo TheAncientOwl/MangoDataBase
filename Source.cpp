@@ -4,7 +4,7 @@
 
 int main()
 {
-	Mango::CommandLineInterface cli;
+	Mango::CommandLineInterface cli("TestDataBase");
 	cli.run();
 
 

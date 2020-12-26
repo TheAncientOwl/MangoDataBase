@@ -13,7 +13,7 @@ namespace Mango
 
 	void CommandLineInterface::run()
 	{
-		MangoDB dataBase("DataBaseFromCommandLine");
+		MangoDB dataBase(m_DataBaseDirectoryPath);
 		dataBase.loadTables();
 		
 		while (true)
@@ -120,6 +120,11 @@ namespace Mango
 			}
 		}
 
+	}
+
+	CommandLineInterface::CommandLineInterface(std::string_view dataBaseDirectoryPath)
+		: m_DataBaseDirectoryPath(dataBaseDirectoryPath)
+	{
 	}
 
 	const std::array<std::unique_ptr<AbstractQuery>, 7> CommandLineInterface::s_Queries{
