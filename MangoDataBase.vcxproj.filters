@@ -109,6 +109,9 @@
     <Filter Include="Mango\Queries\CommandLineAdapter\SelectQueryCLI">
       <UniqueIdentifier>{ebd68bae-acc9-4561-aaca-5136c2bc0a38}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Queries\CommandLineAdapter\DeleteQueryCLI">
+      <UniqueIdentifier>{aef563bf-b7c4-4042-883b-263b25150e58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -218,6 +221,9 @@
     </ClCompile>
     <ClCompile Include="Mango\Row\RowFilters.fwd.cpp">
       <Filter>Mango\Row</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.cpp">
+      <Filter>Mango\Queries\CommandLineAdapter\DeleteQueryCLI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -343,6 +349,9 @@
     </ClInclude>
     <ClInclude Include="Mango\MangoDB\MangoDB.fwd.hpp">
       <Filter>Mango\MangoDB</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.hpp">
+      <Filter>Mango\Queries\CommandLineAdapter\DeleteQueryCLI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

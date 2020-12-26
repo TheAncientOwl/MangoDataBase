@@ -9,3 +9,4 @@
 #include "DeleteQuery/DeleteQuery.hpp"
 #include "UpdateQuery/UpdateQuery.hpp"
 #include "CommandLineAdapter/SelectQueryCLI/SelectQueryCLI.hpp"
+#include "CommandLineAdapter/DeleteQueryCLI/DeleteQueryCLI.hpp"

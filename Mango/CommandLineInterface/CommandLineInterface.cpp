@@ -34,6 +34,7 @@ namespace Mango
 				displayCommand(4, MANGO_DROP_TABLE_SYNTAX);
 				displayCommand(5, MANGO_DISPLAY_SYNTAX);
 				displayCommand(6, MANGO_SELECT_CLI_SYNTAX);
+				displayCommand(7, MANGO_DELETE_CLI_SYNTAX);
 				continue;
 			}
 
@@ -121,12 +122,13 @@ namespace Mango
 
 	}
 
-	const std::array<std::unique_ptr<AbstractQuery>, 6> CommandLineInterface::s_Queries{
+	const std::array<std::unique_ptr<AbstractQuery>, 7> CommandLineInterface::s_Queries{
 		std::make_unique<CreateTableQuery>(),
 		std::make_unique<DropTableQuery>(),
 		std::make_unique<TruncateTableQuery>(),
 		std::make_unique<DisplayQuery>(),
 		std::make_unique<InsertIntoQuery>(),
-		std::make_unique<CommandLineAdapter::SelectQueryCLI>()
+		std::make_unique<CommandLineAdapter::SelectQueryCLI>(),
+		std::make_unique<CommandLineAdapter::DeleteQueryCLI>()
 	};
 }

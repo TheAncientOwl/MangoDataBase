@@ -26,7 +26,7 @@ namespace Mango::Queries
 			throw InvalidSyntaxException("Invalid delete query syntax");
 
 		if (args[0] != "DELETE" || args[1] != "FROM")
-			throw InvalidArgumentException("Check missing \"DELETE\" nor \"FROM\" keywords");
+			throw InvalidArgumentException("Invalid delete query syntax");
 
 		m_TableName = args[2];
 	}
@@ -39,6 +39,7 @@ namespace Mango::Queries
 
 	MANGO_QUERY_INTERFACE void DeleteQuery::execute(ref<MangoDB> dataBase)
 	{
+		MangoClauseGuard _(dataBase);
 		auto table = dataBase.getTable(m_TableName);
 
 		auto tableIterator = table->makeConstIterator();

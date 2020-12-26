@@ -180,6 +180,7 @@
     <ClCompile Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.cpp" />
     <ClCompile Include="Mango\MangoDB\MangoDB.cpp" />
     <ClCompile Include="Mango\Queries\AbstractQuery\AbstractQuery.cpp" />
+    <ClCompile Include="Mango\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.cpp" />
     <ClCompile Include="Mango\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.cpp" />
     <ClCompile Include="Mango\Queries\CreateTableQuery\CreateTableQuery.cpp" />
     <ClCompile Include="Mango\Queries\DeleteQuery\DeleteQuery.cpp" />
@@ -226,6 +227,7 @@
     <ClInclude Include="Mango\MangoDB\MangoDB.fwd.hpp" />
     <ClInclude Include="Mango\MangoDB\MangoDB.hpp" />
     <ClInclude Include="Mango\Queries\AbstractQuery\AbstractQuery.hpp" />
+    <ClInclude Include="Mango\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.hpp" />
     <ClInclude Include="Mango\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.hpp" />
     <ClInclude Include="Mango\Queries\CreateTableQuery\CreateTableQuery.hpp" />
     <ClInclude Include="Mango\Queries\DeleteQuery\DeleteQuery.hpp" />

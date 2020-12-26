@@ -13,5 +13,6 @@ namespace Mango::Queries
 	namespace CommandLineAdapter
 	{
 		class SelectQueryCLI;
+		class DeleteQueryCLI;
 	}
 }

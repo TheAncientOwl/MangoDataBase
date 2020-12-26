@@ -1,4 +1,5 @@
 #pragma once
+#include "../../Row/RowFilters.hpp"
 #include "../AbstractQuery/AbstractQuery.hpp"
 #define MANGO_DELETE_SYNTAX "DELETE FROM table_name;"
 
@@ -9,13 +10,13 @@ namespace Mango::Queries
 	/// [!] Where clause can be specified through MagoDB::setWhereClause(WhereClause whereClause);
 	/// [!] By default all values are deleted.
 	/// </summary>
-	class DeleteQuery final : public AbstractQuery
+	class DeleteQuery : public AbstractQuery
 	{
-	private:
+	protected:
 		std::string m_TableName;
 
-	private:
-		MANGO_QUERY_INTERFACE bool match(std::string_view sql) const override;
+	protected:
+		MANGO_QUERY_INTERFACE bool match(std::string_view sql) const final override;
 		MANGO_QUERY_INTERFACE void parse(std::string_view sql) override;
 		MANGO_QUERY_INTERFACE void validate(const_ref<MangoDB> dataBase) override;
 		MANGO_QUERY_INTERFACE void execute(ref<MangoDB> dataBase) override;

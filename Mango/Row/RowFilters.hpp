@@ -39,6 +39,7 @@ namespace Mango
 
 	private:
 		friend class Mango::Queries::CommandLineAdapter::SelectQueryCLI;
+		friend class Mango::Queries::CommandLineAdapter::DeleteQueryCLI;
 	};
 
 	class MangoClauseGuard
