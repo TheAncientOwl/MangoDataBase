@@ -14,5 +14,6 @@ namespace Mango::Queries
 	{
 		class SelectQueryCLI;
 		class DeleteQueryCLI;
+		struct WhereCondition;
 	}
 }

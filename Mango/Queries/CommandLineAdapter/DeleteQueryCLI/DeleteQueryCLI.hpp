@@ -1,5 +1,6 @@
 #pragma once
 #include "../../DeleteQuery/DeleteQuery.hpp"
+#include "../WhereCondition/WhereCondition.hpp"
 #define MANGO_DELETE_CLI_SYNTAX "DELETE FROM table_name WHERE <col = val>;"
 
 namespace Mango::Queries::CommandLineAdapter
@@ -10,14 +11,7 @@ namespace Mango::Queries::CommandLineAdapter
 	class DeleteQueryCLI final : public DeleteQuery
 	{
 	private:
-		std::string m_WhereColumnName;
-		std::string m_Operation;
-		std::string m_Value;
-
-		WhereClause m_WhereClause;
-
-	private:
-		MANGO_PRIVATE_API void parseCondition(std::string_view condition);
+		WhereCondition m_WhereCondition;
 
 	private:
 		MANGO_QUERY_INTERFACE void parse(std::string_view sql) override;

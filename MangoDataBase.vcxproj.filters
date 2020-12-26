@@ -112,6 +112,9 @@
     <Filter Include="Mango\Queries\CommandLineAdapter\DeleteQueryCLI">
       <UniqueIdentifier>{aef563bf-b7c4-4042-883b-263b25150e58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Queries\CommandLineAdapter\WhereCondition">
+      <UniqueIdentifier>{d265b8c3-d436-4948-8c07-ff1504ca8582}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -224,6 +227,9 @@
     </ClCompile>
     <ClCompile Include="Mango\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.cpp">
       <Filter>Mango\Queries\CommandLineAdapter\DeleteQueryCLI</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Queries\CommandLineAdapter\WhereCondition\WhereCondition.cpp">
+      <Filter>Mango\Queries\CommandLineAdapter\WhereCondition</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -352,6 +358,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.hpp">
       <Filter>Mango\Queries\CommandLineAdapter\DeleteQueryCLI</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Queries\CommandLineAdapter\WhereCondition\WhereCondition.hpp">
+      <Filter>Mango\Queries\CommandLineAdapter\WhereCondition</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

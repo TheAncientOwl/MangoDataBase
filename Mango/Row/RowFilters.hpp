@@ -38,8 +38,7 @@ namespace Mango
 		~MangoDummyValues() = default;
 
 	private:
-		friend class Mango::Queries::CommandLineAdapter::SelectQueryCLI;
-		friend class Mango::Queries::CommandLineAdapter::DeleteQueryCLI;
+		friend struct Mango::Queries::CommandLineAdapter::WhereCondition;
 	};
 
 	class MangoClauseGuard

@@ -182,6 +182,7 @@
     <ClCompile Include="Mango\Queries\AbstractQuery\AbstractQuery.cpp" />
     <ClCompile Include="Mango\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.cpp" />
     <ClCompile Include="Mango\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.cpp" />
+    <ClCompile Include="Mango\Queries\CommandLineAdapter\WhereCondition\WhereCondition.cpp" />
     <ClCompile Include="Mango\Queries\CreateTableQuery\CreateTableQuery.cpp" />
     <ClCompile Include="Mango\Queries\DeleteQuery\DeleteQuery.cpp" />
     <ClCompile Include="Mango\Queries\DisplayQuery\DisplayQuery.cpp" />
@@ -229,6 +230,7 @@
     <ClInclude Include="Mango\Queries\AbstractQuery\AbstractQuery.hpp" />
     <ClInclude Include="Mango\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.hpp" />
     <ClInclude Include="Mango\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.hpp" />
+    <ClInclude Include="Mango\Queries\CommandLineAdapter\WhereCondition\WhereCondition.hpp" />
     <ClInclude Include="Mango\Queries\CreateTableQuery\CreateTableQuery.hpp" />
     <ClInclude Include="Mango\Queries\DeleteQuery\DeleteQuery.hpp" />
     <ClInclude Include="Mango\Queries\DisplayQuery\DisplayQuery.hpp" />

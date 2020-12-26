@@ -57,33 +57,6 @@ namespace Mango::Queries::CommandLineAdapter
 				throw InvalidSyntaxException({ "Unknown sequence \"", part, "\"" });
 		}
 	}
-
-	MANGO_PRIVATE_API void SelectQueryCLI::parseCondition(std::string_view condition)
-	{
-		auto args = splitAtChar(condition, ' ');
-
-		if (args.size() < 3)
-			throw InvalidSyntaxException("Missing args at condition");
-
-		std::string_view value;
-
-		if (args.size() > 3)
-			value = std::string_view(args[2].data(), std::next(&args.back().back()));
-		else
-			value = args[2];
-
-		if (value.front() == '"' || value.back() == '"')
-		{
-			if (value.front() != '"' || value.back() != '"')
-					throw InvalidSyntaxException("Missing '\"'");
-			value.remove_prefix(1);
-			value.remove_suffix(1);
-		}
-
-		m_WhereColumnName = args[0];
-		m_Operation = args[1];
-		m_Value = value;
-	}
 #pragma endregion
 
 #pragma region MANGO_QUERY_INTERFACE
@@ -92,9 +65,7 @@ namespace Mango::Queries::CommandLineAdapter
 		m_TableName.clear();
 		m_ColumnNames.clear();
 
-		m_WhereColumnName.clear();
-		m_Operation.clear();
-		m_Value.clear();
+		m_WhereCondition.clear();
 
 		if (sql.back() != ';')
 			throw InvalidSyntaxException("Missing ';'");
@@ -134,7 +105,7 @@ namespace Mango::Queries::CommandLineAdapter
 			SelectQueryCLI::checkStatementsOrder(columns, table, condition, DEFAULT);
 			SelectQueryCLI::checkResidualParts(columns, table, condition, sql);
 			
-			SelectQueryCLI::parseCondition({ std::next(condition.open), condition.closed });
+			m_WhereCondition.parseFrom({ std::next(condition.open), condition.closed });
 		}
 		else
 		{
@@ -147,60 +118,15 @@ namespace Mango::Queries::CommandLineAdapter
 	{
 		SelectQuery::validate(dataBase);
 
-		if (m_WhereColumnName.empty())
-			m_WhereClause = &RowFilters::allwaysTrue;
+		if (m_WhereCondition.empty())
+			m_WhereCondition.clause = &RowFilters::allwaysTrue;
 		else
-		{
-			auto table = dataBase.getTable(m_TableName);
-
-			ref<MangoDummyValues> dummy = MangoDummyValues::Instance();
-
-			dummy.m_Index = static_cast<int>(table->getColumnIndex(m_WhereColumnName));
-			if (dummy.m_Index == -1)
-				throw InvalidArgumentException({ "Column \"", m_WhereColumnName, "\" does not exists" });
-		
-			switch (table->getColumn(dummy.m_Index).dataType())
-			{
-				case DataType::Value::INT:
-				{
-					m_WhereClause = RowFilters::Int::GetWhereClause(m_Operation);
-					try
-					{
-						dummy.m_Int = std::stoi(m_Value);
-					}
-					catch (...)
-					{
-						throw InvalidArgumentException({ "Cannot convert \"", m_Value, "\" to int" });
-					}
-					break;
-				}
-				case DataType::Value::FLOAT:
-				{
-					m_WhereClause = RowFilters::Float::GetWhereClause(m_Operation);
-					try
-					{
-						dummy.m_Float = std::stof(m_Value);
-					}
-					catch (...)
-					{
-						throw InvalidArgumentException({ "Cannot convert \"", m_Value, "\" to float" });
-					}
-					break;
-				}
-				case DataType::Value::STRING:
-				{
-					m_WhereClause = RowFilters::String::GetWhereClause(m_Operation);
-					dummy.m_String = m_Value;
-					break;
-				}
-			}
-		}
-
+			m_WhereCondition.validate(m_TableName, dataBase);
 	}
 
 	MANGO_QUERY_INTERFACE void SelectQueryCLI::execute(ref<MangoDB> dataBase)
 	{
-		dataBase.setWhereClause(m_WhereClause);
+		dataBase.setWhereClause(m_WhereCondition.clause);
 
 		SelectQuery::execute(dataBase);
 	}

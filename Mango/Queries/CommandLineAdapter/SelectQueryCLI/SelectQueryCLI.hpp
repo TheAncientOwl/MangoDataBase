@@ -1,5 +1,6 @@
 #pragma once
 #include "../../SelectQuery/SelectQuery.hpp"
+#include "../WhereCondition/WhereCondition.hpp"
 #define MANGO_SELECT_CLI_SYNTAX "SELECT */[col1, col2, ...] FROM (table_name) WHERE <col = value>;"
 
 namespace Mango::Queries::CommandLineAdapter
@@ -10,11 +11,7 @@ namespace Mango::Queries::CommandLineAdapter
 	class SelectQueryCLI final : public SelectQuery
 	{
 	private:
-		std::string m_WhereColumnName;
-		std::string m_Operation;
-		std::string m_Value;
-
-		WhereClause m_WhereClause;
+		WhereCondition m_WhereCondition;
 
 	private:
 		/// <summary>
@@ -26,8 +23,6 @@ namespace Mango::Queries::CommandLineAdapter
 		/// SELECT [...] FROM (...) WHERE <...>;
 		/// </summary>
 		MANGO_PRIVATE_API void checkResidualParts(Statement columns, Statement table, Statement condition, std::string_view sql) const;
-
-		MANGO_PRIVATE_API void parseCondition(std::string_view condition);
 
 	private:
 		MANGO_QUERY_INTERFACE void parse(std::string_view sql) override;
