@@ -97,18 +97,20 @@ namespace Mango
 
 	MANGO_PRIVATE_API const_ptr<Column> Table::getColumn(std::string_view columnName) const
 	{
-		for (const auto& column : m_Columns)
-			if (column.name() == columnName)
-				return &column;
-		return nullptr;
+		size_t index = getColumnIndex(columnName);
+		if (index == -1)
+			return nullptr;
+		else
+			return &m_Columns[index];
 	}
 
 	MANGO_PRIVATE_API ptr<Column> Table::getColumn(std::string_view columnName)
 	{
-		for (auto& column : m_Columns)
-			if (column.name() == columnName)
-				return &column;
-		return nullptr;
+		size_t index = getColumnIndex(columnName);
+		if (index == -1)
+			return nullptr;
+		else
+			return &m_Columns[index];
 	}
 
 	MANGO_PRIVATE_API const_ref<Column> Table::getColumn(int index) const
