@@ -13,7 +13,7 @@ namespace Mango
 		static const std::array<std::unique_ptr<AbstractQuery>, 7> s_Queries;
 
 	public:
-		void run();
+		void run() const;
 
 		MANGO_PUBLIC_API CommandLineInterface(std::string_view dataBaseDirectoryPath);
 

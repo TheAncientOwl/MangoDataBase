@@ -11,7 +11,7 @@ namespace Mango
 		std::cout << ccolor::green << syntax << '\n';
 	}
 
-	void CommandLineInterface::run()
+	void CommandLineInterface::run() const
 	{
 		MangoDB dataBase(m_DataBaseDirectoryPath);
 		dataBase.loadTableConfigs();
