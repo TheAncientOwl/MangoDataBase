@@ -13,7 +13,7 @@ namespace Mango
 	{
 		table->createFiles();
 		m_Tables.push_back(std::move(table));
-		storeTables();
+		storeTableConfigs();
 	}
 
 	MANGO_PRIVATE_API void MangoDB::removeTable(std::string_view tableName)
@@ -29,7 +29,7 @@ namespace Mango
 
 		m_Tables = std::move(newTables);
 
-		storeTables();
+		storeTableConfigs();
 	}
 
 	MANGO_PRIVATE_API const_ptr<Table> MangoDB::getTable(std::string_view tableName) const
@@ -52,10 +52,8 @@ namespace Mango
 	{
 		return m_Tables;
 	}
-#pragma endregion
-	
-#pragma region MANGO_PUBLIC_API
-	MANGO_PUBLIC_API void MangoDB::storeTables() const
+
+	MANGO_PRIVATE_API void MangoDB::storeTableConfigs() const
 	{
 		std::fstream file(getConfigFilePath(), std::ios::out | std::ios::trunc | std::ios::binary);
 
@@ -73,8 +71,10 @@ namespace Mango
 
 		file.close();
 	}
-
-	MANGO_PUBLIC_API void MangoDB::loadTables()
+#pragma endregion
+	
+#pragma region MANGO_PUBLIC_API
+	MANGO_PUBLIC_API void MangoDB::loadTableConfigs()
 	{
 		std::fstream file(getConfigFilePath(), std::ios::in | std::ios::binary);
 
@@ -143,6 +143,11 @@ namespace Mango
 		std::fstream file;
 		file.open(getConfigFilePath(), std::ios::out | std::ios::app | std::ios::binary);
 		file.close();
+	}
+
+	MANGO_PUBLIC_API MangoDB::~MangoDB()
+	{
+		storeTableConfigs();
 	}
 
 	MANGO_PUBLIC_API std::ostream& operator<<(std::ostream& out, const MangoDB& mango)

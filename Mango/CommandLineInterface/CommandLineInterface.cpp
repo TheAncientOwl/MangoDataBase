@@ -14,7 +14,7 @@ namespace Mango
 	void CommandLineInterface::run()
 	{
 		MangoDB dataBase(m_DataBaseDirectoryPath);
-		dataBase.loadTables();
+		dataBase.loadTableConfigs();
 		
 		while (true)
 		{
@@ -119,7 +119,6 @@ namespace Mango
 
 			}
 		}
-
 	}
 
 	CommandLineInterface::CommandLineInterface(std::string_view dataBaseDirectoryPath)

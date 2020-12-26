@@ -40,9 +40,10 @@ namespace Mango
 		MANGO_PRIVATE_API ptr<Table> getTable(std::string_view tableName);
 		MANGO_PRIVATE_API const_ref<std::vector<std::unique_ptr<Table>>> tables() const;
 
+		MANGO_PRIVATE_API void storeTableConfigs() const;
+
 	public:
-		MANGO_PUBLIC_API void storeTables() const;
-		MANGO_PUBLIC_API void loadTables();
+		MANGO_PUBLIC_API void loadTableConfigs();
 
 		MANGO_PUBLIC_API const_ref<std::vector<Row>> lastResult();
 		MANGO_PUBLIC_API std::vector<Row> extractLastResult();
@@ -61,7 +62,7 @@ namespace Mango
 		MANGO_PUBLIC_API MangoDB(MangoDB&&) noexcept = default;
 		MANGO_PUBLIC_API MangoDB& operator=(const MangoDB&) = delete;
 		MANGO_PUBLIC_API MangoDB& operator=(MangoDB&&) noexcept = default;
-		MANGO_PUBLIC_API ~MangoDB() = default;
+		MANGO_PUBLIC_API ~MangoDB();
 
 	private:
 		friend class Mango::MangoClauseGuard;
