@@ -188,6 +188,7 @@ namespace Mango::Queries
 
 	MANGO_QUERY_INTERFACE void SelectQuery::execute(ref<MangoDB> dataBase)
 	{
+		MangoClauseGuard _(dataBase);
 		dataBase.m_LastResult.clear();
 
 		if (m_ColumnNames.empty())

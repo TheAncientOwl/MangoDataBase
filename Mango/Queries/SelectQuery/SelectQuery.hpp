@@ -1,4 +1,5 @@
 #pragma once
+#include "../../Row/RowFilters.hpp"
 #include "../AbstractQuery/AbstractQuery.hpp"
 #define MANGO_SELECT_SYNTAX "SELECT */[col1, col2, ...] FROM (table_name) WHERE <condition>;"
 
