@@ -8,7 +8,6 @@ namespace Mango::Queries::CommandLineAdapter
 #pragma region MANGO_PRIVATE_API
 	MANGO_PRIVATE_API void DeleteQueryCLI::parseCondition(std::string_view condition)
 	{
-		std::cout << condition << '\n';
 		auto args = splitAtChar(condition, ' ');
 
 		if (args.size() < 3)
