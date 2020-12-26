@@ -208,7 +208,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.cpp" />
-    <ClCompile Include="Utilities\ConsoleTestLoop\ConsoleTestLoop.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mango\Column\Column.hpp" />
@@ -252,7 +251,6 @@
     <ClInclude Include="Mango\Table\TableIterator.hpp" />
     <ClInclude Include="standard_library.hpp" />
     <ClInclude Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.hpp" />
-    <ClInclude Include="Utilities\ConsoleTestLoop\ConsoleTestLoop.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
