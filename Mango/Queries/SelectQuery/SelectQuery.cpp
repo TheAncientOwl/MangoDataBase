@@ -68,13 +68,14 @@ namespace Mango::Queries
 		m_TableName = args.front();
 	}
 
-	MANGO_PRIVATE_API void SelectQuery::selectAll(ptr<Table> table, ref<std::vector<Row>> result, ref<MangoDB> dataBase)
+	MANGO_PRIVATE_API void SelectQuery::selectAll(ptr<Table> table, ref<MangoDB> dataBase) const
 	{
 		auto rowConfig = table->makeSharedRowConfiguration();
 		size_t rowSize = rowConfig->totalSize();
 
 		ConstTableIterator tableIterator = table->makeConstIterator();
 
+		auto& result = dataBase.m_LastResult;
 		result.emplace_back(rowSize, rowConfig);
 
 		while (tableIterator.advanceInPlace(result.back()))
@@ -83,7 +84,7 @@ namespace Mango::Queries
 		result.pop_back();
 	}
 
-	MANGO_PRIVATE_API void SelectQuery::selectSome(ptr<Table> table, ref<std::vector<Row>> result, ref<MangoDB> dataBase)
+	MANGO_PRIVATE_API void SelectQuery::selectSome(ptr<Table> table, ref<MangoDB> dataBase) const
 	{
 		std::vector<int> selectedColumnIndexes;
 		auto rowConfig = std::make_shared<RowConfiguration>();
@@ -98,6 +99,7 @@ namespace Mango::Queries
 
 		size_t rowSize = rowConfig->totalSize();
 
+		auto& result = dataBase.m_LastResult;
 		ConstTableIterator tableIterator = table->makeConstIterator();
 		bool selected = true;
 		while (tableIterator.advance())
@@ -189,9 +191,9 @@ namespace Mango::Queries
 		dataBase.m_LastResult.clear();
 
 		if (m_ColumnNames.empty())
-			selectAll(dataBase.getTable(m_TableName), dataBase.m_LastResult, dataBase);
+			selectAll(dataBase.getTable(m_TableName), dataBase);
 		else
-			selectSome(dataBase.getTable(m_TableName), dataBase.m_LastResult, dataBase);
+			selectSome(dataBase.getTable(m_TableName), dataBase);
 	}
 #pragma endregion
 	
