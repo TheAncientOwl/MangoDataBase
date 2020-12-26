@@ -3,8 +3,8 @@
 
 namespace Mango::Queries
 {
-#pragma region MANGO_PROTECTED_API
-	MANGO_PROTECTED_API std::vector<std::string_view> AbstractQuery::splitAtAnyOf(std::string_view str, std::string_view delims) const
+#pragma region MANGO_PUBLIC_API
+	MANGO_PUBLIC_API std::vector<std::string_view> AbstractQuery::splitAtAnyOf(std::string_view str, std::string_view delims)
 	{
 		std::vector<std::string_view> out;
 
@@ -30,7 +30,7 @@ namespace Mango::Queries
 		return out;
 	}
 
-	MANGO_PROTECTED_API std::vector<std::string_view> AbstractQuery::splitAtChar(std::string_view str, char c) const
+	MANGO_PUBLIC_API std::vector<std::string_view> AbstractQuery::splitAtChar(std::string_view str, char c)
 	{
 		std::vector<std::string_view> out;
 
@@ -56,7 +56,7 @@ namespace Mango::Queries
 		return out;
 	}
 
-	MANGO_PROTECTED_API bool AbstractQuery::isValidIdentifier(std::string_view identifier) const
+	MANGO_PUBLIC_API bool AbstractQuery::isValidIdentifier(std::string_view identifier)
 	{
 		if (identifier.empty())
 			return false;

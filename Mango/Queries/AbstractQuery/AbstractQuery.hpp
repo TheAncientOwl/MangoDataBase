@@ -15,10 +15,10 @@ namespace Mango::Queries
 	private:
 		static bool s_InvalidIdentifierChars[257];
 
-	protected:
-		MANGO_PROTECTED_API std::vector<std::string_view> splitAtAnyOf(std::string_view str, std::string_view delims) const;
-		MANGO_PROTECTED_API std::vector<std::string_view> splitAtChar(std::string_view str, char c) const;
-		MANGO_PROTECTED_API bool isValidIdentifier(std::string_view identifier) const;
+	public:
+		MANGO_PUBLIC_API static std::vector<std::string_view> splitAtAnyOf(std::string_view str, std::string_view delims);
+		MANGO_PUBLIC_API static std::vector<std::string_view> splitAtChar(std::string_view str, char c);
+		MANGO_PUBLIC_API static bool isValidIdentifier(std::string_view identifier);
 
 	private:
 		/// <summary>
