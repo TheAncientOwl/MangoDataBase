@@ -1,6 +1,8 @@
 #include "standard_library.hpp"
 #include "QueryExecutor.hpp"
 
+using namespace Mango::Implementation::Queries;
+
 namespace Mango
 {
 	void QueryExecutor::execute(std::string&& sql, ref<MangoDB> dataBase)

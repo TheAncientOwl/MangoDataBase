@@ -3,14 +3,11 @@
 
 namespace Mango
 {
-	using namespace Queries;
-	using namespace Exceptions;
-
 	class CommandLineInterface
 	{
 	private:
 		std::filesystem::path m_DataBaseDirectoryPath;
-		static const std::array<std::unique_ptr<AbstractQuery>, 7> s_Queries;
+		static const std::array<std::unique_ptr<Implementation::Queries::AbstractQuery>, 7> s_Queries;
 
 	public:
 		void run() const;

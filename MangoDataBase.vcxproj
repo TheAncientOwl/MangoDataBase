@@ -167,9 +167,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Mango\Column\Column.cpp" />
     <ClCompile Include="Mango\CommandLineInterface\CommandLineInterface.cpp" />
-    <ClCompile Include="Mango\DataType\DataType.cpp" />
     <ClCompile Include="Mango\Exceptions\FeatureNotImplementedException\FeatureNotImplementedException.cpp" />
     <ClCompile Include="Mango\Exceptions\InvalidArgumentException\InvalidArgumentException.cpp" />
     <ClCompile Include="Mango\Exceptions\InvalidSyntaxException\InvalidSyntaxException.cpp" />
@@ -178,28 +176,30 @@
     <ClCompile Include="Mango\Exceptions\NanException\NanException.cpp" />
     <ClCompile Include="Mango\Exceptions\TableAlreadyExistsException\TableAlreadyExistsException.cpp" />
     <ClCompile Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.cpp" />
+    <ClCompile Include="Mango\Implementation\Column\Column.cpp" />
+    <ClCompile Include="Mango\Implementation\DataType\DataType.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\AbstractQuery\AbstractQuery.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\WhereCondition\WhereCondition.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\CreateTableQuery\CreateTableQuery.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\DeleteQuery\DeleteQuery.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\DisplayQuery\DisplayQuery.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\DropTableQuery\DropTableQuery.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\InsertIntoQuery\InsertIntoQuery.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\SelectQuery\SelectQuery.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\Statement\Statement.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\TruncateTableQuery\TruncateTableQuery.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\UpdateQuery\UpdateQuery.cpp" />
+    <ClCompile Include="Mango\Implementation\Row\Row.cpp" />
+    <ClCompile Include="Mango\Implementation\Row\RowConfiguration.cpp" />
+    <ClCompile Include="Mango\Implementation\Row\RowFilters.cpp" />
+    <ClCompile Include="Mango\Implementation\Row\RowFilters.fwd.cpp" />
+    <ClCompile Include="Mango\Implementation\Table\ConstTableIterator.cpp" />
+    <ClCompile Include="Mango\Implementation\Table\Table.cpp" />
+    <ClCompile Include="Mango\Implementation\Table\TableIterator.cpp" />
     <ClCompile Include="Mango\MangoDB\MangoDB.cpp" />
-    <ClCompile Include="Mango\Queries\AbstractQuery\AbstractQuery.cpp" />
-    <ClCompile Include="Mango\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.cpp" />
-    <ClCompile Include="Mango\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.cpp" />
-    <ClCompile Include="Mango\Queries\CommandLineAdapter\WhereCondition\WhereCondition.cpp" />
-    <ClCompile Include="Mango\Queries\CreateTableQuery\CreateTableQuery.cpp" />
-    <ClCompile Include="Mango\Queries\DeleteQuery\DeleteQuery.cpp" />
-    <ClCompile Include="Mango\Queries\DisplayQuery\DisplayQuery.cpp" />
-    <ClCompile Include="Mango\Queries\DropTableQuery\DropTableQuery.cpp" />
-    <ClCompile Include="Mango\Queries\InsertIntoQuery\InsertIntoQuery.cpp" />
-    <ClCompile Include="Mango\Queries\SelectQuery\SelectQuery.cpp" />
-    <ClCompile Include="Mango\Queries\Statement\Statement.cpp" />
-    <ClCompile Include="Mango\Queries\TruncateTableQuery\TruncateTableQuery.cpp" />
-    <ClCompile Include="Mango\Queries\UpdateQuery\UpdateQuery.cpp" />
     <ClCompile Include="Mango\QueryExecutor\QueryExecutor.cpp" />
-    <ClCompile Include="Mango\Row\Row.cpp" />
-    <ClCompile Include="Mango\Row\RowConfiguration.cpp" />
-    <ClCompile Include="Mango\Row\RowFilters.cpp" />
-    <ClCompile Include="Mango\Row\RowFilters.fwd.cpp" />
-    <ClCompile Include="Mango\Table\Table.cpp" />
-    <ClCompile Include="Mango\Table\ConstTableIterator.cpp" />
-    <ClCompile Include="Mango\Table\TableIterator.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="standard_library.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -210,9 +210,7 @@
     <ClCompile Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Mango\Column\Column.hpp" />
     <ClInclude Include="Mango\CommandLineInterface\CommandLineInterface.hpp" />
-    <ClInclude Include="Mango\DataType\DataType.hpp" />
     <ClInclude Include="Mango\Exceptions\FeatureNotImplementedException\FeatureNotImplementedException.hpp" />
     <ClInclude Include="Mango\Exceptions\InvalidArgumentException\InvalidArgumentException.hpp" />
     <ClInclude Include="Mango\Exceptions\InvalidSyntaxException\InvalidSyntaxException.hpp" />
@@ -222,39 +220,41 @@
     <ClInclude Include="Mango\Exceptions\NanException\NanException.hpp" />
     <ClInclude Include="Mango\Exceptions\TableAlreadyExistsException\TableAlreadyExistsException.hpp" />
     <ClInclude Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.hpp" />
+    <ClInclude Include="Mango\Implementation\Column\Column.hpp" />
+    <ClInclude Include="Mango\Implementation\DataType\DataType.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\AbstractQuery\AbstractQuery.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\WhereCondition\WhereCondition.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\CreateTableQuery\CreateTableQuery.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\DeleteQuery\DeleteQuery.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\DisplayQuery\DisplayQuery.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\DropTableQuery\DropTableQuery.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\InsertIntoQuery\InsertIntoQuery.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\Queries.fwd.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\Queries.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\SelectQuery\SelectQuery.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\Statement\Statement.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\TruncateTableQuery\TruncateTableQuery.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\UpdateQuery\UpdateQuery.hpp" />
+    <ClInclude Include="Mango\Implementation\Row\Row.fwd.hpp" />
+    <ClInclude Include="Mango\Implementation\Row\Row.hpp" />
+    <ClInclude Include="Mango\Implementation\Row\RowConfiguration.hpp" />
+    <ClInclude Include="Mango\Implementation\Row\RowFilters.fwd.hpp" />
+    <ClInclude Include="Mango\Implementation\Row\RowFilters.hpp" />
+    <ClInclude Include="Mango\Implementation\Table\ConstTableIterator.hpp" />
+    <ClInclude Include="Mango\Implementation\Table\Table.fwd.hpp" />
+    <ClInclude Include="Mango\Implementation\Table\Table.hpp" />
+    <ClInclude Include="Mango\Implementation\Table\TableIterator.hpp" />
     <ClInclude Include="Mango\MangoAPI.hpp" />
     <ClInclude Include="Mango\MangoDB\MangoDB.fwd.hpp" />
     <ClInclude Include="Mango\MangoDB\MangoDB.hpp" />
-    <ClInclude Include="Mango\Queries\AbstractQuery\AbstractQuery.hpp" />
-    <ClInclude Include="Mango\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.hpp" />
-    <ClInclude Include="Mango\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.hpp" />
-    <ClInclude Include="Mango\Queries\CommandLineAdapter\WhereCondition\WhereCondition.hpp" />
-    <ClInclude Include="Mango\Queries\CreateTableQuery\CreateTableQuery.hpp" />
-    <ClInclude Include="Mango\Queries\DeleteQuery\DeleteQuery.hpp" />
-    <ClInclude Include="Mango\Queries\DisplayQuery\DisplayQuery.hpp" />
-    <ClInclude Include="Mango\Queries\DropTableQuery\DropTableQuery.hpp" />
-    <ClInclude Include="Mango\Queries\InsertIntoQuery\InsertIntoQuery.hpp" />
-    <ClInclude Include="Mango\Queries\Queries.hpp" />
-    <ClInclude Include="Mango\Queries\SelectQuery\SelectQuery.hpp" />
-    <ClInclude Include="Mango\Queries\Statement\Statement.hpp" />
-    <ClInclude Include="Mango\Queries\TruncateTableQuery\TruncateTableQuery.hpp" />
-    <ClInclude Include="Mango\Queries\UpdateQuery\UpdateQuery.hpp" />
     <ClInclude Include="Mango\QueryExecutor\QueryExecutor.hpp" />
-    <ClInclude Include="Mango\Row\Row.fwd.hpp" />
-    <ClInclude Include="Mango\Row\Row.hpp" />
-    <ClInclude Include="Mango\Row\RowFilters.fwd.hpp" />
-    <ClInclude Include="Mango\Row\RowConfiguration.hpp" />
-    <ClInclude Include="Mango\Row\RowFilters.hpp" />
-    <ClInclude Include="Mango\Table\Table.fwd.hpp" />
-    <ClInclude Include="Mango\Table\Table.hpp" />
-    <ClInclude Include="Mango\Table\ConstTableIterator.hpp" />
-    <ClInclude Include="Mango\Table\TableIterator.hpp" />
     <ClInclude Include="standard_library.hpp" />
     <ClInclude Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
-    <None Include="Mango\Queries\Queries.fwd.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

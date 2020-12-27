@@ -1,6 +1,11 @@
 #include "standard_library.hpp"
 #include "CommandLineInterface.hpp"
 
+#include "../Implementation/Queries/Queries.hpp"
+
+using namespace Mango::Implementation::Queries;
+using namespace Mango::Exceptions;
+
 namespace Mango
 {
 	void displayCommand(int number, std::string_view syntax)
@@ -54,6 +59,7 @@ namespace Mango
 					}
 					else
 					{
+						using namespace Implementation::Queries;
 						std::string_view str(sql);
 						Statement::iterator DEFAULT = std::cbegin(str);
 						Statement condition(std::find(std::cbegin(str), std::cend(str), '<'), std::find(std::cbegin(str), std::cend(str), '>'), "<", ">");

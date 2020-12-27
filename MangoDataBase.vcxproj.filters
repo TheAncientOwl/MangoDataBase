@@ -16,15 +16,6 @@
     <Filter Include="Mango">
       <UniqueIdentifier>{69e4b8b1-a0ea-4c55-97bb-33810e563ae5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Mango\DataType">
-      <UniqueIdentifier>{b989cbe1-0083-402d-9fc9-4b569fd48bfe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mango\Column">
-      <UniqueIdentifier>{66e5ccb6-be78-485a-a88d-098e69ad77ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mango\Table">
-      <UniqueIdentifier>{e0868883-c784-4a4f-bb39-094d4a026df2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Mango\MangoDB">
       <UniqueIdentifier>{f715e22b-859c-49c7-b030-7fffe98042a5}</UniqueIdentifier>
     </Filter>
@@ -55,59 +46,71 @@
     <Filter Include="Mango\Exceptions\TableNotFound">
       <UniqueIdentifier>{ace3a5ef-61fc-49b4-8850-5b61bedbdf77}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Mango\Row">
-      <UniqueIdentifier>{5d215d61-3678-482d-9cbe-2bb4559cc341}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mango\Queries">
-      <UniqueIdentifier>{b812cf47-a9b3-40d9-a26b-33babdfa427b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mango\Queries\AbstractQuery">
-      <UniqueIdentifier>{fc1b2c03-c97c-4437-99d2-320a9e86b5a1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Mango\QueryExecutor">
       <UniqueIdentifier>{6b9bb887-d874-477d-b036-6aa3f7c1d2a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mango\Queries\CreateTableQuery">
-      <UniqueIdentifier>{558dbff9-c2a3-4451-aa24-08a5793ca519}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mango\Queries\Statement">
-      <UniqueIdentifier>{6ba27739-3f0a-4380-adfc-53d5895b114a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mango\Queries\DropTableQuery">
-      <UniqueIdentifier>{a872970c-7497-40ef-a061-33c9713abcd4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mango\Queries\TruncateTableQuery">
-      <UniqueIdentifier>{54488e42-794d-4fd7-a094-c5efb9dec983}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mango\Queries\DisplayQuery">
-      <UniqueIdentifier>{cd3188b2-0be0-4193-8255-f1bcc89e4751}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mango\Queries\InsertIntoQuery">
-      <UniqueIdentifier>{235d1242-718b-44de-9eb8-2396b2e34b52}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mango\Queries\SelectQuery">
-      <UniqueIdentifier>{72b8211e-649c-4cdc-9948-f2ce40526b7e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mango\Queries\DeleteQuery">
-      <UniqueIdentifier>{7a9601ef-5715-40f5-ae2b-1a99da845803}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Mango\Queries\UpdateQuery">
-      <UniqueIdentifier>{f7f81f75-e910-48ef-a719-4ff7ecf9c705}</UniqueIdentifier>
     </Filter>
     <Filter Include="Mango\CommandLineInterface">
       <UniqueIdentifier>{6d4ef99b-f36e-4232-bb13-41dbe408798d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Mango\Queries\CommandLineAdapter">
+    <Filter Include="Mango\Implementation">
+      <UniqueIdentifier>{21354f82-5346-475f-988c-bd4afa2f7544}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Queries">
+      <UniqueIdentifier>{b812cf47-a9b3-40d9-a26b-33babdfa427b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Queries\AbstractQuery">
+      <UniqueIdentifier>{fc1b2c03-c97c-4437-99d2-320a9e86b5a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Queries\CreateTableQuery">
+      <UniqueIdentifier>{558dbff9-c2a3-4451-aa24-08a5793ca519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Queries\Statement">
+      <UniqueIdentifier>{6ba27739-3f0a-4380-adfc-53d5895b114a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Queries\DropTableQuery">
+      <UniqueIdentifier>{a872970c-7497-40ef-a061-33c9713abcd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Queries\TruncateTableQuery">
+      <UniqueIdentifier>{54488e42-794d-4fd7-a094-c5efb9dec983}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Queries\DisplayQuery">
+      <UniqueIdentifier>{cd3188b2-0be0-4193-8255-f1bcc89e4751}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Queries\InsertIntoQuery">
+      <UniqueIdentifier>{235d1242-718b-44de-9eb8-2396b2e34b52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Queries\SelectQuery">
+      <UniqueIdentifier>{72b8211e-649c-4cdc-9948-f2ce40526b7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Queries\DeleteQuery">
+      <UniqueIdentifier>{7a9601ef-5715-40f5-ae2b-1a99da845803}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Queries\UpdateQuery">
+      <UniqueIdentifier>{f7f81f75-e910-48ef-a719-4ff7ecf9c705}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Queries\CommandLineAdapter">
       <UniqueIdentifier>{7fcaa9a3-67ec-4e4c-9aec-d9afac08ad30}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Mango\Queries\CommandLineAdapter\SelectQueryCLI">
+    <Filter Include="Mango\Implementation\Queries\CommandLineAdapter\SelectQueryCLI">
       <UniqueIdentifier>{ebd68bae-acc9-4561-aaca-5136c2bc0a38}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Mango\Queries\CommandLineAdapter\DeleteQueryCLI">
+    <Filter Include="Mango\Implementation\Queries\CommandLineAdapter\DeleteQueryCLI">
       <UniqueIdentifier>{aef563bf-b7c4-4042-883b-263b25150e58}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Mango\Queries\CommandLineAdapter\WhereCondition">
+    <Filter Include="Mango\Implementation\Queries\CommandLineAdapter\WhereCondition">
       <UniqueIdentifier>{d265b8c3-d436-4948-8c07-ff1504ca8582}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Column">
+      <UniqueIdentifier>{66e5ccb6-be78-485a-a88d-098e69ad77ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\DataType">
+      <UniqueIdentifier>{b989cbe1-0083-402d-9fc9-4b569fd48bfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Row">
+      <UniqueIdentifier>{5d215d61-3678-482d-9cbe-2bb4559cc341}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Table">
+      <UniqueIdentifier>{e0868883-c784-4a4f-bb39-094d4a026df2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -119,15 +122,6 @@
     </ClCompile>
     <ClCompile Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.cpp">
       <Filter>Utilities\ConsoleColorOutput</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\DataType\DataType.cpp">
-      <Filter>Mango\DataType</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\Column\Column.cpp">
-      <Filter>Mango\Column</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\Table\Table.cpp">
-      <Filter>Mango\Table</Filter>
     </ClCompile>
     <ClCompile Include="Mango\MangoDB\MangoDB.cpp">
       <Filter>Mango\MangoDB</Filter>
@@ -156,68 +150,77 @@
     <ClCompile Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.cpp">
       <Filter>Mango\Exceptions\TableNotFound</Filter>
     </ClCompile>
-    <ClCompile Include="Mango\Row\Row.cpp">
-      <Filter>Mango\Row</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\Row\RowConfiguration.cpp">
-      <Filter>Mango\Row</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\Queries\AbstractQuery\AbstractQuery.cpp">
-      <Filter>Mango\Queries\AbstractQuery</Filter>
-    </ClCompile>
     <ClCompile Include="Mango\QueryExecutor\QueryExecutor.cpp">
       <Filter>Mango\QueryExecutor</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\Queries\CreateTableQuery\CreateTableQuery.cpp">
-      <Filter>Mango\Queries\CreateTableQuery</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\Queries\Statement\Statement.cpp">
-      <Filter>Mango\Queries\Statement</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\Queries\DropTableQuery\DropTableQuery.cpp">
-      <Filter>Mango\Queries\DropTableQuery</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\Queries\TruncateTableQuery\TruncateTableQuery.cpp">
-      <Filter>Mango\Queries\TruncateTableQuery</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\Queries\DisplayQuery\DisplayQuery.cpp">
-      <Filter>Mango\Queries\DisplayQuery</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\Queries\InsertIntoQuery\InsertIntoQuery.cpp">
-      <Filter>Mango\Queries\InsertIntoQuery</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\Queries\SelectQuery\SelectQuery.cpp">
-      <Filter>Mango\Queries\SelectQuery</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\Row\RowFilters.cpp">
-      <Filter>Mango\Row</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\Queries\DeleteQuery\DeleteQuery.cpp">
-      <Filter>Mango\Queries\DeleteQuery</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\Table\ConstTableIterator.cpp">
-      <Filter>Mango\Table</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\Table\TableIterator.cpp">
-      <Filter>Mango\Table</Filter>
-    </ClCompile>
-    <ClCompile Include="Mango\Queries\UpdateQuery\UpdateQuery.cpp">
-      <Filter>Mango\Queries\UpdateQuery</Filter>
     </ClCompile>
     <ClCompile Include="Mango\CommandLineInterface\CommandLineInterface.cpp">
       <Filter>Mango\CommandLineInterface</Filter>
     </ClCompile>
-    <ClCompile Include="Mango\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.cpp">
-      <Filter>Mango\Queries\CommandLineAdapter\SelectQueryCLI</Filter>
+    <ClCompile Include="Mango\Implementation\Queries\AbstractQuery\AbstractQuery.cpp">
+      <Filter>Mango\Implementation\Queries\AbstractQuery</Filter>
     </ClCompile>
-    <ClCompile Include="Mango\Row\RowFilters.fwd.cpp">
-      <Filter>Mango\Row</Filter>
+    <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.cpp">
+      <Filter>Mango\Implementation\Queries\CommandLineAdapter\DeleteQueryCLI</Filter>
     </ClCompile>
-    <ClCompile Include="Mango\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.cpp">
-      <Filter>Mango\Queries\CommandLineAdapter\DeleteQueryCLI</Filter>
+    <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.cpp">
+      <Filter>Mango\Implementation\Queries\CommandLineAdapter\SelectQueryCLI</Filter>
     </ClCompile>
-    <ClCompile Include="Mango\Queries\CommandLineAdapter\WhereCondition\WhereCondition.cpp">
-      <Filter>Mango\Queries\CommandLineAdapter\WhereCondition</Filter>
+    <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\WhereCondition\WhereCondition.cpp">
+      <Filter>Mango\Implementation\Queries\CommandLineAdapter\WhereCondition</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\CreateTableQuery\CreateTableQuery.cpp">
+      <Filter>Mango\Implementation\Queries\CreateTableQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\DeleteQuery\DeleteQuery.cpp">
+      <Filter>Mango\Implementation\Queries\DeleteQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\DisplayQuery\DisplayQuery.cpp">
+      <Filter>Mango\Implementation\Queries\DisplayQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\DropTableQuery\DropTableQuery.cpp">
+      <Filter>Mango\Implementation\Queries\DropTableQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\InsertIntoQuery\InsertIntoQuery.cpp">
+      <Filter>Mango\Implementation\Queries\InsertIntoQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\SelectQuery\SelectQuery.cpp">
+      <Filter>Mango\Implementation\Queries\SelectQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\Statement\Statement.cpp">
+      <Filter>Mango\Implementation\Queries\Statement</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\TruncateTableQuery\TruncateTableQuery.cpp">
+      <Filter>Mango\Implementation\Queries\TruncateTableQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\UpdateQuery\UpdateQuery.cpp">
+      <Filter>Mango\Implementation\Queries\UpdateQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Column\Column.cpp">
+      <Filter>Mango\Implementation\Column</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\DataType\DataType.cpp">
+      <Filter>Mango\Implementation\DataType</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Row\Row.cpp">
+      <Filter>Mango\Implementation\Row</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Row\RowConfiguration.cpp">
+      <Filter>Mango\Implementation\Row</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Row\RowFilters.cpp">
+      <Filter>Mango\Implementation\Row</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Row\RowFilters.fwd.cpp">
+      <Filter>Mango\Implementation\Row</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Table\ConstTableIterator.cpp">
+      <Filter>Mango\Implementation\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Table\Table.cpp">
+      <Filter>Mango\Implementation\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Table\TableIterator.cpp">
+      <Filter>Mango\Implementation\Table</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,17 +230,8 @@
     <ClInclude Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.hpp">
       <Filter>Utilities\ConsoleColorOutput</Filter>
     </ClInclude>
-    <ClInclude Include="Mango\DataType\DataType.hpp">
-      <Filter>Mango\DataType</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Column\Column.hpp">
-      <Filter>Mango\Column</Filter>
-    </ClInclude>
     <ClInclude Include="Mango\MangoAPI.hpp">
       <Filter>Mango</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Table\Table.hpp">
-      <Filter>Mango\Table</Filter>
     </ClInclude>
     <ClInclude Include="Mango\MangoDB\MangoDB.hpp">
       <Filter>Mango\MangoDB</Filter>
@@ -266,89 +260,98 @@
     <ClInclude Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.hpp">
       <Filter>Mango\Exceptions\TableNotFound</Filter>
     </ClInclude>
-    <ClInclude Include="Mango\Row\Row.hpp">
-      <Filter>Mango\Row</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Row\RowConfiguration.hpp">
-      <Filter>Mango\Row</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Queries\AbstractQuery\AbstractQuery.hpp">
-      <Filter>Mango\Queries\AbstractQuery</Filter>
-    </ClInclude>
     <ClInclude Include="Mango\Exceptions\MangoExceptions.hpp">
       <Filter>Mango\Exceptions</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Queries\Queries.hpp">
-      <Filter>Mango\Queries</Filter>
     </ClInclude>
     <ClInclude Include="Mango\QueryExecutor\QueryExecutor.hpp">
       <Filter>Mango\QueryExecutor</Filter>
     </ClInclude>
-    <ClInclude Include="Mango\Queries\CreateTableQuery\CreateTableQuery.hpp">
-      <Filter>Mango\Queries\CreateTableQuery</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Queries\Statement\Statement.hpp">
-      <Filter>Mango\Queries\Statement</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Queries\DropTableQuery\DropTableQuery.hpp">
-      <Filter>Mango\Queries\DropTableQuery</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Queries\TruncateTableQuery\TruncateTableQuery.hpp">
-      <Filter>Mango\Queries\TruncateTableQuery</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Queries\DisplayQuery\DisplayQuery.hpp">
-      <Filter>Mango\Queries\DisplayQuery</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Queries\InsertIntoQuery\InsertIntoQuery.hpp">
-      <Filter>Mango\Queries\InsertIntoQuery</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Queries\SelectQuery\SelectQuery.hpp">
-      <Filter>Mango\Queries\SelectQuery</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Row\RowFilters.hpp">
-      <Filter>Mango\Row</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Queries\DeleteQuery\DeleteQuery.hpp">
-      <Filter>Mango\Queries\DeleteQuery</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Table\ConstTableIterator.hpp">
-      <Filter>Mango\Table</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Table\TableIterator.hpp">
-      <Filter>Mango\Table</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Queries\UpdateQuery\UpdateQuery.hpp">
-      <Filter>Mango\Queries\UpdateQuery</Filter>
-    </ClInclude>
     <ClInclude Include="Mango\CommandLineInterface\CommandLineInterface.hpp">
       <Filter>Mango\CommandLineInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.hpp">
-      <Filter>Mango\Queries\CommandLineAdapter\SelectQueryCLI</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Row\RowFilters.fwd.hpp">
-      <Filter>Mango\Row</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Row\Row.fwd.hpp">
-      <Filter>Mango\Row</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Table\Table.fwd.hpp">
-      <Filter>Mango\Table</Filter>
     </ClInclude>
     <ClInclude Include="Mango\MangoDB\MangoDB.fwd.hpp">
       <Filter>Mango\MangoDB</Filter>
     </ClInclude>
-    <ClInclude Include="Mango\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.hpp">
-      <Filter>Mango\Queries\CommandLineAdapter\DeleteQueryCLI</Filter>
+    <ClInclude Include="Mango\Implementation\Queries\Queries.fwd.hpp">
+      <Filter>Mango\Implementation\Queries</Filter>
     </ClInclude>
-    <ClInclude Include="Mango\Queries\CommandLineAdapter\WhereCondition\WhereCondition.hpp">
-      <Filter>Mango\Queries\CommandLineAdapter\WhereCondition</Filter>
+    <ClInclude Include="Mango\Implementation\Queries\Queries.hpp">
+      <Filter>Mango\Implementation\Queries</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\AbstractQuery\AbstractQuery.hpp">
+      <Filter>Mango\Implementation\Queries\AbstractQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.hpp">
+      <Filter>Mango\Implementation\Queries\CommandLineAdapter\DeleteQueryCLI</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.hpp">
+      <Filter>Mango\Implementation\Queries\CommandLineAdapter\SelectQueryCLI</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\WhereCondition\WhereCondition.hpp">
+      <Filter>Mango\Implementation\Queries\CommandLineAdapter\WhereCondition</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\CreateTableQuery\CreateTableQuery.hpp">
+      <Filter>Mango\Implementation\Queries\CreateTableQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\DeleteQuery\DeleteQuery.hpp">
+      <Filter>Mango\Implementation\Queries\DeleteQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\DisplayQuery\DisplayQuery.hpp">
+      <Filter>Mango\Implementation\Queries\DisplayQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\DropTableQuery\DropTableQuery.hpp">
+      <Filter>Mango\Implementation\Queries\DropTableQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\InsertIntoQuery\InsertIntoQuery.hpp">
+      <Filter>Mango\Implementation\Queries\InsertIntoQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\SelectQuery\SelectQuery.hpp">
+      <Filter>Mango\Implementation\Queries\SelectQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\Statement\Statement.hpp">
+      <Filter>Mango\Implementation\Queries\Statement</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\TruncateTableQuery\TruncateTableQuery.hpp">
+      <Filter>Mango\Implementation\Queries\TruncateTableQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\UpdateQuery\UpdateQuery.hpp">
+      <Filter>Mango\Implementation\Queries\UpdateQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Column\Column.hpp">
+      <Filter>Mango\Implementation\Column</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\DataType\DataType.hpp">
+      <Filter>Mango\Implementation\DataType</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Row\Row.fwd.hpp">
+      <Filter>Mango\Implementation\Row</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Row\Row.hpp">
+      <Filter>Mango\Implementation\Row</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Row\RowConfiguration.hpp">
+      <Filter>Mango\Implementation\Row</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Row\RowFilters.fwd.hpp">
+      <Filter>Mango\Implementation\Row</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Row\RowFilters.hpp">
+      <Filter>Mango\Implementation\Row</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Table\ConstTableIterator.hpp">
+      <Filter>Mango\Implementation\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Table\Table.fwd.hpp">
+      <Filter>Mango\Implementation\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Table\Table.hpp">
+      <Filter>Mango\Implementation\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Table\TableIterator.hpp">
+      <Filter>Mango\Implementation\Table</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
-    <None Include="Mango\Queries\Queries.fwd.hpp">
-      <Filter>Mango\Queries</Filter>
-    </None>
   </ItemGroup>
 </Project>

@@ -9,7 +9,7 @@ namespace Mango
 		return m_DirectoryPath / "tables" MANGO_CONFIG_EXTENSION;
 	}
 
-	MANGO_PRIVATE_API void MangoDB::addTable(std::unique_ptr<Table> table)
+	MANGO_PRIVATE_API void MangoDB::addTable(std::unique_ptr<Implementation::Table> table)
 	{
 		table->createFiles();
 		m_Tables.push_back(std::move(table));
@@ -18,7 +18,7 @@ namespace Mango
 
 	MANGO_PRIVATE_API void MangoDB::removeTable(std::string_view tableName)
 	{
-		std::vector<std::unique_ptr<Table>> newTables;
+		std::vector<std::unique_ptr<Implementation::Table>> newTables;
 		newTables.reserve(m_Tables.size() - 1);
 
 		for (auto& table : m_Tables)
@@ -32,7 +32,7 @@ namespace Mango
 		storeTableConfigs();
 	}
 
-	MANGO_PRIVATE_API const_ptr<Table> MangoDB::getTable(std::string_view tableName) const
+	MANGO_PRIVATE_API const_ptr<Implementation::Table> MangoDB::getTable(std::string_view tableName) const
 	{
 		for (const auto& tablePtr : m_Tables)
 			if (tablePtr->getName() == tableName)
@@ -40,7 +40,7 @@ namespace Mango
 		return nullptr;
 	}
 
-	MANGO_PRIVATE_API ptr<Table> MangoDB::getTable(std::string_view tableName)
+	MANGO_PRIVATE_API ptr<Implementation::Table> MangoDB::getTable(std::string_view tableName)
 	{
 		for (const auto& tablePtr : m_Tables)
 			if (tablePtr->getName() == tableName)
@@ -48,7 +48,7 @@ namespace Mango
 		return nullptr;
 	}
 
-	MANGO_PRIVATE_API const_ref<std::vector<std::unique_ptr<Table>>> MangoDB::tables() const
+	MANGO_PRIVATE_API const_ref<std::vector<std::unique_ptr<Implementation::Table>>> MangoDB::tables() const
 	{
 		return m_Tables;
 	}
@@ -89,53 +89,53 @@ namespace Mango
 			char buffer[MANGO_MAX_TABLE_NAME_LENGTH + 1]{};
 			deserializePOD(file, buffer, tableNameLenth);
 
-			std::vector<Column> columns;
-			auto& table = m_Tables.emplace_back(std::make_unique<Table>(buffer, m_DirectoryPath, std::move(columns)));
+			std::vector<Implementation::Column> columns;
+			auto& table = m_Tables.emplace_back(std::make_unique<Implementation::Table>(buffer, m_DirectoryPath, std::move(columns)));
 			table->deserializeConfig();
 		}
 
 		file.close();
 	}
 
-	MANGO_PUBLIC_API const_ref<std::vector<Row>> MangoDB::lastResult()
+	MANGO_PUBLIC_API const_ref<std::vector<Implementation::Row>> MangoDB::lastResult()
 	{
 		return m_LastResult;
 	}
 
-	MANGO_PUBLIC_API std::vector<Row> MangoDB::extractLastResult()
+	MANGO_PUBLIC_API std::vector<Implementation::Row> MangoDB::extractLastResult()
 	{
-		std::vector<Row> dummy(std::move(m_LastResult));
-		std::vector<Row>().swap(m_LastResult);
+		std::vector<Implementation::Row> dummy(std::move(m_LastResult));
+		std::vector<Implementation::Row>().swap(m_LastResult);
 		return dummy;
 	}
 
 	MANGO_PUBLIC_API void MangoDB::disposeLastResult()
 	{
-		std::vector<Row>().swap(m_LastResult);
+		std::vector<Implementation::Row>().swap(m_LastResult);
 	}
 
-	void MangoDB::setWhereClause(WhereClause whereClause)
+	void MangoDB::setWhereClause(Implementation::WhereClause whereClause)
 	{
 		m_WhereClause = whereClause;
 	}
 
 	void MangoDB::resetWhereClause()
 	{
-		m_WhereClause = &RowFilters::allwaysTrue;
+		m_WhereClause = &Implementation::RowFilters::allwaysTrue;
 	}
 
-	void MangoDB::setSetClause(SetClause setClause)
+	void MangoDB::setSetClause(Implementation::SetClause setClause)
 	{
 		m_SetClause = setClause;
 	}
 
 	void MangoDB::resetSetClause()
 	{
-		m_SetClause = &RowFilters::doNothing;
+		m_SetClause = &Implementation::RowFilters::doNothing;
 	}
 
 	MANGO_PUBLIC_API MangoDB::MangoDB(std::filesystem::path dataBaseDirectoryPath)
-		: m_WhereClause(&RowFilters::allwaysTrue), m_SetClause(&RowFilters::doNothing)
+		: m_WhereClause(&Implementation::RowFilters::allwaysTrue), m_SetClause(&Implementation::RowFilters::doNothing)
 	{
 		m_DirectoryPath = std::move(dataBaseDirectoryPath);
 		std::filesystem::create_directories(m_DirectoryPath);
@@ -150,13 +150,17 @@ namespace Mango
 		storeTableConfigs();
 	}
 
-	MANGO_PUBLIC_API std::ostream& operator<<(std::ostream& out, const MangoDB& mango)
+	namespace Implementation
 	{
-		out << ccolor::light_red << "|_____________[Data Base]_____________|\n";
-		for (const auto& table : mango.tables())
-			out << *table << '\n';
+		MANGO_PUBLIC_API std::ostream& operator<<(std::ostream& out, const MangoDB& mango)
+		{
+			out << ccolor::light_red << "|_____________[Data Base]_____________|\n";
+			for (const auto& table : mango.tables())
+				out << *table << '\n';
 
-		return out;
+			return out;
+		}
 	}
+	
 #pragma endregion
 }
