@@ -1,6 +1,7 @@
 #include "standard_library.hpp"
 #include "QueryExecutor.hpp"
 
+#include "../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Implementation::Queries;
 
 namespace Mango

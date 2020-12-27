@@ -2,6 +2,7 @@
 #include "WhereCondition.hpp"
 #include "../../AbstractQuery/AbstractQuery.hpp"
 
+#include "../../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
 namespace Mango::Implementation::Queries::CommandLineAdapter

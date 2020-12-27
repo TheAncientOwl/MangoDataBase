@@ -1,6 +1,7 @@
 #include "standard_library.hpp"
 #include "CreateTableQuery.hpp"
 
+#include "../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
 namespace Mango::Implementation::Queries
