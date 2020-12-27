@@ -1,5 +1,5 @@
 #pragma once
-#include "../Implementation/Queries/Queries.fwd.hpp"
+#include "../Queries/Queries.fwd.hpp"
 #include "Table.fwd.hpp"
 
 #include "../Row/Row.hpp"

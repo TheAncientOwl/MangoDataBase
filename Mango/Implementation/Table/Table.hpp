@@ -1,6 +1,6 @@
 #pragma once
-#include "../Implementation/Queries/Queries.fwd.hpp"
-#include "../MangoDB/MangoDB.fwd.hpp"
+#include "../Queries/Queries.fwd.hpp"
+#include "../../MangoDB/MangoDB.fwd.hpp"
 
 #include "../Column/Column.hpp"
 #include "../Row/Row.hpp"
