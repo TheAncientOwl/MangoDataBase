@@ -246,6 +246,7 @@
     <ClInclude Include="Mango\Implementation\Table\Table.fwd.hpp" />
     <ClInclude Include="Mango\Implementation\Table\Table.hpp" />
     <ClInclude Include="Mango\Implementation\Table\TableIterator.hpp" />
+    <ClInclude Include="Mango\MangoAPI.fwd.hpp" />
     <ClInclude Include="Mango\MangoAPI.hpp" />
     <ClInclude Include="Mango\MangoDB\MangoDB.fwd.hpp" />
     <ClInclude Include="Mango\MangoDB\MangoDB.hpp" />

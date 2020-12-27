@@ -350,6 +350,9 @@
     <ClInclude Include="Mango\Implementation\Table\TableIterator.hpp">
       <Filter>Mango\Implementation\Table</Filter>
     </ClInclude>
+    <ClInclude Include="Mango\MangoAPI.fwd.hpp">
+      <Filter>Mango</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

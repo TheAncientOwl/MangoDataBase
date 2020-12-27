@@ -1,9 +1,5 @@
 #pragma once
-namespace Mango
-{
-	class QueryExecutor;
-	class CommandLineInterface;
-}
+#include "../../../MangoAPI.fwd.hpp"
 
 #include "../Statement/Statement.hpp"
 #include "../../../MangoDB/MangoDB.hpp"
