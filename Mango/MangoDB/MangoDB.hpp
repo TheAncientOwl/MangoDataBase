@@ -80,6 +80,7 @@ namespace Mango
 		friend class Mango::Implementation::Queries::DeleteQuery;
 		friend class Mango::Implementation::Queries::UpdateQuery;
 		friend class Mango::Implementation::Queries::CommandLineAdapter::WhereCondition;
+		friend class Mango::Implementation::Queries::CommandLineAdapter::UpdateQueryCLI;
 		friend std::ostream& Implementation::operator<<(std::ostream& out, const MangoDB& mango);
 	};
 }

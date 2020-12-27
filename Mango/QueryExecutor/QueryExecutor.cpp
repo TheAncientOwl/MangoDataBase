@@ -8,7 +8,7 @@ namespace Mango
 {
 	void QueryExecutor::execute(std::string&& sql, ref<MangoDB> dataBase)
 	{
-		if (sql.size() > 4)
+		if (sql.size() > 5)
 		{
 			auto wannaBeEndOfInsert = std::cbegin(sql) + 6;
 			std::transform(std::cbegin(sql), wannaBeEndOfInsert, std::begin(sql), ::toupper);

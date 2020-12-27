@@ -35,6 +35,7 @@ namespace Mango::Implementation
 		MANGO_PUBLIC_API void setFloat(int index, float value);
 		MANGO_PUBLIC_API void setString(int index, std::string value);
 		MANGO_PUBLIC_API void setValue(int index, const_ref<std::string> value);
+		MANGO_PUBLIC_API void copyValue(int index, const_ref<Row> row);
 
 	public:
 		MANGO_PUBLIC_API Row(size_t size, const_ref<std::shared_ptr<RowConfiguration>> config);
@@ -54,6 +55,7 @@ namespace Mango::Implementation
 		friend class Mango::Implementation::Queries::InsertIntoQuery;
 		friend class Mango::Implementation::Queries::SelectQuery;
 		friend class Mango::Implementation::Queries::DeleteQuery;
+		friend void Mango::Implementation::Queries::CommandLineAdapter::setClauseCLI(ref<Row> row);
 		friend std::ostream& operator<<(std::ostream& out, const Row& row);
 	};
 }

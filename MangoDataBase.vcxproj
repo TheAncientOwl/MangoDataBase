@@ -181,6 +181,8 @@
     <ClCompile Include="Mango\Implementation\Queries\AbstractQuery\AbstractQuery.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\SetClauseData\SetClauseData.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\UpdateQueryCLI.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\WhereCondition\WhereCondition.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\CreateTableQuery\CreateTableQuery.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\DeleteQuery\DeleteQuery.cpp" />
@@ -225,6 +227,8 @@
     <ClInclude Include="Mango\Implementation\Queries\AbstractQuery\AbstractQuery.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\SetClauseData\SetClauseData.h" />
+    <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\UpdateQueryCLI.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\WhereCondition\WhereCondition.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\CreateTableQuery\CreateTableQuery.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\DeleteQuery\DeleteQuery.hpp" />

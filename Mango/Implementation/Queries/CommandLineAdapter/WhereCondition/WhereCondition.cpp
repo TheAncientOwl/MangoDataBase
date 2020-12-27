@@ -26,7 +26,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 	{
 		m_ColumnName.clear();
 		m_Operation.clear();
-		value.clear();
+		m_Value.clear();
 	}
 
 	void WhereCondition::parseFrom(std::string_view condition)
@@ -53,7 +53,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 
 		m_ColumnName = args[0];
 		m_Operation = args[1];
-		value = value;
+		m_Value = value;
 	}
 
 	void WhereCondition::validate(std::string_view tableName, const_ref<MangoDB> dataBase)
@@ -70,38 +70,38 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 
 			switch (table->getColumn(dummy.m_Index).dataType())
 			{
-			case DataType::Value::INT:
-			{
-				m_Clause = RowFilters::Int::GetWhereClause(m_Operation);
-				try
+				case DataType::Value::INT:
 				{
-					dummy.m_Int = std::stoi(value);
+					m_Clause = RowFilters::Int::GetWhereClause(m_Operation);
+					try
+					{
+						dummy.m_Int = std::stoi(m_Value);
+					}
+					catch (...)
+					{
+						throw InvalidArgumentException({ "Cannot convert \"", m_Value, "\" to int" });
+					}
+					break;
 				}
-				catch (...)
+				case DataType::Value::FLOAT:
 				{
-					throw InvalidArgumentException({ "Cannot convert \"", value, "\" to int" });
+					m_Clause = RowFilters::Float::GetWhereClause(m_Operation);
+					try
+					{
+						dummy.m_Float = std::stof(m_Value);
+					}
+					catch (...)
+					{
+						throw InvalidArgumentException({ "Cannot convert \"", m_Value, "\" to float" });
+					}
+					break;
 				}
-				break;
-			}
-			case DataType::Value::FLOAT:
-			{
-				m_Clause = RowFilters::Float::GetWhereClause(m_Operation);
-				try
+				case DataType::Value::STRING:
 				{
-					dummy.m_Float = std::stof(value);
+					m_Clause = RowFilters::String::GetWhereClause(m_Operation);
+					dummy.m_String = m_Value;
+					break;
 				}
-				catch (...)
-				{
-					throw InvalidArgumentException({ "Cannot convert \"", value, "\" to float" });
-				}
-				break;
-			}
-			case DataType::Value::STRING:
-			{
-				m_Clause = RowFilters::String::GetWhereClause(m_Operation);
-				dummy.m_String = value;
-				break;
-			}
 			}
 		}
 	}

@@ -112,6 +112,12 @@
     <Filter Include="Mango\Implementation\Table">
       <UniqueIdentifier>{e0868883-c784-4a4f-bb39-094d4a026df2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI">
+      <UniqueIdentifier>{14146c23-9973-41b0-8ba7-30211b9fc1b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\ClauseData">
+      <UniqueIdentifier>{215f1661-246c-4c5d-92d9-b11a97ecfcba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -221,6 +227,12 @@
     </ClCompile>
     <ClCompile Include="Mango\Implementation\Table\TableIterator.cpp">
       <Filter>Mango\Implementation\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\UpdateQueryCLI.cpp">
+      <Filter>Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\SetClauseData\SetClauseData.cpp">
+      <Filter>Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -352,6 +364,12 @@
     </ClInclude>
     <ClInclude Include="Mango\MangoAPI.fwd.hpp">
       <Filter>Mango</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\UpdateQueryCLI.hpp">
+      <Filter>Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\SetClauseData\SetClauseData.h">
+      <Filter>Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\ClauseData</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

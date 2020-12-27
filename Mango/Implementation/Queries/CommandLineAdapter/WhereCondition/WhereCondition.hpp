@@ -8,7 +8,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 	private:
 		std::string m_ColumnName;
 		std::string m_Operation;
-		std::string value;
+		std::string m_Value;
 
 		WhereClause m_Clause;
 

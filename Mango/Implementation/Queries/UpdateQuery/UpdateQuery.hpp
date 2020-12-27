@@ -11,13 +11,13 @@ namespace Mango::Implementation::Queries
 	/// [!] Set clause can be specified through MangoDB::setSetClause(SetClause setClause);
 	/// [!] By default nothing will be modified.
 	/// </summary>
-	class UpdateQuery final : public AbstractQuery
+	class UpdateQuery : public AbstractQuery
 	{
-	private:
+	protected:
 		std::string m_TableName;
 
-	private:
-		MANGO_QUERY_INTERFACE bool match(std::string_view sql) const override;
+	protected:
+		MANGO_QUERY_INTERFACE bool match(std::string_view sql) const final override;
 		MANGO_QUERY_INTERFACE void parse(std::string_view sql) override;
 		MANGO_QUERY_INTERFACE void validate(const_ref<MangoDB> dataBase) override;
 		MANGO_QUERY_INTERFACE void execute(ref<MangoDB> dataBase) override;

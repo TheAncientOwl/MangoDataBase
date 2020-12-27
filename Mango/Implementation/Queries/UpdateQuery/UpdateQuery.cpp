@@ -1,6 +1,8 @@
 #include "standard_library.hpp"
 #include "UpdateQuery.hpp"
 
+#include "../../Row/RowFilters.hpp"
+
 #include "../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
@@ -41,12 +43,13 @@ namespace Mango::Implementation::Queries
 
 	void UpdateQuery::execute(ref<MangoDB> dataBase)
 	{
+		MangoClauseGuard _(dataBase);
+
 		auto table = dataBase.getTable(m_TableName);
 
 		TableIterator tableIterator = table->makeIterator();
 
-		if (dataBase.m_SetClause == &RowFilters::doNothing)
-			assert(false && "Did you forget to set the set clause?");
+		assert(dataBase.m_SetClause != &RowFilters::doNothing && "Did you forget to set the set clause?");
 
 		while (tableIterator.advance())
 		{

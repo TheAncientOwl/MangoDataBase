@@ -25,6 +25,7 @@ namespace Mango::Implementation
 
 	public:
 		MANGO_PUBLIC_API size_t calculateTotalSize() const;
+		MANGO_PUBLIC_API bool operator==(const RowConfiguration& rhs) const;
 
 	public:
 		MANGO_PUBLIC_API RowConfiguration() = default;
@@ -39,6 +40,7 @@ namespace Mango::Implementation
 		friend class Mango::Implementation::Table;
 		friend class Mango::Implementation::ConstTableIterator;
 		friend class Mango::Implementation::Queries::SelectQuery;
+		friend class Mango::Implementation::Queries::CommandLineAdapter::SetClauseData;
 		friend std::ostream& operator<<(std::ostream& out, const Row& row);
 	};
 }

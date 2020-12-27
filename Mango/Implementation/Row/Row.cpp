@@ -130,6 +130,14 @@ namespace Mango::Implementation
 		setDataAt(index, value);
 	}
 
+	void Row::copyValue(int index, const_ref<Row> row)
+	{
+		assert(index >= 0 && index < m_Config->columnsNumber());
+		assert(m_Config->operator==(*row.m_Config));
+
+		setDataAt(index, row.dataAt(index), m_Config->sizeAt(index));
+	}
+
 	MANGO_PUBLIC_API Row::Row(size_t size, const_ref<std::shared_ptr<RowConfiguration>> config)
 		: m_Size(size), m_Data(new std::byte[size]), m_Config(config)
 	{

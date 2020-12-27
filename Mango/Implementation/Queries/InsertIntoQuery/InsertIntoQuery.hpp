@@ -1,11 +1,11 @@
 #pragma once
 #include "../AbstractQuery/AbstractQuery.hpp"
-#define MANGO_INSERT_INTO_SYNTAX "INSERT INTO table_name [columns] VALUES (val1, val2, ...);"
+#define MANGO_INSERT_INTO_SYNTAX "INSERT INTO table_name [col1, col2, ...] VALUES (val1, val2, ...);"
 
 namespace Mango::Implementation::Queries
 {
 	/// <summary>
-	/// INSERT INTO table_name [columns] VALUES (val1, val2, ...);
+	/// INSERT INTO table_name [col1, col2, ...] VALUES (val1, val2, ...);
 	/// </summary>
 	class InsertIntoQuery final : public AbstractQuery
 	{

@@ -48,6 +48,11 @@ namespace Mango::Implementation
 			sum += size;
 		return sum;
 	}
+
+	MANGO_PUBLIC_API bool RowConfiguration::operator==(const RowConfiguration& rhs) const
+	{
+		return m_DataTypes == rhs.m_DataTypes && m_Sizes == rhs.m_Sizes;
+	}
 #pragma endregion
 
 }
