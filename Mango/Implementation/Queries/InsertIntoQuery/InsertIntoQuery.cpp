@@ -64,34 +64,7 @@ namespace Mango::Implementation::Queries
 
 	MANGO_PRIVATE_API void InsertIntoQuery::parseColumnValues(std::string_view valuesPart)
 	{
-		auto args = splitAtChar(valuesPart, ',');
-		if (args.empty())
-			throw InvalidSyntaxException({ "No values specified to insert" });
-
-		for (auto& value : args)
-		{
-			while (!value.empty() && value.front() == ' ')
-				value.remove_prefix(1);
-			if (value.empty())
-				throw InvalidSyntaxException("Empty value");
-
-			while (!value.empty() && value.back() == ' ')
-				value.remove_suffix(1);
-			if (value.empty())
-				throw InvalidSyntaxException("Empty value");
-
-			if (auto it = std::find(std::cbegin(value), std::cend(value), ' ');
-				it != std::cend(value) || (value.front() == '"' || value.back() == '"'))//100% string or mistake
-			{
-				if (value.front() != '"' || value.back() != '"')
-					throw InvalidSyntaxException({ "Missing '\"' at \"", value, "\"" });
-				value.remove_prefix(1);
-				value.remove_suffix(1);
-			}
-
-			m_ColumnValues.emplace_back(value);
-		}
-
+		splitWithStrings(valuesPart, ',', m_ColumnValues);
 	}
 #pragma endregion
 

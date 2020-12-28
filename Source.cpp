@@ -4,7 +4,7 @@
 
 int main()
 {
-	using Mango::Implementation::Queries::AbstractQuery;
+	/*using Mango::Implementation::Queries::AbstractQuery;
 	
 	while (true)
 	{
@@ -19,7 +19,7 @@ int main()
 		AbstractQuery::splitWithStrings(s, ',', args);
 		for (const auto& arg : args)
 			std::cout << arg << '\n';
-	}
+	}*/
 
 	Mango::CommandLineInterface cli("TestDataBase");
 	cli.run();
