@@ -46,7 +46,7 @@ namespace Mango::Implementation::Queries
 
 	}
 
-	MANGO_PRIVATE_API void SelectQuery::parseColumns(std::string_view columnsPart)
+	MANGO_PRIVATE_API void SelectQuery::parseColumnNames(std::string_view columnsPart)
 	{
 		auto args = splitAtChar(columnsPart, ',');
 		if (args.empty())
@@ -168,7 +168,7 @@ namespace Mango::Implementation::Queries
 		checkResidualParts(columns, table, sql);
 
 		if (all == DEFAULT)
-			parseColumns({ std::next(columns.open), columns.closed });
+			parseColumnNames({ std::next(columns.open), columns.closed });
 
 		parseTableName({ std::next(table.open), table.closed });
 	}

@@ -98,7 +98,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 		}
 
 		if (all == DEFAULT)
-			SelectQuery::parseColumns({ std::next(columns.open), columns.closed });
+			SelectQuery::parseColumnNames({ std::next(columns.open), columns.closed });
 		SelectQuery::parseTableName({ std::next(table.open), table.closed });
 
 		if (condition.open != DEFAULT || condition.closed != DEFAULT)

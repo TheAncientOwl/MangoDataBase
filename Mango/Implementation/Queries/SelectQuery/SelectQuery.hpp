@@ -29,7 +29,7 @@ namespace Mango::Implementation::Queries
 		/// <summary>
 		/// col1, col2, ...
 		/// </summary>
-		MANGO_PRIVATE_API void parseColumns(std::string_view columnsPart);
+		MANGO_PRIVATE_API void parseColumnNames(std::string_view columnsPart);
 
 		/// <summary>
 		/// table_name
