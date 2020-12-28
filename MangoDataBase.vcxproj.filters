@@ -232,7 +232,7 @@
       <Filter>Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI</Filter>
     </ClCompile>
     <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\SetClauseData\SetClauseData.cpp">
-      <Filter>Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI</Filter>
+      <Filter>Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\ClauseData</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

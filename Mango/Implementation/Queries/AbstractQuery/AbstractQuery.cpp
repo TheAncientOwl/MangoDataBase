@@ -33,7 +33,35 @@ namespace Mango::Implementation::Queries
 		return out;
 	}
 
-	MANGO_PUBLIC_API void AbstractQuery::splitWithStrings(std::string_view str, char c, ref<std::vector<std::string>> out)
+	MANGO_PUBLIC_API std::vector<std::string_view> AbstractQuery::splitAtCharWithEscape(std::string_view str, char c)
+	{
+		std::vector<std::string_view> out;
+
+		auto first = std::cbegin(str);
+		auto last = std::find(first, std::cend(str), c);
+
+		while (last != std::cend(str))
+		{
+			if (first != last && *std::prev(last) != MANGO_ESCAPE_CHAR)
+			{
+				out.emplace_back(first._Unwrapped(), std::distance(first, last));
+				first = std::next(last);
+			}
+
+			last = std::find(std::next(last), std::cend(str), c);
+		}
+
+		if (first != last)
+		{
+			std::string_view s(first._Unwrapped(), std::distance(first, last));
+			if (!s.empty())
+				out.push_back(std::move(s));
+		}
+
+		return out;
+	}
+
+	MANGO_PUBLIC_API void AbstractQuery::splitInCleanStringsAt(std::string_view str, char c, ref<std::vector<std::string>> out)
 	{
 		out.clear();
 
@@ -45,7 +73,7 @@ namespace Mango::Implementation::Queries
 			if (first != last && *std::prev(last) != MANGO_ESCAPE_CHAR)
 			{
 				std::string_view s(first._Unwrapped(), std::distance(first, last));
-				out.push_back(cleanString(trimWhiteSpaces(s)));
+				out.push_back(cleanString(trimWhiteSpaces(s), c));
 				first = std::next(last);
 			}
 
@@ -56,7 +84,7 @@ namespace Mango::Implementation::Queries
 		{
 			std::string_view s(first._Unwrapped(), std::distance(first, last));
 			if (!s.empty())
-				out.push_back(cleanString(trimWhiteSpaces(s)));
+				out.push_back(cleanString(trimWhiteSpaces(s), c));
 		}
 
 	}
@@ -85,7 +113,7 @@ namespace Mango::Implementation::Queries
 		return str;
 	}
 
-	MANGO_PUBLIC_API std::string AbstractQuery::cleanString(std::string_view str)
+	MANGO_PUBLIC_API std::string AbstractQuery::cleanString(std::string_view str, char escapedChar)
 	{
 		if (str.empty())
 			return {};
@@ -93,14 +121,14 @@ namespace Mango::Implementation::Queries
 		if (str.front() == '"' || str.back() == '"')
 		{
 			if (str.size() == 1 || str.front() != '"' || str.back() != '"')
-				throw InvalidArgumentException("Missing '\"'");
+				throw InvalidArgumentException({ "Missing '\"' at \"", str, "\""});
 			
 			std::string s;
 			s.reserve(str.size());
 
 			for (auto it = std::next(std::cbegin(str)), next = std::next(it), end = std::cend(str); next != end; ++it, ++next)
 			{
-				if (*it != MANGO_ESCAPE_CHAR || *next != ',')
+				if (*it != MANGO_ESCAPE_CHAR || *next != escapedChar)
 					s.push_back(*it);
 			}
 
@@ -109,6 +137,17 @@ namespace Mango::Implementation::Queries
 			return s;
 		}
 		else return std::string(str);
+	}
+
+	MANGO_PUBLIC_API void AbstractQuery::removeEscapeChar(ref<std::string> str, char escapedChar)
+	{
+		for (size_t index = 1; index < str.size(); ++index)
+			if (str[index] == escapedChar && str[index - 1] == MANGO_ESCAPE_CHAR)
+			{
+				for (size_t j = index - 1, end = str.size() - 1; j < end; ++j)
+					str[j] = str[j + 1];
+				str.pop_back();
+			}
 	}
 #pragma endregion
 

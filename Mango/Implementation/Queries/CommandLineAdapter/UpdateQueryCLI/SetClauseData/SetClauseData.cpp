@@ -19,37 +19,22 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 
 	void SetClauseData::parseFrom(std::string_view clause)
 	{
-		auto tuples = AbstractQuery::splitAtChar(clause, ',');
+		auto tuples = AbstractQuery::splitAtCharWithEscape(clause, ',');
 		if (tuples.empty())
 			throw InvalidSyntaxException("Empty set clause");
 
-		ref<SetClauseData> setClauseData = SetClauseData::Instance();
 		for (const auto& tuple : tuples)
 		{
-			auto args = AbstractQuery::splitAtChar(tuple, ' ');
+			AbstractQuery::splitInCleanStringsAt(tuple, ' ', m_Args);
 
-			if (args.size() < 3)
+			if (m_Args.size() < 3)
 				throw InvalidSyntaxException({ "Wrong syntax at \"", tuple, "\"" });
 
-			std::string_view value;
+			if (m_Args[1] != "=")
+				throw InvalidSyntaxException({ "Unknown sequence \"", m_Args[1], "\"" });
 
-			if (args.size() > 3)
-				value = std::string_view(args[2].data(), std::next(&args.back().back()));
-			else
-				value = args[2];
-
-			if (value.front() == '"' || value.back() == '"')
-			{
-				if (value.front() != '"' || value.back() != '"')
-					throw InvalidSyntaxException("Missing '\"'");
-				value.remove_prefix(1);
-				value.remove_suffix(1);
-			}
-
-			if (args[1] != "=")
-				throw InvalidSyntaxException({ "Unknown sequence \"", args[1], "\"" });
-
-			setClauseData.m_Data.emplace_back(args[0], value);
+			AbstractQuery::removeEscapeChar(m_Args[2], ',');
+			m_Data.emplace_back(std::move(m_Args[0]), std::move(m_Args[2]));
 		}
 	}
 

@@ -31,29 +31,17 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 
 	void WhereCondition::parseFrom(std::string_view condition)
 	{
-		auto args = AbstractQuery::splitAtChar(condition, ' ');
+		AbstractQuery::splitInCleanStringsAt(condition, ' ', m_Args);
 
-		if (args.size() < 3)
+		if (m_Args.size() < 3)
 			throw InvalidSyntaxException("Missing args at condition");
+		
+		if (m_Args.size() > 3)
+			throw InvalidSyntaxException("Too many args at condition");
 
-		std::string_view value;
-
-		if (args.size() > 3)
-			value = std::string_view(args[2].data(), std::next(&args.back().back()));
-		else
-			value = args[2];
-
-		if (value.front() == '"' || value.back() == '"')
-		{
-			if (value.front() != '"' || value.back() != '"')
-				throw InvalidSyntaxException("Missing '\"'");
-			value.remove_prefix(1);
-			value.remove_suffix(1);
-		}
-
-		m_ColumnName = args[0];
-		m_Operation = args[1];
-		m_Value = value;
+		m_ColumnName = std::move(m_Args[0]);
+		m_Operation = std::move(m_Args[1]);
+		m_Value = std::move(m_Args[2]);
 	}
 
 	void WhereCondition::validate(std::string_view tableName, const_ref<MangoDB> dataBase)

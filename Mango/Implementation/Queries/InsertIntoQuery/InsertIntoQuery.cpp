@@ -64,7 +64,7 @@ namespace Mango::Implementation::Queries
 
 	MANGO_PRIVATE_API void InsertIntoQuery::parseColumnValues(std::string_view valuesPart)
 	{
-		splitWithStrings(valuesPart, ',', m_ColumnValues);
+		splitInCleanStringsAt(valuesPart, ',', m_ColumnValues);
 	}
 #pragma endregion
 

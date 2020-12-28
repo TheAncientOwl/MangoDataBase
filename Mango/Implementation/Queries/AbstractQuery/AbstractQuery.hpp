@@ -15,10 +15,12 @@ namespace Mango::Implementation::Queries
 
 	public:
 		MANGO_PUBLIC_API static std::vector<std::string_view> splitAtChar(std::string_view str, char c);
-		MANGO_PUBLIC_API static void splitWithStrings(std::string_view str, char c, ref<std::vector<std::string>> out);
+		MANGO_PUBLIC_API static std::vector<std::string_view> splitAtCharWithEscape(std::string_view str, char c);
+		MANGO_PUBLIC_API static void splitInCleanStringsAt(std::string_view str, char c, ref<std::vector<std::string>> out);
 		MANGO_PUBLIC_API static bool isValidIdentifier(std::string_view identifier);
 		MANGO_PUBLIC_API static std::string_view trimWhiteSpaces(std::string_view str);
-		MANGO_PUBLIC_API static std::string cleanString(std::string_view str);
+		MANGO_PUBLIC_API static std::string cleanString(std::string_view str, char escapedChar);
+		MANGO_PUBLIC_API static void removeEscapeChar(ref<std::string> str, char escapedChar);
 
 	private:
 		/// <summary>

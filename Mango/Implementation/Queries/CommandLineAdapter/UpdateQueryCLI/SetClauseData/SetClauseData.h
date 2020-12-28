@@ -7,9 +7,13 @@
 namespace Mango::Implementation::Queries::CommandLineAdapter
 {
 	void setClauseCLI(ref<Row> row);
+	/// <summary>
+	/// If any string contains ',' or ' ', it must be escaped by '/'; ("/ " or "/, ")
+	/// </summary>
 	class SetClauseData
 	{
 	private:
+		std::vector<std::string> m_Args;
 		std::vector<std::pair<std::string, std::string>> m_Data;
 
 		std::vector<int> m_SetIndexes;

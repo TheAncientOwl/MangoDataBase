@@ -6,6 +6,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 	class WhereCondition
 	{
 	private:
+		std::vector<std::string> m_Args;
 		std::string m_ColumnName;
 		std::string m_Operation;
 		std::string m_Value;
