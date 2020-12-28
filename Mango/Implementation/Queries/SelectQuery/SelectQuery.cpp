@@ -53,7 +53,7 @@ namespace Mango::Implementation::Queries
 			throw InvalidSyntaxException("Since [] are used, column names must be specified");
 
 		for (const auto& arg : args)
-			m_ColumnNames.emplace_back(trimWhiteSpaces(arg));
+			m_ColumnNames.emplace_back(cleanString(trimWhiteSpaces(arg)));
 	}
 
 	MANGO_PRIVATE_API void SelectQuery::parseTableName(std::string_view tablePart)

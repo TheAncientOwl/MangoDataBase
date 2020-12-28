@@ -1,6 +1,8 @@
 #pragma once
 #include "../../../MangoAPI.fwd.hpp"
 
+#define MANGO_ESCAPE_CHAR '/'
+
 #include "../Statement/Statement.hpp"
 #include "../../../MangoDB/MangoDB.hpp"
 
@@ -13,8 +15,10 @@ namespace Mango::Implementation::Queries
 
 	public:
 		MANGO_PUBLIC_API static std::vector<std::string_view> splitAtChar(std::string_view str, char c);
+		MANGO_PUBLIC_API static void splitWithStrings(std::string_view str, char c, ref<std::vector<std::string>> out);
 		MANGO_PUBLIC_API static bool isValidIdentifier(std::string_view identifier);
 		MANGO_PUBLIC_API static std::string_view trimWhiteSpaces(std::string_view str);
+		MANGO_PUBLIC_API static std::string cleanString(std::string_view str);
 
 	private:
 		/// <summary>
