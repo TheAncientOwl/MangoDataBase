@@ -48,12 +48,12 @@ namespace Mango::Implementation::Queries
 
 	MANGO_PRIVATE_API void SelectQuery::parseColumns(std::string_view columnsPart)
 	{
-		auto args = splitAtAnyOf(columnsPart, " ,");
+		auto args = splitAtChar(columnsPart, ',');
 		if (args.empty())
 			throw InvalidSyntaxException("Since [] are used, column names must be specified");
 
 		for (const auto& arg : args)
-			m_ColumnNames.emplace_back(arg);
+			m_ColumnNames.emplace_back(trimWhiteSpaces(arg));
 	}
 
 	MANGO_PRIVATE_API void SelectQuery::parseTableName(std::string_view tablePart)

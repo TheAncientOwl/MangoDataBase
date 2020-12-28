@@ -54,12 +54,12 @@ namespace Mango::Implementation::Queries
 
 	MANGO_PRIVATE_API void InsertIntoQuery::parseColumnNames(std::string_view columnsPart)
 	{
-		auto args = splitAtAnyOf(columnsPart, " ,");
+		auto args = splitAtChar(columnsPart, ',');
 		if (args.empty())
-			throw InvalidSyntaxException({ "Since \"[]\" are used, column names must be mentioned" });
+			throw InvalidSyntaxException("Since \"[]\" are used, column names must be mentioned");
 
 		for (const auto& columnName : args)
-			m_ColumnNames.emplace_back(columnName);
+			m_ColumnNames.emplace_back(trimWhiteSpaces(columnName));
 	}
 
 	MANGO_PRIVATE_API void InsertIntoQuery::parseColumnValues(std::string_view valuesPart)

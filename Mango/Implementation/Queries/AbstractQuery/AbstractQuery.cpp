@@ -70,6 +70,15 @@ namespace Mango::Implementation::Queries
 
 		return true;
 	}
+
+	MANGO_PUBLIC_API std::string_view AbstractQuery::trimWhiteSpaces(std::string_view str)
+	{
+		while (!str.empty() && str.front() == ' ')
+			str.remove_prefix(1);
+		while (!str.empty() && str.back() == ' ')
+			str.remove_suffix(1);
+		return str;
+	}
 #pragma endregion
 
 #pragma region MANGO_PUBLIC_API
