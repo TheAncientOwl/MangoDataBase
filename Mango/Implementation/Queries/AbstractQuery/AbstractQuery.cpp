@@ -148,6 +148,7 @@ namespace Mango::Implementation::Queries
 					str[j] = str[j + 1];
 				str.pop_back();
 			}
+		str.shrink_to_fit();
 	}
 #pragma endregion
 
