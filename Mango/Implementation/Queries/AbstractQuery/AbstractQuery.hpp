@@ -12,7 +12,6 @@ namespace Mango::Implementation::Queries
 		static bool s_InvalidIdentifierChars[257];
 
 	public:
-		MANGO_PUBLIC_API [[deprecated]] static std::vector<std::string_view> splitAtAnyOf(std::string_view str, std::string_view delims);
 		MANGO_PUBLIC_API static std::vector<std::string_view> splitAtChar(std::string_view str, char c);
 		MANGO_PUBLIC_API static bool isValidIdentifier(std::string_view identifier);
 		MANGO_PUBLIC_API static std::string_view trimWhiteSpaces(std::string_view str);

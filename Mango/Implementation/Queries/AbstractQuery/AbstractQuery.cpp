@@ -4,32 +4,6 @@
 namespace Mango::Implementation::Queries
 {
 #pragma region MANGO_PUBLIC_API
-	MANGO_PUBLIC_API std::vector<std::string_view> AbstractQuery::splitAtAnyOf(std::string_view str, std::string_view delims)
-	{
-		std::vector<std::string_view> out;
-
-		auto first = std::cbegin(str);
-		auto last = std::find_first_of(first, std::cend(str), std::cbegin(delims), std::cend(delims));
-
-		while (last != std::cend(str))
-		{
-			if (first != last)
-				out.emplace_back(first._Unwrapped(), std::distance(first, last));
-
-			first = std::next(last);
-			last = std::find_first_of(first, std::cend(str), std::cbegin(delims), std::cend(delims));
-		}
-
-		if (first != last)
-		{
-			std::string_view s(first._Unwrapped(), std::distance(first, last));
-			if (!s.empty())
-				out.push_back(std::move(s));
-		}
-
-		return out;
-	}
-
 	MANGO_PUBLIC_API std::vector<std::string_view> AbstractQuery::splitAtChar(std::string_view str, char c)
 	{
 		std::vector<std::string_view> out;
