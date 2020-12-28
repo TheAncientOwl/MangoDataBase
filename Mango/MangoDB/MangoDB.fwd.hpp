@@ -1,5 +1,5 @@
 #pragma once
 namespace Mango
 {
-	class MangoDB;;
+	class MangoDB;
 }
