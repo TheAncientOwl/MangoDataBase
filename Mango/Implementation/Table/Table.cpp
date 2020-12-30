@@ -4,6 +4,8 @@
 #include "../BinaryUtils/BinaryUtils.hpp"
 using namespace Mango::Implementation::BinaryUtils;
 
+#include "../../ConsoleColorOutput/ConsoleColorOutput.hpp"
+
 namespace Mango::Implementation
 {
 #pragma region MANGO_PRIVATE_API

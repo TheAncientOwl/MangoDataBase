@@ -8,3 +8,4 @@
 #define MANGO_PUBLIC_API
 #define MANGO_PROTECTED_API
 #define MANGO_QUERY_INTERFACE
+#define MANGO_STATIC_BLOCK static Mango::Implementation::Static_ UNIQUE(block) = [&]() -> void

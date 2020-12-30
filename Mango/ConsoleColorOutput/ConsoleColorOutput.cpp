@@ -3,7 +3,7 @@
 
 #include <Windows.h>
 
-namespace Utilities
+namespace Mango
 {
 	void ConsoleColorOutput::setColor(int colorCode)
 	{

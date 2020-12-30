@@ -7,12 +7,6 @@
     <Filter Include="standard_library">
       <UniqueIdentifier>{5d05458e-2e2a-47a6-8e9a-2960651dd6f4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utilities">
-      <UniqueIdentifier>{aa6a7e4d-0379-4961-8ee0-d8974c40ad1f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utilities\ConsoleColorOutput">
-      <UniqueIdentifier>{d86a8e94-b862-4d15-9443-8bb2ac58a083}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Mango">
       <UniqueIdentifier>{69e4b8b1-a0ea-4c55-97bb-33810e563ae5}</UniqueIdentifier>
     </Filter>
@@ -121,6 +115,12 @@
     <Filter Include="Mango\Implementation\BinaryUtils">
       <UniqueIdentifier>{2c741591-feee-453a-a2ac-5aefda032f4b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Implementation\StaticBlock">
+      <UniqueIdentifier>{e790a751-6e5a-4241-8a80-77c263987435}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\ConsoleColorOutput">
+      <UniqueIdentifier>{e81403f4-76bc-46b3-9e5e-ba77c5e9b19f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -128,9 +128,6 @@
     </ClCompile>
     <ClCompile Include="standard_library.cpp">
       <Filter>standard_library</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.cpp">
-      <Filter>Utilities\ConsoleColorOutput</Filter>
     </ClCompile>
     <ClCompile Include="Mango\MangoDB\MangoDB.cpp">
       <Filter>Mango\MangoDB</Filter>
@@ -240,13 +237,16 @@
     <ClCompile Include="Mango\Implementation\BinaryUtils\BinaryUtils.cpp">
       <Filter>Mango\Implementation\BinaryUtils</Filter>
     </ClCompile>
+    <ClCompile Include="Mango\Implementation\StaticBlock\StaticBlock.cpp">
+      <Filter>Mango\Implementation\StaticBlock</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\ConsoleColorOutput\ConsoleColorOutput.cpp">
+      <Filter>Mango\ConsoleColorOutput</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="standard_library.hpp">
       <Filter>standard_library</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities\ConsoleColorOutput\ConsoleColorOutput.hpp">
-      <Filter>Utilities\ConsoleColorOutput</Filter>
     </ClInclude>
     <ClInclude Include="Mango\MangoAPI.hpp">
       <Filter>Mango</Filter>
@@ -379,6 +379,12 @@
     </ClInclude>
     <ClInclude Include="Mango\Implementation\BinaryUtils\BinaryUtils.hpp">
       <Filter>Mango\Implementation\BinaryUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\StaticBlock\StaticBlock.hpp">
+      <Filter>Mango\Implementation\StaticBlock</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\ConsoleColorOutput\ConsoleColorOutput.hpp">
+      <Filter>Mango\ConsoleColorOutput</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

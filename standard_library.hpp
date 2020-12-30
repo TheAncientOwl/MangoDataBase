@@ -18,23 +18,6 @@
 #define MANGO_PUBLIC_API
 #define MANGO_QUERY_INTERFACE
 
-#include "Utilities/ConsoleColorOutput/ConsoleColorOutput.hpp"
-
-///resource for static_block: https://stackoverflow.com/questions/19227664/whats-the-c-idiom-equivalent-to-the-java-static-block
-#define CONCATE_(X,Y) X##Y
-#define CONCATE(X,Y) CONCATE_(X,Y)
-#define UNIQUE(NAME) CONCATE(NAME, __LINE__)
-// `UNIQUE` macro required if we expect multiple `static` blocks in function
-#define static_block static Static_ UNIQUE(block) = [&]() -> void
-
-struct Static_
-{
-	template<typename T>
-	Static_(T only_once) { only_once(); }
-
-	~Static_() {}  // to counter "warning: unused variable"
-};
-
 template<typename T>
 using ref = T&;
 

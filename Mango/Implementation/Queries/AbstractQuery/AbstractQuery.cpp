@@ -1,6 +1,8 @@
 #include "standard_library.hpp"
 #include "AbstractQuery.hpp"
 
+#include "../../StaticBlock/StaticBlock.hpp"
+
 #include "../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
@@ -166,7 +168,7 @@ namespace Mango::Implementation::Queries
 
 	bool AbstractQuery::s_InvalidIdentifierChars[257];
 
-	static_block
+	MANGO_STATIC_BLOCK
 	{
 		AbstractQueryStaticInitializer _;
 	};

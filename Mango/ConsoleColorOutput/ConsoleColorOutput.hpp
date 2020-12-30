@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Utilities
+namespace Mango
 {
 	class ConsoleColorOutput
 	{
@@ -35,4 +35,4 @@ namespace Utilities
 	};
 }
 
-#define ccolor Utilities::ConsoleColorOutput
+#define ccolor Mango::ConsoleColorOutput

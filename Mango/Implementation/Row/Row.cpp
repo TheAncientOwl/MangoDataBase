@@ -1,6 +1,7 @@
 #include "standard_library.hpp"
 #include "Row.hpp"
 #include "../../Exceptions/InvalidArgumentException/InvalidArgumentException.hpp"
+#include "../../ConsoleColorOutput/ConsoleColorOutput.hpp"
 
 namespace Mango::Implementation
 {

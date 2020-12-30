@@ -6,6 +6,8 @@
 using namespace Mango::Implementation::Queries;
 using namespace Mango::Exceptions;
 
+#include "../ConsoleColorOutput/ConsoleColorOutput.hpp"
+
 namespace Mango
 {
 	void displayCommand(int number, std::string_view syntax)
