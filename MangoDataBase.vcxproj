@@ -232,7 +232,7 @@
     <ClInclude Include="Mango\Implementation\Queries\AbstractQuery\AbstractQuery.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.hpp" />
-    <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\SetClauseData\SetClauseData.h" />
+    <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\SetClauseData\SetClauseData.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\UpdateQueryCLI.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\WhereCondition\WhereCondition.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\CreateTableQuery\CreateTableQuery.hpp" />

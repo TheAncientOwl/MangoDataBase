@@ -380,9 +380,6 @@
     <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\UpdateQueryCLI.hpp">
       <Filter>Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI</Filter>
     </ClInclude>
-    <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\SetClauseData\SetClauseData.h">
-      <Filter>Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\ClauseData</Filter>
-    </ClInclude>
     <ClInclude Include="Mango\Implementation\BinaryUtils\BinaryUtils.hpp">
       <Filter>Mango\Implementation\BinaryUtils</Filter>
     </ClInclude>
@@ -394,6 +391,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Implementation\StringUtils\StringUtils.hpp">
       <Filter>Mango\Implementation\StringUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\SetClauseData\SetClauseData.hpp">
+      <Filter>Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\ClauseData</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

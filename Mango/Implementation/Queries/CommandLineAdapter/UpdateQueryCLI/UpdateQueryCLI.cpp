@@ -1,7 +1,7 @@
 #include "standard_library.hpp"
 #include "UpdateQueryCLI.hpp"
 
-#include "SetClauseData/SetClauseData.h"
+#include "SetClauseData/SetClauseData.hpp"
 
 #include "../../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;

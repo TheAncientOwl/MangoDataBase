@@ -1,5 +1,5 @@
 #include "standard_library.hpp"
-#include "SetClauseData.h"
+#include "SetClauseData.hpp"
 
 #include "../../../AbstractQuery/AbstractQuery.hpp"
 
