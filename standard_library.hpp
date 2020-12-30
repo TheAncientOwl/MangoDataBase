@@ -3,7 +3,6 @@
 #include <string_view>
 #include <filesystem>
 #include <algorithm>
-#include <optional>
 #include <iostream>
 #include <fstream>
 #include <cassert>
@@ -11,10 +10,9 @@
 #include <memory>
 #include <vector>
 #include <string>
-#include <chrono>
 #include <array>
-#include <map>
 #include <set>
+
 #define MANGO_PROTECTED_API
 #define MANGO_PRIVATE_API
 #define MANGO_PUBLIC_API
