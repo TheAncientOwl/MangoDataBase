@@ -8,13 +8,13 @@ using namespace Mango::Exceptions;
 
 namespace Mango::Implementation::Queries
 {
-#pragma region MANGO_PRIVATE_API
-	MANGO_QUERY_INTERFACE bool UpdateQuery::match(std::string_view sql) const
+#pragma region MANGO_API
+	MANGO_QUERY_API bool UpdateQuery::match(std::string_view sql) const
 	{
 		return sql.starts_with("UPDATE");
 	}
 
-	MANGO_QUERY_INTERFACE void UpdateQuery::parse(std::string_view sql)
+	MANGO_QUERY_API void UpdateQuery::parse(std::string_view sql)
 	{
 		m_TableName.clear();
 

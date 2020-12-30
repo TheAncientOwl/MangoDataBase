@@ -6,8 +6,8 @@ using namespace Mango::Exceptions;
 
 namespace Mango::Implementation::Queries::CommandLineAdapter
 {
-#pragma region MANGO_QUERY_INTERFACE
-	MANGO_QUERY_INTERFACE void DeleteQueryCLI::parse(std::string_view sql)
+#pragma region MANGO_QUERY_API
+	MANGO_QUERY_API void DeleteQueryCLI::parse(std::string_view sql)
 	{
 		m_TableName.clear();
 
@@ -45,7 +45,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 		else DeleteQuery::parse(sql);
 	}
 
-	MANGO_QUERY_INTERFACE void DeleteQueryCLI::validate(const_ref<MangoDB> dataBase)
+	MANGO_QUERY_API void DeleteQueryCLI::validate(const_ref<MangoDB> dataBase)
 	{
 		DeleteQuery::validate(dataBase);
 
@@ -55,7 +55,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 			m_WhereCondition.validate(m_TableName, dataBase);
 	}
 
-	MANGO_QUERY_INTERFACE void DeleteQueryCLI::execute(ref<MangoDB> dataBase)
+	MANGO_QUERY_API void DeleteQueryCLI::execute(ref<MangoDB> dataBase)
 	{
 		dataBase.setWhereClause(m_WhereCondition.getClause());
 

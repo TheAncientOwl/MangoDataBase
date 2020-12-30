@@ -2,10 +2,7 @@
 // such as names of functions and macros.
 // For more information see https://go.microsoft.com/fwlink/?linkid=865984
 #define
-#define static_block static Static_ UNIQUE(block) = [&]() -> void
-#define API
-#define MANGO_PRIVATE_API
 #define MANGO_PUBLIC_API
-#define MANGO_PROTECTED_API
-#define MANGO_QUERY_INTERFACE
 #define MANGO_STATIC_BLOCK static Mango::Implementation::Static_ UNIQUE(block) = [&]() -> void
+#define MANGO_API
+#define MANGO_QUERY_API

@@ -13,10 +13,9 @@
 #include <array>
 #include <set>
 
-#define MANGO_PROTECTED_API
-#define MANGO_PRIVATE_API
+#define MANGO_API
 #define MANGO_PUBLIC_API
-#define MANGO_QUERY_INTERFACE
+#define MANGO_QUERY_API
 
 template<typename T>
 using ref = T&;

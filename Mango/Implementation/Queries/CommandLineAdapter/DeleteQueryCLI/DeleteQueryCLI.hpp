@@ -14,9 +14,9 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 		WhereCondition m_WhereCondition;
 
 	private:
-		MANGO_QUERY_INTERFACE void parse(std::string_view sql) override;
-		MANGO_QUERY_INTERFACE void validate(const_ref<MangoDB> dataBase) override;
-		MANGO_QUERY_INTERFACE void execute(ref<MangoDB> dataBase) override;
+		MANGO_QUERY_API void parse(std::string_view sql) override;
+		MANGO_QUERY_API void validate(const_ref<MangoDB> dataBase) override;
+		MANGO_QUERY_API void execute(ref<MangoDB> dataBase) override;
 
 	public:
 		MANGO_PUBLIC_API DeleteQueryCLI() = default;

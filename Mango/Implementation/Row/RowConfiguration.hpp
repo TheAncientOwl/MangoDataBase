@@ -15,13 +15,13 @@ namespace Mango::Implementation
 		std::vector<DataType> m_DataTypes;
 
 	private:
-		MANGO_PRIVATE_API void pushBack(size_t size, DataType dataType);
+		MANGO_API void pushBack(size_t size, DataType dataType);
 
-		MANGO_PRIVATE_API size_t offsetAt(int index) const;
-		MANGO_PRIVATE_API size_t sizeAt(int index) const;
-		MANGO_PRIVATE_API DataType dataTypeAt(int index) const;
+		MANGO_API size_t offsetAt(int index) const;
+		MANGO_API size_t sizeAt(int index) const;
+		MANGO_API DataType dataTypeAt(int index) const;
 
-		MANGO_PRIVATE_API size_t columnsNumber() const;
+		MANGO_API size_t columnsNumber() const;
 
 	public:
 		MANGO_PUBLIC_API size_t calculateTotalSize() const;

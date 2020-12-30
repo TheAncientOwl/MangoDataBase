@@ -8,20 +8,20 @@ using namespace Mango::Implementation::BinaryUtils;
 
 namespace Mango
 {
-#pragma region MANGO_PRIVATE_API
-	MANGO_PRIVATE_API std::filesystem::path MangoDB::getConfigFilePath() const
+#pragma region MANGO_API
+	MANGO_API std::filesystem::path MangoDB::getConfigFilePath() const
 	{
 		return m_DirectoryPath / "tables" MANGO_CONFIG_EXTENSION;
 	}
 
-	MANGO_PRIVATE_API void MangoDB::addTable(std::unique_ptr<Implementation::Table> table)
+	MANGO_API void MangoDB::addTable(std::unique_ptr<Implementation::Table> table)
 	{
 		table->createFiles();
 		m_Tables.push_back(std::move(table));
 		storeTableConfigs();
 	}
 
-	MANGO_PRIVATE_API void MangoDB::removeTable(std::string_view tableName)
+	MANGO_API void MangoDB::removeTable(std::string_view tableName)
 	{
 		std::vector<std::unique_ptr<Implementation::Table>> newTables;
 		newTables.reserve(m_Tables.size() - 1);
@@ -37,7 +37,7 @@ namespace Mango
 		storeTableConfigs();
 	}
 
-	MANGO_PRIVATE_API const_ptr<Implementation::Table> MangoDB::getTable(std::string_view tableName) const
+	MANGO_API const_ptr<Implementation::Table> MangoDB::getTable(std::string_view tableName) const
 	{
 		for (const auto& tablePtr : m_Tables)
 			if (tablePtr->getName() == tableName)
@@ -45,7 +45,7 @@ namespace Mango
 		return nullptr;
 	}
 
-	MANGO_PRIVATE_API ptr<Implementation::Table> MangoDB::getTable(std::string_view tableName)
+	MANGO_API ptr<Implementation::Table> MangoDB::getTable(std::string_view tableName)
 	{
 		for (const auto& tablePtr : m_Tables)
 			if (tablePtr->getName() == tableName)
@@ -53,12 +53,12 @@ namespace Mango
 		return nullptr;
 	}
 
-	MANGO_PRIVATE_API const_ref<std::vector<std::unique_ptr<Implementation::Table>>> MangoDB::tables() const
+	MANGO_API const_ref<std::vector<std::unique_ptr<Implementation::Table>>> MangoDB::tables() const
 	{
 		return m_Tables;
 	}
 
-	MANGO_PRIVATE_API void MangoDB::storeTableConfigs() const
+	MANGO_API void MangoDB::storeTableConfigs() const
 	{
 		std::fstream file(getConfigFilePath(), std::ios::out | std::ios::trunc | std::ios::binary);
 

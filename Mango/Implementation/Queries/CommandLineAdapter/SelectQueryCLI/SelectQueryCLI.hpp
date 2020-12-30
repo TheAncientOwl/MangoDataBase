@@ -17,17 +17,17 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 		/// <summary>
 		/// [] before () before <>
 		/// </summary>
-		MANGO_PRIVATE_API void checkStatementsOrder(Statement columns, Statement table, Statement condition, Statement::iterator defaultIt) const;
+		MANGO_API void checkStatementsOrder(Statement columns, Statement table, Statement condition, Statement::iterator defaultIt) const;
 		
 		/// <summary>
 		/// SELECT [...] FROM (...) WHERE <...>;
 		/// </summary>
-		MANGO_PRIVATE_API void checkResidualParts(Statement columns, Statement table, Statement condition, std::string_view sql) const;
+		MANGO_API void checkResidualParts(Statement columns, Statement table, Statement condition, std::string_view sql) const;
 
 	private:
-		MANGO_QUERY_INTERFACE void parse(std::string_view sql) override;
-		MANGO_QUERY_INTERFACE void validate(const_ref<MangoDB> dataBase) override;
-		MANGO_QUERY_INTERFACE void execute(ref<MangoDB> dataBase) override;
+		MANGO_QUERY_API void parse(std::string_view sql) override;
+		MANGO_QUERY_API void validate(const_ref<MangoDB> dataBase) override;
+		MANGO_QUERY_API void execute(ref<MangoDB> dataBase) override;
 
 	public:
 		MANGO_PUBLIC_API SelectQueryCLI() = default;

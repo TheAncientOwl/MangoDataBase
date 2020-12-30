@@ -3,8 +3,8 @@
 
 namespace Mango::Implementation
 {
-#pragma region MANGO_PRIVATE_API
-	MANGO_PRIVATE_API void RowConfiguration::pushBack(size_t size, DataType dataType)
+#pragma region MANGO_API
+	MANGO_API void RowConfiguration::pushBack(size_t size, DataType dataType)
 	{
 		if (!m_Offsets.empty())
 			m_Offsets.push_back(m_Offsets.back() + m_Sizes.back());
@@ -16,25 +16,25 @@ namespace Mango::Implementation
 		m_DataTypes.push_back(dataType);
 	}
 
-	MANGO_PRIVATE_API size_t RowConfiguration::offsetAt(int index) const
+	MANGO_API size_t RowConfiguration::offsetAt(int index) const
 	{
 		assert(index >= 0 && index < m_Offsets.size());
 		return m_Offsets[index];
 	}
 
-	MANGO_PRIVATE_API size_t RowConfiguration::sizeAt(int index) const
+	MANGO_API size_t RowConfiguration::sizeAt(int index) const
 	{
 		assert(index >= 0 && index < m_Sizes.size());
 		return m_Sizes[index];
 	}
 
-	MANGO_PRIVATE_API DataType RowConfiguration::dataTypeAt(int index) const
+	MANGO_API DataType RowConfiguration::dataTypeAt(int index) const
 	{
 		assert(index >= 0 && index < m_Sizes.size());
 		return m_DataTypes[index];
 	}
 
-	MANGO_PRIVATE_API size_t RowConfiguration::columnsNumber() const
+	MANGO_API size_t RowConfiguration::columnsNumber() const
 	{
 		return m_Sizes.size();
 	}

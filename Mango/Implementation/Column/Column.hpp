@@ -15,8 +15,8 @@ namespace Mango::Implementation
 		size_t m_Size = 0;
 
 	private:
-		MANGO_PRIVATE_API void serialize(std::fstream& file) const;
-		MANGO_PRIVATE_API void deserialize(std::fstream& file);
+		MANGO_API void serialize(std::fstream& file) const;
+		MANGO_API void deserialize(std::fstream& file);
 
 	public:
 		MANGO_PUBLIC_API std::string_view name() const;

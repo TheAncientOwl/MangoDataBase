@@ -18,24 +18,24 @@ namespace Mango::Implementation::Queries
 		/// <summary>
 		/// CREATE TABLE table_name
 		/// </summary>
-		MANGO_PRIVATE_API void parseTableName(std::string_view firstPart);
+		MANGO_API void parseTableName(std::string_view firstPart);
 
 		/// <summary>
 		/// column1 dataType, column2 dataType, ...
 		/// </summary>
-		MANGO_PRIVATE_API void parseColumns(std::string_view columnsPart);
+		MANGO_API void parseColumns(std::string_view columnsPart);
 
 		/// <summary>
 		/// (...);
 		/// residual parts: empty
 		/// </summary>
-		MANGO_PRIVATE_API void checkResidualParts(Statement columns, Statement::iterator stringEnd) const;
+		MANGO_API void checkResidualParts(Statement columns, Statement::iterator stringEnd) const;
 
 	private:
-		MANGO_QUERY_INTERFACE bool match(std::string_view sql) const override;
-		MANGO_QUERY_INTERFACE void parse(std::string_view sql) override;
-		MANGO_QUERY_INTERFACE void validate(const_ref<MangoDB> dataBase) override;
-		MANGO_QUERY_INTERFACE void execute(ref<MangoDB> dataBase) override;
+		MANGO_QUERY_API bool match(std::string_view sql) const override;
+		MANGO_QUERY_API void parse(std::string_view sql) override;
+		MANGO_QUERY_API void validate(const_ref<MangoDB> dataBase) override;
+		MANGO_QUERY_API void execute(ref<MangoDB> dataBase) override;
 
 	public:
 		MANGO_PUBLIC_API CreateTableQuery() = default;

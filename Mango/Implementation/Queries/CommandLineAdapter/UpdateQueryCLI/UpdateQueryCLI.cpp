@@ -8,8 +8,8 @@ using namespace Mango::Exceptions;
 
 namespace Mango::Implementation::Queries::CommandLineAdapter
 {
-#pragma region MANGO_PRIVATE_API
-	MANGO_PRIVATE_API void UpdateQueryCLI::checkStatementsOrder(Statement setClause, Statement condition, 
+#pragma region MANGO_API
+	MANGO_API void UpdateQueryCLI::checkStatementsOrder(Statement setClause, Statement condition, 
 															    Statement::iterator defaultIt) const
 	{
 		setClause.checkValidOrder(defaultIt);
@@ -20,7 +20,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 			throw InvalidSyntaxException({ "Syntax error, found '", condition.openChar, "' before '", setClause.closedChar, "'" });
 	}
 
-	MANGO_PRIVATE_API void UpdateQueryCLI::checkResidualParts(Statement setClause, Statement condition,
+	MANGO_API void UpdateQueryCLI::checkResidualParts(Statement setClause, Statement condition,
 							                Statement::iterator defaultIt, Statement::iterator stringEnd) const
 	{
 		{
@@ -44,7 +44,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 		}
 	}
 
-	MANGO_PRIVATE_API void UpdateQueryCLI::parseTableName(std::string_view firstPart)
+	MANGO_API void UpdateQueryCLI::parseTableName(std::string_view firstPart)
 	{
 		auto args = splitAtChar(firstPart, ' ');
 
@@ -59,8 +59,8 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 #pragma endregion
 
 
-#pragma region MANGO_QUERY_INTERFACE
-	MANGO_QUERY_INTERFACE void UpdateQueryCLI::parse(std::string_view sql)
+#pragma region MANGO_QUERY_API
+	MANGO_QUERY_API void UpdateQueryCLI::parse(std::string_view sql)
 	{
 		m_TableName.clear();
 		
@@ -93,7 +93,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 		m_WhereCondition.parseFrom({ std::next(condition.open), condition.closed });
 	}
 
-	MANGO_QUERY_INTERFACE void UpdateQueryCLI::validate(const_ref<MangoDB> dataBase)
+	MANGO_QUERY_API void UpdateQueryCLI::validate(const_ref<MangoDB> dataBase)
 	{
 		auto table = dataBase.getTable(m_TableName);
 		if (!table)
@@ -107,7 +107,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 		SetClauseData::Instance().validate(table);
 	}
 
-	MANGO_QUERY_INTERFACE void UpdateQueryCLI::execute(ref<MangoDB> dataBase)
+	MANGO_QUERY_API void UpdateQueryCLI::execute(ref<MangoDB> dataBase)
 	{
 		SetClauseData::Instance().extractRow(dataBase.getTable(m_TableName));
 		dataBase.setSetClause(&setClauseCLI);

@@ -8,8 +8,8 @@ using namespace Mango::Implementation::BinaryUtils;
 
 namespace Mango::Implementation
 {
-#pragma region MANGO_PRIVATE_API
-	MANGO_PRIVATE_API void Column::serialize(std::fstream& file) const
+#pragma region MANGO_API
+	MANGO_API void Column::serialize(std::fstream& file) const
 	{
 		size_t nameLength = m_Name.length() + 1;
 		serializePOD(file, &nameLength);
@@ -21,7 +21,7 @@ namespace Mango::Implementation
 		serializePOD(file, &m_Size);
 	}
 
-	MANGO_PRIVATE_API void Column::deserialize(std::fstream& file)
+	MANGO_API void Column::deserialize(std::fstream& file)
 	{
 		size_t nameLength = 0;
 		deserializePOD(file, &nameLength);

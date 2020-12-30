@@ -6,8 +6,8 @@ using namespace Mango::Exceptions;
 
 namespace Mango::Implementation::Queries
 {
-#pragma region MANGO_PRIVATE_API
-	MANGO_PRIVATE_API void InsertIntoQuery::checkStatementsOrder(Statement columns, Statement values, Statement::iterator defaultIt) const
+#pragma region MANGO_API
+	MANGO_API void InsertIntoQuery::checkStatementsOrder(Statement columns, Statement values, Statement::iterator defaultIt) const
 	{
 		values.checkValidOrder(defaultIt);
 		columns.checkValidOrder(defaultIt);
@@ -15,7 +15,7 @@ namespace Mango::Implementation::Queries
 			throw InvalidSyntaxException({ "Syntax error, found '", values.openChar, "' before '", columns.closedChar, "'" });
 	}
 
-	MANGO_PRIVATE_API void InsertIntoQuery::checkResidualParts(Statement columns, Statement values, Statement::iterator stringEnd) const
+	MANGO_API void InsertIntoQuery::checkResidualParts(Statement columns, Statement values, Statement::iterator stringEnd) const
 	{
 		std::string_view valuesKeyword({ std::next(columns.closed), values.open });
 
@@ -39,7 +39,7 @@ namespace Mango::Implementation::Queries
 		}
 	}
 
-	MANGO_PRIVATE_API void InsertIntoQuery::parseTableName(std::string_view firstPart)
+	MANGO_API void InsertIntoQuery::parseTableName(std::string_view firstPart)
 	{
 		auto args = splitAtChar(firstPart, ' ');
 
@@ -52,7 +52,7 @@ namespace Mango::Implementation::Queries
 		m_TableName = args[2];
 	}
 
-	MANGO_PRIVATE_API void InsertIntoQuery::parseColumnNames(std::string_view columnsPart)
+	MANGO_API void InsertIntoQuery::parseColumnNames(std::string_view columnsPart)
 	{
 		auto args = splitAtChar(columnsPart, ',');
 		if (args.empty())
@@ -62,19 +62,19 @@ namespace Mango::Implementation::Queries
 			m_ColumnNames.emplace_back(trimWhiteSpaces(columnName));
 	}
 
-	MANGO_PRIVATE_API void InsertIntoQuery::parseColumnValues(std::string_view valuesPart)
+	MANGO_API void InsertIntoQuery::parseColumnValues(std::string_view valuesPart)
 	{
 		splitInCleanStringsAt(valuesPart, ',', m_ColumnValues);
 	}
 #pragma endregion
 
-#pragma region MANGO_QUERY_INTERFACE
-	MANGO_QUERY_INTERFACE bool InsertIntoQuery::match(std::string_view sql) const
+#pragma region MANGO_QUERY_API
+	MANGO_QUERY_API bool InsertIntoQuery::match(std::string_view sql) const
 	{
 		return sql.starts_with("INSERT");
 	}
 
-	MANGO_QUERY_INTERFACE void InsertIntoQuery::parse(std::string_view sql)
+	MANGO_QUERY_API void InsertIntoQuery::parse(std::string_view sql)
 	{
 		m_InsertAll = false;
 		m_TableName.clear();
@@ -119,7 +119,7 @@ namespace Mango::Implementation::Queries
 		parseColumnValues({ std::next(values.open), values.closed });
 	}
 
-	MANGO_QUERY_INTERFACE void InsertIntoQuery::validate(const_ref<MangoDB> dataBase)
+	MANGO_QUERY_API void InsertIntoQuery::validate(const_ref<MangoDB> dataBase)
 	{
 		auto table = dataBase.getTable(m_TableName);
 		if (!table)
@@ -141,7 +141,7 @@ namespace Mango::Implementation::Queries
 		}
 	}
 
-	MANGO_QUERY_INTERFACE void InsertIntoQuery::execute(ref<MangoDB> dataBase)
+	MANGO_QUERY_API void InsertIntoQuery::execute(ref<MangoDB> dataBase)
 	{
 		auto table = dataBase.getTable(m_TableName);
 		auto rowConfig = table->makeSharedRowConfiguration();

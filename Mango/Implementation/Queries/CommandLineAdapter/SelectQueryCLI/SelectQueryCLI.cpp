@@ -6,8 +6,8 @@ using namespace Mango::Exceptions;
 
 namespace Mango::Implementation::Queries::CommandLineAdapter
 {
-#pragma region MANGO_PRIVATE_API
-	MANGO_PRIVATE_API void SelectQueryCLI::checkStatementsOrder(Statement columns, Statement table, Statement condition,
+#pragma region MANGO_API
+	MANGO_API void SelectQueryCLI::checkStatementsOrder(Statement columns, Statement table, Statement condition,
 														        Statement::iterator defaultIt) const
 	{
 		columns.checkValidOrder(defaultIt);
@@ -23,7 +23,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 			throw InvalidSyntaxException({ "Syntax error, found '", condition.openChar, "' before '", table.closedChar, "'" });
 	}
 
-	MANGO_PRIVATE_API void SelectQueryCLI::checkResidualParts(Statement columns, Statement table, Statement condition, 
+	MANGO_API void SelectQueryCLI::checkResidualParts(Statement columns, Statement table, Statement condition, 
 														      std::string_view sql) const
 	{
 		{
@@ -60,7 +60,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 	}
 #pragma endregion
 
-#pragma region MANGO_QUERY_INTERFACE
+#pragma region MANGO_QUERY_API
 	void SelectQueryCLI::parse(std::string_view sql)
 	{
 		m_TableName.clear();
@@ -115,7 +115,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 		}
 	}
 
-	MANGO_QUERY_INTERFACE void SelectQueryCLI::validate(const_ref<MangoDB> dataBase)
+	MANGO_QUERY_API void SelectQueryCLI::validate(const_ref<MangoDB> dataBase)
 	{
 		SelectQuery::validate(dataBase);
 
@@ -125,7 +125,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 			m_WhereCondition.validate(m_TableName, dataBase);
 	}
 
-	MANGO_QUERY_INTERFACE void SelectQueryCLI::execute(ref<MangoDB> dataBase)
+	MANGO_QUERY_API void SelectQueryCLI::execute(ref<MangoDB> dataBase)
 	{
 		dataBase.setWhereClause(m_WhereCondition.getClause());
 

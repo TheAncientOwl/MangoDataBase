@@ -6,13 +6,13 @@ using namespace Mango::Exceptions;
 
 namespace Mango::Implementation::Queries
 {
-#pragma region MANGO_QUERY_INTERFACE
-	MANGO_QUERY_INTERFACE bool DisplayQuery::match(std::string_view sql) const
+#pragma region MANGO_QUERY_API
+	MANGO_QUERY_API bool DisplayQuery::match(std::string_view sql) const
 	{
 		return sql.starts_with("DISPLAY");
 	}
 
-	MANGO_QUERY_INTERFACE void DisplayQuery::parse(std::string_view sql)
+	MANGO_QUERY_API void DisplayQuery::parse(std::string_view sql)
 	{
 		m_TableName.clear();
 
@@ -32,14 +32,14 @@ namespace Mango::Implementation::Queries
 		m_TableName = args[1];
 	}
 
-	MANGO_QUERY_INTERFACE void DisplayQuery::validate(const_ref<MangoDB> dataBase)
+	MANGO_QUERY_API void DisplayQuery::validate(const_ref<MangoDB> dataBase)
 	{
 		if (m_TableName != "*")
 			if (!dataBase.getTable(m_TableName))
 				throw TableNotFoundException("Table does not exist", std::move(m_TableName));
 	}
 
-	MANGO_QUERY_INTERFACE void DisplayQuery::execute(ref<MangoDB> dataBase)
+	MANGO_QUERY_API void DisplayQuery::execute(ref<MangoDB> dataBase)
 	{
 		if (m_TableName == "*")
 			std::cout << dataBase << '\n';

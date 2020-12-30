@@ -15,16 +15,16 @@ namespace Mango::Implementation
 		std::shared_ptr<RowConfiguration> m_Config;
 
 	private:
-		MANGO_PRIVATE_API void setDataAt(int index, const void* value, size_t size);
-		MANGO_PRIVATE_API void setDataAt(int index, const_ref<std::string> value);
+		MANGO_API void setDataAt(int index, const void* value, size_t size);
+		MANGO_API void setDataAt(int index, const_ref<std::string> value);
 
-		MANGO_PRIVATE_API const_ptr<std::byte> data() const;
-		MANGO_PRIVATE_API ptr<std::byte> data();
+		MANGO_API const_ptr<std::byte> data() const;
+		MANGO_API ptr<std::byte> data();
 
-		MANGO_PRIVATE_API const_ptr<std::byte> dataAt(int index) const;
-		MANGO_PRIVATE_API ptr<std::byte> dataAt(int index);
+		MANGO_API const_ptr<std::byte> dataAt(int index) const;
+		MANGO_API ptr<std::byte> dataAt(int index);
 
-		MANGO_PRIVATE_API size_t size() const;
+		MANGO_API size_t size() const;
 
 	public:
 		MANGO_PUBLIC_API int getInt(int index) const;

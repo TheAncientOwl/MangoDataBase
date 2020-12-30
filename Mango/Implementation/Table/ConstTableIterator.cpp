@@ -3,23 +3,23 @@
 
 namespace Mango::Implementation
 {
-#pragma region MANGO_PRIVATE_API
-	MANGO_PRIVATE_API const_ref<std::fstream> ConstTableIterator::advance()
+#pragma region MANGO_API
+	MANGO_API const_ref<std::fstream> ConstTableIterator::advance()
 	{
 		return TableIterator::advance();
 	}
 
-	MANGO_PRIVATE_API const_ref<std::fstream> ConstTableIterator::advanceInPlace(ref<Row> row)
+	MANGO_API const_ref<std::fstream> ConstTableIterator::advanceInPlace(ref<Row> row)
 	{
 		return TableIterator::advanceInPlace(row);
 	}
 
-	MANGO_PRIVATE_API const_ref<Row> ConstTableIterator::row() const
+	MANGO_API const_ref<Row> ConstTableIterator::row() const
 	{
 		return TableIterator::row();
 	}
 
-	MANGO_PRIVATE_API void ConstTableIterator::releaseFile()
+	MANGO_API void ConstTableIterator::releaseFile()
 	{
 		TableIterator::releaseFile();
 	}

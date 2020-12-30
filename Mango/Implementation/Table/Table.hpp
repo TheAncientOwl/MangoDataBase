@@ -20,35 +20,35 @@ namespace Mango::Implementation
 		std::vector<Column> m_Columns;
 
 	private:
-		MANGO_PRIVATE_API std::filesystem::path getConfigFilePath() const;
-		MANGO_PRIVATE_API std::filesystem::path getDataFilePath() const;
-		MANGO_PRIVATE_API const_ref<std::filesystem::path> getDirectoryPath() const;
+		MANGO_API std::filesystem::path getConfigFilePath() const;
+		MANGO_API std::filesystem::path getDataFilePath() const;
+		MANGO_API const_ref<std::filesystem::path> getDirectoryPath() const;
 
-		MANGO_PRIVATE_API void createFiles();
-		MANGO_PRIVATE_API void removeFiles();
-		MANGO_PRIVATE_API void clearDataFile();
-		MANGO_PRIVATE_API void serializeConfig();
-		MANGO_PRIVATE_API void deserializeConfig();
+		MANGO_API void createFiles();
+		MANGO_API void removeFiles();
+		MANGO_API void clearDataFile();
+		MANGO_API void serializeConfig();
+		MANGO_API void deserializeConfig();
 
-		MANGO_PRIVATE_API void insertRow(const_ref<Row> row);
+		MANGO_API void insertRow(const_ref<Row> row);
 
-		MANGO_PRIVATE_API const_ref<std::vector<Column>> columns() const;
+		MANGO_API const_ref<std::vector<Column>> columns() const;
 
-		MANGO_PRIVATE_API std::string_view getName() const;
+		MANGO_API std::string_view getName() const;
 
-		MANGO_PRIVATE_API const_ptr<Column> getColumn(std::string_view columnName) const;
-		MANGO_PRIVATE_API ptr<Column> getColumn(std::string_view columnName);
+		MANGO_API const_ptr<Column> getColumn(std::string_view columnName) const;
+		MANGO_API ptr<Column> getColumn(std::string_view columnName);
 
-		MANGO_PRIVATE_API const_ref<Column> getColumn(int index) const;
-		MANGO_PRIVATE_API ref<Column> getColumn(int index);
+		MANGO_API const_ref<Column> getColumn(int index) const;
+		MANGO_API ref<Column> getColumn(int index);
 
-		MANGO_PRIVATE_API size_t getColumnIndex(std::string_view columnName) const;
+		MANGO_API size_t getColumnIndex(std::string_view columnName) const;
 
-		MANGO_PRIVATE_API std::shared_ptr<RowConfiguration> makeSharedRowConfiguration() const;
-		MANGO_PRIVATE_API RowConfiguration makeRowConfiguration() const;
+		MANGO_API std::shared_ptr<RowConfiguration> makeSharedRowConfiguration() const;
+		MANGO_API RowConfiguration makeRowConfiguration() const;
 
-		MANGO_PRIVATE_API TableIterator makeIterator();
-		MANGO_PRIVATE_API ConstTableIterator makeConstIterator() const;
+		MANGO_API TableIterator makeIterator();
+		MANGO_API ConstTableIterator makeConstIterator() const;
 
 	public:
 		MANGO_PUBLIC_API Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, std::vector<Column>&& columns);

@@ -6,20 +6,20 @@ using namespace Mango::Implementation::BinaryUtils;
 
 namespace Mango::Implementation
 {
-#pragma region MANGO_PRIVATE_API
-	MANGO_PRIVATE_API const_ref<std::fstream> TableIterator::advance()
+#pragma region MANGO_API
+	MANGO_API const_ref<std::fstream> TableIterator::advance()
 	{
 		deserializePOD(m_FileStream, m_Data.data(), m_Data.size());
 		return m_FileStream;
 	}
 
-	MANGO_PRIVATE_API const_ref<std::fstream> TableIterator::advanceInPlace(ref<Row> row)
+	MANGO_API const_ref<std::fstream> TableIterator::advanceInPlace(ref<Row> row)
 	{
 		deserializePOD(m_FileStream, row.data(), row.size());
 		return m_FileStream;
 	}
 
-	MANGO_PRIVATE_API const_ref<Row> TableIterator::row() const
+	MANGO_API const_ref<Row> TableIterator::row() const
 	{
 		return m_Data;
 	}
@@ -29,12 +29,12 @@ namespace Mango::Implementation
 		return m_Data;
 	}
 
-	MANGO_PRIVATE_API void TableIterator::releaseFile()
+	MANGO_API void TableIterator::releaseFile()
 	{
 		m_FileStream.close();
 	}
 
-	MANGO_PRIVATE_API void TableIterator::overwrite(const_ref<Row> row, bool copyInternal)
+	MANGO_API void TableIterator::overwrite(const_ref<Row> row, bool copyInternal)
 	{
 		if (copyInternal)
 			m_Data = row;
@@ -49,7 +49,7 @@ namespace Mango::Implementation
 		m_FileStream.seekg(pos);
 	}
 
-	MANGO_PRIVATE_API TableIterator::TableIterator(const_ref<std::filesystem::path> tableDataFilePath, const_ref<std::shared_ptr<RowConfiguration>> rowConfig)
+	MANGO_API TableIterator::TableIterator(const_ref<std::filesystem::path> tableDataFilePath, const_ref<std::shared_ptr<RowConfiguration>> rowConfig)
 		: m_FileStream(tableDataFilePath, std::ios::in | std::ios::out | std::ios::binary), m_Data(rowConfig->calculateTotalSize(), rowConfig)
 	{
 	}

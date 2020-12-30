@@ -25,27 +25,27 @@ namespace Mango
 		Implementation::SetClause m_SetClause;
 
 	private:
-		MANGO_PRIVATE_API std::filesystem::path getConfigFilePath() const;
+		MANGO_API std::filesystem::path getConfigFilePath() const;
 
 		/// <summary>
 		/// Add table to internal data structure.
 		/// Create its files.
 		/// Store new configuration.
 		/// </summary>
-		MANGO_PRIVATE_API void addTable(std::unique_ptr<Implementation::Table> table);
+		MANGO_API void addTable(std::unique_ptr<Implementation::Table> table);
 
 		/// <summary>
 		/// Remove table from internal data structure.
 		/// Remove its files.
 		/// Store new configuration.
 		/// </summary>
-		MANGO_PRIVATE_API void removeTable(std::string_view tableName);
+		MANGO_API void removeTable(std::string_view tableName);
 
-		MANGO_PRIVATE_API const_ptr<Implementation::Table> getTable(std::string_view tableName) const;
-		MANGO_PRIVATE_API ptr<Implementation::Table> getTable(std::string_view tableName);
-		MANGO_PRIVATE_API const_ref<std::vector<std::unique_ptr<Implementation::Table>>> tables() const;
+		MANGO_API const_ptr<Implementation::Table> getTable(std::string_view tableName) const;
+		MANGO_API ptr<Implementation::Table> getTable(std::string_view tableName);
+		MANGO_API const_ref<std::vector<std::unique_ptr<Implementation::Table>>> tables() const;
 
-		MANGO_PRIVATE_API void storeTableConfigs() const;
+		MANGO_API void storeTableConfigs() const;
 
 	public:
 		MANGO_PUBLIC_API void loadTableConfigs();

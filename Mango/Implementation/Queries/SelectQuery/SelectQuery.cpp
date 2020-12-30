@@ -6,8 +6,8 @@ using namespace Mango::Exceptions;
 
 namespace Mango::Implementation::Queries
 {
-#pragma region MANGO_PRIVATE_API
-	MANGO_PRIVATE_API void SelectQuery::checkStatementsOrder(Statement columns, Statement table, Statement::iterator defaultIt) const
+#pragma region MANGO_API
+	MANGO_API void SelectQuery::checkStatementsOrder(Statement columns, Statement table, Statement::iterator defaultIt) const
 	{
 		columns.checkValidOrder(defaultIt);
 
@@ -17,7 +17,7 @@ namespace Mango::Implementation::Queries
 			throw InvalidSyntaxException({ "Syntax error, found '", table.openChar, "' before '", columns.closedChar, "'" });
 	}
 
-	MANGO_PRIVATE_API void SelectQuery::checkResidualParts(Statement columns, Statement table, std::string_view sql) const
+	MANGO_API void SelectQuery::checkResidualParts(Statement columns, Statement table, std::string_view sql) const
 	{
 		{
 			std::string_view part(std::cbegin(sql), columns.open);
@@ -46,7 +46,7 @@ namespace Mango::Implementation::Queries
 
 	}
 
-	MANGO_PRIVATE_API void SelectQuery::parseColumnNames(std::string_view columnsPart)
+	MANGO_API void SelectQuery::parseColumnNames(std::string_view columnsPart)
 	{
 		auto args = splitAtChar(columnsPart, ',');
 		if (args.empty())
@@ -56,7 +56,7 @@ namespace Mango::Implementation::Queries
 			m_ColumnNames.emplace_back(cleanString(trimWhiteSpaces(arg), ','));
 	}
 
-	MANGO_PRIVATE_API void SelectQuery::parseTableName(std::string_view tablePart)
+	MANGO_API void SelectQuery::parseTableName(std::string_view tablePart)
 	{
 		auto args = splitAtChar(tablePart, ' ');
 
@@ -69,7 +69,7 @@ namespace Mango::Implementation::Queries
 		m_TableName = args.front();
 	}
 
-	MANGO_PRIVATE_API void SelectQuery::selectAll(ptr<Table> table, ref<MangoDB> dataBase) const
+	MANGO_API void SelectQuery::selectAll(ptr<Table> table, ref<MangoDB> dataBase) const
 	{
 		auto rowConfig = table->makeSharedRowConfiguration();
 		size_t rowSize = rowConfig->calculateTotalSize();
@@ -85,7 +85,7 @@ namespace Mango::Implementation::Queries
 		result.pop_back();
 	}
 
-	MANGO_PRIVATE_API void SelectQuery::selectSome(ptr<Table> table, ref<MangoDB> dataBase) const
+	MANGO_API void SelectQuery::selectSome(ptr<Table> table, ref<MangoDB> dataBase) const
 	{
 		std::vector<int> selectedColumnIndexes;
 		auto rowConfig = std::make_shared<RowConfiguration>();
@@ -125,13 +125,13 @@ namespace Mango::Implementation::Queries
 	}
 #pragma endregion
 
-#pragma region MANGO_QUERY_INTERFACE
-	MANGO_QUERY_INTERFACE bool SelectQuery::match(std::string_view sql) const
+#pragma region MANGO_QUERY_API
+	MANGO_QUERY_API bool SelectQuery::match(std::string_view sql) const
 	{
 		return sql.starts_with("SELECT");
 	}
 
-	MANGO_QUERY_INTERFACE void SelectQuery::parse(std::string_view sql)
+	MANGO_QUERY_API void SelectQuery::parse(std::string_view sql)
 	{
 		m_TableName.clear();
 		m_ColumnNames.clear();
@@ -173,7 +173,7 @@ namespace Mango::Implementation::Queries
 		parseTableName({ std::next(table.open), table.closed });
 	}
 
-	MANGO_QUERY_INTERFACE void SelectQuery::validate(const_ref<MangoDB> dataBase)
+	MANGO_QUERY_API void SelectQuery::validate(const_ref<MangoDB> dataBase)
 	{
 		auto table = dataBase.getTable(m_TableName);
 		if (!table)
@@ -187,7 +187,7 @@ namespace Mango::Implementation::Queries
 		}
 	}
 
-	MANGO_QUERY_INTERFACE void SelectQuery::execute(ref<MangoDB> dataBase)
+	MANGO_QUERY_API void SelectQuery::execute(ref<MangoDB> dataBase)
 	{
 		MangoClauseGuard _(dataBase);
 		dataBase.m_LastResult.clear();

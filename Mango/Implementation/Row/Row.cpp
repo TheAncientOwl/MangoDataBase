@@ -5,14 +5,14 @@
 
 namespace Mango::Implementation
 {
-#pragma region MANGO_PRIVATE_API
-	MANGO_PRIVATE_API void Row::setDataAt(int index, const void* value, size_t size)
+#pragma region MANGO_API
+	MANGO_API void Row::setDataAt(int index, const void* value, size_t size)
 	{
 		assert(index >= 0 && index < m_Config->columnsNumber());
 		memcpy(m_Data + m_Config->offsetAt(index), value, size);
 	}
 
-	MANGO_PRIVATE_API void Row::setDataAt(int index, const_ref<std::string> value)
+	MANGO_API void Row::setDataAt(int index, const_ref<std::string> value)
 	{
 		assert(index >= 0 && index < m_Config->columnsNumber());
 		if (m_Config->dataTypeAt(index) == DataType::Value::INT)
@@ -43,29 +43,29 @@ namespace Mango::Implementation
 		}
 	}
 
-	MANGO_PRIVATE_API const_ptr<std::byte> Row::data() const
+	MANGO_API const_ptr<std::byte> Row::data() const
 	{
 		return m_Data;
 	}
 
-	MANGO_PRIVATE_API ptr<std::byte> Row::data()
+	MANGO_API ptr<std::byte> Row::data()
 	{
 		return m_Data;
 	}
 
-	MANGO_PRIVATE_API const_ptr<std::byte> Row::dataAt(int index) const
+	MANGO_API const_ptr<std::byte> Row::dataAt(int index) const
 	{
 		assert(index >= 0 && index < m_Config->columnsNumber());
 		return m_Data + m_Config->offsetAt(index);
 	}
 
-	MANGO_PRIVATE_API ptr<std::byte> Row::dataAt(int index)
+	MANGO_API ptr<std::byte> Row::dataAt(int index)
 	{
 		assert(index >= 0 && index < m_Config->columnsNumber());
 		return m_Data + m_Config->offsetAt(index);
 	}
 
-	MANGO_PRIVATE_API size_t Row::size() const
+	MANGO_API size_t Row::size() const
 	{
 		return m_Size;
 	}

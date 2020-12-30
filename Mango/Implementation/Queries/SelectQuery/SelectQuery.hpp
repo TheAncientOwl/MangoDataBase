@@ -19,31 +19,31 @@ namespace Mango::Implementation::Queries
 		/// <summary>
 		/// */[] before ()
 		/// </summary>
-		MANGO_PRIVATE_API void checkStatementsOrder(Statement columns, Statement table, Statement::iterator defaultIt) const;
+		MANGO_API void checkStatementsOrder(Statement columns, Statement table, Statement::iterator defaultIt) const;
 
 		/// <summary>
 		/// SELECT */[...] FROM (...);
 		/// </summary>
-		MANGO_PRIVATE_API void checkResidualParts(Statement columns, Statement table, std::string_view sql) const;
+		MANGO_API void checkResidualParts(Statement columns, Statement table, std::string_view sql) const;
 
 		/// <summary>
 		/// col1, col2, ...
 		/// </summary>
-		MANGO_PRIVATE_API void parseColumnNames(std::string_view columnsPart);
+		MANGO_API void parseColumnNames(std::string_view columnsPart);
 
 		/// <summary>
 		/// table_name
 		/// </summary>
-		MANGO_PRIVATE_API void parseTableName(std::string_view tablePart);
+		MANGO_API void parseTableName(std::string_view tablePart);
 
-		MANGO_PRIVATE_API void selectAll(ptr<Table> table, ref<MangoDB> dataBase) const;
-		MANGO_PRIVATE_API void selectSome(ptr<Table> table, ref<MangoDB> dataBase) const;
+		MANGO_API void selectAll(ptr<Table> table, ref<MangoDB> dataBase) const;
+		MANGO_API void selectSome(ptr<Table> table, ref<MangoDB> dataBase) const;
 
 	protected:
-		MANGO_QUERY_INTERFACE bool match(std::string_view sql) const final override;
-		MANGO_QUERY_INTERFACE void parse(std::string_view sql) override;
-		MANGO_QUERY_INTERFACE void validate(const_ref<MangoDB> dataBase) override;
-		MANGO_QUERY_INTERFACE void execute(ref<MangoDB> dataBase) override;
+		MANGO_QUERY_API bool match(std::string_view sql) const final override;
+		MANGO_QUERY_API void parse(std::string_view sql) override;
+		MANGO_QUERY_API void validate(const_ref<MangoDB> dataBase) override;
+		MANGO_QUERY_API void execute(ref<MangoDB> dataBase) override;
 
 	public:
 		MANGO_PUBLIC_API SelectQuery() = default;

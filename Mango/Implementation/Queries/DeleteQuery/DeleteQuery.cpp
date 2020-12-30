@@ -9,13 +9,13 @@ using namespace Mango::Exceptions;
 
 namespace Mango::Implementation::Queries
 {
-#pragma region MANGO_QUERY_INTERFACE
-	MANGO_QUERY_INTERFACE bool DeleteQuery::match(std::string_view sql) const
+#pragma region MANGO_QUERY_API
+	MANGO_QUERY_API bool DeleteQuery::match(std::string_view sql) const
 	{
 		return sql.starts_with("DELETE");
 	}
 
-	MANGO_QUERY_INTERFACE void DeleteQuery::parse(std::string_view sql)
+	MANGO_QUERY_API void DeleteQuery::parse(std::string_view sql)
 	{
 		m_TableName.clear();
 
@@ -35,13 +35,13 @@ namespace Mango::Implementation::Queries
 		m_TableName = args[2];
 	}
 
-	MANGO_QUERY_INTERFACE void DeleteQuery::validate(const_ref<MangoDB> dataBase)
+	MANGO_QUERY_API void DeleteQuery::validate(const_ref<MangoDB> dataBase)
 	{
 		if (!dataBase.getTable(m_TableName))
 			throw TableNotFoundException("Table does not exists", std::move(m_TableName));
 	}
 
-	MANGO_QUERY_INTERFACE void DeleteQuery::execute(ref<MangoDB> dataBase)
+	MANGO_QUERY_API void DeleteQuery::execute(ref<MangoDB> dataBase)
 	{
 		MangoClauseGuard _(dataBase);
 		auto table = dataBase.getTable(m_TableName);
