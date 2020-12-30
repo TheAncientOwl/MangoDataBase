@@ -200,6 +200,7 @@
     <ClCompile Include="Mango\Implementation\Row\RowFilters.cpp" />
     <ClCompile Include="Mango\Implementation\Row\RowFilters.fwd.cpp" />
     <ClCompile Include="Mango\Implementation\StaticBlock\StaticBlock.cpp" />
+    <ClCompile Include="Mango\Implementation\StringUtils\StringUtils.cpp" />
     <ClCompile Include="Mango\Implementation\Table\ConstTableIterator.cpp" />
     <ClCompile Include="Mango\Implementation\Table\Table.cpp" />
     <ClCompile Include="Mango\Implementation\Table\TableIterator.cpp" />
@@ -251,6 +252,7 @@
     <ClInclude Include="Mango\Implementation\Row\RowFilters.fwd.hpp" />
     <ClInclude Include="Mango\Implementation\Row\RowFilters.hpp" />
     <ClInclude Include="Mango\Implementation\StaticBlock\StaticBlock.hpp" />
+    <ClInclude Include="Mango\Implementation\StringUtils\StringUtils.hpp" />
     <ClInclude Include="Mango\Implementation\Table\ConstTableIterator.hpp" />
     <ClInclude Include="Mango\Implementation\Table\Table.fwd.hpp" />
     <ClInclude Include="Mango\Implementation\Table\Table.hpp" />

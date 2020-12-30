@@ -1,8 +1,7 @@
 #pragma once
 #include "../../../MangoAPI.fwd.hpp"
 
-#define MANGO_ESCAPE_CHAR '/'
-
+#include "../../StringUtils/StringUtils.hpp"
 #include "../Statement/Statement.hpp"
 #include "../../../MangoDB/MangoDB.hpp"
 
@@ -12,15 +11,6 @@ namespace Mango::Implementation::Queries
 	{
 	private:
 		static bool s_InvalidIdentifierChars[257];
-
-	public:
-		MANGO_PUBLIC_API static std::vector<std::string_view> splitAtChar(std::string_view str, char c);
-		MANGO_PUBLIC_API static std::vector<std::string_view> splitAtCharWithEscape(std::string_view str, char c);
-		MANGO_PUBLIC_API static void splitInCleanStringsAt(std::string_view str, char c, ref<std::vector<std::string>> out);
-		MANGO_PUBLIC_API static bool isValidIdentifier(std::string_view identifier);
-		MANGO_PUBLIC_API static std::string_view trimWhiteSpaces(std::string_view str);
-		MANGO_PUBLIC_API static std::string cleanString(std::string_view str, char escapedChar);
-		MANGO_PUBLIC_API static void removeEscapeChar(ref<std::string> str, char escapedChar);
 
 	private:
 		/// <summary>
@@ -60,6 +50,7 @@ namespace Mango::Implementation::Queries
 		friend class AbstractQueryStaticInitializer;
 		friend class Mango::QueryExecutor;
 		friend class Mango::CommandLineInterface;
+		friend bool Mango::Implementation::StringUtils::isValidIdentifier(std::string_view str);
 	};
 
 	class AbstractQueryStaticInitializer

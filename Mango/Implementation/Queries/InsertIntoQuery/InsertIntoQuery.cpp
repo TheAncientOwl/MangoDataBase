@@ -4,6 +4,9 @@
 #include "../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
+#include "../../StringUtils/StringUtils.hpp"
+
+
 namespace Mango::Implementation::Queries
 {
 #pragma region MANGO_API
@@ -19,7 +22,7 @@ namespace Mango::Implementation::Queries
 	{
 		std::string_view valuesKeyword({ std::next(columns.closed), values.open });
 
-		auto args = splitAtChar(valuesKeyword, ' ');
+		auto args = StringUtils::splitAtChar(valuesKeyword, ' ');
 		if (args.empty())
 			throw InvalidSyntaxException("Missing \"VALUES\" keyword");
 
@@ -41,7 +44,7 @@ namespace Mango::Implementation::Queries
 
 	MANGO_API void InsertIntoQuery::parseTableName(std::string_view firstPart)
 	{
-		auto args = splitAtChar(firstPart, ' ');
+		auto args = StringUtils::splitAtChar(firstPart, ' ');
 
 		if (args.size() != 3)
 			throw InvalidSyntaxException("Invalid insert into query syntax");
@@ -54,17 +57,17 @@ namespace Mango::Implementation::Queries
 
 	MANGO_API void InsertIntoQuery::parseColumnNames(std::string_view columnsPart)
 	{
-		auto args = splitAtChar(columnsPart, ',');
+		auto args = StringUtils::splitAtChar(columnsPart, ',');
 		if (args.empty())
 			throw InvalidSyntaxException("Since \"[]\" are used, column names must be mentioned");
 
 		for (const auto& columnName : args)
-			m_ColumnNames.emplace_back(trimWhiteSpaces(columnName));
+			m_ColumnNames.emplace_back(StringUtils::trimWhiteSpaces(columnName));
 	}
 
 	MANGO_API void InsertIntoQuery::parseColumnValues(std::string_view valuesPart)
 	{
-		splitInCleanStringsAt(valuesPart, ',', m_ColumnValues);
+		StringUtils::splitInCleanStringsAt(valuesPart, ',', m_ColumnValues);
 	}
 #pragma endregion
 

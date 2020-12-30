@@ -6,6 +6,9 @@
 #include "../../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
+#include "../../../StringUtils/StringUtils.hpp"
+
+
 namespace Mango::Implementation::Queries::CommandLineAdapter
 {
 #pragma region MANGO_API
@@ -25,7 +28,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 	{
 		{
 			std::string_view part(std::next(setClause.closed), condition.open);
-			auto args = splitAtChar(part, ' ');
+			auto args = StringUtils::splitAtChar(part, ' ');
 
 			if (args.empty())
 				throw InvalidSyntaxException({ "Missing \"WHERE\" keyword" });
@@ -46,7 +49,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 
 	MANGO_API void UpdateQueryCLI::parseTableName(std::string_view firstPart)
 	{
-		auto args = splitAtChar(firstPart, ' ');
+		auto args = StringUtils::splitAtChar(firstPart, ' ');
 
 		if (args.size() != 3)
 			throw InvalidSyntaxException("Invalid update query syntax");

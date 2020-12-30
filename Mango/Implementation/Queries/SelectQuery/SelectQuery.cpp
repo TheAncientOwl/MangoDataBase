@@ -4,6 +4,8 @@
 #include "../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
+#include "../../StringUtils/StringUtils.hpp"
+
 namespace Mango::Implementation::Queries
 {
 #pragma region MANGO_API
@@ -21,14 +23,14 @@ namespace Mango::Implementation::Queries
 	{
 		{
 			std::string_view part(std::cbegin(sql), columns.open);
-			auto args = splitAtChar(part, ' ');
+			auto args = StringUtils::splitAtChar(part, ' ');
 			if (args.size() > 1 || args.front() != "SELECT")
 				throw InvalidArgumentException({ "Unknown sequence \"", part, "\"" });
 		}
 
 		{
 			std::string_view part(std::next(columns.closed), table.open);
-			auto args = splitAtChar(part, ' ');
+			auto args = StringUtils::splitAtChar(part, ' ');
 			if (args.empty())
 				throw InvalidSyntaxException("Missing \"FROM\" keyword");
 			if (args.size() != 1 || args.front() != "FROM")
@@ -48,17 +50,17 @@ namespace Mango::Implementation::Queries
 
 	MANGO_API void SelectQuery::parseColumnNames(std::string_view columnsPart)
 	{
-		auto args = splitAtChar(columnsPart, ',');
+		auto args = StringUtils::splitAtChar(columnsPart, ',');
 		if (args.empty())
 			throw InvalidSyntaxException("Since [] are used, column names must be specified");
 
 		for (const auto& arg : args)
-			m_ColumnNames.emplace_back(cleanString(trimWhiteSpaces(arg), ','));
+			m_ColumnNames.emplace_back(StringUtils::trimWhiteSpaces(arg));
 	}
 
 	MANGO_API void SelectQuery::parseTableName(std::string_view tablePart)
 	{
-		auto args = splitAtChar(tablePart, ' ');
+		auto args = StringUtils::splitAtChar(tablePart, ' ');
 
 		if (args.empty())
 			throw InvalidSyntaxException("No table specified");

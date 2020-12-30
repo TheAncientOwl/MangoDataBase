@@ -4,6 +4,9 @@
 #include "../../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
+#include "../../../StringUtils/StringUtils.hpp"
+;
+
 namespace Mango::Implementation::Queries::CommandLineAdapter
 {
 #pragma region MANGO_API
@@ -28,14 +31,14 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 	{
 		{
 			std::string_view part(std::cbegin(sql), columns.open);
-			auto args = splitAtChar(part, ' ');
+			auto args = StringUtils::splitAtChar(part, ' ');
 			if (args.size() > 1 || args.front() != "SELECT")
 				throw InvalidArgumentException({ "Unknown sequence \"", part, "\"" });
 		}
 
 		{
 			std::string_view part(std::next(columns.closed), table.open);
-			auto args = splitAtChar(part, ' ');
+			auto args = StringUtils::splitAtChar(part, ' ');
 			if (args.empty())
 				throw InvalidSyntaxException("Missing \"FROM\" keyword");
 			if (args.size() != 1 || args.front() != "FROM")
@@ -44,7 +47,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 
 		{
 			std::string_view part(std::next(table.closed), condition.open);
-			auto args = splitAtChar(part, ' ');
+			auto args = StringUtils::splitAtChar(part, ' ');
 			if (args.empty())
 				throw InvalidSyntaxException("Missing \"WHERE\" keyword");
 			if (args.size() != 1 || args.front() != "WHERE")

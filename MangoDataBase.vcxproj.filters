@@ -121,6 +121,9 @@
     <Filter Include="Mango\ConsoleColorOutput">
       <UniqueIdentifier>{e81403f4-76bc-46b3-9e5e-ba77c5e9b19f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Implementation\StringUtils">
+      <UniqueIdentifier>{f0dd5369-00d6-45aa-b7bd-40208eb8d454}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -242,6 +245,9 @@
     </ClCompile>
     <ClCompile Include="Mango\ConsoleColorOutput\ConsoleColorOutput.cpp">
       <Filter>Mango\ConsoleColorOutput</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\StringUtils\StringUtils.cpp">
+      <Filter>Mango\Implementation\StringUtils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -385,6 +391,9 @@
     </ClInclude>
     <ClInclude Include="Mango\ConsoleColorOutput\ConsoleColorOutput.hpp">
       <Filter>Mango\ConsoleColorOutput</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\StringUtils\StringUtils.hpp">
+      <Filter>Mango\Implementation\StringUtils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -4,6 +4,9 @@
 #include "../../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
+#include "../../../StringUtils/StringUtils.hpp"
+
+
 namespace Mango::Implementation::Queries::CommandLineAdapter
 {
 #pragma region MANGO_QUERY_API
@@ -32,7 +35,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 
 			m_WhereCondition.parseFrom({ std::next(condition.open), condition.closed });
 
-			auto args = splitAtChar({ std::cbegin(sql), condition.open }, ' ');
+			auto args = StringUtils::splitAtChar({ std::cbegin(sql), condition.open }, ' ');
 
 			if (args.size() != 4)
 				throw InvalidSyntaxException("Invalid delete query syntax");

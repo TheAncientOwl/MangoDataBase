@@ -4,6 +4,9 @@
 #include "../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
+#include "../../StringUtils/StringUtils.hpp"
+
+
 namespace Mango::Implementation::Queries
 {
 #pragma region MANGO_QUERY_API
@@ -21,7 +24,7 @@ namespace Mango::Implementation::Queries
 
 		sql.remove_suffix(1);
 
-		auto args = splitAtChar(sql, ' ');
+		auto args = StringUtils::splitAtChar(sql, ' ');
 
 		if (args.size() != 3)
 			throw InvalidSyntaxException("Invalid truncate query syntax");

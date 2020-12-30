@@ -5,6 +5,9 @@
 #include "../../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
+#include "../../../StringUtils/StringUtils.hpp"
+
+
 namespace Mango::Implementation::Queries::CommandLineAdapter
 {
 	WhereClause WhereCondition::getClause() const
@@ -31,7 +34,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 
 	void WhereCondition::parseFrom(std::string_view condition)
 	{
-		AbstractQuery::splitInCleanStringsAt(condition, ' ', m_Args);
+		StringUtils::splitInCleanStringsAt(condition, ' ', m_Args);
 
 		if (m_Args.size() < 3)
 			throw InvalidSyntaxException("Missing args at condition");

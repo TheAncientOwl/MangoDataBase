@@ -4,12 +4,15 @@
 #include "../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
+#include "../../StringUtils/StringUtils.hpp"
+
+
 namespace Mango::Implementation::Queries
 {
 #pragma region MANGO_API
     MANGO_API void CreateTableQuery::parseTableName(std::string_view firstPart)
     {
-        auto args = splitAtChar(firstPart, ' ');
+        auto args = StringUtils::splitAtChar(firstPart, ' ');
 
         if (args.size() != 3)
             throw InvalidSyntaxException("Invalid create table query syntax");
@@ -17,7 +20,7 @@ namespace Mango::Implementation::Queries
         if (args[0] != "CREATE" || args[1] != "TABLE")
             throw InvalidArgumentException("Check missing \"CREATE\" nor \"TABLE\" keywords");
 
-        if (!isValidIdentifier(args[2]))
+        if (!StringUtils::isValidIdentifier(args[2]))
             throw InvalidArgumentException({ "Invalid table name \"", args[2], "\"" });
 
         if (m_TableName.length() >= MANGO_MAX_TABLE_NAME_LENGTH)
@@ -28,21 +31,21 @@ namespace Mango::Implementation::Queries
 
     MANGO_API void CreateTableQuery::parseColumns(std::string_view columnsPart)
     {
-        auto tuples = splitAtChar(columnsPart, ',');
+        auto tuples = StringUtils::splitAtChar(columnsPart, ',');
 
         if (tuples.empty())
             throw InvalidSyntaxException("Table must have at least one column");
 
         for (std::set<std::string_view> columnNames; const auto & tuple : tuples)
         {
-            auto args = splitAtChar(tuple, ' ');
+            auto args = StringUtils::splitAtChar(tuple, ' ');
 
             if (args.size() < 2)
                 throw InvalidSyntaxException({ "Missing something at \"", tuple, "\"" });
 
             auto& columnName = args[0];
             {
-                if (!isValidIdentifier(columnName))
+                if (!StringUtils::isValidIdentifier(columnName))
                     throw InvalidArgumentException({ "Invalid column name \"", columnName, "\"" });
 
                 if (columnName.length() >= MANGO_MAX_COLUMN_NAME_LENGTH)

@@ -9,6 +9,9 @@
 #include "../../../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
+#include "../../../../StringUtils/StringUtils.hpp"
+
+
 namespace Mango::Implementation::Queries::CommandLineAdapter
 {
 	void SetClauseData::clear()
@@ -19,13 +22,13 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 
 	void SetClauseData::parseFrom(std::string_view clause)
 	{
-		auto tuples = AbstractQuery::splitAtCharWithEscape(clause, ',');
+		auto tuples = StringUtils::splitAtCharWithEscape(clause, ',');
 		if (tuples.empty())
 			throw InvalidSyntaxException("Empty set clause");
 
 		for (const auto& tuple : tuples)
 		{
-			AbstractQuery::splitInCleanStringsAt(tuple, ' ', m_Args);
+			StringUtils::splitInCleanStringsAt(tuple, ' ', m_Args);
 
 			if (m_Args.size() < 3)
 				throw InvalidSyntaxException({ "Wrong syntax at \"", tuple, "\"" });
@@ -33,7 +36,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 			if (m_Args[1] != "=")
 				throw InvalidSyntaxException({ "Unknown sequence \"", m_Args[1], "\"" });
 
-			AbstractQuery::removeEscapeChar(m_Args[2], ',');
+			StringUtils::removeEscapeChar(m_Args[2], ',');
 			m_Data.emplace_back(std::move(m_Args[0]), std::move(m_Args[2]));
 		}
 	}
