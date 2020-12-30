@@ -11,7 +11,6 @@ using namespace Mango::Exceptions;
 
 #include "../../../../StringUtils/StringUtils.hpp"
 
-
 namespace Mango::Implementation::Queries::CommandLineAdapter
 {
 	void SetClauseData::clear()

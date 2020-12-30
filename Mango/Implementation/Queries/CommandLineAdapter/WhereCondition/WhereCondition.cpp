@@ -7,7 +7,6 @@ using namespace Mango::Exceptions;
 
 #include "../../../StringUtils/StringUtils.hpp"
 
-
 namespace Mango::Implementation::Queries::CommandLineAdapter
 {
 	WhereClause WhereCondition::getClause() const

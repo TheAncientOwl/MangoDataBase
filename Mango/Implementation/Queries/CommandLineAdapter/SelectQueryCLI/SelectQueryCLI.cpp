@@ -4,9 +4,6 @@
 #include "../../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
-#include "../../../StringUtils/StringUtils.hpp"
-;
-
 namespace Mango::Implementation::Queries::CommandLineAdapter
 {
 #pragma region MANGO_API

@@ -7,9 +7,6 @@ using namespace Mango::Implementation::BinaryUtils;
 #include "../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
-#include "../../StringUtils/StringUtils.hpp"
-
-
 namespace Mango::Implementation::Queries
 {
 #pragma region MANGO_QUERY_API
