@@ -176,6 +176,7 @@
     <ClCompile Include="Mango\Exceptions\NanException\NanException.cpp" />
     <ClCompile Include="Mango\Exceptions\TableAlreadyExistsException\TableAlreadyExistsException.cpp" />
     <ClCompile Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.cpp" />
+    <ClCompile Include="Mango\Implementation\BinaryUtils\BinaryUtils.cpp" />
     <ClCompile Include="Mango\Implementation\Column\Column.cpp" />
     <ClCompile Include="Mango\Implementation\DataType\DataType.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\AbstractQuery\AbstractQuery.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="Mango\Exceptions\NanException\NanException.hpp" />
     <ClInclude Include="Mango\Exceptions\TableAlreadyExistsException\TableAlreadyExistsException.hpp" />
     <ClInclude Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.hpp" />
+    <ClInclude Include="Mango\Implementation\BinaryUtils\BinaryUtils.hpp" />
     <ClInclude Include="Mango\Implementation\Column\Column.hpp" />
     <ClInclude Include="Mango\Implementation\DataType\DataType.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\AbstractQuery\AbstractQuery.hpp" />

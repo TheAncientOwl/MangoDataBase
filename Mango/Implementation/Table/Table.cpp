@@ -1,6 +1,9 @@
 #include "standard_library.hpp"
 #include "Table.hpp"
 
+#include "../BinaryUtils/BinaryUtils.hpp"
+using namespace Mango::Implementation::BinaryUtils;
+
 namespace Mango::Implementation
 {
 #pragma region MANGO_PRIVATE_API

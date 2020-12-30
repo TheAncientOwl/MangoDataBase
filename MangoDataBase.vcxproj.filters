@@ -118,6 +118,9 @@
     <Filter Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\ClauseData">
       <UniqueIdentifier>{215f1661-246c-4c5d-92d9-b11a97ecfcba}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Implementation\BinaryUtils">
+      <UniqueIdentifier>{2c741591-feee-453a-a2ac-5aefda032f4b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -233,6 +236,9 @@
     </ClCompile>
     <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\SetClauseData\SetClauseData.cpp">
       <Filter>Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\ClauseData</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\BinaryUtils\BinaryUtils.cpp">
+      <Filter>Mango\Implementation\BinaryUtils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -370,6 +376,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\SetClauseData\SetClauseData.h">
       <Filter>Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\ClauseData</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\BinaryUtils\BinaryUtils.hpp">
+      <Filter>Mango\Implementation\BinaryUtils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

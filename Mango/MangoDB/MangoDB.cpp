@@ -1,6 +1,9 @@
 #include "standard_library.hpp"
 #include "MangoDB.hpp"
 
+#include "../Implementation/BinaryUtils/BinaryUtils.hpp"
+using namespace Mango::Implementation::BinaryUtils;
+
 namespace Mango
 {
 #pragma region MANGO_PRIVATE_API
