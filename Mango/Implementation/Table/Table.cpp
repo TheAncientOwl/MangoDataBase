@@ -69,8 +69,6 @@ namespace Mango::Implementation
 		{
 			auto& column = m_Columns.emplace_back();
 			column.deserialize(file);
-
-			m_ColumnIndexes.emplace(column.name(), index);
 		}
 
 		file.close();
@@ -127,9 +125,9 @@ namespace Mango::Implementation
 
 	MANGO_PRIVATE_API size_t Table::getColumnIndex(std::string_view columnName) const
 	{
-		auto it = m_ColumnIndexes.find(columnName);
-		if (it != std::cend(m_ColumnIndexes))
-			return it->second;
+		for (size_t index = 0, size = m_Columns.size(); index < size; ++index)
+			if (m_Columns[index].name() == columnName)
+				return index;
 		return -1;
 	}
 
@@ -167,9 +165,6 @@ namespace Mango::Implementation
 		m_DirectoryPath = dataBaseDirectoryPath / m_Name;
 
 		m_Columns = std::move(columns);
-		int index = 0;
-		for (const auto& column : m_Columns)
-			m_ColumnIndexes.emplace(column.name(), index), index++;
 	}
 
 	MANGO_PUBLIC_API std::ostream& operator<<(std::ostream& out, const Table& table)

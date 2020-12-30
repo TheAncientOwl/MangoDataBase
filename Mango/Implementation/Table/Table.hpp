@@ -18,7 +18,6 @@ namespace Mango::Implementation
 		std::filesystem::path m_DirectoryPath;
 		
 		std::vector<Column> m_Columns;
-		std::map<std::string_view, size_t> m_ColumnIndexes;
 
 	private:
 		MANGO_PRIVATE_API std::filesystem::path getConfigFilePath() const;
