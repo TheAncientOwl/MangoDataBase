@@ -63,7 +63,7 @@ namespace Mango::Implementation
 
 		[[nodiscard]] constexpr Value at(const Key& key) const
 		{
-			const auto it = std::find_if(std::begin(data), std::cend(data),
+			const auto it = std::find_if(std::begin(data), std::end(data),
 													[&key](const auto& v) { return v.first == key; });
 			if (it != std::end(data))
 				return it->second;
