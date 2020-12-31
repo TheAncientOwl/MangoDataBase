@@ -10,9 +10,6 @@ namespace Mango::Implementation::Queries
 	class AbstractQuery
 	{
 	private:
-		static bool s_InvalidIdentifierChars[257];
-
-	private:
 		/// <summary>
 		/// Checks if given sql may be this type of query.
 		/// </summary>
@@ -47,20 +44,7 @@ namespace Mango::Implementation::Queries
 		MANGO_PUBLIC_API virtual ~AbstractQuery() = default;
 
 	private:
-		friend class AbstractQueryStaticInitializer;
 		friend class Mango::QueryExecutor;
 		friend class Mango::CommandLineInterface;
-		friend bool Mango::Implementation::StringUtils::isValidIdentifier(std::string_view str);
-	};
-
-	class AbstractQueryStaticInitializer
-	{
-	public:
-		MANGO_PUBLIC_API AbstractQueryStaticInitializer();
-		MANGO_PUBLIC_API AbstractQueryStaticInitializer(const AbstractQueryStaticInitializer&) = delete;
-		MANGO_PUBLIC_API AbstractQueryStaticInitializer(AbstractQueryStaticInitializer&&) noexcept = delete;
-		MANGO_PUBLIC_API AbstractQueryStaticInitializer& operator=(const AbstractQueryStaticInitializer&) = delete;
-		MANGO_PUBLIC_API AbstractQueryStaticInitializer& operator=(AbstractQueryStaticInitializer&&) noexcept = delete;
-		MANGO_PUBLIC_API ~AbstractQueryStaticInitializer() = default;
 	};
 }

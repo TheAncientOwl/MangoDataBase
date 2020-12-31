@@ -62,7 +62,7 @@ namespace Mango::Implementation::StringUtils
 		return out;
 	}
 
-	void StringUtils::splitInCleanStringsAt(std::string_view str, char c, ref<std::vector<std::string>> out)
+	void splitInCleanStringsAt(std::string_view str, char c, ref<std::vector<std::string>> out)
 	{
 		out.clear();
 
@@ -139,14 +139,16 @@ namespace Mango::Implementation::StringUtils
 
 	bool isValidIdentifier(std::string_view str)
 	{
+		static constexpr auto set = Impl::Set<char, Impl::invalidIdentifierChars.size()>{ {Impl::invalidIdentifierChars} };
+
 		if (str.empty())
 			return false;
 
 		if ('0' <= str.front() && str.front() <= '9')
 			return false;
 
-		for (auto it = std::begin(str), end = std::end(str); it != end; ++it)
-			if (Queries::AbstractQuery::s_InvalidIdentifierChars[*it])
+		for (auto c : str)
+			if (set.contians(c))
 				return false;
 
 		return true;
