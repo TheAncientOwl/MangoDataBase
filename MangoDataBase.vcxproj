@@ -167,6 +167,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Angajat.cpp" />
+    <ClCompile Include="Guidelines.txt" />
+    <ClCompile Include="Ideas.cpp" />
     <ClCompile Include="Mango\CommandLineInterface\CommandLineInterface.cpp" />
     <ClCompile Include="Mango\ConsoleColorOutput\ConsoleColorOutput.cpp" />
     <ClCompile Include="Mango\Exceptions\FeatureNotImplementedException\FeatureNotImplementedException.cpp" />
@@ -214,6 +217,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Angajat.hpp" />
     <ClInclude Include="Mango\CommandLineInterface\CommandLineInterface.hpp" />
     <ClInclude Include="Mango\ConsoleColorOutput\ConsoleColorOutput.hpp" />
     <ClInclude Include="Mango\Exceptions\FeatureNotImplementedException\FeatureNotImplementedException.hpp" />

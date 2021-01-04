@@ -147,7 +147,7 @@ namespace Mango::Implementation::Queries
     MANGO_QUERY_API void CreateTableQuery::execute(ref<MangoDB> dataBase)
     {
         std::unique_ptr<Table> tablePtr = std::make_unique<Table>(std::move(m_TableName), dataBase.m_DirectoryPath,
-            std::move(m_Columns));
+                                                                  std::move(m_Columns));
         dataBase.addTable(std::move(tablePtr));
     }
 #pragma endregion

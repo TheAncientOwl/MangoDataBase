@@ -49,6 +49,7 @@ namespace Mango::Implementation::Queries
 		auto tableIterator = table->makeConstIterator();
 
 		std::filesystem::path dummyFilePath = table->getDataFilePath();
+
 		dummyFilePath.replace_filename("dummy");
 		std::fstream dummyFile(dummyFilePath, std::ios::out | std::ios::trunc | std::ios::binary);
 

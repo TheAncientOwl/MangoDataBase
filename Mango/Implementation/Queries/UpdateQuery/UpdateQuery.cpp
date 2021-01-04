@@ -36,8 +36,7 @@ namespace Mango::Implementation::Queries
 
 	void UpdateQuery::validate(const_ref<MangoDB> dataBase)
 	{
-		auto table = dataBase.getTable(m_TableName);
-		if (!table)
+		if (!dataBase.getTable(m_TableName))
 			throw TableNotFoundException("Table does not exist", std::move(m_TableName));
 	}
 

@@ -2,6 +2,8 @@
 
 #include "Mango/CommandLineInterface/CommandLineInterface.hpp"
 
+#include "Angajat.hpp"
+
 int main()
 {
 	Mango::CommandLineInterface cli("TestDataBase");

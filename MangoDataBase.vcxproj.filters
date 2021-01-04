@@ -243,6 +243,15 @@
     <ClCompile Include="Mango\Implementation\StringUtils\StringUtils.cpp">
       <Filter>Mango\Implementation\StringUtils</Filter>
     </ClCompile>
+    <ClCompile Include="Angajat.cpp">
+      <Filter>EntryPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="Guidelines.txt">
+      <Filter>EntryPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="Ideas.cpp">
+      <Filter>EntryPoint</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="standard_library.hpp">
@@ -385,6 +394,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\SetClauseData\SetClauseData.hpp">
       <Filter>Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\ClauseData</Filter>
+    </ClInclude>
+    <ClInclude Include="Angajat.hpp">
+      <Filter>EntryPoint</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

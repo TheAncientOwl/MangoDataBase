@@ -16,7 +16,7 @@ namespace Mango::Implementation
 	{
 	public:
 		enum class Value : uint8_t { UNDEFINED, INT, FLOAT, STRING };
-
+		
 		DataType();
 
 		DataType(Value value);
