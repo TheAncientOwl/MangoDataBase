@@ -5,6 +5,6 @@ namespace App::Utils
 {
 	unsigned int generateUUID()
 	{
-		
+		return 0;
 	}
 }

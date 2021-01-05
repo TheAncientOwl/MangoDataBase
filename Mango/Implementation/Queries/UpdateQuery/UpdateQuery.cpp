@@ -8,7 +8,7 @@ using namespace Mango::Exceptions;
 
 namespace Mango::Implementation::Queries
 {
-#pragma region MANGO_API
+#pragma region MANGO_QUERY_API
 	MANGO_QUERY_API bool UpdateQuery::match(std::string_view sql) const
 	{
 		return sql.starts_with("UPDATE");
@@ -34,13 +34,13 @@ namespace Mango::Implementation::Queries
 		m_TableName = args[1];
 	}
 
-	void UpdateQuery::validate(const_ref<MangoDB> dataBase)
+	MANGO_QUERY_API void UpdateQuery::validate(const_ref<MangoDB> dataBase)
 	{
 		if (!dataBase.getTable(m_TableName))
 			throw TableNotFoundException("Table does not exist", std::move(m_TableName));
 	}
 
-	void UpdateQuery::execute(ref<MangoDB> dataBase)
+	MANGO_QUERY_API void UpdateQuery::execute(ref<MangoDB> dataBase)
 	{
 		MangoClauseGuard _(dataBase);
 

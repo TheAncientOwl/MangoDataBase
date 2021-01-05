@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Mango::Implementation::BinaryUtils
+namespace Mango::Implementation::FileIO::Binary
 {
 	template<typename T>
 	inline void serializePOD(std::fstream& out, const_ptr<T> value, size_t itemsNumber = 1)

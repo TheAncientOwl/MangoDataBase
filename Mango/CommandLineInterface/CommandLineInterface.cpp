@@ -1,9 +1,9 @@
 #include "standard_library.hpp"
 #include "CommandLineInterface.hpp"
 
-#include "../Implementation/Queries/Queries.hpp"
-
 using namespace Mango::Implementation::Queries;
+
+#include "../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
 #include "../ConsoleColorOutput/ConsoleColorOutput.hpp"
@@ -43,6 +43,7 @@ namespace Mango
 				displayCommand(6, MANGO_SELECT_CLI_SYNTAX);
 				displayCommand(7, MANGO_DELETE_CLI_SYNTAX);
 				displayCommand(8, MANGO_UPDATE_CLI_SYNTAX);
+				displayCommand(9, MANGO_SAVE_DATA_SYNTAX);
 				continue;
 			}
 
@@ -61,79 +62,82 @@ namespace Mango
 				{
 					std::transform(std::begin(sql), std::begin(sql) + 6, std::begin(sql), ::toupper);
 
-					if (sql.starts_with("INSERT"))
+					if (!sql.starts_with("SAVE"))
 					{
-						auto firstParanthesis = std::find(std::cbegin(sql), std::cend(sql), '(');
-						std::transform(std::cbegin(sql), firstParanthesis, std::begin(sql), ::toupper);
-					}
-					else if (sql.starts_with("SELECT") || sql.starts_with("DELETE"))
-					{
-						auto open = std::find(std::cbegin(sql), std::cend(sql), '<');
-						auto closed = std::find(std::cbegin(sql), std::cend(sql), '>');
-
-						if (open != std::cend(sql) && closed != std::cend(sql) && open < closed)
+						if (sql.starts_with("INSERT"))
 						{
-							auto it = std::find(std::cbegin(sql), std::cend(sql), '<');
+							auto firstParanthesis = std::find(std::cbegin(sql), std::cend(sql), '(');
+							std::transform(std::cbegin(sql), firstParanthesis, std::begin(sql), ::toupper);
+						}
+						else if (sql.starts_with("SELECT") || sql.starts_with("DELETE"))
+						{
+							auto open = std::find(std::cbegin(sql), std::cend(sql), '<');
+							auto closed = std::find(std::cbegin(sql), std::cend(sql), '>');
 
-							std::string_view comparators = "=<>!";
-							auto comparatorPos = std::find_first_of(std::next(it), std::cend(sql),
-																	std::cbegin(comparators), std::cend(comparators));
+							if (open != std::cend(sql) && closed != std::cend(sql) && open < closed)
+							{
+								auto it = std::find(std::cbegin(sql), std::cend(sql), '<');
 
-							std::transform(std::cbegin(sql), comparatorPos, std::begin(sql), ::toupper);
+								std::string_view comparators = "=<>!";
+								auto comparatorPos = std::find_first_of(std::next(it), std::cend(sql),
+									std::cbegin(comparators), std::cend(comparators));
+
+								std::transform(std::cbegin(sql), comparatorPos, std::begin(sql), ::toupper);
+							}
+							else std::transform(std::begin(sql), std::end(sql), std::begin(sql), ::toupper);
+						}
+						else if (sql.starts_with("UPDATE"))
+						{
+							auto milestone = std::begin(sql);
+
+							{
+								auto open = std::find(std::begin(sql), std::end(sql), '(');
+								auto closed = std::find(std::begin(sql), std::end(sql), ')');
+
+								std::transform(std::begin(sql), open, std::begin(sql), ::toupper);
+
+								if (open != std::end(sql) && closed != std::end(sql) && open < closed)
+								{
+									bool upper = true;
+									for (std::string::iterator prev = open, it = std::next(open); it != closed; ++it, ++prev)
+									{
+										if (*it == '"')
+										{
+											if (*prev == '/')
+											{
+												continue;
+											}
+											upper = !upper;
+											continue;
+										}
+
+										if (upper)
+											*it = ::toupper(*it);
+									}
+
+									milestone = closed;
+								}
+							}
+
+							{
+								auto open = std::find(milestone, std::end(sql), '<');
+								auto closed = std::find(milestone, std::end(sql), '>');
+
+								if (open != std::end(sql) && closed != std::end(sql) && open < closed)
+								{
+									auto it = std::find(milestone, std::end(sql), '<');
+
+									std::string_view comparators = "=<>!";
+									auto comparatorPos = std::find_first_of(std::next(it), std::end(sql),
+										std::cbegin(comparators), std::cend(comparators));
+
+									std::transform(milestone, comparatorPos, milestone, ::toupper);
+								}
+							}
+
 						}
 						else std::transform(std::begin(sql), std::end(sql), std::begin(sql), ::toupper);
 					}
-					else if (sql.starts_with("UPDATE"))
-					{
-						auto milestone = std::begin(sql);
-
-						{
-							auto open = std::find(std::begin(sql), std::end(sql), '(');
-							auto closed = std::find(std::begin(sql), std::end(sql), ')');
-
-							std::transform(std::begin(sql), open, std::begin(sql), ::toupper);
-
-							if (open != std::end(sql) && closed != std::end(sql) && open < closed)
-							{
-								bool upper = true;
-								for (std::string::iterator prev = open, it = std::next(open); it != closed; ++it, ++prev)
-								{
-									if (*it == '"')
-									{
-										if (*prev == '/')
-										{
-											continue;
-										}
-										upper = !upper;
-										continue;
-									}
-
-									if (upper)
-										*it = ::toupper(*it);
-								}
-
-								milestone = closed;
-							}
-						}
-
-						{
-							auto open = std::find(milestone, std::end(sql), '<');
-							auto closed = std::find(milestone, std::end(sql), '>');
-
-							if (open != std::end(sql) && closed != std::end(sql) && open < closed)
-							{
-								auto it = std::find(milestone, std::end(sql), '<');
-
-								std::string_view comparators = "=<>!";
-								auto comparatorPos = std::find_first_of(std::next(it), std::end(sql),
-																	    std::cbegin(comparators), std::cend(comparators));
-
-								std::transform(milestone, comparatorPos, milestone, ::toupper);
-							}
-						}
-						
-					}
-					else std::transform(std::begin(sql), std::end(sql), std::begin(sql), ::toupper);
 				}
 				else std::transform(std::begin(sql), std::end(sql), std::begin(sql), ::toupper);
 
@@ -166,7 +170,7 @@ namespace Mango
 			{
 				if (select)
 				{
-					auto result = dataBase.extractLastResult();
+					auto& result = dataBase.lastResult();
 					if (result.empty())
 						std::cout << "No data found\n";
 					else for (const auto& row : result)
@@ -187,7 +191,7 @@ namespace Mango
 	{
 	}
 
-	const std::array<std::unique_ptr<AbstractQuery>, 8> CommandLineInterface::s_Queries{
+	const std::array<std::unique_ptr<AbstractQuery>, 9> CommandLineInterface::s_Queries{
 		std::make_unique<CreateTableQuery>(),
 		std::make_unique<DropTableQuery>(),
 		std::make_unique<TruncateTableQuery>(),
@@ -195,6 +199,7 @@ namespace Mango
 		std::make_unique<InsertIntoQuery>(),
 		std::make_unique<CommandLineAdapter::SelectQueryCLI>(),
 		std::make_unique<CommandLineAdapter::DeleteQueryCLI>(),
-		std::make_unique<CommandLineAdapter::UpdateQueryCLI>()
+		std::make_unique<CommandLineAdapter::UpdateQueryCLI>(),
+		std::make_unique<SaveDataQuery>()
 	};
 }

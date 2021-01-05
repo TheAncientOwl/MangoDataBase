@@ -81,6 +81,7 @@ namespace Mango
 		friend class Mango::Implementation::Queries::UpdateQuery;
 		friend class Mango::Implementation::Queries::CommandLineAdapter::WhereCondition;
 		friend class Mango::Implementation::Queries::CommandLineAdapter::UpdateQueryCLI;
+		friend class Mango::Implementation::Queries::SaveDataQuery;
 		friend std::ostream& Implementation::operator<<(std::ostream& out, const MangoDB& mango);
 	};
 }

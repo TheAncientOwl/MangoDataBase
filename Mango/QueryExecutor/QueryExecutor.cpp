@@ -1,8 +1,10 @@
 #include "standard_library.hpp"
 #include "QueryExecutor.hpp"
 
-#include "../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Implementation::Queries;
+
+#include "../Exceptions/MangoExceptions.hpp"
+using namespace Mango::Exceptions;
 
 namespace Mango
 {
@@ -13,11 +15,14 @@ namespace Mango
 			auto wannaBeEndOfInsert = std::cbegin(sql) + 6;
 			std::transform(std::cbegin(sql), wannaBeEndOfInsert, std::begin(sql), ::toupper);
 
-			auto upperEnd = std::cend(sql);
-			if (sql.starts_with("INSERT"))
-				upperEnd = std::find(wannaBeEndOfInsert, std::cend(sql), '(');
+			if (!sql.starts_with("SAVE"))
+			{
+				auto upperEnd = std::cend(sql);
+				if (sql.starts_with("INSERT"))
+					upperEnd = std::find(wannaBeEndOfInsert, std::cend(sql), '(');
 
-			std::transform(wannaBeEndOfInsert, upperEnd, std::begin(sql) + 6, ::toupper);
+				std::transform(wannaBeEndOfInsert, upperEnd, std::begin(sql) + 6, ::toupper);
+			}
 		}
 		else std::transform(std::begin(sql), std::end(sql), std::begin(sql), ::toupper);
 
@@ -31,10 +36,10 @@ namespace Mango
 				return;
 			}
 
-		throw Mango::Exceptions::InvalidSyntaxException("Unknown command");
+		throw InvalidSyntaxException("Unknown command");
 	}
 
-	const std::array<std::unique_ptr<AbstractQuery>, 8> QueryExecutor::s_Queries{
+	const std::array<std::unique_ptr<AbstractQuery>, 9> QueryExecutor::s_Queries{
 		std::make_unique<CreateTableQuery>(),
 		std::make_unique<DropTableQuery>(),
 		std::make_unique<TruncateTableQuery>(),
@@ -42,6 +47,7 @@ namespace Mango
 		std::make_unique<InsertIntoQuery>(),
 		std::make_unique<SelectQuery>(),
 		std::make_unique<DeleteQuery>(),
-		std::make_unique<UpdateQuery>()
+		std::make_unique<UpdateQuery>(),
+		std::make_unique<SaveDataQuery>()
 	};
 }

@@ -112,9 +112,6 @@
     <Filter Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\ClauseData">
       <UniqueIdentifier>{215f1661-246c-4c5d-92d9-b11a97ecfcba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Mango\Implementation\BinaryUtils">
-      <UniqueIdentifier>{2c741591-feee-453a-a2ac-5aefda032f4b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Mango\ConsoleColorOutput">
       <UniqueIdentifier>{e81403f4-76bc-46b3-9e5e-ba77c5e9b19f}</UniqueIdentifier>
     </Filter>
@@ -138,6 +135,21 @@
     </Filter>
     <Filter Include="App\Utils\GeneratorUUID">
       <UniqueIdentifier>{d8288b00-a5fe-4ed4-99f9-9f5f428b266d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Queries\SaveDataQuery">
+      <UniqueIdentifier>{ffa3c22b-c2b8-4c19-aec6-2c9e4b402e87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\FileIO">
+      <UniqueIdentifier>{f90f1272-8f02-488b-bb15-b8e39eac638d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\FileIO\Binary">
+      <UniqueIdentifier>{a5807ed1-ba4e-4961-ac43-f40eec2a11d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\FileIO\CSV">
+      <UniqueIdentifier>{4b792987-c1cd-4919-9a62-4545da83a87d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\FileIO\TXT">
+      <UniqueIdentifier>{c55ec67f-069c-4742-a7ba-49935276a17c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -252,9 +264,6 @@
     <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\SetClauseData\SetClauseData.cpp">
       <Filter>Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\ClauseData</Filter>
     </ClCompile>
-    <ClCompile Include="Mango\Implementation\BinaryUtils\BinaryUtils.cpp">
-      <Filter>Mango\Implementation\BinaryUtils</Filter>
-    </ClCompile>
     <ClCompile Include="Mango\ConsoleColorOutput\ConsoleColorOutput.cpp">
       <Filter>Mango\ConsoleColorOutput</Filter>
     </ClCompile>
@@ -279,6 +288,18 @@
     <ClCompile Include="App\Menu\MenuOptions\AbstractOption\AbstractMenuOption.cpp" />
     <ClCompile Include="App\Utils\GeneratorUUID\GeneratorUUID.cpp">
       <Filter>App\Utils\GeneratorUUID</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\SaveDataQuery\SaveDataQuery.cpp">
+      <Filter>Mango\Implementation\Queries\SaveDataQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\FileIO\Binary\Binary.cpp">
+      <Filter>Mango\Implementation\FileIO\Binary</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\FileIO\CSV\CSV.cpp">
+      <Filter>Mango\Implementation\FileIO\CSV</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\FileIO\CSV\CSV.fwd.cpp">
+      <Filter>Mango\Implementation\FileIO\CSV</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -411,9 +432,6 @@
     <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI\UpdateQueryCLI.hpp">
       <Filter>Mango\Implementation\Queries\CommandLineAdapter\UpdateQueryCLI</Filter>
     </ClInclude>
-    <ClInclude Include="Mango\Implementation\BinaryUtils\BinaryUtils.hpp">
-      <Filter>Mango\Implementation\BinaryUtils</Filter>
-    </ClInclude>
     <ClInclude Include="Mango\ConsoleColorOutput\ConsoleColorOutput.hpp">
       <Filter>Mango\ConsoleColorOutput</Filter>
     </ClInclude>
@@ -434,6 +452,18 @@
     </ClInclude>
     <ClInclude Include="App\Utils\GeneratorUUID\GeneratorUUID.hpp">
       <Filter>App\Utils\GeneratorUUID</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\SaveDataQuery\SaveDataQuery.hpp">
+      <Filter>Mango\Implementation\Queries\SaveDataQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\FileIO\Binary\Binary.hpp">
+      <Filter>Mango\Implementation\FileIO\Binary</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\FileIO\CSV\CSV.fwd.hpp">
+      <Filter>Mango\Implementation\FileIO\CSV</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\FileIO\CSV\CSV.hpp">
+      <Filter>Mango\Implementation\FileIO\CSV</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

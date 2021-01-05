@@ -1,6 +1,4 @@
 #pragma once
-#include "../Queries/Queries.fwd.hpp"
-#include "../Table/Table.fwd.hpp"
 #include "../Row/RowFilters.fwd.hpp"
 
 #include "RowConfiguration.hpp"
@@ -57,5 +55,7 @@ namespace Mango::Implementation
 		friend class Mango::Implementation::Queries::DeleteQuery;
 		friend void Mango::Implementation::Queries::CommandLineAdapter::setClauseCLI(ref<Row> row);
 		friend std::ostream& operator<<(std::ostream& out, const Row& row);
+		friend std::ofstream& Mango::Implementation::FileIO::CSV::write(std::ofstream& csv, const_ref<Row> row);
+		friend std::ifstream& Mango::Implementation::FileIO::CSV::read(std::ifstream& csv, ref<Row> row);
 	};
 }

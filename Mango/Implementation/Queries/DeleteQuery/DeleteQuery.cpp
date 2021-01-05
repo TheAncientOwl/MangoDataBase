@@ -1,8 +1,8 @@
 #include "standard_library.hpp"
 #include "DeleteQuery.hpp"
 
-#include "../../BinaryUtils/BinaryUtils.hpp"
-using namespace Mango::Implementation::BinaryUtils;
+#include "../../FileIO/Binary/Binary.hpp"
+using namespace Mango::Implementation::FileIO::Binary;
 
 #include "../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;

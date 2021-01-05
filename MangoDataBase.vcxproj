@@ -184,9 +184,11 @@
     <ClCompile Include="Mango\Exceptions\NanException\NanException.cpp" />
     <ClCompile Include="Mango\Exceptions\TableAlreadyExistsException\TableAlreadyExistsException.cpp" />
     <ClCompile Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.cpp" />
-    <ClCompile Include="Mango\Implementation\BinaryUtils\BinaryUtils.cpp" />
     <ClCompile Include="Mango\Implementation\Column\Column.cpp" />
     <ClCompile Include="Mango\Implementation\DataType\DataType.cpp" />
+    <ClCompile Include="Mango\Implementation\FileIO\Binary\Binary.cpp" />
+    <ClCompile Include="Mango\Implementation\FileIO\CSV\CSV.cpp" />
+    <ClCompile Include="Mango\Implementation\FileIO\CSV\CSV.fwd.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\AbstractQuery\AbstractQuery.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.cpp" />
@@ -198,6 +200,7 @@
     <ClCompile Include="Mango\Implementation\Queries\DisplayQuery\DisplayQuery.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\DropTableQuery\DropTableQuery.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\InsertIntoQuery\InsertIntoQuery.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\SaveDataQuery\SaveDataQuery.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\SelectQuery\SelectQuery.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\Statement\Statement.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\TruncateTableQuery\TruncateTableQuery.cpp" />
@@ -236,9 +239,11 @@
     <ClInclude Include="Mango\Exceptions\NanException\NanException.hpp" />
     <ClInclude Include="Mango\Exceptions\TableAlreadyExistsException\TableAlreadyExistsException.hpp" />
     <ClInclude Include="Mango\Exceptions\TableNotFoundException\TableNotFoundException.hpp" />
-    <ClInclude Include="Mango\Implementation\BinaryUtils\BinaryUtils.hpp" />
     <ClInclude Include="Mango\Implementation\Column\Column.hpp" />
     <ClInclude Include="Mango\Implementation\DataType\DataType.hpp" />
+    <ClInclude Include="Mango\Implementation\FileIO\Binary\Binary.hpp" />
+    <ClInclude Include="Mango\Implementation\FileIO\CSV\CSV.fwd.hpp" />
+    <ClInclude Include="Mango\Implementation\FileIO\CSV\CSV.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\AbstractQuery\AbstractQuery.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\DeleteQueryCLI\DeleteQueryCLI.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\SelectQueryCLI\SelectQueryCLI.hpp" />
@@ -252,6 +257,7 @@
     <ClInclude Include="Mango\Implementation\Queries\InsertIntoQuery\InsertIntoQuery.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\Queries.fwd.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\Queries.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\SaveDataQuery\SaveDataQuery.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\SelectQuery\SelectQuery.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\Statement\Statement.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\TruncateTableQuery\TruncateTableQuery.hpp" />

@@ -1,8 +1,8 @@
 #include "standard_library.hpp"
 #include "MangoDB.hpp"
 
-#include "../Implementation/BinaryUtils/BinaryUtils.hpp"
-using namespace Mango::Implementation::BinaryUtils;
+#include "../Implementation/FileIO/Binary/Binary.hpp"
+using namespace Mango::Implementation::FileIO::Binary;
 
 #include "../ConsoleColorOutput/ConsoleColorOutput.hpp"
 
