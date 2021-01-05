@@ -121,6 +121,24 @@
     <Filter Include="Mango\Implementation\StringUtils">
       <UniqueIdentifier>{f0dd5369-00d6-45aa-b7bd-40208eb8d454}</UniqueIdentifier>
     </Filter>
+    <Filter Include="App">
+      <UniqueIdentifier>{7359bcfa-925f-4721-a3ca-3d1e20bc1ddb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Menu">
+      <UniqueIdentifier>{bfaef2d9-fdcb-4803-b4d5-515987c366c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Menu\MenuOptions">
+      <UniqueIdentifier>{97cd9236-264b-4874-bc2e-1169ccc186ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Menu\MenuOptions\AbstractOption">
+      <UniqueIdentifier>{8360fdbc-81a6-437e-8503-44a0339194ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Utils">
+      <UniqueIdentifier>{964dac97-5bdd-4efa-8b31-80e6fcca2cb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Utils\GeneratorUUID">
+      <UniqueIdentifier>{d8288b00-a5fe-4ed4-99f9-9f5f428b266d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -251,6 +269,16 @@
     </ClCompile>
     <ClCompile Include="Ideas.cpp">
       <Filter>EntryPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="App\Menu\Menu.cpp">
+      <Filter>App\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="App\Menu\MenuOptions\AbstractOption\AbstractOption.cpp">
+      <Filter>App\Menu\MenuOptions\AbstractOption</Filter>
+    </ClCompile>
+    <ClCompile Include="App\Menu\MenuOptions\AbstractOption\AbstractMenuOption.cpp" />
+    <ClCompile Include="App\Utils\GeneratorUUID\GeneratorUUID.cpp">
+      <Filter>App\Utils\GeneratorUUID</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -397,6 +425,15 @@
     </ClInclude>
     <ClInclude Include="Angajat.hpp">
       <Filter>EntryPoint</Filter>
+    </ClInclude>
+    <ClInclude Include="App\Menu\Menu.hpp">
+      <Filter>App\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="App\Menu\MenuOptions\AbstractOption\AbstractOption.hpp">
+      <Filter>App\Menu\MenuOptions\AbstractOption</Filter>
+    </ClInclude>
+    <ClInclude Include="App\Utils\GeneratorUUID\GeneratorUUID.hpp">
+      <Filter>App\Utils\GeneratorUUID</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

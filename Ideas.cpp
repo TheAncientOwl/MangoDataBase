@@ -48,13 +48,6 @@ private:
     Persoana* client;
     char* modalitatePlata;
     int numarZileCazare;
-
-public:
-    DateCazare(UUID id, Persoana* client, char* modalitatePlata, int numarZileCazare)
-    {
-        id = id;
-        client = client;
-    }
 };
 
 class Rezervare
