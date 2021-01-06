@@ -43,7 +43,7 @@ namespace Mango::Implementation
 		friend class Mango::Implementation::Queries::SelectQuery;
 		friend class Mango::Implementation::Queries::CommandLineAdapter::SetClauseData;
 		friend std::ostream& operator<<(std::ostream& out, const Row& row);
-		friend std::ofstream& Mango::Implementation::FileIO::CSV::write(std::ofstream& csv, const_ref<Row> row);
+		friend void Mango::Implementation::FileIO::CSV::write(std::ofstream& csv, const_ref<Row> row);
 		friend std::ifstream& Mango::Implementation::FileIO::CSV::read(std::ifstream& csv, ref<Row> row);
 	};
 }

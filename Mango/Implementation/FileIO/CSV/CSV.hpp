@@ -3,6 +3,7 @@
 
 namespace Mango::Implementation::FileIO::CSV
 {
-	std::ofstream& write(std::ofstream& csv, const_ref<Row> row);
+	void write(std::ofstream& csv, const_ref<Row> row);
+	void write(std::ofstream& csv, std::string_view val, char sep);
 	std::ifstream& read(std::ifstream& csv, ref<Row> row);
 }

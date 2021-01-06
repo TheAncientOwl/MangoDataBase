@@ -20,6 +20,7 @@ namespace Mango
 		std::vector<std::unique_ptr<Implementation::Table>> m_Tables;
 
 		std::vector<Implementation::Row> m_LastResult;
+		std::vector<std::string> m_LastColumns;
 
 		Implementation::WhereClause m_WhereClause;
 		Implementation::SetClause m_SetClause;

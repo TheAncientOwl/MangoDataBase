@@ -36,30 +36,26 @@ namespace Mango::Implementation::Queries
 
 	MANGO_QUERY_API void SaveDataQuery::validate(const_ref<MangoDB> dataBase)
 	{
-		if (!(m_FileName.ends_with(".csv") || m_FileName.ends_with(".txt")))
-			throw InvalidArgumentException("Data can be saved only in txt or csv format");
+		if (!(m_FileName.ends_with(".csv")))
+			throw InvalidArgumentException("Data can be exported only in csv format");
 	}
 
 	MANGO_QUERY_API void SaveDataQuery::execute(ref<MangoDB> dataBase)
 	{
-		if (m_FileName.ends_with(".csv"))
-		{
-			std::ofstream csv;
-			csv.open(m_FileName, std::ios::out, std::ios::trunc);
+		std::ofstream csv;
+		csv.open(m_FileName, std::ios::out, std::ios::trunc);
 
-			for (const auto& row : dataBase.m_LastResult)
-				FileIO::CSV::write(csv, row);
+		for (const auto& col : dataBase.m_LastColumns)
+			std::cout << col << '\n';
 
-			csv.close();
-		}
-		else
-		{
-			std::ofstream txt;
-			txt.open(m_FileName, std::ios::out, std::ios::trunc);
-			
+		const auto& header = dataBase.m_LastColumns;
+		for (size_t index = 0, size = header.size(); index < size; ++index)
+			FileIO::CSV::write(csv, header[index], index < size - 1 ? ',' : '\n');
 
-		}
-		
+		for (const auto& row : dataBase.m_LastResult)
+			FileIO::CSV::write(csv, row);
+
+		csv.close();
 	}
 #pragma endregion
 

@@ -1,11 +1,11 @@
 #pragma once
 #include "../AbstractQuery/AbstractQuery.hpp"
-#define MANGO_SAVE_DATA_SYNTAX "Save file_name.txt/file_name.csv;"
+#define MANGO_SAVE_DATA_SYNTAX "Save file_name.csv;"
 
 namespace Mango::Implementation::Queries
 {
 	/// <summary>
-	/// Save file_name.txt/file_name.csv;
+	/// Save file_name.csv;
 	/// </summary>
 	class SaveDataQuery final : public AbstractQuery
 	{

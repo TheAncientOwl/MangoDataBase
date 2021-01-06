@@ -83,6 +83,10 @@ namespace Mango::Implementation::Queries
 			if (dataBase.m_WhereClause(result.back()))
 				result.emplace_back(rowSize, rowConfig);
 		result.pop_back();
+
+		dataBase.m_LastColumns.clear();
+		for (const auto& column : table->columns())
+			dataBase.m_LastColumns.emplace_back(column.name());
 	}
 
 	MANGO_API void SelectQuery::selectSome(ptr<Table> table, ref<MangoDB> dataBase) const
@@ -122,6 +126,8 @@ namespace Mango::Implementation::Queries
 		}
 		if (!selected)
 			result.pop_back();
+
+		dataBase.m_LastColumns = std::move(m_ColumnNames);
 	}
 #pragma endregion
 
@@ -191,6 +197,7 @@ namespace Mango::Implementation::Queries
 	{
 		MangoClauseGuard _(dataBase);
 		dataBase.m_LastResult.clear();
+
 
 		if (m_ColumnNames.empty())
 			selectAll(dataBase.getTable(m_TableName), dataBase);

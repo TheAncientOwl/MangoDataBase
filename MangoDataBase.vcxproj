@@ -167,13 +167,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Angajat.cpp" />
     <ClCompile Include="App\Menu\Menu.cpp" />
     <ClCompile Include="App\Menu\MenuOptions\AbstractOption\AbstractMenuOption.cpp" />
     <ClCompile Include="App\Menu\MenuOptions\AbstractOption\AbstractOption.cpp" />
     <ClCompile Include="App\Utils\GeneratorUUID\GeneratorUUID.cpp" />
-    <ClCompile Include="Guidelines.txt" />
-    <ClCompile Include="Ideas.cpp" />
     <ClCompile Include="Mango\CommandLineInterface\CommandLineInterface.cpp" />
     <ClCompile Include="Mango\ConsoleColorOutput\ConsoleColorOutput.cpp" />
     <ClCompile Include="Mango\Exceptions\FeatureNotImplementedException\FeatureNotImplementedException.cpp" />
@@ -224,7 +221,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Angajat.hpp" />
     <ClInclude Include="App\Menu\Menu.hpp" />
     <ClInclude Include="App\Menu\MenuOptions\AbstractOption\AbstractOption.hpp" />
     <ClInclude Include="App\Utils\GeneratorUUID\GeneratorUUID.hpp" />

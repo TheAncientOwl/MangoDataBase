@@ -4,7 +4,6 @@
 
 /*
  * TO DO:
- *	-save selected data to files: txt/csv
  *	-implement mango script executor
  *  -implement import data from csv files
 */
