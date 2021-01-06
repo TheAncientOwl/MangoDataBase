@@ -7,6 +7,7 @@ namespace Mango::Implementation::Queries
 	/// <summary>
 	/// Import table_name file_name.csv;
 	/// Imported data must match full table configuration.
+	/// Imported strings must not contain ','
 	/// </summary>
 	class ImportDataQuery final : public AbstractQuery
 	{
