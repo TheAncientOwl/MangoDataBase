@@ -5,7 +5,6 @@
 /*
  * TO DO:
  *	-implement mango script executor
- *  -implement import data from csv files
 */
 
 int main()

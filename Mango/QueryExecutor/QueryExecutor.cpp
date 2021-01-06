@@ -17,11 +17,23 @@ namespace Mango
 
 			if (!sql.starts_with("SAVE"))
 			{
-				auto upperEnd = std::cend(sql);
-				if (sql.starts_with("INSERT"))
-					upperEnd = std::find(wannaBeEndOfInsert, std::cend(sql), '(');
+				if (sql.starts_with("IMPORT"))
+				{
+					auto space = std::find(std::begin(sql), std::end(sql), ' ');
+					if (space != std::end(sql))
+					{
+						space = std::find(std::next(space), std::end(sql), ' ');
+						std::transform(std::begin(sql) + 6, space, std::begin(sql) + 6, ::toupper);
+					}
+				}
+				else
+				{
+					auto upperEnd = std::cend(sql);
+					if (sql.starts_with("INSERT"))
+						upperEnd = std::find(wannaBeEndOfInsert, std::cend(sql), '(');
 
-				std::transform(wannaBeEndOfInsert, upperEnd, std::begin(sql) + 6, ::toupper);
+					std::transform(wannaBeEndOfInsert, upperEnd, std::begin(sql) + 6, ::toupper);
+				}
 			}
 		}
 		else std::transform(std::begin(sql), std::end(sql), std::begin(sql), ::toupper);
@@ -39,7 +51,7 @@ namespace Mango
 		throw InvalidSyntaxException("Unknown command");
 	}
 
-	const std::array<std::unique_ptr<AbstractQuery>, 9> QueryExecutor::s_Queries{
+	const std::array<std::unique_ptr<AbstractQuery>, 10> QueryExecutor::s_Queries{
 		std::make_unique<CreateTableQuery>(),
 		std::make_unique<DropTableQuery>(),
 		std::make_unique<TruncateTableQuery>(),
@@ -48,6 +60,7 @@ namespace Mango
 		std::make_unique<SelectQuery>(),
 		std::make_unique<DeleteQuery>(),
 		std::make_unique<UpdateQuery>(),
-		std::make_unique<SaveDataQuery>()
+		std::make_unique<SaveDataQuery>(),
+		std::make_unique<ImportDataQuery>()
 	};
 }

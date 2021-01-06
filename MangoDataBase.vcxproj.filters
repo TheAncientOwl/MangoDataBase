@@ -148,6 +148,9 @@
     <Filter Include="Mango\Implementation\FileIO\CSV">
       <UniqueIdentifier>{4b792987-c1cd-4919-9a62-4545da83a87d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Implementation\Queries\ImportDataQuery">
+      <UniqueIdentifier>{0e538aec-6460-4a12-81ae-1855fb40efd6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -288,6 +291,9 @@
     </ClCompile>
     <ClCompile Include="Mango\Implementation\FileIO\CSV\CSV.fwd.cpp">
       <Filter>Mango\Implementation\FileIO\CSV</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\ImportDataQuery\ImportDataQuery.cpp">
+      <Filter>Mango\Implementation\Queries\ImportDataQuery</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -449,6 +455,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Implementation\FileIO\CSV\CSV.hpp">
       <Filter>Mango\Implementation\FileIO\CSV</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\ImportDataQuery\ImportDataQuery.hpp">
+      <Filter>Mango\Implementation\Queries\ImportDataQuery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -44,6 +44,8 @@ namespace Mango
 				displayCommand(7, MANGO_DELETE_CLI_SYNTAX);
 				displayCommand(8, MANGO_UPDATE_CLI_SYNTAX);
 				displayCommand(9, MANGO_SAVE_DATA_SYNTAX);
+				displayCommand(10, MANGO_IMPORT_DATA_SYNTAX);
+				displayCommand(11, "exit");
 				continue;
 			}
 
@@ -68,6 +70,15 @@ namespace Mango
 						{
 							auto firstParanthesis = std::find(std::cbegin(sql), std::cend(sql), '(');
 							std::transform(std::cbegin(sql), firstParanthesis, std::begin(sql), ::toupper);
+						}
+						else if (sql.starts_with("IMPORT"))
+						{
+							auto space = std::find(std::begin(sql), std::end(sql), ' ');
+							if (space != std::end(sql))
+							{
+								space = std::find(std::next(space), std::end(sql), ' ');
+								std::transform(std::begin(sql) + 6, space, std::begin(sql) + 6, ::toupper);
+							}
 						}
 						else if (sql.starts_with("SELECT") || sql.starts_with("DELETE"))
 						{
@@ -191,7 +202,7 @@ namespace Mango
 	{
 	}
 
-	const std::array<std::unique_ptr<AbstractQuery>, 9> CommandLineInterface::s_Queries{
+	const std::array<std::unique_ptr<AbstractQuery>, 10> CommandLineInterface::s_Queries{
 		std::make_unique<CreateTableQuery>(),
 		std::make_unique<DropTableQuery>(),
 		std::make_unique<TruncateTableQuery>(),
@@ -200,6 +211,7 @@ namespace Mango
 		std::make_unique<CommandLineAdapter::SelectQueryCLI>(),
 		std::make_unique<CommandLineAdapter::DeleteQueryCLI>(),
 		std::make_unique<CommandLineAdapter::UpdateQueryCLI>(),
-		std::make_unique<SaveDataQuery>()
+		std::make_unique<SaveDataQuery>(),
+		std::make_unique<ImportDataQuery>()
 	};
 }

@@ -7,7 +7,7 @@ namespace Mango
 	{
 	private:
 		std::filesystem::path m_DataBaseDirectoryPath;
-		static const std::array<std::unique_ptr<Implementation::Queries::AbstractQuery>, 9> s_Queries;
+		static const std::array<std::unique_ptr<Implementation::Queries::AbstractQuery>, 10> s_Queries;
 
 	public:
 		void run() const;

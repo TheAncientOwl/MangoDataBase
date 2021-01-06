@@ -70,6 +70,7 @@ namespace Mango::Implementation
 		friend class Mango::Implementation::Queries::CommandLineAdapter::WhereCondition;
 		friend class Mango::Implementation::Queries::CommandLineAdapter::UpdateQueryCLI;
 		friend class Mango::Implementation::Queries::CommandLineAdapter::SetClauseData;
+		friend class Mango::Implementation::Queries::ImportDataQuery;
 		friend std::ostream& operator<<(std::ostream& out, const Table& table);
 	};
 }

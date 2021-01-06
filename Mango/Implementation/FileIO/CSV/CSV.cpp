@@ -1,6 +1,8 @@
 #include "standard_library.hpp"
 #include "CSV.hpp"
 
+#include "../../StringUtils/StringUtils.hpp"
+
 namespace Mango::Implementation::FileIO::CSV
 {
 	void write(std::ofstream& csv, const_ref<Row> row)
@@ -42,8 +44,19 @@ namespace Mango::Implementation::FileIO::CSV
 
 	std::ifstream& read(std::ifstream& csv, ref<Row> row)
 	{
+		std::string line;
+		std::getline(csv, line);
 
+		auto vals = StringUtils::splitAtChar(line, ',');
 
+		std::string str;
+		str.reserve(100);
+
+		for (int index = 0, size = vals.size(); index < size; ++index)
+		{
+			str = vals[index];
+			row.setDataAt(index, str);
+		}
 
 		return csv;
 	}

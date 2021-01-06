@@ -12,3 +12,4 @@
 #include "CommandLineAdapter/DeleteQueryCLI/DeleteQueryCLI.hpp"
 #include "CommandLineAdapter/UpdateQueryCLI/UpdateQueryCLI.hpp"
 #include "SaveDataQuery/SaveDataQuery.hpp"
+#include "ImportDataQuery/ImportDataQuery.hpp"

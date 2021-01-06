@@ -22,4 +22,5 @@ namespace Mango::Implementation::Queries
 		void setClauseCLI(ref<Row> row);
 	}
 	class SaveDataQuery;
+	class ImportDataQuery;
 }
