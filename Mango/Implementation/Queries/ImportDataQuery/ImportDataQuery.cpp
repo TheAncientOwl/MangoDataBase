@@ -54,6 +54,9 @@ namespace Mango::Implementation::Queries
 		std::ifstream csv;
 		csv.open(m_FileName, std::ios::in);
 
+		if (!csv.is_open())
+			throw InvalidArgumentException("File does not exists or cannot be opened");
+
 		std::string header;
 		std::getline(csv, header);
 
