@@ -7,6 +7,7 @@ using namespace Mango::Implementation::Queries;
 using namespace Mango::Exceptions;
 
 #include "../ConsoleColorOutput/ConsoleColorOutput.hpp"
+#include "CommandDescriptions/CommandDescriptions.hpp"
 
 #define SQL_BEGIN std::begin(sql)
 #define SQL_END   std::end(sql)
@@ -149,17 +150,18 @@ namespace Mango
 				select = true;
 			else if (sql.starts_with("SYNTAX"))
 			{
-				displayCommand(1, MANGO_CREATE_TABLE_SYNTAX);
-				displayCommand(2, MANGO_INSERT_INTO_SYNTAX);
-				displayCommand(3, MANGO_TRUNCATE_TABLE_SYNTAX);
-				displayCommand(4, MANGO_DROP_TABLE_SYNTAX);
-				displayCommand(5, MANGO_DISPLAY_SYNTAX);
-				displayCommand(6, MANGO_SELECT_CLI_SYNTAX);
-				displayCommand(7, MANGO_DELETE_CLI_SYNTAX);
-				displayCommand(8, MANGO_UPDATE_CLI_SYNTAX);
-				displayCommand(9, MANGO_SAVE_DATA_SYNTAX);
-				displayCommand(10, MANGO_IMPORT_DATA_SYNTAX);
-				displayCommand(11, "EXIT");
+				CommandDescriptions::Create::syntax(1);
+				CommandDescriptions::Delete::syntax(2);
+				CommandDescriptions::Display::syntax(3);
+				CommandDescriptions::Drop::syntax(4);
+				CommandDescriptions::Insert::syntax(5);
+				CommandDescriptions::Truncate::syntax(6);
+				CommandDescriptions::Save::syntax(7);
+				CommandDescriptions::Import::syntax(8);
+				CommandDescriptions::Select::syntax(9);
+				CommandDescriptions::Update::syntax(10);
+				CommandDescriptions::Exit::syntax(11);
+
 				continue;
 			}
 			else if (sql.starts_with("EXIT"))

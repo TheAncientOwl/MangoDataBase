@@ -167,6 +167,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Mango\CommandLineInterface\CommandDescriptions\CommandDescriptions.cpp" />
     <ClCompile Include="Mango\CommandLineInterface\CommandLineInterface.cpp" />
     <ClCompile Include="Mango\ConsoleColorOutput\ConsoleColorOutput.cpp" />
     <ClCompile Include="Mango\Exceptions\FeatureNotImplementedException\FeatureNotImplementedException.cpp" />
@@ -218,6 +219,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Mango\CommandLineInterface\CommandDescriptions\CommandDescriptions.hpp" />
     <ClInclude Include="Mango\CommandLineInterface\CommandLineInterface.hpp" />
     <ClInclude Include="Mango\ConsoleColorOutput\ConsoleColorOutput.hpp" />
     <ClInclude Include="Mango\Exceptions\FeatureNotImplementedException\FeatureNotImplementedException.hpp" />

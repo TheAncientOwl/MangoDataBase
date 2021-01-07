@@ -1,11 +1,11 @@
 #pragma once
 #include "../AbstractQuery/AbstractQuery.hpp"
-#define MANGO_DISPLAY_SYNTAX "DISPLAY */TABLE_NAME;"
+#define MANGO_DISPLAY_SYNTAX "DISPLAY */table_name;"
 
 namespace Mango::Implementation::Queries
 {
 	/// <summary>
-	/// DISPLAY */TABLE_NAME;
+	/// DISPLAY */table_name;
 	/// </summary>
 	class DisplayQuery final : public AbstractQuery
 	{

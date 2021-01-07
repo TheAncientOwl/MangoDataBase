@@ -133,6 +133,9 @@
     <Filter Include="Mango\Implementation\Queries\ImportDataQuery">
       <UniqueIdentifier>{0e538aec-6460-4a12-81ae-1855fb40efd6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\CommandLineInterface\CommandDescriptions">
+      <UniqueIdentifier>{d320de63-a971-4977-ac1c-3f85e2805407}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -252,7 +255,6 @@
     <ClCompile Include="Mango\Implementation\StringUtils\StringUtils.cpp">
       <Filter>Mango\Implementation\StringUtils</Filter>
     </ClCompile>
-    <ClCompile Include="App\Menu\MenuOptions\AbstractOption\AbstractMenuOption.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\SaveDataQuery\SaveDataQuery.cpp">
       <Filter>Mango\Implementation\Queries\SaveDataQuery</Filter>
     </ClCompile>
@@ -268,7 +270,9 @@
     <ClCompile Include="Mango\Implementation\Queries\ImportDataQuery\ImportDataQuery.cpp">
       <Filter>Mango\Implementation\Queries\ImportDataQuery</Filter>
     </ClCompile>
-    <ClCompile Include="App\Menu\MenuOption\AbstractOption\AbstractMenuOption.cpp" />
+    <ClCompile Include="Mango\CommandLineInterface\CommandDescriptions\CommandDescriptions.cpp">
+      <Filter>Mango\CommandLineInterface\CommandDescriptions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="standard_library.hpp">
@@ -423,6 +427,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Implementation\Queries\ImportDataQuery\ImportDataQuery.hpp">
       <Filter>Mango\Implementation\Queries\ImportDataQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\CommandLineInterface\CommandDescriptions\CommandDescriptions.hpp">
+      <Filter>Mango\CommandLineInterface\CommandDescriptions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
