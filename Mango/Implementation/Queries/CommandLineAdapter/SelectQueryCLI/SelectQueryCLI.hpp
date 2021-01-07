@@ -20,12 +20,12 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 		MANGO_API void parseTableName(std::string_view tablePart);
 
 		/// <summary>
-		/// [] before () before <>
+		/// [] before <>
 		/// </summary>
 		MANGO_API void checkStatementsOrder(Statement columns, Statement condition, Statement::iterator defaultIt) const;
 		
 		/// <summary>
-		/// SELECT [...] FROM (...) WHERE <...>;
+		/// SELECT [...] FROM table_name WHERE <...>;
 		/// </summary>
 		MANGO_API void checkResidualParts(Statement columns, Statement condition, std::string_view sql) const;
 
