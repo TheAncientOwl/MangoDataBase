@@ -13,3 +13,4 @@
 #include "CommandLineAdapter/UpdateQueryCLI/UpdateQueryCLI.hpp"
 #include "SaveDataQuery/SaveDataQuery.hpp"
 #include "ImportDataQuery/ImportDataQuery.hpp"
+#include "ExecuteScriptQuery/ExecuteScriptQuery.hpp"

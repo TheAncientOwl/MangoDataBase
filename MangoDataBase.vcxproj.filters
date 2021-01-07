@@ -136,6 +136,9 @@
     <Filter Include="Mango\CommandLineInterface\CommandDescriptions">
       <UniqueIdentifier>{d320de63-a971-4977-ac1c-3f85e2805407}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Implementation\Queries\ExecuteScriptQuery">
+      <UniqueIdentifier>{f493b284-b340-43ad-9c57-346a513515cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -272,6 +275,9 @@
     </ClCompile>
     <ClCompile Include="Mango\CommandLineInterface\CommandDescriptions\CommandDescriptions.cpp">
       <Filter>Mango\CommandLineInterface\CommandDescriptions</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\ExecuteScriptQuery\ExecuteScriptQuery.cpp">
+      <Filter>Mango\Implementation\Queries\ExecuteScriptQuery</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -430,6 +436,9 @@
     </ClInclude>
     <ClInclude Include="Mango\CommandLineInterface\CommandDescriptions\CommandDescriptions.hpp">
       <Filter>Mango\CommandLineInterface\CommandDescriptions</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\ExecuteScriptQuery\ExecuteScriptQuery.hpp">
+      <Filter>Mango\Implementation\Queries\ExecuteScriptQuery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

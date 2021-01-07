@@ -233,6 +233,23 @@ namespace Mango::CommandDescriptions
 		}
 	}
 
+	namespace ExecuteScript
+	{
+		void syntax(int number)
+		{
+			std::cout << BRACKETS_NUMBER << ' ';
+
+			std::cout << COMMAND_COLOR << "EXECUTE SCRIPT ";
+			std::cout << FILE_COLOR << "script.mango";
+			std::cout << ccolor::dark_gray << ";\n";
+		}
+
+		void desc()
+		{
+
+		}
+	}
+
 	namespace Exit
 	{
 		void syntax(int number)

@@ -23,4 +23,5 @@ namespace Mango::Implementation::Queries
 	}
 	class SaveDataQuery;
 	class ImportDataQuery;
+	class ExecuteScriptQuery;
 }

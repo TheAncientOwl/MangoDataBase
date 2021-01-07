@@ -31,6 +31,7 @@ namespace Mango
 		
 		/// INSERT INTO table_name [col1, col2, ...] VALUES (val1, val2, ...);
 		/// SAVE file_name.csv;
+		/// EXECUTE SCRIPT script.mango;
 		/// IMPORT table_name file_name.csv;
 
 		if (sql.size() > 5)
@@ -107,7 +108,7 @@ namespace Mango
 			{
 				std::transform(CMD_END, std::find(CMD_END, SQL_END, '('), CMD_END, ::toupper);
 			}
-			else if (sql.starts_with("IMPORT"))
+			else if (sql.starts_with("IMPORT") || sql.starts_with("EXEC"))
 			{
 				auto space = std::find(SQL_BEGIN, SQL_END, ' ');
 
@@ -230,12 +231,13 @@ namespace Mango
 		CommandDescriptions::Display::syntax(3);
 		CommandDescriptions::Drop::syntax(4);
 		CommandDescriptions::Truncate::syntax(5);
-		CommandDescriptions::Import::syntax(6);
-		CommandDescriptions::Delete::syntax(7);
-		CommandDescriptions::Create::syntax(8);
-		CommandDescriptions::Update::syntax(9);
-		CommandDescriptions::Select::syntax(10);
-		CommandDescriptions::Insert::syntax(11);
+		CommandDescriptions::ExecuteScript::syntax(6);
+		CommandDescriptions::Import::syntax(7);
+		CommandDescriptions::Delete::syntax(8);
+		CommandDescriptions::Create::syntax(9);
+		CommandDescriptions::Update::syntax(10);
+		CommandDescriptions::Select::syntax(11);
+		CommandDescriptions::Insert::syntax(12);
 
 		std::cout << ccolor::dark_gray << "|_________________________________________________________________________________|\n";
 	}
@@ -318,7 +320,7 @@ namespace Mango
 	{
 	}
 
-	const std::array<std::unique_ptr<AbstractQuery>, 10> CommandLineInterface::s_Queries{
+	const std::array<std::unique_ptr<AbstractQuery>, 11> CommandLineInterface::s_Queries{
 		std::make_unique<CreateTableQuery>(),
 		std::make_unique<DropTableQuery>(),
 		std::make_unique<TruncateTableQuery>(),
@@ -328,6 +330,7 @@ namespace Mango
 		std::make_unique<CommandLineAdapter::DeleteQueryCLI>(),
 		std::make_unique<CommandLineAdapter::UpdateQueryCLI>(),
 		std::make_unique<SaveDataQuery>(),
-		std::make_unique<ImportDataQuery>()
+		std::make_unique<ImportDataQuery>(),
+		std::make_unique<ExecuteScriptQuery>()
 	};
 }
