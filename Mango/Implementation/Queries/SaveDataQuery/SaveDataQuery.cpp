@@ -45,9 +45,6 @@ namespace Mango::Implementation::Queries
 		std::ofstream csv;
 		csv.open(m_FileName, std::ios::out, std::ios::trunc);
 
-		for (const auto& col : dataBase.m_LastColumns)
-			std::cout << col << '\n';
-
 		const auto& header = dataBase.m_LastColumns;
 		for (size_t index = 0, size = header.size(); index < size; ++index)
 			FileIO::CSV::write(csv, header[index], index < size - 1 ? ',' : '\n');
