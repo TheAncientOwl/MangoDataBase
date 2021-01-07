@@ -139,6 +139,9 @@
     <Filter Include="Mango\Implementation\Queries\ExecuteScriptQuery">
       <UniqueIdentifier>{f493b284-b340-43ad-9c57-346a513515cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Implementation\Queries\ExecuteScriptQuery\ScriptExecutor">
+      <UniqueIdentifier>{47c8316a-3528-43e9-b302-ea602be2624b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -278,6 +281,9 @@
     </ClCompile>
     <ClCompile Include="Mango\Implementation\Queries\ExecuteScriptQuery\ExecuteScriptQuery.cpp">
       <Filter>Mango\Implementation\Queries\ExecuteScriptQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\ExecuteScriptQuery\ScriptExecutor\ScriptExecutor.cpp">
+      <Filter>Mango\Implementation\Queries\ExecuteScriptQuery\ScriptExecutor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -439,6 +445,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Implementation\Queries\ExecuteScriptQuery\ExecuteScriptQuery.hpp">
       <Filter>Mango\Implementation\Queries\ExecuteScriptQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\ExecuteScriptQuery\ScriptExecutor\ScriptExecutor.hpp">
+      <Filter>Mango\Implementation\Queries\ExecuteScriptQuery\ScriptExecutor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

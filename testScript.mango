@@ -1,0 +1,6 @@
+drop table idk;
+create table idk (id int, salariu float, nume string 50);
+insert into idk * values (1, 2, "wde");
+insert into idk * values (2, 2, "wde");
+select * from idk where <id = 1>;
+save Test.csv;

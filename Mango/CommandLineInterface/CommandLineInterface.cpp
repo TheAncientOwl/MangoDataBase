@@ -238,11 +238,9 @@ namespace Mango
 		CommandDescriptions::Update::syntax(10);
 		CommandDescriptions::Select::syntax(11);
 		CommandDescriptions::Insert::syntax(12);
-
-		std::cout << ccolor::dark_gray << "|_________________________________________________________________________________|\n";
 	}
 
-	void CommandLineInterface::run() const
+	void CommandLineInterface::run()
 	{
 		std::cout << ccolor::dark_gray << "|_______________________________[ ";
 		std::cout << ccolor::purple << "Mango Data Base";
@@ -253,43 +251,17 @@ namespace Mango
 		MangoDB dataBase(m_DataBaseDirectoryPath);
 		dataBase.loadTableConfigs();
 		
-		while (true)
+		while (m_Running)
 		{
 			std::cout << ccolor::light_gray << "[" << ccolor::light_blue << "SQL" << ccolor::light_gray << "]: " << ccolor::lime;
 
 			std::string sql;
 			std::getline(std::cin, sql);
-			format(sql);
-
-			bool select = false;
-
-			if (sql.starts_with("SELECT"))
-				select = true;
-			else if (sql.starts_with("HELP"))
-			{
-				help();
-				continue;
-			}
-			else if (sql.starts_with("EXIT"))
-				return;
-
+			
 			bool success = true;
 			try
-			{	
-				bool found = false;
-				for (auto& query : s_Queries)
-					if (query->match(sql))
-					{
-						query->parse(sql);
-						query->validate(dataBase);
-						query->execute(dataBase);
-
-						found = true;
-						break;
-					}
-
-				if (!found)
-					throw InvalidSyntaxException("Unknown command");
+			{
+				execute(sql, dataBase);
 			}
 			catch (const MangoException& e)
 			{
@@ -302,7 +274,7 @@ namespace Mango
 
 			if (success)
 			{
-				if (select)
+				if (m_Select)
 					displayResult(dataBase.lastResult(), dataBase.lastColumns());
 
 				std::cout << ccolor::dark_gray << "[";
@@ -311,8 +283,40 @@ namespace Mango
 				std::cout << ccolor::green << "Command executed successfully!\n";
 			}
 
-			std::cout << ccolor::dark_gray << "__________________________________________________________________________________\n";
+			std::cout << ccolor::dark_gray << "|_________________________________________________________________________________|\n";
 		}
+	}
+
+	void CommandLineInterface::execute(ref<std::string> sql, ref<MangoDB> dataBase)
+	{
+		format(sql);
+
+		m_Select = false;
+
+		if (sql.starts_with("SELECT"))
+			m_Select = true;
+		else if (sql.starts_with("HELP"))
+		{
+			help();
+			return;
+		}
+		else if (sql.starts_with("EXIT"))
+		{
+			m_Running = false;
+			return;
+		}
+		
+		for (auto& query : s_Queries)
+			if (query->match(sql))
+			{
+				query->parse(sql);
+				query->validate(dataBase);
+				query->execute(dataBase);
+				
+				return;
+			}
+
+		throw InvalidSyntaxException("Unknown command");
 	}
 
 	CommandLineInterface::CommandLineInterface(std::string_view dataBaseDirectoryPath)

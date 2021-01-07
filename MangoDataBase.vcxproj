@@ -194,6 +194,7 @@
     <ClCompile Include="Mango\Implementation\Queries\DisplayQuery\DisplayQuery.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\DropTableQuery\DropTableQuery.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\ExecuteScriptQuery\ExecuteScriptQuery.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\ExecuteScriptQuery\ScriptExecutor\ScriptExecutor.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\ImportDataQuery\ImportDataQuery.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\InsertIntoQuery\InsertIntoQuery.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\SaveDataQuery\SaveDataQuery.cpp" />
@@ -248,6 +249,7 @@
     <ClInclude Include="Mango\Implementation\Queries\DisplayQuery\DisplayQuery.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\DropTableQuery\DropTableQuery.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\ExecuteScriptQuery\ExecuteScriptQuery.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\ExecuteScriptQuery\ScriptExecutor\ScriptExecutor.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\ImportDataQuery\ImportDataQuery.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\InsertIntoQuery\InsertIntoQuery.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\Queries.fwd.hpp" />

@@ -6,6 +6,10 @@ using namespace Mango::Exceptions;
 
 #include "../../StringUtils/StringUtils.hpp"
 
+#include "ScriptExecutor/ScriptExecutor.hpp"
+
+#include "../../../CommandLineInterface/CommandLineInterface.hpp"
+
 namespace Mango::Implementation::Queries
 {
 #pragma region MANGO_QUERY_API
@@ -41,7 +45,10 @@ namespace Mango::Implementation::Queries
 
 	MANGO_QUERY_API void ExecuteScriptQuery::execute(ref<MangoDB> dataBase)
 	{
-		throw FeatureNotImplementedException("Not yet...");
+		ScriptExecutor scriptExecutor(std::move(m_ScriptName));
+		CommandLineInterface cli;
+
+		scriptExecutor.execute(dataBase, cli);
 	}
 #pragma endregion
 
