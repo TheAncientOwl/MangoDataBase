@@ -1,8 +1,5 @@
 #pragma once
-namespace Mango
-{
-	class CommandLineInterface;
-}
+#include "../../MangoAPI.fwd.hpp"
 #include "../Queries/Queries.fwd.hpp"
 #include "../Row/Row.fwd.hpp"
 #include "../Table/Table.fwd.hpp"
