@@ -69,7 +69,7 @@ namespace Mango::Implementation::Queries
 		m_TableName = args.front();
 	}
 
-	MANGO_API void SelectQuery::selectAll(ptr<Table> table, ref<MangoDB> dataBase) const
+	MANGO_API void SelectQuery::selectAll(ptr<Table> table, ref<MangoDB> dataBase)
 	{
 		auto rowConfig = table->makeSharedRowConfiguration();
 		size_t rowSize = rowConfig->calculateTotalSize();
@@ -89,7 +89,7 @@ namespace Mango::Implementation::Queries
 			dataBase.m_LastColumns.emplace_back(column.name());
 	}
 
-	MANGO_API void SelectQuery::selectSome(ptr<Table> table, ref<MangoDB> dataBase) const
+	MANGO_API void SelectQuery::selectSome(ptr<Table> table, ref<MangoDB> dataBase)
 	{
 		std::vector<int> selectedColumnIndexes;
 		auto rowConfig = std::make_shared<RowConfiguration>();

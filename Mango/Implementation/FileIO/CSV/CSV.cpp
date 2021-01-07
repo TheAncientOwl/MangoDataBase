@@ -16,22 +16,21 @@ namespace Mango::Implementation::FileIO::CSV
 				case DataType::Value::INT:
 				{
 					csv << row.getInt(index);
-					csv << (index != size - 1 ? "," : "");
 					break;
 				}
 				case DataType::Value::FLOAT:
 				{
 					csv << row.getFloat(index);
-					csv << (index != size - 1 ? "," : "");
 					break;
 				}
 				case DataType::Value::STRING:
 				{
 					csv << row.getString(index);
-					csv << (index != size - 1 ? "," : "");
 					break;
 				}
 			}
+
+			csv << (index != size - 1 ? "," : "");
 		}
 
 		csv << '\n';
@@ -52,7 +51,7 @@ namespace Mango::Implementation::FileIO::CSV
 		std::string str;
 		str.reserve(100);
 
-		for (int index = 0, size = vals.size(); index < size; ++index)
+		for (int index = 0, size = static_cast<int>(vals.size()); index < size; ++index)
 		{
 			str = vals[index];
 			row.setDataAt(index, str);

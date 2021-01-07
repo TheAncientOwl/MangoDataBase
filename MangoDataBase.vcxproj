@@ -167,7 +167,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="App\Menu\MenuOptions\AbstractOption\AbstractMenuOption.cpp" />
     <ClCompile Include="Mango\CommandLineInterface\CommandLineInterface.cpp" />
     <ClCompile Include="Mango\ConsoleColorOutput\ConsoleColorOutput.cpp" />
     <ClCompile Include="Mango\Exceptions\FeatureNotImplementedException\FeatureNotImplementedException.cpp" />

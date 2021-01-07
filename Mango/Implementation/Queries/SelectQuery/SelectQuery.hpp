@@ -36,8 +36,8 @@ namespace Mango::Implementation::Queries
 		/// </summary>
 		MANGO_API void parseTableName(std::string_view tablePart);
 
-		MANGO_API void selectAll(ptr<Table> table, ref<MangoDB> dataBase) const;
-		MANGO_API void selectSome(ptr<Table> table, ref<MangoDB> dataBase) const;
+		MANGO_API void selectAll(ptr<Table> table, ref<MangoDB> dataBase);
+		MANGO_API void selectSome(ptr<Table> table, ref<MangoDB> dataBase);
 
 	protected:
 		MANGO_QUERY_API bool match(std::string_view sql) const final override;
