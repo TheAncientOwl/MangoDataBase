@@ -1,10 +1,12 @@
 #pragma once
+#define NDEBUG
 #include <initializer_list>
 #include <string_view>
 #include <filesystem>
 #include <algorithm>
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 #include <sstream>
 #include <cassert>
 #include <cstddef>

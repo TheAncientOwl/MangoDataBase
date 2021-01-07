@@ -142,6 +142,9 @@
     <Filter Include="Mango\Implementation\Queries\ExecuteScriptQuery\ScriptExecutor">
       <UniqueIdentifier>{47c8316a-3528-43e9-b302-ea602be2624b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Implementation\Timer">
+      <UniqueIdentifier>{93ecf38d-057c-4242-9629-91029d724514}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -284,6 +287,9 @@
     </ClCompile>
     <ClCompile Include="Mango\Implementation\Queries\ExecuteScriptQuery\ScriptExecutor\ScriptExecutor.cpp">
       <Filter>Mango\Implementation\Queries\ExecuteScriptQuery\ScriptExecutor</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Timer\Timer.cpp">
+      <Filter>Mango\Implementation\Timer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -448,6 +454,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Implementation\Queries\ExecuteScriptQuery\ScriptExecutor\ScriptExecutor.hpp">
       <Filter>Mango\Implementation\Queries\ExecuteScriptQuery\ScriptExecutor</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Timer\Timer.hpp">
+      <Filter>Mango\Implementation\Timer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

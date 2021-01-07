@@ -17,6 +17,7 @@ namespace Mango::Implementation::Queries
 
 	void ScriptExecutor::execute(ref<MangoDB> dataBase, ref<CommandLineInterface> cli) const
 	{
+		std::cout << ccolor::dark_gray << ">> " << ccolor::dark_aqua << "Executing script...\n";
 		std::ifstream scriptFile;
 		scriptFile.open(m_FileName, std::ios::in);
 

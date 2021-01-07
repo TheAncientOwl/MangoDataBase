@@ -9,6 +9,7 @@ using namespace Mango::Exceptions;
 #include "../ConsoleColorOutput/ConsoleColorOutput.hpp"
 #include "CommandDescriptions/CommandDescriptions.hpp"
 #include "../Implementation/DataType/DataType.hpp"
+#include "../Implementation/Timer/Timer.hpp"
 
 #define SQL_BEGIN std::begin(sql)
 #define SQL_END   std::end(sql)
@@ -227,7 +228,7 @@ namespace Mango
 		std::cout << ccolor::dark_gray << " ]_____________________________________|\n";
 
 		CommandDescriptions::Exit::syntax(1);
-		CommandDescriptions::Save::syntax(2);
+		CommandDescriptions::Save::syntax(1);
 		CommandDescriptions::Display::syntax(3);
 		CommandDescriptions::Drop::syntax(4);
 		CommandDescriptions::Truncate::syntax(5);
@@ -245,8 +246,8 @@ namespace Mango
 		std::cout << ccolor::dark_gray << "|_______________________________[ ";
 		std::cout << ccolor::purple << "Mango Data Base";
 		std::cout << ccolor::dark_gray << " ]_______________________________|\n";
-		std::cout << ccolor::dark_gray << ">> type '"
-			<< ccolor::dark_aqua << "help" << ccolor::dark_gray << "'\n";
+		std::cout << ccolor::dark_aqua << ">> type '"
+			<< ccolor::light_aqua << "help" << ccolor::dark_aqua << "'\n";
 
 		MangoDB dataBase(m_DataBaseDirectoryPath);
 		dataBase.loadTableConfigs();
@@ -259,9 +260,12 @@ namespace Mango
 			std::getline(std::cin, sql);
 			
 			bool success = true;
+			std::pair<Implementation::Timer::Seconds, Implementation::Timer::Miliseconds> elapsedTime;
 			try
 			{
+				Mango::Implementation::Timer timer;
 				execute(sql, dataBase);
+				elapsedTime = timer.elapsedTime();
 			}
 			catch (const MangoException& e)
 			{
@@ -277,10 +281,14 @@ namespace Mango
 				if (m_Select)
 					displayResult(dataBase.lastResult(), dataBase.lastColumns());
 
-				std::cout << ccolor::dark_gray << "[";
-				std::cout << ccolor::green << "Good";
-				std::cout << ccolor::dark_gray << "] ";
-				std::cout << ccolor::green << "Command executed successfully!\n";
+				std::cout << ccolor::dark_gray << ">> ";
+				std::cout << ccolor::dark_aqua << "Query took ";
+				std::cout << ccolor::light_aqua << std::fixed << std::setprecision(2) << elapsedTime.first.count();
+				std::cout << ccolor::dark_aqua << " s";
+				std::cout << ccolor::dark_gray << " / ";
+				std::cout << ccolor::light_aqua << std::fixed << std::setprecision(2) << elapsedTime.second.count();
+				std::cout << ccolor::dark_aqua << " ms";
+				std::cout << ccolor::dark_gray << ";\n";
 			}
 
 			std::cout << ccolor::dark_gray << "|_________________________________________________________________________________|\n";

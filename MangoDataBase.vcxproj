@@ -210,6 +210,7 @@
     <ClCompile Include="Mango\Implementation\Table\ConstTableIterator.cpp" />
     <ClCompile Include="Mango\Implementation\Table\Table.cpp" />
     <ClCompile Include="Mango\Implementation\Table\TableIterator.cpp" />
+    <ClCompile Include="Mango\Implementation\Timer\Timer.cpp" />
     <ClCompile Include="Mango\MangoDB\MangoDB.cpp" />
     <ClCompile Include="Mango\QueryExecutor\QueryExecutor.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -269,6 +270,7 @@
     <ClInclude Include="Mango\Implementation\Table\Table.fwd.hpp" />
     <ClInclude Include="Mango\Implementation\Table\Table.hpp" />
     <ClInclude Include="Mango\Implementation\Table\TableIterator.hpp" />
+    <ClInclude Include="Mango\Implementation\Timer\Timer.hpp" />
     <ClInclude Include="Mango\MangoAPI.fwd.hpp" />
     <ClInclude Include="Mango\MangoAPI.hpp" />
     <ClInclude Include="Mango\MangoDB\MangoDB.fwd.hpp" />
