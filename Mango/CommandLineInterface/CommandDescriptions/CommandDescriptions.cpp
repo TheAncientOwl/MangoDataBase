@@ -3,7 +3,8 @@
 
 #include "../../ConsoleColorOutput/ConsoleColorOutput.hpp"
 
-#define BRACKETS_NUMBER ccolor::dark_gray << "[" << ccolor::dark_red << number << ccolor::dark_gray << "]"
+#define BRACKETS_NUMBER ccolor::dark_gray << ">>"
+//ccolor::dark_gray << "[" << ccolor::dark_red << number << ccolor::dark_gray << "]"
 
 #define COMMAND_COLOR ccolor::dark_aqua
 #define TABLE_COLOR ccolor::purple

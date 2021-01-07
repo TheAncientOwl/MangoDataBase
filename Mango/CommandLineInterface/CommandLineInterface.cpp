@@ -133,6 +133,12 @@ namespace Mango
 
 	void CommandLineInterface::run() const
 	{
+		std::cout << ccolor::dark_gray << "|_______________________________[ ";
+		std::cout << ccolor::purple << "Mango Data Base";
+		std::cout << ccolor::dark_gray << " ]_______________________________|\n";
+		std::cout << ccolor::dark_gray << ">> type '"
+			<< ccolor::dark_aqua << "help" << ccolor::dark_gray << "'\n";
+
 		MangoDB dataBase(m_DataBaseDirectoryPath);
 		dataBase.loadTableConfigs();
 		
@@ -148,19 +154,25 @@ namespace Mango
 
 			if (sql.starts_with("SELECT"))
 				select = true;
-			else if (sql.starts_with("SYNTAX"))
+			else if (sql.starts_with("HELP"))
 			{
-				CommandDescriptions::Create::syntax(1);
-				CommandDescriptions::Delete::syntax(2);
+				std::cout << ccolor::dark_gray << "\n|____________________________________[ ";
+				std::cout << ccolor::purple << "Help";
+				std::cout << ccolor::dark_gray << " ]_____________________________________|\n";
+
+				CommandDescriptions::Exit::syntax(1);
+				CommandDescriptions::Save::syntax(2);
 				CommandDescriptions::Display::syntax(3);
 				CommandDescriptions::Drop::syntax(4);
-				CommandDescriptions::Insert::syntax(5);
-				CommandDescriptions::Truncate::syntax(6);
-				CommandDescriptions::Save::syntax(7);
-				CommandDescriptions::Import::syntax(8);
-				CommandDescriptions::Select::syntax(9);
-				CommandDescriptions::Update::syntax(10);
-				CommandDescriptions::Exit::syntax(11);
+				CommandDescriptions::Truncate::syntax(5);
+				CommandDescriptions::Import::syntax(6);
+				CommandDescriptions::Delete::syntax(7);
+				CommandDescriptions::Create::syntax(8);
+				CommandDescriptions::Update::syntax(9);
+				CommandDescriptions::Select::syntax(10);
+				CommandDescriptions::Insert::syntax(11);
+
+				std::cout << ccolor::dark_gray << "|_________________________________________________________________________________|\n";
 
 				continue;
 			}
@@ -218,6 +230,8 @@ namespace Mango
 				std::cout << ccolor::green << "Command executed successfully!\n";
 
 			}
+
+			std::cout << ccolor::dark_gray << "__________________________________________________________________________________\n";
 		}
 	}
 
