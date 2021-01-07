@@ -1,12 +1,12 @@
 #pragma once
 #include "../../Row/RowFilters.hpp"
 #include "../AbstractQuery/AbstractQuery.hpp"
-#define MANGO_SELECT_SYNTAX "SELECT */[col1, col2, ...] FROM (table_name) WHERE <condition>;"
+#define MANGO_SELECT_SYNTAX "SELECT */[col1, col2, ...] FROM table_name;"
 
 namespace Mango::Implementation::Queries
 {
 	/// <summary>
-	/// SELECT */[col1, col2, ...] FROM (table_name);
+	/// SELECT */[col1, col2, ...] FROM table_name;
 	/// [!] Where clause can be specified through MagoDB::setWhereClause(WhereClause whereClause);
 	/// </summary>
 	class SelectQuery : public AbstractQuery
@@ -17,22 +17,12 @@ namespace Mango::Implementation::Queries
 
 	protected:
 		/// <summary>
-		/// */[] before ()
-		/// </summary>
-		MANGO_API void checkStatementsOrder(Statement columns, Statement table, Statement::iterator defaultIt) const;
-
-		/// <summary>
-		/// SELECT */[...] FROM (...);
-		/// </summary>
-		MANGO_API void checkResidualParts(Statement columns, Statement table, std::string_view sql) const;
-
-		/// <summary>
 		/// col1, col2, ...
 		/// </summary>
 		MANGO_API void parseColumnNames(std::string_view columnsPart);
 
 		/// <summary>
-		/// table_name
+		/// FROM table_name
 		/// </summary>
 		MANGO_API void parseTableName(std::string_view tablePart);
 

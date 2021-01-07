@@ -1,12 +1,12 @@
 #pragma once
 #include "../../SelectQuery/SelectQuery.hpp"
 #include "../WhereCondition/WhereCondition.hpp"
-#define MANGO_SELECT_CLI_SYNTAX "SELECT */[col1, col2, ...] FROM (table_name) WHERE <col = value>;"
+#define MANGO_SELECT_CLI_SYNTAX "SELECT */[col1, col2, ...] FROM table_name WHERE <col = value>;"
 
 namespace Mango::Implementation::Queries::CommandLineAdapter
 {
 	/// <summary>
-	/// SELECT */[col1, col2, ...] FROM (table_name) WHERE <col = value>;
+	/// SELECT */[col1, col2, ...] FROM table_name WHERE <col = value>;
 	/// </summary>
 	class SelectQueryCLI final : public SelectQuery
 	{
@@ -15,14 +15,19 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 
 	private:
 		/// <summary>
+		/// FROM table_name WHERE
+		/// </summary>
+		MANGO_API void parseTableName(std::string_view tablePart);
+
+		/// <summary>
 		/// [] before () before <>
 		/// </summary>
-		MANGO_API void checkStatementsOrder(Statement columns, Statement table, Statement condition, Statement::iterator defaultIt) const;
+		MANGO_API void checkStatementsOrder(Statement columns, Statement condition, Statement::iterator defaultIt) const;
 		
 		/// <summary>
 		/// SELECT [...] FROM (...) WHERE <...>;
 		/// </summary>
-		MANGO_API void checkResidualParts(Statement columns, Statement table, Statement condition, std::string_view sql) const;
+		MANGO_API void checkResidualParts(Statement columns, Statement condition, std::string_view sql) const;
 
 	private:
 		MANGO_QUERY_API void parse(std::string_view sql) override;

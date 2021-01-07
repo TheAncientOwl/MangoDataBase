@@ -7,45 +7,6 @@ using namespace Mango::Exceptions;
 namespace Mango::Implementation::Queries
 {
 #pragma region MANGO_API
-	MANGO_API void SelectQuery::checkStatementsOrder(Statement columns, Statement table, Statement::iterator defaultIt) const
-	{
-		columns.checkValidOrder(defaultIt);
-
-		table.checkValidOrder(defaultIt);
-
-		if (table.open < columns.closed)
-			throw InvalidSyntaxException({ "Syntax error, found '", table.openChar, "' before '", columns.closedChar, "'" });
-	}
-
-	MANGO_API void SelectQuery::checkResidualParts(Statement columns, Statement table, std::string_view sql) const
-	{
-		{
-			std::string_view part(std::cbegin(sql), columns.open);
-			auto args = StringUtils::splitAtChar(part, ' ');
-			if (args.size() > 1 || args.front() != "SELECT")
-				throw InvalidArgumentException({ "Unknown sequence \"", part, "\"" });
-		}
-
-		{
-			std::string_view part(std::next(columns.closed), table.open);
-			auto args = StringUtils::splitAtChar(part, ' ');
-			if (args.empty())
-				throw InvalidSyntaxException("Missing \"FROM\" keyword");
-			if (args.size() != 1 || args.front() != "FROM")
-				throw InvalidArgumentException({ "Unknown sequence \"", part, "\"" });
-		}
-
-		{
-			std::string_view part(std::next(table.closed), std::cend(sql));
-			while (part.starts_with(' '))
-				part.remove_prefix(1);
-			part.remove_suffix(1);
-			if (!part.empty())
-				throw InvalidSyntaxException({ "Unknown sequence \"", part, "\"" });
-		}
-
-	}
-
 	MANGO_API void SelectQuery::parseColumnNames(std::string_view columnsPart)
 	{
 		auto args = StringUtils::splitAtChar(columnsPart, ',');
@@ -60,13 +21,13 @@ namespace Mango::Implementation::Queries
 	{
 		auto args = StringUtils::splitAtChar(tablePart, ' ');
 
-		if (args.empty())
-			throw InvalidSyntaxException("No table specified");
+		if (args.size() != 2)
+			throw InvalidSyntaxException("Invalid select syntax");
 
-		if (args.size() != 1)
-			throw InvalidSyntaxException({ "Unknown sequence \"", tablePart, "\"" });
+		if (args[0] != "FROM")
+			throw InvalidSyntaxException({ "Unknown sequence \"", args[0], "\"" });
 
-		m_TableName = args.front();
+		m_TableName = args[1];
 	}
 
 	MANGO_API void SelectQuery::selectAll(ptr<Table> table, ref<MangoDB> dataBase)
@@ -144,19 +105,18 @@ namespace Mango::Implementation::Queries
 
 		if (sql.back() != ';')
 			throw InvalidSyntaxException("Missing ';'");
+		sql.remove_suffix(1);
 
 		Statement::iterator DEFAULT = std::cbegin(sql);
 		Statement::iterator all = DEFAULT;
-		Statement columns(DEFAULT, DEFAULT, "[", "]"), table(DEFAULT, DEFAULT, "(", ")");
+		Statement columns(DEFAULT, DEFAULT, "[", "]");
 
 		for (auto it = std::cbegin(sql), end = std::cend(sql); it != end; ++it)
 			switch (*it)
 			{
 				case ']': columns.closed = it; break;
-				case ')': table.closed = it; break;
 				case '*': all = it; break;
 				case '[': if (columns.open == DEFAULT) columns.open = it; break;
-				case '(': if (table.open == DEFAULT) table.open = it; break;
 			}
 
 		if (all != DEFAULT)
@@ -169,14 +129,12 @@ namespace Mango::Implementation::Queries
 			columns.openChar = columns.closedChar = "*";
 		}
 
-		checkStatementsOrder(columns, table, DEFAULT);
-
-		checkResidualParts(columns, table, sql);
+		columns.checkValidOrder(DEFAULT);
 
 		if (all == DEFAULT)
 			parseColumnNames({ std::next(columns.open), columns.closed });
 
-		parseTableName({ std::next(table.open), table.closed });
+		parseTableName({ std::next(columns.closed), std::cend(sql) });
 	}
 
 	MANGO_QUERY_API void SelectQuery::validate(const_ref<MangoDB> dataBase)
