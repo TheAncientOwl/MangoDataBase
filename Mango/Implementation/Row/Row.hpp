@@ -46,6 +46,7 @@ namespace Mango::Implementation
 		MANGO_PUBLIC_API ~Row();
 
 	private:
+		friend class Mango::CommandLineInterface;
 		friend class Mango::Implementation::Table;
 		friend class Mango::Implementation::TableIterator;
 		friend class Mango::Implementation::ConstTableIterator;

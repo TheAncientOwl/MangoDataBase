@@ -8,21 +8,16 @@ using namespace Mango::Exceptions;
 
 #include "../ConsoleColorOutput/ConsoleColorOutput.hpp"
 #include "CommandDescriptions/CommandDescriptions.hpp"
+#include "../Implementation/DataType/DataType.hpp"
 
 #define SQL_BEGIN std::begin(sql)
 #define SQL_END   std::end(sql)
 #define CMD_END   std::begin(sql) + 6
 
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+
 namespace Mango
 {
-	void displayCommand(int number, std::string_view syntax)
-	{
-		std::cout << ccolor::dark_gray << "[";
-		std::cout << ccolor::dark_red << number;
-		std::cout << ccolor::dark_gray << "] ";
-		std::cout << ccolor::green << syntax << '\n';
-	}
-
 	void CommandLineInterface::format(ref<std::string> sql) const
 	{
 		/// CREATE TABLE table_name (col1 dataType, col2 dataType, ...);
@@ -104,7 +99,7 @@ namespace Mango
 						auto comparatorPos = std::find_first_of(std::next(it), SQL_END,
 															    std::cbegin(comparators), std::cend(comparators));
 
-						std::transform(milestone, comparatorPos, CMD_END, ::toupper);
+						std::transform(milestone, comparatorPos, milestone, ::toupper);
 					}
 				}
 			}
@@ -131,6 +126,120 @@ namespace Mango
 
 	}
 
+	int CommandLineInterface::digitsNo(int x) const
+	{
+		int n = 0;
+		while (x > 0)
+		{
+			n++;
+			x /= 10;
+		}
+		return n;
+	}
+
+	int CommandLineInterface::digitsNo(float x) const
+	{
+		while (x != (int)x)
+			x *= 10;
+		
+		return digitsNo(int(x)) + 1;
+	}
+
+	void CommandLineInterface::displayResult(const_ref<std::vector<Implementation::Row>> rows, const_ref<std::vector<std::string>> columns) const
+	{
+		if (rows.empty())
+			std::cout << "No data found\n";
+		else
+		{
+			const int COLUMNS_NUMBER = static_cast<int>(columns.size());
+
+			std::vector<int> maxColumnWidths;
+			maxColumnWidths.reserve(COLUMNS_NUMBER);
+
+			for (const auto& rowName : columns)
+				maxColumnWidths.push_back(static_cast<int>(rowName.size()));
+
+			/// calculate max widths.
+			using Mango::Implementation::DataType;
+			for (const auto& row : rows)
+				for (int i = 0; i < COLUMNS_NUMBER; ++i)
+				{
+					int width = 0;
+					switch (row.m_Config->dataTypeAt(i))
+					{
+						case DataType::Value::INT:    width = digitsNo(row.getInt(i));				     break;
+						case DataType::Value::FLOAT:  width = digitsNo(row.getFloat(i));				 break;
+						case DataType::Value::STRING: width = static_cast<int>(row.getString(i).size()); break;
+					}
+
+					maxColumnWidths[i] = MAX(width, maxColumnWidths[i]);
+				}
+
+			/// print column names.
+			std::cout << ccolor::dark_gray << "| ";
+			for (int i = 0; i < COLUMNS_NUMBER; ++i)
+			{
+				std::cout.width(maxColumnWidths[i]);
+				std::cout << ccolor::dark_red << columns[i] << ccolor::dark_gray << " | ";
+			}
+			std::cout << '\n';
+
+			/// print separator line.
+			std::cout << ccolor::dark_gray << "|-";
+			std::cout.fill('-');
+			for (int i = 0; i < COLUMNS_NUMBER; ++i)
+			{
+				std::cout.width(maxColumnWidths[i]);
+				std::cout << "-";
+				std::cout.width(1);
+				std::cout << (i < COLUMNS_NUMBER - 1 ? "-|-" : "-|");
+			}
+			std::cout.fill(' ');
+			std::cout << '\n';
+
+			/// print rows.
+			for (const auto& row : rows)
+			{
+				std::cout << ccolor::dark_gray << "| ";
+				for (int i = 0; i < COLUMNS_NUMBER; ++i)
+				{
+					std::cout.width(maxColumnWidths[i]);
+					std::cout << ccolor::green;
+					switch (row.m_Config->dataTypeAt(i))
+					{
+						case DataType::Value::INT:    std::cout << row.getInt(i);    break;
+						case DataType::Value::FLOAT:  std::cout << row.getFloat(i);  break;
+						case DataType::Value::STRING: std::cout << row.getString(i); break;
+					}
+					std::cout << ccolor::dark_gray << " | ";
+				}
+				std::cout << '\n';
+			}
+			std::cout.width(1);
+		}
+	}
+
+	void CommandLineInterface::help() const
+	{
+		std::cout << ccolor::dark_gray << "\n|____________________________________[ ";
+		std::cout << ccolor::purple << "Help";
+		std::cout << ccolor::dark_gray << " ]_____________________________________|\n";
+
+		CommandDescriptions::Exit::syntax(1);
+		CommandDescriptions::Save::syntax(2);
+		CommandDescriptions::Display::syntax(3);
+		CommandDescriptions::Drop::syntax(4);
+		CommandDescriptions::Truncate::syntax(5);
+		CommandDescriptions::Import::syntax(6);
+		CommandDescriptions::Delete::syntax(7);
+		CommandDescriptions::Create::syntax(8);
+		CommandDescriptions::Update::syntax(9);
+		CommandDescriptions::Select::syntax(10);
+		CommandDescriptions::Insert::syntax(11);
+
+		std::cout << ccolor::dark_gray << "|_________________________________________________________________________________|\n";
+	}
+
 	void CommandLineInterface::run() const
 	{
 		std::cout << ccolor::dark_gray << "|_______________________________[ ";
@@ -144,10 +253,10 @@ namespace Mango
 		
 		while (true)
 		{
-			std::string sql;
 			std::cout << ccolor::light_gray << "[" << ccolor::light_blue << "SQL" << ccolor::light_gray << "]: " << ccolor::lime;
-			std::getline(std::cin, sql);
 
+			std::string sql;
+			std::getline(std::cin, sql);
 			format(sql);
 
 			bool select = false;
@@ -156,24 +265,7 @@ namespace Mango
 				select = true;
 			else if (sql.starts_with("HELP"))
 			{
-				std::cout << ccolor::dark_gray << "\n|____________________________________[ ";
-				std::cout << ccolor::purple << "Help";
-				std::cout << ccolor::dark_gray << " ]_____________________________________|\n";
-
-				CommandDescriptions::Exit::syntax(1);
-				CommandDescriptions::Save::syntax(2);
-				CommandDescriptions::Display::syntax(3);
-				CommandDescriptions::Drop::syntax(4);
-				CommandDescriptions::Truncate::syntax(5);
-				CommandDescriptions::Import::syntax(6);
-				CommandDescriptions::Delete::syntax(7);
-				CommandDescriptions::Create::syntax(8);
-				CommandDescriptions::Update::syntax(9);
-				CommandDescriptions::Select::syntax(10);
-				CommandDescriptions::Insert::syntax(11);
-
-				std::cout << ccolor::dark_gray << "|_________________________________________________________________________________|\n";
-
+				help();
 				continue;
 			}
 			else if (sql.starts_with("EXIT"))
@@ -186,7 +278,6 @@ namespace Mango
 				for (auto& query : s_Queries)
 					if (query->match(sql))
 					{
-
 						query->parse(sql);
 						query->validate(dataBase);
 						query->execute(dataBase);
@@ -210,25 +301,12 @@ namespace Mango
 			if (success)
 			{
 				if (select)
-				{
-					auto& result = dataBase.lastResult();
-					if (result.empty())
-						std::cout << "No data found\n";
-					else
-					{
-						std::cout << ccolor::dark_gray << "| ";
-						for (const auto& rowName : dataBase.lastColumns())
-							std::cout << ccolor::dark_red << rowName << ccolor::dark_gray << " | ";
-						std::cout << '\n';
-						for (const auto& row : result)
-							std::cout << row << '\n';
-					}
-				}
+					displayResult(dataBase.lastResult(), dataBase.lastColumns());
+
 				std::cout << ccolor::dark_gray << "[";
 				std::cout << ccolor::green << "Good";
 				std::cout << ccolor::dark_gray << "] ";
 				std::cout << ccolor::green << "Command executed successfully!\n";
-
 			}
 
 			std::cout << ccolor::dark_gray << "__________________________________________________________________________________\n";

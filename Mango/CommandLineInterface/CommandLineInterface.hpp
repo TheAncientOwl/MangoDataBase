@@ -9,6 +9,10 @@ namespace Mango
 		std::filesystem::path m_DataBaseDirectoryPath;
 		static const std::array<std::unique_ptr<Implementation::Queries::AbstractQuery>, 10> s_Queries;
 		void format(ref<std::string> sql) const;
+		int digitsNo(int x) const;
+		int digitsNo(float x) const;
+		void displayResult(const_ref<std::vector<Implementation::Row>> rows, const_ref<std::vector<std::string>> columns) const;
+		void help() const;
 
 	public:
 		void run() const;

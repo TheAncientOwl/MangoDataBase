@@ -201,12 +201,20 @@ namespace Mango::Implementation
 		out << ccolor::dark_gray << "| ";
 		for (int columnsNumber = static_cast<int>(row.m_Config->columnsNumber()), index = 0; index < columnsNumber; ++index)
 		{
+			out << ccolor::green;
 			switch (row.m_Config->dataTypeAt(index))
 			{
-			case DataType::Value::INT: out << ccolor::green << row.getInt(index) << ccolor::dark_gray << " | "; break;
-			case DataType::Value::FLOAT: out << ccolor::green << row.getFloat(index) << ccolor::dark_gray << " | "; break;
-			case DataType::Value::STRING: out << ccolor::green << row.getString(index) << ccolor::dark_gray << " | "; break;
+				case DataType::Value::INT:
+					out << row.getInt(index); 
+					break;
+				case DataType::Value::FLOAT:
+					out << row.getFloat(index); 
+					break;
+				case DataType::Value::STRING:
+					out << row.getString(index); 
+					break;
 			}
+			out << ccolor::dark_gray << " | "; 
 		}
 
 		return out;

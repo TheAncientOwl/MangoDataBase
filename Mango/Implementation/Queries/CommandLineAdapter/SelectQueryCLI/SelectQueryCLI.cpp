@@ -87,7 +87,6 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 			columns.openChar = columns.closedChar = "*";
 		}
 
-		columns.checkValidOrder(DEFAULT);
 		if (all == DEFAULT)
 			SelectQuery::parseColumnNames({ std::next(columns.open), columns.closed });
 
@@ -102,6 +101,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 		}
 		else
 		{
+			columns.checkValidOrder(DEFAULT);
 			SelectQuery::parseTableName({ std::next(columns.closed), std::cend(sql) });
 		}
 	}

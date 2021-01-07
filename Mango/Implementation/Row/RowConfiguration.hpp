@@ -1,4 +1,8 @@
 #pragma once
+namespace Mango
+{
+	class CommandLineInterface;
+}
 #include "../Queries/Queries.fwd.hpp"
 #include "../Row/Row.fwd.hpp"
 #include "../Table/Table.fwd.hpp"
@@ -37,6 +41,7 @@ namespace Mango::Implementation
 		MANGO_PUBLIC_API ~RowConfiguration() = default;
 
 	private:
+		friend class Mango::CommandLineInterface;
 		friend class Mango::Implementation::Row;
 		friend class Mango::Implementation::Table;
 		friend class Mango::Implementation::ConstTableIterator;
