@@ -51,7 +51,8 @@ namespace Mango
 	public:
 		MANGO_PUBLIC_API void loadTableConfigs();
 
-		MANGO_PUBLIC_API const_ref<std::vector<Implementation::Row>> lastResult();
+		MANGO_PUBLIC_API const_ref<std::vector<Implementation::Row>> lastResult() const;
+		MANGO_PUBLIC_API const_ref<std::vector<std::string>> lastColumns() const;
 		MANGO_PUBLIC_API std::vector<Implementation::Row> extractLastResult();
 		MANGO_PUBLIC_API void disposeLastResult();
 

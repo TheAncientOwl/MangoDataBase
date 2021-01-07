@@ -7,6 +7,7 @@ namespace Mango
 	{
 	private:
 		static const std::array<std::unique_ptr<Implementation::Queries::AbstractQuery>, 10> s_Queries;
+		void format(ref<std::string> sql) const;
 
 	public:
 		void execute(std::string&& sql, ref<MangoDB> dataBase);

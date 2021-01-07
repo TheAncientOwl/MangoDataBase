@@ -1,11 +1,11 @@
 #pragma once
 #include "../AbstractQuery/AbstractQuery.hpp"
-#define MANGO_IMPORT_DATA_SYNTAX "Import table_name file_name.csv;"
+#define MANGO_IMPORT_DATA_SYNTAX "IMPORT table_name file_name.csv;"
 
 namespace Mango::Implementation::Queries
 {
 	/// <summary>
-	/// Import table_name file_name.csv;
+	/// IMPORT table_name file_name.csv;
 	/// Imported data must match full table configuration.
 	/// Imported strings must not contain ','
 	/// </summary>

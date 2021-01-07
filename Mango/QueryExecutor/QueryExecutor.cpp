@@ -8,35 +8,49 @@ using namespace Mango::Exceptions;
 
 namespace Mango
 {
-	void QueryExecutor::execute(std::string&& sql, ref<MangoDB> dataBase)
+	void QueryExecutor::format(ref<std::string> sql) const
 	{
+		/// DELETE FROM table_name;
+		/// DISPLAY */TABLE_NAME;
+		/// DROP TABLE table_name;
+		/// CREATE TABLE table_name (col1 dataType, col2 dataType, ...);
+		/// SELECT */[col1, col2, ...] FROM table_name;
+		/// UPDATE table_name; 
+		/// TRUNCATE TABLE table_name;
+
+		/// INSERT INTO table_name [col1, col2, ...] VALUES (val1, val2, ...);
+		/// SAVE file_name.csv;
+		/// IMPORT table_name file_name.csv;
+
 		if (sql.size() > 5)
 		{
-			auto wannaBeEndOfInsert = std::cbegin(sql) + 6;
-			std::transform(std::cbegin(sql), wannaBeEndOfInsert, std::begin(sql), ::toupper);
+			auto endOfCommand = std::begin(sql) + 6;
+			std::transform(std::begin(sql), endOfCommand, std::begin(sql), ::toupper);
 
-			if (!sql.starts_with("SAVE"))
+			if (sql.starts_with("INSERT"))
 			{
-				if (sql.starts_with("IMPORT"))
+				std::transform(endOfCommand, std::find(endOfCommand, std::end(sql), '('), std::begin(sql) + 6, ::toupper);
+			}
+			else if (sql.starts_with("IMPORT"))
+			{
+				auto space = std::find(std::begin(sql), std::end(sql), ' ');
+				if (space != std::end(sql))
 				{
-					auto space = std::find(std::begin(sql), std::end(sql), ' ');
-					if (space != std::end(sql))
-					{
-						space = std::find(std::next(space), std::end(sql), ' ');
-						std::transform(std::begin(sql) + 6, space, std::begin(sql) + 6, ::toupper);
-					}
-				}
-				else
-				{
-					auto upperEnd = std::cend(sql);
-					if (sql.starts_with("INSERT"))
-						upperEnd = std::find(wannaBeEndOfInsert, std::cend(sql), '(');
-
-					std::transform(wannaBeEndOfInsert, upperEnd, std::begin(sql) + 6, ::toupper);
+					space = std::find(std::next(space), std::end(sql), ' ');
+					std::transform(std::begin(sql) + 6, space, std::begin(sql) + 6, ::toupper);
 				}
 			}
+			else if (!sql.starts_with("SAVE"))
+			{
+				std::transform(endOfCommand, std::end(sql), endOfCommand, ::toupper);
+			}
 		}
-		else std::transform(std::begin(sql), std::end(sql), std::begin(sql), ::toupper);
+		else std::transform(std::cbegin(sql), std::cend(sql), std::begin(sql), ::toupper);
+	}
+
+	void QueryExecutor::execute(std::string&& sql, ref<MangoDB> dataBase)
+	{
+		format(sql);
 
 		for (auto& query : s_Queries)
 			if (query->match(sql))

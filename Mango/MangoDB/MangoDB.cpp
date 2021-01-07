@@ -102,12 +102,17 @@ namespace Mango
 		file.close();
 	}
 
-	MANGO_PUBLIC_API const_ref<std::vector<Implementation::Row>> MangoDB::lastResult()
+	MANGO_PUBLIC_API const_ref<std::vector<Implementation::Row>> MangoDB::lastResult() const
 	{
 		return m_LastResult;
 	}
 
-	MANGO_PUBLIC_API std::vector<Implementation::Row> MangoDB::extractLastResult()
+	MANGO_PUBLIC_API const_ref<std::vector<std::string>> MangoDB::lastColumns() const
+	{
+		return m_LastColumns;
+	}
+
+	std::vector<Implementation::Row> MangoDB::extractLastResult()
 	{
 		std::vector<Implementation::Row> dummy(std::move(m_LastResult));
 		std::vector<Implementation::Row>().swap(m_LastResult);
