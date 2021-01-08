@@ -65,6 +65,7 @@ namespace Mango
 	public:
 		MANGO_PUBLIC_API MangoDB(std::filesystem::path dataBaseDirectoryPath);
 
+		MANGO_PUBLIC_API MangoDB() = default;
 		MANGO_PUBLIC_API MangoDB(const MangoDB&) = delete;
 		MANGO_PUBLIC_API MangoDB(MangoDB&&) noexcept = default;
 		MANGO_PUBLIC_API MangoDB& operator=(const MangoDB&) = delete;

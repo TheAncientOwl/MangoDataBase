@@ -241,6 +241,11 @@ namespace Mango
 		CommandDescriptions::Insert::syntax(12);
 	}
 
+	ref<MangoDB> CommandLineInterface::dataBase()
+	{
+		return m_DataBase;
+	}
+
 	void CommandLineInterface::run()
 	{
 		std::cout << ccolor::dark_gray << "|_______________________________[ ";
@@ -248,9 +253,6 @@ namespace Mango
 		std::cout << ccolor::dark_gray << " ]_______________________________|\n";
 		std::cout << ccolor::dark_aqua << ">> type '"
 			<< ccolor::light_aqua << "help" << ccolor::dark_aqua << "'\n";
-
-		MangoDB dataBase(m_DataBaseDirectoryPath);
-		dataBase.loadTableConfigs();
 		
 		while (m_Running)
 		{
@@ -264,7 +266,7 @@ namespace Mango
 			try
 			{
 				Mango::Implementation::Timer timer;
-				execute(sql, dataBase);
+				execute(sql, m_DataBase);
 				elapsedTime = timer.elapsedTime();
 			}
 			catch (const MangoException& e)
@@ -279,7 +281,7 @@ namespace Mango
 			if (success)
 			{
 				if (m_Select)
-					displayResult(dataBase.lastResult(), dataBase.lastColumns());
+					displayResult(m_DataBase.lastResult(), m_DataBase.lastColumns());
 
 				std::cout << ccolor::dark_gray << ">> ";
 				std::cout << ccolor::dark_aqua << "Query took ";
@@ -328,8 +330,9 @@ namespace Mango
 	}
 
 	CommandLineInterface::CommandLineInterface(std::string_view dataBaseDirectoryPath)
-		: m_DataBaseDirectoryPath(dataBaseDirectoryPath)
+		: m_DataBase(dataBaseDirectoryPath)
 	{
+		m_DataBase.loadTableConfigs();
 	}
 
 	const std::array<std::unique_ptr<AbstractQuery>, 11> CommandLineInterface::s_Queries{
