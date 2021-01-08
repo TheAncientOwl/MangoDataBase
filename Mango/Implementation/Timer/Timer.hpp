@@ -7,11 +7,10 @@ namespace Mango::Implementation
 	{
 	private:
 		std::chrono::time_point<std::chrono::steady_clock> m_Start;
-		using DataType = long double;
 		
 	public:
-		using Seconds = std::chrono::duration<DataType>;
-		using Milliseconds = std::chrono::duration<DataType, std::milli>;
+		using Seconds = std::chrono::duration<long double>;
+		using Milliseconds = std::chrono::duration<long double, std::milli>;
 		std::pair<Seconds, Milliseconds> elapsedTime() const;
 
 	public:
