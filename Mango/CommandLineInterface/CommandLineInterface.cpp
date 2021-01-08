@@ -17,6 +17,34 @@ using namespace Mango::Exceptions;
 
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 
+#define MANGO_CLI_HEADER	ccolor::dark_gray << "|_______________________________[ "\
+						 << ccolor::purple << "Mango Data Base"\
+						 << ccolor::dark_gray << " ]_______________________________|\n"\
+						 << ccolor::dark_aqua << ">> type '"\
+						 << ccolor::light_aqua << "help" << ccolor::dark_aqua << "'"
+
+#define MANGO_CLI_CMD_PREFIX ccolor::light_gray << "[" << ccolor::light_blue << "SQL" << ccolor::light_gray << "]: " << ccolor::lime
+
+#define MANGO_CLI_ERROR_PREFIX	  ccolor::dark_gray << "["\
+							   << ccolor::dark_red << "Error"\
+	                           << ccolor::dark_gray << "] "\
+							   << ccolor::light_red
+
+#define MANGO_CLI_QUERY_TIME(elapsedTime)    ccolor::dark_gray << ">> "\
+										  << ccolor::dark_aqua << "Query took "\
+										  << ccolor::light_aqua << std::fixed << std::setprecision(2) << elapsedTime.first.count()\
+										  << ccolor::dark_aqua << " s"\
+										  << ccolor::dark_gray << " / "\
+										  << ccolor::light_aqua << std::fixed << std::setprecision(2) << elapsedTime.second.count()\
+										  << ccolor::dark_aqua << " ms"\
+										  << ccolor::dark_gray << ";\n"
+
+#define MANGO_CLI_SEPARATOR_LINE ccolor::dark_gray << "|_________________________________________________________________________________|"
+
+#define MANGO_CLI_HELP_HEADER    ccolor::dark_gray << "\n|____________________________________[ "\
+							  << ccolor::purple << "Help"\
+							  << ccolor::dark_gray << " ]_____________________________________|"
+
 namespace Mango
 {
 	void CommandLineInterface::format(ref<std::string> sql) const
@@ -223,22 +251,21 @@ namespace Mango
 
 	void CommandLineInterface::help() const
 	{
-		std::cout << ccolor::dark_gray << "\n|____________________________________[ ";
-		std::cout << ccolor::purple << "Help";
-		std::cout << ccolor::dark_gray << " ]_____________________________________|\n";
+		std::cout << MANGO_CLI_HELP_HEADER << '\n';
 
-		CommandDescriptions::Exit::syntax(1);
-		CommandDescriptions::Save::syntax(1);
-		CommandDescriptions::Display::syntax(3);
-		CommandDescriptions::Drop::syntax(4);
-		CommandDescriptions::Truncate::syntax(5);
-		CommandDescriptions::ExecuteScript::syntax(6);
-		CommandDescriptions::Import::syntax(7);
-		CommandDescriptions::Delete::syntax(8);
-		CommandDescriptions::Create::syntax(9);
-		CommandDescriptions::Update::syntax(10);
-		CommandDescriptions::Select::syntax(11);
-		CommandDescriptions::Insert::syntax(12);
+		using namespace CommandDescriptions;
+		Exit::syntax(1);
+		Save::syntax(1);
+		Display::syntax(3);
+		Drop::syntax(4);
+		Truncate::syntax(5);
+		ExecuteScript::syntax(6);
+		Import::syntax(7);
+		Delete::syntax(8);
+		Create::syntax(9);
+		Update::syntax(10);
+		Select::syntax(11);
+		Insert::syntax(12);
 	}
 
 	ref<MangoDB> CommandLineInterface::dataBase()
@@ -248,15 +275,11 @@ namespace Mango
 
 	void CommandLineInterface::run()
 	{
-		std::cout << ccolor::dark_gray << "|_______________________________[ ";
-		std::cout << ccolor::purple << "Mango Data Base";
-		std::cout << ccolor::dark_gray << " ]_______________________________|\n";
-		std::cout << ccolor::dark_aqua << ">> type '"
-			<< ccolor::light_aqua << "help" << ccolor::dark_aqua << "'\n";
+		std::cout << MANGO_CLI_HEADER << '\n';
 		
 		while (m_Running)
 		{
-			std::cout << ccolor::light_gray << "[" << ccolor::light_blue << "SQL" << ccolor::light_gray << "]: " << ccolor::lime;
+			std::cout << MANGO_CLI_CMD_PREFIX;
 
 			std::string sql;
 			std::getline(std::cin, sql);
@@ -272,10 +295,8 @@ namespace Mango
 			catch (const MangoException& e)
 			{
 				success = false;
-				std::cout << ccolor::dark_gray << "[";
-				std::cout << ccolor::dark_red << "Error";
-				std::cout << ccolor::dark_gray << "] ";
-				std::cout << ccolor::light_red << e.what() << '\n';
+				
+				std::cout << MANGO_CLI_ERROR_PREFIX << e.what() << '\n';
 			}
 
 			if (success)
@@ -283,17 +304,10 @@ namespace Mango
 				if (m_Select)
 					displayResult(m_DataBase.lastResult(), m_DataBase.lastColumns());
 
-				std::cout << ccolor::dark_gray << ">> ";
-				std::cout << ccolor::dark_aqua << "Query took ";
-				std::cout << ccolor::light_aqua << std::fixed << std::setprecision(2) << elapsedTime.first.count();
-				std::cout << ccolor::dark_aqua << " s";
-				std::cout << ccolor::dark_gray << " / ";
-				std::cout << ccolor::light_aqua << std::fixed << std::setprecision(2) << elapsedTime.second.count();
-				std::cout << ccolor::dark_aqua << " ms";
-				std::cout << ccolor::dark_gray << ";\n";
+				std::cout << MANGO_CLI_QUERY_TIME(elapsedTime);
 			}
 
-			std::cout << ccolor::dark_gray << "|_________________________________________________________________________________|\n";
+			std::cout << MANGO_CLI_SEPARATOR_LINE << '\n';
 		}
 	}
 

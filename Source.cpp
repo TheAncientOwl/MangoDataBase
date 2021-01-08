@@ -18,9 +18,7 @@ int main(int argc, char** argv)
 		{
 			std::string sql;
 			sql.reserve(17 + strlen(argv[1]));
-			sql.append("EXECUTE SCRIPT ");
-			sql.append(argv[i]);
-			sql.append(";");
+			sql.append("EXECUTE SCRIPT ").append(argv[i]).append(";");
 
 			try
 			{
@@ -34,6 +32,8 @@ int main(int argc, char** argv)
 				std::cout << ccolor::light_red << e.what() << '\n';
 			}
 		}
+
+		std::cout << ccolor::dark_gray << ">> " << ccolor::green << "Scripts executed" << ccolor::dark_gray << ".\n";
 		
 		cli.run();
 	}
