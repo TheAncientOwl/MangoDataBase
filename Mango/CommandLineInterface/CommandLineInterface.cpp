@@ -260,7 +260,7 @@ namespace Mango
 			std::getline(std::cin, sql);
 			
 			bool success = true;
-			std::pair<Implementation::Timer::Seconds, Implementation::Timer::Miliseconds> elapsedTime;
+			std::pair<Implementation::Timer::Seconds, Implementation::Timer::Milliseconds> elapsedTime;
 			try
 			{
 				Mango::Implementation::Timer timer;
