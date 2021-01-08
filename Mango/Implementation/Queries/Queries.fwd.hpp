@@ -7,7 +7,7 @@ namespace Mango::Implementation::Queries
 	class CreateTableQuery;
 	class TruncateTableQuery;
 	class DropTableQuery;
-	class DisplayQuery;
+	class DescQuery;
 	class InsertIntoQuery;
 	class SelectQuery;
 	class DeleteQuery;

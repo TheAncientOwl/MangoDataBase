@@ -77,7 +77,7 @@ namespace Mango
 		friend class Mango::Implementation::Queries::CreateTableQuery;
 		friend class Mango::Implementation::Queries::DropTableQuery;
 		friend class Mango::Implementation::Queries::TruncateTableQuery;
-		friend class Mango::Implementation::Queries::DisplayQuery;
+		friend class Mango::Implementation::Queries::DescQuery;
 		friend class Mango::Implementation::Queries::InsertIntoQuery;
 		friend class Mango::Implementation::Queries::SelectQuery;
 		friend class Mango::Implementation::Queries::DeleteQuery;

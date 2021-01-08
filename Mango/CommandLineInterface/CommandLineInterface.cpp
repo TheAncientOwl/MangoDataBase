@@ -32,11 +32,8 @@ using namespace Mango::Exceptions;
 
 #define MANGO_CLI_QUERY_TIME(elapsedTime)    ccolor::dark_gray << ">> "\
 										  << ccolor::dark_aqua << "Query took "\
-										  << ccolor::light_aqua << std::fixed << std::setprecision(2) << elapsedTime.first.count()\
+										  << ccolor::light_aqua << std::fixed << std::setprecision(4) << elapsedTime.count()\
 										  << ccolor::dark_aqua << " s"\
-										  << ccolor::dark_gray << " / "\
-										  << ccolor::light_aqua << std::fixed << std::setprecision(2) << elapsedTime.second.count()\
-										  << ccolor::dark_aqua << " ms"\
 										  << ccolor::dark_gray << ";\n"
 
 #define MANGO_CLI_SEPARATOR_LINE ccolor::dark_gray << "|_________________________________________________________________________________|"
@@ -178,7 +175,7 @@ namespace Mango
 	void CommandLineInterface::displayResult(const_ref<std::vector<Implementation::Row>> rows, const_ref<std::vector<std::string>> columns) const
 	{
 		if (rows.empty())
-			std::cout << "No data found\n";
+			std::cout << ccolor::dark_gray << ">> " << ccolor::green << "No data found\n";
 		else
 		{
 			const int COLUMNS_NUMBER = static_cast<int>(columns.size());
@@ -238,7 +235,7 @@ namespace Mango
 					switch (row.m_Config->dataTypeAt(i))
 					{
 						case DataType::Value::INT:    std::cout << row.getInt(i);    break;
-						case DataType::Value::FLOAT:  std::cout << row.getFloat(i);  break;
+						case DataType::Value::FLOAT:  std::cout << std::fixed << std::setprecision(2) << row.getFloat(i);  break;
 						case DataType::Value::STRING: std::cout << row.getString(i); break;
 					}
 					std::cout << ccolor::dark_gray << " | ";
@@ -253,19 +250,18 @@ namespace Mango
 	{
 		std::cout << MANGO_CLI_HELP_HEADER << '\n';
 
-		using namespace CommandDescriptions;
-		Exit::syntax(1);
-		Save::syntax(1);
-		Display::syntax(3);
-		Drop::syntax(4);
-		Truncate::syntax(5);
-		ExecuteScript::syntax(6);
-		Import::syntax(7);
-		Delete::syntax(8);
-		Create::syntax(9);
-		Update::syntax(10);
-		Select::syntax(11);
-		Insert::syntax(12);
+		CommandDescriptions::Exit::syntax(1);
+		CommandDescriptions::Desc::syntax(2);
+		CommandDescriptions::Save::syntax(3);
+		CommandDescriptions::Drop::syntax(4);
+		CommandDescriptions::Truncate::syntax(5);
+		CommandDescriptions::ExecuteScript::syntax(6);
+		CommandDescriptions::Import::syntax(7);
+		CommandDescriptions::Delete::syntax(8);
+		CommandDescriptions::Create::syntax(9);
+		CommandDescriptions::Update::syntax(10);
+		CommandDescriptions::Select::syntax(11);
+		CommandDescriptions::Insert::syntax(12);
 	}
 
 	ref<MangoDB> CommandLineInterface::dataBase()
@@ -284,27 +280,22 @@ namespace Mango
 			std::string sql;
 			std::getline(std::cin, sql);
 			
-			bool success = true;
-			std::pair<Implementation::Timer::Seconds, Implementation::Timer::Milliseconds> elapsedTime;
+			Implementation::Timer::Seconds elapsedTime;
 			try
 			{
 				Mango::Implementation::Timer timer;
 				execute(sql, m_DataBase);
-				elapsedTime = timer.elapsedTime();
-			}
-			catch (const MangoException& e)
-			{
-				success = false;
-				
-				std::cout << MANGO_CLI_ERROR_PREFIX << e.what() << '\n';
-			}
 
-			if (success)
-			{
+				elapsedTime = timer.elapsedTime();
+
 				if (m_Select)
 					displayResult(m_DataBase.lastResult(), m_DataBase.lastColumns());
 
 				std::cout << MANGO_CLI_QUERY_TIME(elapsedTime);
+			}
+			catch (const MangoException& e)
+			{
+				std::cout << MANGO_CLI_ERROR_PREFIX << e.what() << '\n';
 			}
 
 			std::cout << MANGO_CLI_SEPARATOR_LINE << '\n';
@@ -353,7 +344,7 @@ namespace Mango
 		std::make_unique<CreateTableQuery>(),
 		std::make_unique<DropTableQuery>(),
 		std::make_unique<TruncateTableQuery>(),
-		std::make_unique<DisplayQuery>(),
+		std::make_unique<DescQuery>(),
 		std::make_unique<InsertIntoQuery>(),
 		std::make_unique<CommandLineAdapter::SelectQueryCLI>(),
 		std::make_unique<CommandLineAdapter::DeleteQueryCLI>(),

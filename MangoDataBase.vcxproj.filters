@@ -204,9 +204,6 @@
     <ClCompile Include="Mango\Implementation\Queries\DeleteQuery\DeleteQuery.cpp">
       <Filter>Mango\Implementation\Queries\DeleteQuery</Filter>
     </ClCompile>
-    <ClCompile Include="Mango\Implementation\Queries\DisplayQuery\DisplayQuery.cpp">
-      <Filter>Mango\Implementation\Queries\DisplayQuery</Filter>
-    </ClCompile>
     <ClCompile Include="Mango\Implementation\Queries\DropTableQuery\DropTableQuery.cpp">
       <Filter>Mango\Implementation\Queries\DropTableQuery</Filter>
     </ClCompile>
@@ -291,6 +288,9 @@
     <ClCompile Include="Mango\Implementation\Timer\Timer.cpp">
       <Filter>Mango\Implementation\Timer</Filter>
     </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\DisplayQuery\DescQuery.cpp">
+      <Filter>Mango\Implementation\Queries\DisplayQuery</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="standard_library.hpp">
@@ -361,9 +361,6 @@
     </ClInclude>
     <ClInclude Include="Mango\Implementation\Queries\DeleteQuery\DeleteQuery.hpp">
       <Filter>Mango\Implementation\Queries\DeleteQuery</Filter>
-    </ClInclude>
-    <ClInclude Include="Mango\Implementation\Queries\DisplayQuery\DisplayQuery.hpp">
-      <Filter>Mango\Implementation\Queries\DisplayQuery</Filter>
     </ClInclude>
     <ClInclude Include="Mango\Implementation\Queries\DropTableQuery\DropTableQuery.hpp">
       <Filter>Mango\Implementation\Queries\DropTableQuery</Filter>
@@ -457,6 +454,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Implementation\Timer\Timer.hpp">
       <Filter>Mango\Implementation\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\DisplayQuery\DescQuery.hpp">
+      <Filter>Mango\Implementation\Queries\DisplayQuery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

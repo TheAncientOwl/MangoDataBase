@@ -181,8 +181,6 @@ namespace Mango::Implementation
 		for (const auto& column : table.columns())
 			out << column << '\n';
 
-		out << ccolor::green << "=======================================";
-
 		return out;
 	}
 #pragma endregion

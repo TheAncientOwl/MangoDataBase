@@ -14,7 +14,7 @@ namespace Mango::CommandDescriptions
 		void desc();
 	}
 
-	namespace Display
+	namespace Desc
 	{
 		void syntax(int number);
 		void desc();

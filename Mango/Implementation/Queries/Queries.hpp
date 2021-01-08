@@ -3,7 +3,7 @@
 #include "CreateTableQuery/CreateTableQuery.hpp"
 #include "DropTableQuery/DropTableQuery.hpp"
 #include "TruncateTableQuery/TruncateTableQuery.hpp"
-#include "DisplayQuery/DisplayQuery.hpp"
+#include "DisplayQuery/DescQuery.hpp"
 #include "InsertIntoQuery/InsertIntoQuery.hpp"
 #include "SelectQuery/SelectQuery.hpp"
 #include "DeleteQuery/DeleteQuery.hpp"

@@ -10,8 +10,7 @@ namespace Mango::Implementation
 		
 	public:
 		using Seconds = std::chrono::duration<long double>;
-		using Milliseconds = std::chrono::duration<long double, std::milli>;
-		std::pair<Seconds, Milliseconds> elapsedTime() const;
+		Seconds elapsedTime() const;
 
 	public:
 		Timer();

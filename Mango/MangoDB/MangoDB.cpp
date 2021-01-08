@@ -6,6 +6,12 @@ using namespace Mango::Implementation::FileIO::Binary;
 
 #include "../ConsoleColorOutput/ConsoleColorOutput.hpp"
 
+#define MANGO_STREAM_OPERATOR_HEADER    ccolor::dark_gray << "|___________________________________[ "\
+									 << ccolor::purple << "Tables"\
+									 << ccolor::dark_gray << " ]____________________________________|"\
+
+#define MANGO_CLI_SEPARATOR_LINE ccolor::dark_gray << "|_________________________________________________________________________________|"
+
 namespace Mango
 {
 #pragma region MANGO_API
@@ -164,9 +170,9 @@ namespace Mango
 	{
 		MANGO_PUBLIC_API std::ostream& operator<<(std::ostream& out, const MangoDB& mango)
 		{
-			out << ccolor::light_red << "|_____________[Data Base]_____________|\n";
+			out << MANGO_STREAM_OPERATOR_HEADER << '\n';
 			for (const auto& table : mango.tables())
-				out << *table << '\n';
+				out << *table << MANGO_CLI_SEPARATOR_LINE << '\n';
 
 			return out;
 		}

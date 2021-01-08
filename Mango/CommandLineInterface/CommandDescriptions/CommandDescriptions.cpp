@@ -56,13 +56,13 @@ namespace Mango::CommandDescriptions
 		}
 	}
 
-	namespace Display
+	namespace Desc
 	{
 		void syntax(int number)
 		{
 			std::cout << BRACKETS_NUMBER << ' ';
 
-			std::cout << COMMAND_COLOR << "DISPLAY ";
+			std::cout << COMMAND_COLOR << "DESC ";
 			std::cout << TABLE_COLOR << "*" << ccolor::dark_gray << "/" << TABLE_COLOR << "table_name";
 			std::cout << ccolor::dark_gray << ";\n";
 		}

@@ -2,8 +2,6 @@
 
 #include "Mango/MangoAPI.hpp"
 
-#include "Mango/ConsoleColorOutput/ConsoleColorOutput.hpp"
-
 int main(int argc, char** argv)
 {
 	Mango::CommandLineInterface cli(PROJECT_DATA_BASE);
