@@ -15,8 +15,6 @@ using namespace Mango::Exceptions;
 #define SQL_END   std::end(sql)
 #define CMD_END   std::begin(sql) + 6
 
-#define MAX(a, b) ((a) > (b) ? (a) : (b))
-
 #define MANGO_CLI_HEADER	ccolor::dark_gray << "|_______________________________[ "\
 						 << ccolor::purple << "Mango Data Base"\
 						 << ccolor::dark_gray << " ]_______________________________|\n"\
@@ -153,104 +151,12 @@ namespace Mango
 
 	}
 
-	int CommandLineInterface::digitsNo(int x) const
-	{
-		int n = 0;
-		while (x > 0)
-		{
-			n++;
-			x /= 10;
-		}
-		return n;
-	}
-
-	int CommandLineInterface::digitsNo(float x) const
-	{
-		while (x != (int)x)
-			x *= 10;
-		
-		return digitsNo(int(x)) + 1;
-	}
-
-	void CommandLineInterface::displayResult(const_ref<std::vector<Implementation::Row>> rows, const_ref<std::vector<std::string>> columns) const
-	{
-		if (rows.empty())
-			std::cout << ccolor::dark_gray << ">> " << ccolor::green << "No data found\n";
-		else
-		{
-			const int COLUMNS_NUMBER = static_cast<int>(columns.size());
-
-			std::vector<int> maxColumnWidths;
-			maxColumnWidths.reserve(COLUMNS_NUMBER);
-
-			for (const auto& rowName : columns)
-				maxColumnWidths.push_back(static_cast<int>(rowName.size()));
-
-			/// calculate max widths.
-			using Mango::Implementation::DataType;
-			for (const auto& row : rows)
-				for (int i = 0; i < COLUMNS_NUMBER; ++i)
-				{
-					int width = 0;
-					switch (row.m_Config->dataTypeAt(i))
-					{
-						case DataType::Value::INT:    width = digitsNo(row.getInt(i));				     break;
-						case DataType::Value::FLOAT:  width = digitsNo(row.getFloat(i));				 break;
-						case DataType::Value::STRING: width = static_cast<int>(row.getString(i).size()); break;
-					}
-
-					maxColumnWidths[i] = MAX(width, maxColumnWidths[i]);
-				}
-
-			/// print column names.
-			std::cout << ccolor::dark_gray << "| ";
-			for (int i = 0; i < COLUMNS_NUMBER; ++i)
-			{
-				std::cout.width(maxColumnWidths[i]);
-				std::cout << ccolor::dark_red << columns[i] << ccolor::dark_gray << " | ";
-			}
-			std::cout << '\n';
-
-			/// print separator line.
-			std::cout << ccolor::dark_gray << "|-";
-			std::cout.fill('-');
-			for (int i = 0; i < COLUMNS_NUMBER; ++i)
-			{
-				std::cout.width(maxColumnWidths[i]);
-				std::cout << "-";
-				std::cout.width(1);
-				std::cout << (i < COLUMNS_NUMBER - 1 ? "-|-" : "-|");
-			}
-			std::cout.fill(' ');
-			std::cout << '\n';
-
-			/// print rows.
-			for (const auto& row : rows)
-			{
-				std::cout << ccolor::dark_gray << "| ";
-				for (int i = 0; i < COLUMNS_NUMBER; ++i)
-				{
-					std::cout.width(maxColumnWidths[i]);
-					std::cout << ccolor::green;
-					switch (row.m_Config->dataTypeAt(i))
-					{
-						case DataType::Value::INT:    std::cout << row.getInt(i);    break;
-						case DataType::Value::FLOAT:  std::cout << std::fixed << std::setprecision(2) << row.getFloat(i);  break;
-						case DataType::Value::STRING: std::cout << row.getString(i); break;
-					}
-					std::cout << ccolor::dark_gray << " | ";
-				}
-				std::cout << '\n';
-			}
-			std::cout.width(1);
-		}
-	}
-
 	void CommandLineInterface::help() const
 	{
 		std::cout << MANGO_CLI_HELP_HEADER << '\n';
 
 		CommandDescriptions::Exit::syntax(1);
+		CommandDescriptions::Display::syntax(2);
 		CommandDescriptions::Desc::syntax(2);
 		CommandDescriptions::Save::syntax(3);
 		CommandDescriptions::Drop::syntax(4);
@@ -280,18 +186,12 @@ namespace Mango
 			std::string sql;
 			std::getline(std::cin, sql);
 			
-			Implementation::Timer::Seconds elapsedTime;
 			try
 			{
 				Mango::Implementation::Timer timer;
 				execute(sql, m_DataBase);
 
-				elapsedTime = timer.elapsedTime();
-
-				if (m_Select)
-					displayResult(m_DataBase.lastResult(), m_DataBase.lastColumns());
-
-				std::cout << MANGO_CLI_QUERY_TIME(elapsedTime);
+				std::cout << MANGO_CLI_QUERY_TIME(timer.elapsedTime());
 			}
 			catch (const MangoException& e)
 			{
@@ -306,11 +206,7 @@ namespace Mango
 	{
 		format(sql);
 
-		m_Select = false;
-
-		if (sql.starts_with("SELECT"))
-			m_Select = true;
-		else if (sql.starts_with("HELP"))
+		if (sql.starts_with("HELP"))
 		{
 			help();
 			return;
@@ -340,7 +236,7 @@ namespace Mango
 		m_DataBase.loadTableConfigs();
 	}
 
-	const std::array<std::unique_ptr<AbstractQuery>, 11> CommandLineInterface::s_Queries{
+	const std::array<std::unique_ptr<AbstractQuery>, 12> CommandLineInterface::s_Queries{
 		std::make_unique<CreateTableQuery>(),
 		std::make_unique<DropTableQuery>(),
 		std::make_unique<TruncateTableQuery>(),
@@ -351,6 +247,7 @@ namespace Mango
 		std::make_unique<CommandLineAdapter::UpdateQueryCLI>(),
 		std::make_unique<SaveDataQuery>(),
 		std::make_unique<ImportDataQuery>(),
-		std::make_unique<ExecuteScriptQuery>()
+		std::make_unique<ExecuteScriptQuery>(),
+		std::make_unique<DisplayQuery>()
 	};
 }

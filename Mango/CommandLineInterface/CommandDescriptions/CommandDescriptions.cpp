@@ -250,6 +250,22 @@ namespace Mango::CommandDescriptions
 		}
 	}
 
+	namespace Display
+	{
+		void syntax(int number)
+		{
+			std::cout << BRACKETS_NUMBER << ' ';
+
+			std::cout << COMMAND_COLOR << "DISPLAY";
+			std::cout << ccolor::dark_gray << ";\n";
+		}
+
+		void desc()
+		{
+
+		}
+	}
+
 	namespace Exit
 	{
 		void syntax(int number)

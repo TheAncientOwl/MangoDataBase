@@ -1,5 +1,4 @@
 #pragma once
-#include "../../MangoAPI.fwd.hpp"
 #include "../Queries/Queries.fwd.hpp"
 #include "../Row/Row.fwd.hpp"
 #include "../Table/Table.fwd.hpp"
@@ -38,12 +37,12 @@ namespace Mango::Implementation
 		MANGO_PUBLIC_API ~RowConfiguration() = default;
 
 	private:
-		friend class Mango::CommandLineInterface;
 		friend class Mango::Implementation::Row;
 		friend class Mango::Implementation::Table;
 		friend class Mango::Implementation::ConstTableIterator;
 		friend class Mango::Implementation::Queries::SelectQuery;
 		friend class Mango::Implementation::Queries::CommandLineAdapter::SetClauseData;
+		friend class Mango::Implementation::Queries::DisplayQuery;
 		friend std::ostream& operator<<(std::ostream& out, const Row& row);
 		friend void Mango::Implementation::FileIO::CSV::write(std::ofstream& csv, const_ref<Row> row);
 		friend std::ifstream& Mango::Implementation::FileIO::CSV::read(std::ifstream& csv, ref<Row> row);

@@ -14,3 +14,4 @@
 #include "SaveDataQuery/SaveDataQuery.hpp"
 #include "ImportDataQuery/ImportDataQuery.hpp"
 #include "ExecuteScriptQuery/ExecuteScriptQuery.hpp"
+#include "DisplayQuery/DisplayQuery.hpp"

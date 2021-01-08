@@ -145,6 +145,9 @@
     <Filter Include="Mango\Implementation\Queries\DescQuery">
       <UniqueIdentifier>{cd3188b2-0be0-4193-8255-f1bcc89e4751}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mango\Implementation\Queries\DisplayQuery">
+      <UniqueIdentifier>{137da225-e266-4bc1-a81d-38afb1878cde}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -290,6 +293,9 @@
     </ClCompile>
     <ClCompile Include="Mango\Implementation\Queries\DescQuery\DescQuery.cpp">
       <Filter>Mango\Implementation\Queries\DescQuery</Filter>
+    </ClCompile>
+    <ClCompile Include="Mango\Implementation\Queries\DisplayQuery\DisplayQuery.cpp">
+      <Filter>Mango\Implementation\Queries\DisplayQuery</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -457,6 +463,9 @@
     </ClInclude>
     <ClInclude Include="Mango\Implementation\Queries\DescQuery\DescQuery.hpp">
       <Filter>Mango\Implementation\Queries\DescQuery</Filter>
+    </ClInclude>
+    <ClInclude Include="Mango\Implementation\Queries\DisplayQuery\DisplayQuery.hpp">
+      <Filter>Mango\Implementation\Queries\DisplayQuery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

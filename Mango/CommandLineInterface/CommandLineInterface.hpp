@@ -6,16 +6,12 @@ namespace Mango
 	class CommandLineInterface
 	{
 	private:
-		static const std::array<std::unique_ptr<Implementation::Queries::AbstractQuery>, 11> s_Queries;
+		static const std::array<std::unique_ptr<Implementation::Queries::AbstractQuery>, 12> s_Queries;
 		MangoDB m_DataBase;
-		bool m_Select = false;
 		bool m_Running = true;
 
 	private:
-		void displayResult(const_ref<std::vector<Implementation::Row>> rows, const_ref<std::vector<std::string>> columns) const;
 		void format(ref<std::string> sql) const;
-		int digitsNo(int x) const;
-		int digitsNo(float x) const;
 		void help() const;
 
 	public:

@@ -46,7 +46,6 @@ namespace Mango::Implementation
 		MANGO_PUBLIC_API ~Row();
 
 	private:
-		friend class Mango::CommandLineInterface;
 		friend class Mango::Implementation::Table;
 		friend class Mango::Implementation::TableIterator;
 		friend class Mango::Implementation::ConstTableIterator;
@@ -54,6 +53,7 @@ namespace Mango::Implementation
 		friend class Mango::Implementation::Queries::InsertIntoQuery;
 		friend class Mango::Implementation::Queries::SelectQuery;
 		friend class Mango::Implementation::Queries::DeleteQuery;
+		friend class Mango::Implementation::Queries::DisplayQuery;
 		friend void Mango::Implementation::Queries::CommandLineAdapter::setClauseCLI(ref<Row> row);
 		friend std::ostream& operator<<(std::ostream& out, const Row& row);
 		friend void Mango::Implementation::FileIO::CSV::write(std::ofstream& csv, const_ref<Row> row);

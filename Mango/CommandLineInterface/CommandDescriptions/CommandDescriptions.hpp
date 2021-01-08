@@ -68,6 +68,12 @@ namespace Mango::CommandDescriptions
 		void desc();
 	}
 
+	namespace Display
+	{
+		void syntax(int number);
+		void desc();
+	}
+
 	namespace Exit
 	{
 		void syntax(int number);
