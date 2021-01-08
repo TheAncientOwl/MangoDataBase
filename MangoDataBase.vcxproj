@@ -191,7 +191,7 @@
     <ClCompile Include="Mango\Implementation\Queries\CommandLineAdapter\WhereCondition\WhereCondition.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\CreateTableQuery\CreateTableQuery.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\DeleteQuery\DeleteQuery.cpp" />
-    <ClCompile Include="Mango\Implementation\Queries\DisplayQuery\DescQuery.cpp" />
+    <ClCompile Include="Mango\Implementation\Queries\DescQuery\DescQuery.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\DropTableQuery\DropTableQuery.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\ExecuteScriptQuery\ExecuteScriptQuery.cpp" />
     <ClCompile Include="Mango\Implementation\Queries\ExecuteScriptQuery\ScriptExecutor\ScriptExecutor.cpp" />
@@ -247,7 +247,7 @@
     <ClInclude Include="Mango\Implementation\Queries\CommandLineAdapter\WhereCondition\WhereCondition.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\CreateTableQuery\CreateTableQuery.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\DeleteQuery\DeleteQuery.hpp" />
-    <ClInclude Include="Mango\Implementation\Queries\DisplayQuery\DescQuery.hpp" />
+    <ClInclude Include="Mango\Implementation\Queries\DescQuery\DescQuery.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\DropTableQuery\DropTableQuery.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\ExecuteScriptQuery\ExecuteScriptQuery.hpp" />
     <ClInclude Include="Mango\Implementation\Queries\ExecuteScriptQuery\ScriptExecutor\ScriptExecutor.hpp" />

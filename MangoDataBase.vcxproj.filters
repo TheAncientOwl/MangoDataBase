@@ -67,9 +67,6 @@
     <Filter Include="Mango\Implementation\Queries\TruncateTableQuery">
       <UniqueIdentifier>{54488e42-794d-4fd7-a094-c5efb9dec983}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Mango\Implementation\Queries\DisplayQuery">
-      <UniqueIdentifier>{cd3188b2-0be0-4193-8255-f1bcc89e4751}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Mango\Implementation\Queries\InsertIntoQuery">
       <UniqueIdentifier>{235d1242-718b-44de-9eb8-2396b2e34b52}</UniqueIdentifier>
     </Filter>
@@ -144,6 +141,9 @@
     </Filter>
     <Filter Include="Mango\Implementation\Timer">
       <UniqueIdentifier>{93ecf38d-057c-4242-9629-91029d724514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mango\Implementation\Queries\DescQuery">
+      <UniqueIdentifier>{cd3188b2-0be0-4193-8255-f1bcc89e4751}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -288,8 +288,8 @@
     <ClCompile Include="Mango\Implementation\Timer\Timer.cpp">
       <Filter>Mango\Implementation\Timer</Filter>
     </ClCompile>
-    <ClCompile Include="Mango\Implementation\Queries\DisplayQuery\DescQuery.cpp">
-      <Filter>Mango\Implementation\Queries\DisplayQuery</Filter>
+    <ClCompile Include="Mango\Implementation\Queries\DescQuery\DescQuery.cpp">
+      <Filter>Mango\Implementation\Queries\DescQuery</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -455,8 +455,8 @@
     <ClInclude Include="Mango\Implementation\Timer\Timer.hpp">
       <Filter>Mango\Implementation\Timer</Filter>
     </ClInclude>
-    <ClInclude Include="Mango\Implementation\Queries\DisplayQuery\DescQuery.hpp">
-      <Filter>Mango\Implementation\Queries\DisplayQuery</Filter>
+    <ClInclude Include="Mango\Implementation\Queries\DescQuery\DescQuery.hpp">
+      <Filter>Mango\Implementation\Queries\DescQuery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
