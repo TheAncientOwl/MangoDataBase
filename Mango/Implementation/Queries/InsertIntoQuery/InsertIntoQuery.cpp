@@ -127,7 +127,7 @@ namespace Mango::Implementation::Queries
 
 		if (m_InsertAll)
 		{
-			if (m_ColumnValues.size() != table->columns().size())
+			if (m_ColumnValues.size() != table->getColumns().size())
 				throw InvalidArgumentException("Number of inserted values must match number of columns in table");
 		}
 		else
@@ -144,7 +144,7 @@ namespace Mango::Implementation::Queries
 	MANGO_QUERY_API void InsertIntoQuery::execute(ref<MangoDB> dataBase)
 	{
 		auto table = dataBase.getTable(m_TableName);
-		auto rowConfig = table->makeSharedRowConfiguration();
+		auto rowConfig = table->makeRowConfiguration();
 		Row row(rowConfig->calculateTotalSize(), rowConfig);
 
 		std::vector<size_t> columnIndexes;

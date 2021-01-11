@@ -14,9 +14,9 @@ namespace Mango::Implementation
 		return TableIterator::advanceInPlace(row);
 	}
 
-	MANGO_API const_ref<Row> ConstTableIterator::row() const
+	MANGO_API const_ref<Row> ConstTableIterator::getRow() const
 	{
-		return TableIterator::row();
+		return TableIterator::getRow();
 	}
 
 	MANGO_API void ConstTableIterator::releaseFile()

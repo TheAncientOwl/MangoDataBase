@@ -43,29 +43,29 @@ namespace Mango::Implementation
 		}
 	}
 
-	MANGO_API const_ptr<std::byte> Row::data() const
+	MANGO_API const_ptr<std::byte> Row::getData() const
 	{
 		return m_Data;
 	}
 
-	MANGO_API ptr<std::byte> Row::data()
+	MANGO_API ptr<std::byte> Row::getData()
 	{
 		return m_Data;
 	}
 
-	MANGO_API const_ptr<std::byte> Row::dataAt(int index) const
+	MANGO_API const_ptr<std::byte> Row::getDataAt(int index) const
 	{
 		assert(index >= 0 && index < m_Config->columnsNumber());
 		return m_Data + m_Config->offsetAt(index);
 	}
 
-	MANGO_API ptr<std::byte> Row::dataAt(int index)
+	MANGO_API ptr<std::byte> Row::getDataAt(int index)
 	{
 		assert(index >= 0 && index < m_Config->columnsNumber());
 		return m_Data + m_Config->offsetAt(index);
 	}
 
-	MANGO_API size_t Row::size() const
+	MANGO_API size_t Row::getSize() const
 	{
 		return m_Size;
 	}
@@ -136,7 +136,7 @@ namespace Mango::Implementation
 		assert(index >= 0 && index < m_Config->columnsNumber());
 		assert(m_Config->operator==(*row.m_Config));
 
-		setDataAt(index, row.dataAt(index), m_Config->sizeAt(index));
+		setDataAt(index, row.getDataAt(index), m_Config->sizeAt(index));
 	}
 
 	MANGO_PUBLIC_API Row::Row(size_t size, const_ref<std::shared_ptr<RowConfiguration>> config)

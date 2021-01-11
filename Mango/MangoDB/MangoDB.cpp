@@ -128,6 +128,7 @@ namespace Mango
 	MANGO_PUBLIC_API void MangoDB::disposeLastResult()
 	{
 		std::vector<Implementation::Row>().swap(m_LastResult);
+		std::vector<std::string>().swap(m_LastColumns);
 	}
 
 	void MangoDB::setWhereClause(Implementation::WhereClause whereClause)

@@ -58,7 +58,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 			if (dummy.m_Index == -1)
 				throw InvalidArgumentException({ "Column \"", m_ColumnName, "\" does not exists" });
 
-			switch (table->getColumn(dummy.m_Index).dataType())
+			switch (table->getColumn(dummy.m_Index).getDataType())
 			{
 				case DataType::Value::INT:
 				{

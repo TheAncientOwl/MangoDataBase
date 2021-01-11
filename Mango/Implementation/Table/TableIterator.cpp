@@ -9,22 +9,22 @@ namespace Mango::Implementation
 #pragma region MANGO_API
 	MANGO_API const_ref<std::fstream> TableIterator::advance()
 	{
-		deserializePOD(m_FileStream, m_Data.data(), m_Data.size());
+		deserializePOD(m_FileStream, m_Data.getData(), m_Data.getSize());
 		return m_FileStream;
 	}
 
 	MANGO_API const_ref<std::fstream> TableIterator::advanceInPlace(ref<Row> row)
 	{
-		deserializePOD(m_FileStream, row.data(), row.size());
+		deserializePOD(m_FileStream, row.getData(), row.getSize());
 		return m_FileStream;
 	}
 
-	MANGO_API const_ref<Row> TableIterator::row() const
+	MANGO_API const_ref<Row> TableIterator::getRow() const
 	{
 		return m_Data;
 	}
 
-	ref<Row> TableIterator::row()
+	ref<Row> TableIterator::getRow()
 	{
 		return m_Data;
 	}
@@ -40,12 +40,12 @@ namespace Mango::Implementation
 			m_Data = row;
 
 		std::streampos pos = m_FileStream.tellg();
-		pos -= row.size();
+		pos -= row.getSize();
 		m_FileStream.seekp(pos);
 
-		serializePOD(m_FileStream, row.data(), row.size());
+		serializePOD(m_FileStream, row.getData(), row.getSize());
 
-		pos += row.size();
+		pos += row.getSize();
 		m_FileStream.seekg(pos);
 	}
 

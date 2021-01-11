@@ -15,13 +15,13 @@ namespace Mango::Implementation
 		size_t m_Size = 0;
 
 	private:
-		MANGO_API void serialize(std::fstream& file) const;
-		MANGO_API void deserialize(std::fstream& file);
+		MANGO_API void serializeToConfig(std::fstream& config) const;
+		MANGO_API void deserializeFromConfig(std::fstream& config);
 
 	public:
-		MANGO_PUBLIC_API std::string_view name() const;
-		MANGO_PUBLIC_API DataType dataType() const;
-		MANGO_PUBLIC_API size_t size() const;
+		MANGO_PUBLIC_API std::string_view getName() const;
+		MANGO_PUBLIC_API DataType getDataType() const;
+		MANGO_PUBLIC_API size_t getSize() const;
 
 	public:
 		MANGO_PUBLIC_API Column(std::string_view name, DataType dataType, size_t size);

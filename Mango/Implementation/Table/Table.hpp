@@ -32,7 +32,7 @@ namespace Mango::Implementation
 
 		MANGO_API void insertRow(const_ref<Row> row);
 
-		MANGO_API const_ref<std::vector<Column>> columns() const;
+		MANGO_API const_ref<std::vector<Column>> getColumns() const;
 
 		MANGO_API std::string_view getName() const;
 
@@ -44,14 +44,13 @@ namespace Mango::Implementation
 
 		MANGO_API size_t getColumnIndex(std::string_view columnName) const;
 
-		MANGO_API std::shared_ptr<RowConfiguration> makeSharedRowConfiguration() const;
-		MANGO_API RowConfiguration makeRowConfiguration() const;
+		MANGO_API std::shared_ptr<RowConfiguration> makeRowConfiguration() const;
 
-		MANGO_API TableIterator makeIterator();
-		MANGO_API ConstTableIterator makeConstIterator() const;
+		MANGO_API TableIterator begin();
+		MANGO_API ConstTableIterator begin() const;
 
 	public:
-		MANGO_PUBLIC_API Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, std::vector<Column>&& columns);
+		MANGO_PUBLIC_API Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, std::vector<Column> columns);
 
 		MANGO_PUBLIC_API Table() = default;
 		MANGO_PUBLIC_API Table(const Table&) = delete;

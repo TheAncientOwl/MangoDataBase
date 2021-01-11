@@ -8,6 +8,8 @@
 #include "../../../Exceptions/MangoExceptions.hpp"
 using namespace Mango::Exceptions;
 
+#include "../../../ConsoleColorOutput/ConsoleColorOutput.hpp"
+
 namespace Mango::Implementation::Queries
 {
 #pragma region MANGO_QUERY_API
@@ -57,10 +59,12 @@ namespace Mango::Implementation::Queries
 		if (!csv.is_open())
 			throw InvalidArgumentException("File does not exists or cannot be opened");
 
+		std::cout << ccolor::dark_gray << ">> " << ccolor::dark_aqua << "Importing data" << ccolor::dark_gray << "...\n";
+
 		std::string header;
 		std::getline(csv, header);
 
-		auto rowConfig = table->makeSharedRowConfiguration();
+		auto rowConfig = table->makeRowConfiguration();
 		Row row(rowConfig->calculateTotalSize(), rowConfig);
 
 		while (FileIO::CSV::read(csv, row))

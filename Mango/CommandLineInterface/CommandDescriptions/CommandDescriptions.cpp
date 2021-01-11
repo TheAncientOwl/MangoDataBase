@@ -28,10 +28,6 @@ namespace Mango::CommandDescriptions
 			std::cout << COLUMN_COLOR << "...";
 			std::cout << ccolor::dark_gray << ");\n";
 		}
-
-		void desc()
-		{
-		}
 	}
 
 	namespace Delete
@@ -50,10 +46,6 @@ namespace Mango::CommandDescriptions
 			std::cout << VALUE_COLOR << "value";
 			std::cout << ccolor::dark_gray << ">;\n";
 		}
-
-		void desc()
-		{
-		}
 	}
 
 	namespace Desc
@@ -66,11 +58,6 @@ namespace Mango::CommandDescriptions
 			std::cout << TABLE_COLOR << "*" << ccolor::dark_gray << "/" << TABLE_COLOR << "table_name";
 			std::cout << ccolor::dark_gray << ";\n";
 		}
-
-		void desc()
-		{
-
-		}
 	}
 
 	namespace Drop
@@ -82,11 +69,6 @@ namespace Mango::CommandDescriptions
 			std::cout << COMMAND_COLOR << "DROP TABLE ";
 			std::cout << TABLE_COLOR << "table_name";
 			std::cout << ccolor::dark_gray << ";\n";
-		}
-
-		void desc()
-		{
-
 		}
 	}
 
@@ -113,11 +95,6 @@ namespace Mango::CommandDescriptions
 			std::cout << VALUE_COLOR << "...";
 			std::cout << ccolor::dark_gray << ");\n";
 		}
-
-		void desc()
-		{
-
-		}
 	}
 
 	namespace Truncate
@@ -129,11 +106,6 @@ namespace Mango::CommandDescriptions
 			std::cout << COMMAND_COLOR << "TRUNCATE TABLE ";
 			std::cout << TABLE_COLOR << "table_name";
 			std::cout << ccolor::dark_gray << ";\n";
-		}
-
-		void desc()
-		{
-
 		}
 	}
 
@@ -147,11 +119,6 @@ namespace Mango::CommandDescriptions
 			std::cout << FILE_COLOR << "file_name.csv";
 			std::cout << ccolor::dark_gray << ";\n";
 		}
-
-		void desc()
-		{
-
-		}
 	}
 
 	namespace Import
@@ -164,11 +131,6 @@ namespace Mango::CommandDescriptions
 			std::cout << TABLE_COLOR << "table_name ";
 			std::cout << FILE_COLOR << "file_name.csv";
 			std::cout << ccolor::dark_gray << ";\n";
-		}
-
-		void desc()
-		{
-
 		}
 	}
 
@@ -194,11 +156,6 @@ namespace Mango::CommandDescriptions
 			std::cout << ccolor::dark_gray << " = ";
 			std::cout << VALUE_COLOR << "value";
 			std::cout << ccolor::dark_gray << ">;\n";
-		}
-
-		void desc()
-		{
-
 		}
 	}
 
@@ -226,11 +183,6 @@ namespace Mango::CommandDescriptions
 			std::cout << VALUE_COLOR << "value";
 			std::cout << ccolor::dark_gray << ">;\n";
 		}
-
-		void desc()
-		{
-
-		}
 	}
 
 	namespace ExecuteScript
@@ -243,11 +195,6 @@ namespace Mango::CommandDescriptions
 			std::cout << FILE_COLOR << "script.mango";
 			std::cout << ccolor::dark_gray << ";\n";
 		}
-
-		void desc()
-		{
-
-		}
 	}
 
 	namespace Display
@@ -258,11 +205,6 @@ namespace Mango::CommandDescriptions
 
 			std::cout << COMMAND_COLOR << "DISPLAY";
 			std::cout << ccolor::dark_gray << ";\n";
-		}
-
-		void desc()
-		{
-
 		}
 	}
 

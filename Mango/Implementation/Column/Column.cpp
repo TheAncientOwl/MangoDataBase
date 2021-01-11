@@ -9,46 +9,46 @@ using namespace Mango::Implementation::FileIO::Binary;
 namespace Mango::Implementation
 {
 #pragma region MANGO_API
-	MANGO_API void Column::serialize(std::fstream& file) const
+	MANGO_API void Column::serializeToConfig(std::fstream& config) const
 	{
 		size_t nameLength = m_Name.length() + 1;
-		serializePOD(file, &nameLength);
-		serializePOD(file, m_Name.c_str(), nameLength);
+		serializePOD(config, &nameLength);
+		serializePOD(config, m_Name.c_str(), nameLength);
 
 		char c = m_DataType.toChar();
-		serializePOD(file, &c);
+		serializePOD(config, &c);
 
-		serializePOD(file, &m_Size);
+		serializePOD(config, &m_Size);
 	}
 
-	MANGO_API void Column::deserialize(std::fstream& file)
+	MANGO_API void Column::deserializeFromConfig(std::fstream& config)
 	{
 		size_t nameLength = 0;
-		deserializePOD(file, &nameLength);
+		deserializePOD(config, &nameLength);
 		char buffer[MANGO_MAX_COLUMN_NAME_LENGTH + 1]{};
-		deserializePOD(file, buffer, nameLength);
+		deserializePOD(config, buffer, nameLength);
 		m_Name = buffer;
 
 		char c = ' ';
-		deserializePOD(file, &c);
+		deserializePOD(config, &c);
 		m_DataType = c;
 
-		deserializePOD(file, &m_Size);
+		deserializePOD(config, &m_Size);
 	}
 #pragma endregion
 
 #pragma region MANGO_PUBLIC_API
-	MANGO_PUBLIC_API std::string_view Column::name() const
+	MANGO_PUBLIC_API std::string_view Column::getName() const
 	{
 		return m_Name;
 	}
 
-	MANGO_PUBLIC_API DataType Column::dataType() const
+	MANGO_PUBLIC_API DataType Column::getDataType() const
 	{
 		return m_DataType;
 	}
 
-	MANGO_PUBLIC_API size_t Column::size() const
+	MANGO_PUBLIC_API size_t Column::getSize() const
 	{
 		return m_Size;
 	}
@@ -61,9 +61,9 @@ namespace Mango::Implementation
 	MANGO_PUBLIC_API std::ostream& operator<<(std::ostream& out, const Column& col)
 	{
 		out << ccolor::dark_gray << "[";
-		out << ccolor::light_blue << std::string(col.name());
+		out << ccolor::light_blue << std::string(col.getName());
 		out << ccolor::dark_gray << "] {";
-		out << ccolor::lime << col.dataType().toString() << ccolor::dark_gray << ", " << ccolor::lime << col.size() << " BYTES";
+		out << ccolor::lime << col.getDataType().toString() << ccolor::dark_gray << ", " << ccolor::lime << col.getSize() << " BYTES";
 		out << ccolor::dark_gray << "}" << ccolor::reset;
 		return out;
 	}

@@ -57,7 +57,7 @@ namespace Mango::Implementation
 		serializePOD(file, &columnsSize);
 
 		for (const auto& column : m_Columns)
-			column.serialize(file);
+			column.serializeToConfig(file);
 
 		file.close();
 	}
@@ -73,7 +73,7 @@ namespace Mango::Implementation
 		for (int index = 0; index < columnsSize; ++index)
 		{
 			auto& column = m_Columns.emplace_back();
-			column.deserialize(file);
+			column.deserializeFromConfig(file);
 		}
 
 		file.close();
@@ -83,12 +83,12 @@ namespace Mango::Implementation
 	{
 		std::fstream file(getDataFilePath(), std::ios::out | std::ios::app | std::ios::binary);
 
-		serializePOD(file, row.data(), row.size());
+		serializePOD(file, row.getData(), row.getSize());
 
 		file.close();
 	}
 
-	MANGO_API const_ref<std::vector<Column>> Table::columns() const
+	MANGO_API const_ref<std::vector<Column>> Table::getColumns() const
 	{
 		return m_Columns;
 	}
@@ -131,40 +131,32 @@ namespace Mango::Implementation
 	MANGO_API size_t Table::getColumnIndex(std::string_view columnName) const
 	{
 		for (size_t index = 0, size = m_Columns.size(); index < size; ++index)
-			if (m_Columns[index].name() == columnName)
+			if (m_Columns[index].getName() == columnName)
 				return index;
 		return -1;
 	}
 
-	MANGO_API std::shared_ptr<RowConfiguration> Table::makeSharedRowConfiguration() const
+	MANGO_API std::shared_ptr<RowConfiguration> Table::makeRowConfiguration() const
 	{
 		auto rowConfig = std::make_shared<RowConfiguration>();
 		for (const auto& column : m_Columns)
-			rowConfig->pushBack(column.size(), column.dataType());
+			rowConfig->pushBack(column.getSize(), column.getDataType());
 		return rowConfig;
 	}
 
-	MANGO_API RowConfiguration Table::makeRowConfiguration() const
+	MANGO_API TableIterator Table::begin()
 	{
-		RowConfiguration rowConfig;
-		for (const auto& column : m_Columns)
-			rowConfig.pushBack(column.size(), column.dataType());
-		return rowConfig;
+		return TableIterator(getDataFilePath(), makeRowConfiguration());
 	}
 
-	MANGO_API TableIterator Table::makeIterator()
+	MANGO_API ConstTableIterator Table::begin() const
 	{
-		return TableIterator(getDataFilePath(), makeSharedRowConfiguration());
-	}
-
-	MANGO_API ConstTableIterator Table::makeConstIterator() const
-	{
-		return ConstTableIterator(getDataFilePath(), makeSharedRowConfiguration());
+		return ConstTableIterator(getDataFilePath(), makeRowConfiguration());
 	}
 #pragma endregion
 
 #pragma region MANGO_PUBLIC_API
-	MANGO_PUBLIC_API Table::Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, std::vector<Column>&& columns)
+	MANGO_PUBLIC_API Table::Table(std::string name, const_ref<std::filesystem::path> dataBaseDirectoryPath, std::vector<Column> columns)
 	{
 		m_Name = std::move(name);
 		m_DirectoryPath = dataBaseDirectoryPath / m_Name;
@@ -178,7 +170,7 @@ namespace Mango::Implementation
 		out << ccolor::dark_red << std::string(table.getName());
 		out << ccolor::dark_gray << "]\n";
 
-		for (const auto& column : table.columns())
+		for (const auto& column : table.getColumns())
 			out << column << '\n';
 
 		return out;

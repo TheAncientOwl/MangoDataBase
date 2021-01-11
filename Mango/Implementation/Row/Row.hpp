@@ -16,13 +16,13 @@ namespace Mango::Implementation
 		MANGO_API void setDataAt(int index, const void* value, size_t size);
 		MANGO_API void setDataAt(int index, const_ref<std::string> value);
 
-		MANGO_API const_ptr<std::byte> data() const;
-		MANGO_API ptr<std::byte> data();
+		MANGO_API const_ptr<std::byte> getData() const;
+		MANGO_API ptr<std::byte> getData();
 
-		MANGO_API const_ptr<std::byte> dataAt(int index) const;
-		MANGO_API ptr<std::byte> dataAt(int index);
+		MANGO_API const_ptr<std::byte> getDataAt(int index) const;
+		MANGO_API ptr<std::byte> getDataAt(int index);
 
-		MANGO_API size_t size() const;
+		MANGO_API size_t getSize() const;
 
 	public:
 		MANGO_PUBLIC_API int getInt(int index) const;

@@ -46,13 +46,13 @@ namespace Mango::Implementation::Queries
 
 		auto table = dataBase.getTable(m_TableName);
 
-		TableIterator tableIterator = table->makeIterator();
+		TableIterator tableIterator = table->begin();
 
 		assert(dataBase.m_SetClause != &RowFilters::doNothing && "Did you forget to set the set clause?");
 
 		while (tableIterator.advance())
 		{
-			Row& row = tableIterator.row();
+			Row& row = tableIterator.getRow();
 			if (dataBase.m_WhereClause(row))
 			{
 				dataBase.m_SetClause(row);

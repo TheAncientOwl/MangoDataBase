@@ -44,9 +44,9 @@ namespace Mango::Implementation::Queries
 	MANGO_QUERY_API void DeleteQuery::execute(ref<MangoDB> dataBase)
 	{
 		MangoClauseGuard _(dataBase);
-		auto table = dataBase.getTable(m_TableName);
+		auto table = static_cast<const_ptr<Table>>(dataBase.getTable(m_TableName));
 
-		auto tableIterator = table->makeConstIterator();
+		auto tableIterator = table->begin();
 
 		std::filesystem::path dummyFilePath = table->getDataFilePath();
 
@@ -55,9 +55,9 @@ namespace Mango::Implementation::Queries
 
 		while (tableIterator.advance())
 		{
-			auto& row = tableIterator.row();
+			auto& row = tableIterator.getRow();
 			if (!dataBase.m_WhereClause(row))
-				serializePOD(dummyFile, row.data(), row.size());
+				serializePOD(dummyFile, row.getData(), row.getSize());
 		}
 
 		dummyFile.close();

@@ -11,7 +11,7 @@ namespace Mango::Implementation
 	private:
 		MANGO_API const_ref<std::fstream> advance();
 		MANGO_API const_ref<std::fstream> advanceInPlace(ref<Row> row);
-		MANGO_API const_ref<Row> row() const;
+		MANGO_API const_ref<Row> getRow() const;
 		MANGO_API void releaseFile();
 
 	public:

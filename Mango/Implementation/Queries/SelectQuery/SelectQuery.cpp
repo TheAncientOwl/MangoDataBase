@@ -32,10 +32,10 @@ namespace Mango::Implementation::Queries
 
 	MANGO_API void SelectQuery::selectAll(ptr<Table> table, ref<MangoDB> dataBase)
 	{
-		auto rowConfig = table->makeSharedRowConfiguration();
+		auto rowConfig = table->makeRowConfiguration();
 		size_t rowSize = rowConfig->calculateTotalSize();
 
-		ConstTableIterator tableIterator = table->makeConstIterator();
+		auto tableIterator = static_cast<const_ptr<Table>>(table)->begin();
 
 		auto& result = dataBase.m_LastResult;
 		result.emplace_back(rowSize, rowConfig);
@@ -46,8 +46,8 @@ namespace Mango::Implementation::Queries
 		result.pop_back();
 
 		dataBase.m_LastColumns.clear();
-		for (const auto& column : table->columns())
-			dataBase.m_LastColumns.emplace_back(column.name());
+		for (const auto& column : table->getColumns())
+			dataBase.m_LastColumns.emplace_back(column.getName());
 	}
 
 	MANGO_API void SelectQuery::selectSome(ptr<Table> table, ref<MangoDB> dataBase)
@@ -60,27 +60,29 @@ namespace Mango::Implementation::Queries
 			selectedColumnIndexes.push_back(static_cast<int>(table->getColumnIndex(columnName)));
 			const_ref<Column> column = table->getColumn(selectedColumnIndexes.back());
 
-			rowConfig->pushBack(column.size(), column.dataType());
+			rowConfig->pushBack(column.getSize(), column.getDataType());
 		}
 
 		size_t rowSize = rowConfig->calculateTotalSize();
 
 		auto& result = dataBase.m_LastResult;
-		ConstTableIterator tableIterator = table->makeConstIterator();
+
+		auto tableIterator = static_cast<const_ptr<Table>>(table)->begin();
+
 		bool selected = true;
 		while (tableIterator.advance())
 		{
 			if (selected)
 				result.emplace_back(rowSize, rowConfig);
 
-			selected = dataBase.m_WhereClause(tableIterator.row());
+			selected = dataBase.m_WhereClause(tableIterator.getRow());
 
 			if (selected)
 			{
 				auto& lastRow = result.back();
 
 				for (int currentColumn = 0; currentColumn < m_ColumnNames.size(); ++currentColumn)
-					lastRow.setDataAt(currentColumn, tableIterator.row().dataAt(selectedColumnIndexes[currentColumn]), 
+					lastRow.setDataAt(currentColumn, tableIterator.getRow().getDataAt(selectedColumnIndexes[currentColumn]), 
 									  rowConfig->sizeAt(currentColumn));
 
 			}

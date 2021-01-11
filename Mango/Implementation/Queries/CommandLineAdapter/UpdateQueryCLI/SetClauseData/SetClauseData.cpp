@@ -49,7 +49,7 @@ namespace Mango::Implementation::Queries::CommandLineAdapter
 
 	void SetClauseData::extractRow(ptr<Table> table)
 	{
-		auto rowConfig = table->makeSharedRowConfiguration();
+		auto rowConfig = table->makeRowConfiguration();
 		m_Row = Row(rowConfig->calculateTotalSize(), rowConfig);
 
 		for (const auto& pair : m_Data)
