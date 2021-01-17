@@ -11,6 +11,12 @@ namespace Mango::Implementation
 	class RowConfiguration
 	{
 	private:
+		/*
+			row: 010110011011001101010101011010001010100101
+			dataType: int float string string <=> id, salariu, nume, prenume
+			sizes:    4   4     50     25
+			offsets:  0   4     8      58
+		*/
 		std::vector<size_t> m_Offsets;
 		std::vector<size_t> m_Sizes;
 		std::vector<DataType> m_DataTypes;

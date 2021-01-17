@@ -47,7 +47,7 @@ namespace Mango::Implementation::FileIO::CSV
 		std::getline(csv, line);
 
 		auto vals = StringUtils::splitAtChar(line, ',');
-
+		
 		std::string str;
 		str.reserve(100);
 
