@@ -236,7 +236,7 @@ namespace Mango
 		m_DataBase.loadTableConfigs();
 	}
 
-	const std::array<std::unique_ptr<AbstractQuery>, 12> CommandLineInterface::s_Queries{
+	const std::array<std::unique_ptr<IQuery>, 12> CommandLineInterface::s_Queries{
 		std::make_unique<CreateTableQuery>(),
 		std::make_unique<DropTableQuery>(),
 		std::make_unique<TruncateTableQuery>(),

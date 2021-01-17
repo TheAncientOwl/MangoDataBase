@@ -7,7 +7,7 @@ namespace Mango::Implementation::Queries
 	/// <summary>
 	/// SAVE file_name.csv;
 	/// </summary>
-	class SaveDataQuery final : public AbstractQuery
+	class SaveDataQuery final : public IQuery
 	{
 	private:
 		std::string m_FileName;

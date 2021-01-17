@@ -7,7 +7,7 @@
 
 namespace Mango::Implementation::Queries
 {
-	class AbstractQuery
+	class IQuery
 	{
 	private:
 		/// <summary>
@@ -36,12 +36,12 @@ namespace Mango::Implementation::Queries
 		MANGO_QUERY_API virtual void execute(ref<MangoDB> dataBase) = 0;
 
 	public:
-		MANGO_PUBLIC_API AbstractQuery() = default;
-		MANGO_PUBLIC_API AbstractQuery(const AbstractQuery&) = default;
-		MANGO_PUBLIC_API AbstractQuery(AbstractQuery&&) noexcept = default;
-		MANGO_PUBLIC_API AbstractQuery& operator=(const AbstractQuery&) = default;
-		MANGO_PUBLIC_API AbstractQuery& operator=(AbstractQuery&&) noexcept = default;
-		MANGO_PUBLIC_API virtual ~AbstractQuery() = default;
+		MANGO_PUBLIC_API IQuery() = default;
+		MANGO_PUBLIC_API IQuery(const IQuery&) = default;
+		MANGO_PUBLIC_API IQuery(IQuery&&) noexcept = default;
+		MANGO_PUBLIC_API IQuery& operator=(const IQuery&) = default;
+		MANGO_PUBLIC_API IQuery& operator=(IQuery&&) noexcept = default;
+		MANGO_PUBLIC_API virtual ~IQuery() = default;
 
 	private:
 		friend class Mango::QueryExecutor;

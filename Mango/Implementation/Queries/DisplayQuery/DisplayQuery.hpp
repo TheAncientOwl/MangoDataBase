@@ -7,7 +7,7 @@ namespace Mango::Implementation::Queries
 	/// <summary>
 	/// DISPLAY;
 	/// </summary>
-	class DisplayQuery final : public AbstractQuery
+	class DisplayQuery final : public IQuery
 	{
 	private:
 		MANGO_API int digitsNo(int x) const;

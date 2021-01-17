@@ -7,7 +7,7 @@ namespace Mango::Implementation::Queries
 	/// <summary>
 	/// TRUNCATE TABLE table_name;
 	/// </summary>
-	class TruncateTableQuery final : public AbstractQuery
+	class TruncateTableQuery final : public IQuery
 	{
 	private:
 		std::string m_TableName;

@@ -7,7 +7,7 @@ namespace Mango::Implementation::Queries
 	/// <summary>
 	/// DROP TABLE table_name;
 	/// </summary>
-	class DropTableQuery final : public AbstractQuery
+	class DropTableQuery final : public IQuery
 	{
 	private:
 		std::string m_TableName;

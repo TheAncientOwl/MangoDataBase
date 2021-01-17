@@ -10,7 +10,7 @@ namespace Mango::Implementation::Queries
 	/// [!] Where clause can be specified through MagoDB::setWhereClause(WhereClause whereClause);
 	/// [!] By default all values are deleted.
 	/// </summary>
-	class DeleteQuery : public AbstractQuery
+	class DeleteQuery : public IQuery
 	{
 	protected:
 		std::string m_TableName;

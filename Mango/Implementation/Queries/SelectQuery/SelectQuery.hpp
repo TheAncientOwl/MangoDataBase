@@ -9,7 +9,7 @@ namespace Mango::Implementation::Queries
 	/// SELECT */[col1, col2, ...] FROM table_name;
 	/// [!] Where clause can be specified through MagoDB::setWhereClause(WhereClause whereClause);
 	/// </summary>
-	class SelectQuery : public AbstractQuery
+	class SelectQuery : public IQuery
 	{
 	protected:
 		std::string m_TableName;

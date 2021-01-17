@@ -11,7 +11,7 @@ namespace Mango::Implementation::Queries
 	/// [!] Set clause can be specified through MangoDB::setSetClause(SetClause setClause);
 	/// [!] By default nothing will be modified.
 	/// </summary>
-	class UpdateQuery : public AbstractQuery
+	class UpdateQuery : public IQuery
 	{
 	protected:
 		std::string m_TableName;

@@ -3,7 +3,7 @@
 
 namespace Mango::Implementation::Queries
 {
-	class AbstractQuery;
+	class IQuery;
 	class CreateTableQuery;
 	class TruncateTableQuery;
 	class DropTableQuery;
