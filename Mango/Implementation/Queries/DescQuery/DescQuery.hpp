@@ -7,7 +7,7 @@ namespace Mango::Implementation::Queries
 	/// <summary>
 	/// DESC */table_name;
 	/// </summary>
-	class DescQuery final : public IQuery
+	class DescQuery final : public AbstractQuery
 	{
 	private:
 		std::string m_TableName;

@@ -9,7 +9,7 @@ namespace Mango::Implementation::Queries
 	/// Imported data must match full table configuration.
 	/// Imported strings must not contain ','
 	/// </summary>
-	class ImportDataQuery final : public IQuery
+	class ImportDataQuery final : public AbstractQuery
 	{
 	private:
 		std::string m_TableName;

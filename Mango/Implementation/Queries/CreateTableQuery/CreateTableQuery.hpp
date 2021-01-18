@@ -8,7 +8,7 @@ namespace Mango::Implementation::Queries
 	/// <summary>
 	/// CREATE TABLE table_name (column1 dataType, column2 dataType, ...);
 	/// </summary>
-	class CreateTableQuery final : public IQuery
+	class CreateTableQuery final : public AbstractQuery
 	{
 	private:
 		std::string m_TableName;

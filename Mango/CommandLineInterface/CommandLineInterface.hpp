@@ -6,7 +6,7 @@ namespace Mango
 	class CommandLineInterface
 	{
 	private:
-		static const std::array<std::unique_ptr<Implementation::Queries::IQuery>, 12> s_Queries;
+		static const std::array<std::unique_ptr<Implementation::Queries::AbstractQuery>, 12> s_Queries;
 		MangoDB m_DataBase;
 		bool m_Running = true;
 

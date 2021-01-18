@@ -7,7 +7,7 @@ namespace Mango::Implementation::Queries
 	/// <summary>
 	/// EXECUTE SCRIPT script.mango;
 	/// </summary>
-	class ExecuteScriptQuery final : public IQuery
+	class ExecuteScriptQuery final : public AbstractQuery
 	{
 	private:
 		std::string m_ScriptName;

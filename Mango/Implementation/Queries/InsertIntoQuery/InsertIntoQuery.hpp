@@ -8,7 +8,7 @@ namespace Mango::Implementation::Queries
 	/// INSERT INTO table_name [col1, col2, ...] VALUES (val1, val2, ...);
 	/// [!] If inserted string containts ',' it must be escaped with '/': "/,"
 	/// </summary>
-	class InsertIntoQuery final : public IQuery
+	class InsertIntoQuery final : public AbstractQuery
 	{
 	private:
 		bool m_InsertAll = false;
