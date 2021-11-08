@@ -13,7 +13,7 @@ namespace Mango::Implementation
 	private:
 		/*
 			row: 010110011011001101010101011010001010100101
-			dataType: int float string string <=> id, salariu, nume, prenume
+			dataType: int float string string <=> id, salary, last_name, first_name
 			sizes:    4   4     50     25
 			offsets:  0   4     8      58
 		*/
