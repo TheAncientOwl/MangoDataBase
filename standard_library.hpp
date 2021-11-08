@@ -1,7 +1,7 @@
 #pragma once
 #define PROJECT_DATA_BASE "MangoDataBase"
 
-#define NDEBUG
+// #define NDEBUG
 #include <initializer_list>
 #include <string_view>
 #include <filesystem>
