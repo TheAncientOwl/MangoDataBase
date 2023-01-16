@@ -3,7 +3,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-x64/
+x64/*
+MangoDataBase/*
 
 # User-specific files
 *.rsuser
